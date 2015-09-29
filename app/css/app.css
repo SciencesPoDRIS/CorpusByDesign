@@ -396,6 +396,9 @@ ul#menu_appli li:last-child a::after {
 
 .content .filters {
     background-color: green;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
 }
 
 .content .filters .search-bar {
@@ -415,7 +418,8 @@ ul#menu_appli li:last-child a::after {
 
 .content .list {
     background-color: blue;
-    overflow: auto;
+    position: absolute;
+    top: 150px;
     width: 100%;
 }
 
