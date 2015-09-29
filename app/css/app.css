@@ -98,6 +98,17 @@ a:visited {
     padding: 0;
 }
 
+.ellipsed {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    margin: 4px 0 0 1px;
+}
+
 
 /* Header */
 
