@@ -405,7 +405,7 @@ ul#menu_appli li:last-child a::after {
 /* Filters */
 
 .content .filters {
-    background-color: green;
+    height: 150px;
     position: absolute;
     width: 100%;
     z-index: 1;
@@ -417,12 +417,15 @@ ul#menu_appli li:last-child a::after {
 }
 
 .content .filters .facets {
+    background-color: green;
     min-height: 70px;
 }
 
 .content .filters .search-bottom {
     background-color: #F0F;
+    bottom: 0;
     height: 40px;
+    position: absolute;
     width: 100%;
 }
 
