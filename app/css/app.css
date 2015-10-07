@@ -9,8 +9,6 @@ body {
     font-family: Arial Regular, sans-serif;
     font-size: 1.4em;
     margin: 0 auto;
-    overflow-x: auto;
-    overflow-y: scroll;
     padding: 0;
     width: 100%;
 }
@@ -418,7 +416,12 @@ ul#menu_appli li:last-child a::after {
 
 .content .filters .facets {
     background-color: green;
+    bottom: 40px;
     min-height: 70px;
+    overflow-y: auto;
+    position: absolute;
+    top: 40px;
+    width: 100%;
 }
 
 .content .filters .search-bottom {
