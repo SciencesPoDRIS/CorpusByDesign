@@ -24,4 +24,15 @@
         };
     });
 
+    app.directive('filters', [function(){
+        return {
+            restrict: 'E'
+            ,templateUrl: 'partials/filters/filters.html'
+            ,scope: {
+                filters: '='
+            }
+            ,link: 'partials/filters/filters.js'
+        }
+      }])
+
 })();
