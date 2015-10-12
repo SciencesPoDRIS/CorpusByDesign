@@ -2,7 +2,9 @@
     'use strict';
 
     var app = angular.module('webcorpus', [
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'ngRoute',
+        'webcorpus.corpus'
     ]);
 
     app.controller('CorpusSnippetCtrl', ['$scope', 
@@ -18,5 +20,9 @@
             }
         }
     ]);
+
+    app.config(['$routeProvider', function($routeProvider) {
+      $routeProvider.otherwise({redirectTo: '/'});
+    }]);
 
 })();
