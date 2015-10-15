@@ -40,15 +40,15 @@
         </div>
     </div>
     <!-- Content -->
-    <div ng-class="['row', 'content']" ng-controller="CorpusSnippetCtrl">
-        <div ng-class="['col-md-5', 'no-gutter']">
+    <div ng-class="['row', 'content', 'full-height']" ng-controller="CorpusSnippetCtrl">
+        <div ng-class="['col-md-5', 'no-gutter', 'full-height']">
             <div ng-class="['title']">Nom du corpus</div>
             <div ng-class="['graph']">
                 Graph
                 <!-- <div id="graph" style="background-color: #FFF; border: 1px solid #B6B6B6; height: 500px; margin-bottom: 10px; width: 100%;"></div> -->
             </div>
         </div>
-        <div ng-class="['col-md-7', 'no-gutter']">
+        <div ng-class="['col-md-7', 'no-gutter', 'full-height']">
             <div ng-class="['filters']">
                 <div ng-class="['search-bar']">Search bar</div>
                 <div ng-class="['no-gutter', 'facets']">
@@ -860,7 +860,7 @@
                 </div>
             </div>
             <div ng-class="['list']">
-                <div>
+                <div ng-class="['full-height']">
                     Liste des web entités
                 </div>
             </div>

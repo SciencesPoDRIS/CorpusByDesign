@@ -374,14 +374,9 @@ ul#menu_appli li:last-child a::after {
 /* Content */
 
 .content {
-    height: 100%;
     margin: 0;
     padding: 68px 0 0 0;
     width: 100%;
-}
-
-.content > div {
-    height: 100%;
 }
 
 
@@ -443,8 +438,4 @@ ul#menu_appli li:last-child a::after {
     position: absolute;
     top: 150px;
     width: 100%;
-}
-
-.content .list > div {
-    height: 100%;
 }
