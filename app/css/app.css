@@ -1,5 +1,25 @@
 /* app css stylesheet */
 
+/* Class Tools */
+
+.red {
+    color: #e6142d;
+}
+
+.no-gutter {
+    margin: 0;
+    padding: 0;
+}
+
+.ellipsed {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.full-height {
+    height: 100%;
+}
 
 /* General */
 
@@ -55,10 +75,6 @@ a:visited {
     -ms-transform: scaleX(-1);
 }
 
-.red {
-    color: #e6142d;
-}
-
 .subtitle {
     margin: 0;
 }
@@ -89,17 +105,6 @@ a:visited {
 
 :-ms-input-placeholder {
     color: #6c6c6c;
-}
-
-.no-gutter {
-    margin: 0;
-    padding: 0;
-}
-
-.ellipsed {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 input[type=checkbox],
