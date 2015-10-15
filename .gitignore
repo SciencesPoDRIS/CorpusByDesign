@@ -6,4 +6,9 @@
 #
 # Data files
 #
-data/*
+data
+
+#
+# Conf files
+#
+app/conf/conf.js
