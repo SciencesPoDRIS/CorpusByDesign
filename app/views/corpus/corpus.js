@@ -21,4 +21,14 @@ angular.module('webcorpus.corpus', ['ngRoute'])
         }
     }
 
-});
+})
+
+    .controller('CorpusSnippetCtrl', ['$scope',
+        function($scope) {
+            /*
+            loadCorpora.getCorpora().then(function(data) {
+                $scope.corpus = data[0];
+            });
+            */
+        }
+    ]);
