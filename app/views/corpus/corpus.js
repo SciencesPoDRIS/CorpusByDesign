@@ -1,29 +1,28 @@
+(function() {
 'use strict';
 
-angular.module('webcorpus.corpus', ['ngRoute'])
+    var app = angular.module('webcorpus.corpus', ['ngRoute']);
 
-.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/', {
-        templateUrl: 'views/corpus/corpus.html',
-        controller: 'CorpusController'
-    })
-}])
+    app.config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/', {
+            templateUrl: 'views/corpus/corpus.html',
+            controller: 'CorpusController'
+        })
+    }])
 
-.controller('CorpusController', function($scope) {
-
-    $scope.isCollapsed = true;
-    $scope.collapseFilters = function() {
-        $scope.isCollapsed = !$scope.isCollapsed;
-        if(!$scope.isCollapsed) {
-            $('.content .filters').height('100%');
-        } else {
-            $('.content .filters').height('150px');
+    app.controller('CorpusController', function($scope) {
+        $scope.isCollapsed = true;
+        $scope.collapseFilters = function() {
+            $scope.isCollapsed = !$scope.isCollapsed;
+            if(!$scope.isCollapsed) {
+                $('.content .filters').height('100%');
+            } else {
+                $('.content .filters').height('150px');
+            }
         }
-    }
+    });
 
-})
-
-    .controller('CorpusSnippetCtrl', ['$scope',
+    app.controller('CorpusSnippetCtrl', ['$scope',
         function($scope) {
             /*
             loadCorpora.getCorpora().then(function(data) {
@@ -32,3 +31,5 @@ angular.module('webcorpus.corpus', ['ngRoute'])
             */
         }
     ]);
+
+})();
