@@ -7,7 +7,6 @@
         'ngMaterial',
         'ui.bootstrap',
         'webcorpus.conf',
-        'webcorpus.controllers',
         'webcorpus.directives',
         'webcorpus.filters',
         'webcorpus.services',
