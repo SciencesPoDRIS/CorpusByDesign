@@ -439,6 +439,7 @@ ul#menu_appli li:last-child a::after {
 
 .content .list {
     background-color: blue;
+    height: calc(100% - 150px);
     position: absolute;
     top: 150px;
     width: 100%;
