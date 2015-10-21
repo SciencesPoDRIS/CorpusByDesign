@@ -439,3 +439,49 @@ ul#menu_appli li:last-child a::after {
     top: 150px;
     width: 100%;
 }
+
+/* Checkboxes */
+
+.checkbox-inline.category-value {
+    margin-left: 0;
+}
+
+.filters input[type="checkbox"] {
+    -webkit-appearance: none;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+    border-radius: 2px;
+    color: #e6142d;
+    height: 1.25em;
+    margin: 0;
+    position: relative;
+    vertical-align: top;
+    width: 1.25em;
+}
+
+@media (max-width: 767px) {
+    .filters input[type="checkbox"] {
+        margin: 0 0 -0.25px 8px;
+    }
+}
+
+input[type="checkbox"]:checked:before {
+    color: #ff5a5f;
+    content: "\2713";
+    font-size: 0.85em;
+    position: absolute;
+    text-align: center;
+    width: 1.25em;
+}
+
+.filters .key-color {
+    border-radius: 10px;
+    display: inline-block;
+    height: 20px;
+    vertical-align: top;
+    width: 20px;
+}
+
+.category-value > label {
+    width: 100%;
+}
