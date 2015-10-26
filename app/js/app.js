@@ -13,11 +13,6 @@
         'webcorpus.corpus'
     ]);
 
-    /* Routing configuration */
-    app.config(['$routeProvider', function($routeProvider) {
-      $routeProvider.otherwise({redirectTo: '/'});
-    }]);
-
     /* Google analytics configuration */
     app.run(function(googleAnalyticsId, $rootScope, $location) {
         $rootScope.$on('$routeChangeSuccess', function() {
