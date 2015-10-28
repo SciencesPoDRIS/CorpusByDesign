@@ -5,13 +5,26 @@
 
     var app = angular.module('webcorpus.services', []);
 
-    // Create factory to load the json corpora
+    // Factory to load the json corpora
     app.factory('loadCorpora', ['$http',
         function($http) {
             return {
                 getCorpora: function() {
                     return $http.get('../data/corpora.json').then(function(data) {
                         return data.data.corpora;
+                    });
+                }
+            }
+        }
+    ]);
+
+    // Factory to load the tsv corpus data
+    app.factory('loadCorpus', ['$http',
+        function($http) {
+            return {
+                getCorpus: function() {
+                    return $http.get('../data/COP21.tsv').then(function(data) {
+                        return data.data;
                     });
                 }
             }
