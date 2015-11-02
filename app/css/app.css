@@ -415,12 +415,12 @@ ul#menu_appli li:last-child a::after {
 }
 
 .content .filters .search-bar {
-    background-color: #F09;
+    /* background-color: #F09; */
     height: 40px;
 }
 
 .content .filters .facets {
-    background-color: green;
+    /* background-color: green; */
     bottom: 40px;
     min-height: 70px;
     overflow-y: auto;
@@ -444,6 +444,49 @@ ul#menu_appli li:last-child a::after {
     position: absolute;
     top: 150px;
     width: 100%;
+}
+
+/* Search */
+
+.content .search-bar {
+    padding-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+    .content .search-bar {
+        margin: 0;
+    }
+}
+
+.content .search-bar input.full-width {
+    display: inline;
+    width: 95%;
+}
+
+.content .search-bar .glyphicon-search {
+    color: #343333;
+    top: 3px;
+}
+
+@media (max-width: 767px) {
+    .content .search-bar .glyphicon-search {
+        float: left;
+        padding-top: 8px;
+    }
+}
+
+.content .search-bar md-input-container {
+    display: inline;
+    text-align: center;
+}
+
+.content .search-bar md-input-container.md-default-theme:not(.md-input-invalid) .md-input {
+    border-bottom: 1px solid #343333;
+}
+
+.content .search-bar md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input {
+    border-bottom: 1px solid #e6142d;
+    padding-bottom: 1px;
 }
 
 /* Checkboxes */
