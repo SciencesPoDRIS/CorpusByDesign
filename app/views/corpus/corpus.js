@@ -32,14 +32,46 @@
             // Load the corpus
             loadCorpus.getCorpus().then(function(data) {
                 $scope.corpus = data;
+                // Count item by categories
+                $.each(data.split('\n').slice(1), function(index, item) {
+                    item = item.split('\t');
+                    $.each(categories['actorsType'].values, function(index2, item2) {
+                        if(item2.id == item[7]) {
+                            item2.count++;
+                        }
+                    });
+                    $.each(categories['anthropogenicClimateChange'].values, function(index2, item2) {
+                        if(item2.id == item[10]) {
+                            item2.count++;
+                        }
+                    });
+                    $.each(categories['mitigationAdaptation'].values, function(index2, item2) {
+                        if(item2.id == item[11]) {
+                            item2.count++;
+                        }
+                    });
+                    $.each(categories['collection'].values, function(index2, item2) {
+                        if(item2.id == item[15]) {
+                            item2.count++;
+                        }
+                    });
+                });
+                // Reorder categories by count attribute
+                categories['actorsType'].values.sort(function(obj1, obj2) { return obj2.count - obj1.count });
+                categories['anthropogenicClimateChange'].values.sort(function(obj1, obj2) { return obj2.count - obj1.count });
+                categories['mitigationAdaptation'].values.sort(function(obj1, obj2) { return obj2.count - obj1.count });
+                categories['collection'].values.sort(function(obj1, obj2) { return obj2.count - obj1.count });
             });
+            $scope.quantity = 12;
             $scope.isCollapsed = true;
             $scope.collapseFilters = function() {
                 $scope.isCollapsed = !$scope.isCollapsed;
                 if(!$scope.isCollapsed) {
                     $('.content .filters').height('100%');
+                    $scope.quantity = 200;
                 } else {
                     $('.content .filters').height('150px');
+                    $scope.quantity = 12;
                 }
             }
         }

@@ -21,6 +21,11 @@
     height: 100%;
 }
 
+.separator {
+    display: inline-block;
+    height: 5px;
+}
+
 /* General */
 
 body {
@@ -419,6 +424,7 @@ ul#menu_appli li:last-child a::after {
     bottom: 40px;
     min-height: 70px;
     overflow-y: auto;
+    padding: 5px;
     position: absolute;
     top: 40px;
     width: 100%;
