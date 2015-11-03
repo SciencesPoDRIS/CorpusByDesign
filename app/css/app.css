@@ -156,8 +156,6 @@ input[type=radio] {
 }
 
 .logo_scpo {
-    margin-left: 6px;
-    margin-top: 6px;
     width: 11%;
 }
 
@@ -290,7 +288,8 @@ ul#menu_appli li:last-child a::after {
 .desc-appli {
     height: 68px;
     position: fixed;
-    right: 15px;
+    /*right: 15px;*/
+    right: 30px;
     top: -5px;
     width: 250px;
 }
@@ -329,13 +328,41 @@ ul#menu_appli li:last-child a::after {
     font-weight: bold;
 }
 
-/* Tab Cartography */
+
+/* Content */
+
+.content {
+    margin: 0;
+    padding: 68px 0 0 0;
+    width: 100%;
+}
+
+
+/* Title */
+
+.content .title {
+    background-color: red;
+    height: 150px;
+    line-height: 50px;
+    text-align: center;
+}
+
+
+/* Graph */
+
+.content .graph {
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 150px;
+}
 
 #graph {
     background-color: #fff;
     border: 1px solid #b6b6b6;
-    height: 500px;
-    margin-bottom: 10px;
+    height: 100%;
     width: 100%;
 }
 
@@ -376,35 +403,6 @@ ul#menu_appli li:last-child a::after {
 }
 
 
-/* Content */
-
-.content {
-    margin: 0;
-    padding: 68px 0 0 0;
-    width: 100%;
-}
-
-
-/* Title */
-
-.content .title {
-    background-color: red;
-    height: 150px;
-    line-height: 50px;
-    text-align: center;
-}
-
-/* Graph */
-
-.content .graph {
-    background-color: yellow;
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 150px;
-}
-
 /* Filters */
 
 .content .filters {
@@ -415,12 +413,11 @@ ul#menu_appli li:last-child a::after {
 }
 
 .content .filters .search-bar {
-    /* background-color: #F09; */
     height: 40px;
 }
 
 .content .filters .facets {
-    /* background-color: green; */
+    background-color: white;
     bottom: 40px;
     min-height: 70px;
     overflow-y: auto;

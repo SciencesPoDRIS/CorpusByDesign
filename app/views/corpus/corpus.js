@@ -74,6 +74,25 @@
                     $scope.quantity = 12;
                 }
             }
+
+            $scope.init = function() {
+                // Load the graph
+                sigma.parsers.gexf(
+                    '../data/COP21.gexf', {
+                        container: 'graph',
+                        settings: {
+                            defaultEdgeColor: '#d3d3d3',
+                            edgeColor: 'default',
+                            labelThreshold: 100
+                        }
+                    },
+                    function(s) {
+                        $scope.graph = s;
+                    }
+                );
+            }
+
+            $scope.init();
         }
     ]);
 
