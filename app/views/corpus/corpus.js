@@ -74,7 +74,7 @@
             $scope.isCollapsed = true;
             $scope.collapseFilters = function() {
                 $scope.isCollapsed = !$scope.isCollapsed;
-                if(!$scope.isCollapsed) {
+                if (!$scope.isCollapsed) {
                     $('.content .filters').height('100%');
                     $scope.quantity = 200;
                 } else {
@@ -92,20 +92,45 @@
                             defaultEdgeColor: '#d3d3d3',
                             edgeColor: 'default',
                             labelThreshold: 100
-                        }
+                        },
+                        type: 'canvas'
                     },
                     function(s) {
                         $scope.graph = s;
                         // Color nodes, according to the configuration file
-                        $scope.graph.graph.nodes().forEach(function(node) {
-                            console.log(node);
-                            if(node.id != '765ebd9e-f6c6-4175-8fd1-d18e1b546206') {
-                                node.color = categories[categories.nodesColor].values.filter(function(item) {
-                                    return item.id == node.attributes[categories[categories.nodesColor].mappedField];
+                        $scope.graph.graph.nodes().forEach(function(n) {
+                            // Hide Heartland node because it has no attribute
+                            if (n.id != '765ebd9e-f6c6-4175-8fd1-d18e1b546206') {
+                                n.color = categories[categories.nodesColor].values.filter(function(item) {
+                                    return item.id == n.attributes[categories[categories.nodesColor].mappedField];
                                 })[0].color;
                             }
                         });
                         $scope.graph.refresh();
+                        // On node hover, color all the connected edges in the node color
+                        $scope.graph.bind('overNode', function(n) {
+                            // Get the connected edges
+                            $scope.graph.graph.edges().forEach(function(e, i) {
+                                if (e.source == n.data.node.id || e.target == n.data.node.id) {
+                                    e.color = n.data.node.color;
+                                    // Remove edge from edges array
+                                    $scope.graph.graph.dropEdge(e.id);
+                                    // Add edge as last element of edges array (to render it at the top of other edges)
+                                    $scope.graph.graph.addEdge(e);
+                                }
+                            });
+                            $scope.graph.refresh();
+                            // Simulate mouse hover effect on the tiles
+                            // $('#' + n.data.node.id + ' img').addClass('hover');
+                        });
+                        // On node out, reset all edges color to the default one
+                        $scope.graph.bind('outNode', function(n) {
+                            $scope.graph.graph.edges().forEach(function(e) {
+                                e.color = '#d3d3d3';
+                            });
+                            $scope.graph.refresh();
+                            $('#' + n.data.node.id + ' img').removeClass('hover');
+                        });
                     }
                 );
             }
