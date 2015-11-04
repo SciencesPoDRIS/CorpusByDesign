@@ -16,8 +16,11 @@
         }
     ]);
 
-    app.controller('CorpusController', ['$scope', 'loadCorpora', 'loadCorpus', 'categories',
-        function($scope, loadCorpora, loadCorpus, categories) {
+    app.controller('CorpusController', ['$scope', '$http', 'loadCorpora', 'loadCorpus', 'categories',
+        function($scope, $http, loadCorpora, loadCorpus, categories) {
+            // Init variables
+            var tmp;
+
             // Load all categories from conf file to display
             $scope.categories = [];
             $.each(categories, function(index, item) {
@@ -130,6 +133,37 @@
                             });
                             $scope.graph.refresh();
                             $('#' + n.data.node.id + ' img').removeClass('hover');
+                        });
+
+                        // Load all results
+                        $http.get('../data/COP21.tsv').success(function(data) {
+                            $scope.allResults = [];
+                            $.each(data.split('\n').slice(1), function(index, item) {
+                                item = item.split('\t');
+                                tmp = {};
+                                tmp['ID'] = item[0];
+                                tmp['NAME'] = item[1];
+                                tmp['PREFIXES'] = item[2];
+                                tmp['URL'] = item[3];
+                                tmp['STATUS'] = item[4];
+                                tmp['INDEGREE'] = item[5];
+                                tmp['FULL_NAME'] = item[6];
+                                tmp['ACTORS_TYPE'] = item[7];
+                                tmp['COUNTRY'] = item[8];
+                                tmp['AREA'] = item[9];
+                                tmp['ANTHROPOGENIC_CLIMATE_CHANGE'] = item[10];
+                                tmp['MITIGATION_ADAPTATION'] = item[11];
+                                tmp['INDUSTRIAL_DELEGATION'] = item[12];
+                                tmp['THEMATIC_DELEGATION'] = item[13];
+                                tmp['LANGUAGE'] = item[14];
+                                tmp['COLLECTION'] = item[15];
+                                tmp['ABSTRACT_DRAFT'] = item[16];
+                                tmp['ABSTRACT'] = item[17];
+                                tmp['COMMENT'] = item[18];
+                                $scope.allResults.push(tmp);
+                            });
+                            $scope.displayedResults = $scope.allResults;
+                            // $scope.filter();
                         });
                     }
                 );
