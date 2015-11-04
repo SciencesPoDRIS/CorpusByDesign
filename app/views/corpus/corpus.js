@@ -1,5 +1,5 @@
 (function() {
-'use strict';
+    'use strict';
 
     var app = angular.module('webcorpus.corpus', [
         'ngRoute',
@@ -16,7 +16,7 @@
         }
     ]);
 
-    app.controller('CorpusController', ['$scope', 'loadCorpora', 'loadCorpus', 'categories', 
+    app.controller('CorpusController', ['$scope', 'loadCorpora', 'loadCorpus', 'categories',
         function($scope, loadCorpora, loadCorpus, categories) {
             // Load all categories from conf file to display
             $scope.categories = [];
@@ -36,31 +36,39 @@
                 $.each(data.split('\n').slice(1), function(index, item) {
                     item = item.split('\t');
                     $.each(categories['actorsType'].values, function(index2, item2) {
-                        if(item2.id == item[7]) {
+                        if (item2.id == item[7]) {
                             item2.count++;
                         }
                     });
                     $.each(categories['anthropogenicClimateChange'].values, function(index2, item2) {
-                        if(item2.id == item[10]) {
+                        if (item2.id == item[10]) {
                             item2.count++;
                         }
                     });
                     $.each(categories['mitigationAdaptation'].values, function(index2, item2) {
-                        if(item2.id == item[11]) {
+                        if (item2.id == item[11]) {
                             item2.count++;
                         }
                     });
                     $.each(categories['collection'].values, function(index2, item2) {
-                        if(item2.id == item[15]) {
+                        if (item2.id == item[15]) {
                             item2.count++;
                         }
                     });
                 });
                 // Reorder categories by count attribute
-                categories['actorsType'].values.sort(function(obj1, obj2) { return obj2.count - obj1.count });
-                categories['anthropogenicClimateChange'].values.sort(function(obj1, obj2) { return obj2.count - obj1.count });
-                categories['mitigationAdaptation'].values.sort(function(obj1, obj2) { return obj2.count - obj1.count });
-                categories['collection'].values.sort(function(obj1, obj2) { return obj2.count - obj1.count });
+                categories['actorsType'].values.sort(function(obj1, obj2) {
+                    return obj2.count - obj1.count
+                });
+                categories['anthropogenicClimateChange'].values.sort(function(obj1, obj2) {
+                    return obj2.count - obj1.count
+                });
+                categories['mitigationAdaptation'].values.sort(function(obj1, obj2) {
+                    return obj2.count - obj1.count
+                });
+                categories['collection'].values.sort(function(obj1, obj2) {
+                    return obj2.count - obj1.count
+                });
             });
             $scope.quantity = 12;
             $scope.isCollapsed = true;
@@ -88,6 +96,16 @@
                     },
                     function(s) {
                         $scope.graph = s;
+                        // Color nodes, according to the configuration file
+                        $scope.graph.graph.nodes().forEach(function(node) {
+                            console.log(node);
+                            if(node.id != '765ebd9e-f6c6-4175-8fd1-d18e1b546206') {
+                                node.color = categories[categories.nodesColor].values.filter(function(item) {
+                                    return item.id == node.attributes[categories[categories.nodesColor].mappedField];
+                                })[0].color;
+                            }
+                        });
+                        $scope.graph.refresh();
                     }
                 );
             }
