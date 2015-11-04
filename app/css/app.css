@@ -295,7 +295,6 @@ ul#menu_appli li:last-child a::after {
 .desc-appli {
     height: 68px;
     position: fixed;
-    /*right: 15px;*/
     right: 30px;
     top: -5px;
     width: 250px;
@@ -574,7 +573,6 @@ md-grid-list md-grid-tile md-grid-tile-header {
 }
 
 md-grid-tile {
-    /*border: 1px solid #b6b6b6;*/
     cursor: pointer;
 }
 
