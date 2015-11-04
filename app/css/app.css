@@ -413,6 +413,7 @@ ul#menu_appli li:last-child a::after {
 /* Filters */
 
 .content .filters {
+    background-color: white;
     height: 150px;
     position: absolute;
     width: 100%;
@@ -424,7 +425,6 @@ ul#menu_appli li:last-child a::after {
 }
 
 .content .filters .facets {
-    background-color: white;
     bottom: 40px;
     min-height: 70px;
     overflow-y: auto;
@@ -435,11 +435,21 @@ ul#menu_appli li:last-child a::after {
 }
 
 .content .filters .search-bottom {
-    background-color: #F0F;
     bottom: 0;
     height: 40px;
+    line-height: 40px;
     position: absolute;
     width: 100%;
+}
+
+.content .filters .search-bottom .results-number {
+    font-style: italic;
+    margin-left: 10px;
+}
+
+.content .filters .search-bottom .more-filters {
+    margin-right: 10px;
+    text-decoration: underline;
 }
 
 .content .list {

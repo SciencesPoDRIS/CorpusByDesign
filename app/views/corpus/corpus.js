@@ -74,14 +74,17 @@
                 });
             });
             $scope.quantity = 12;
+            $scope.filtersLabel = 'More filters';
             $scope.isCollapsed = true;
             $scope.collapseFilters = function() {
                 $scope.isCollapsed = !$scope.isCollapsed;
                 if (!$scope.isCollapsed) {
                     $('.content .filters').height('100%');
+                    $scope.filtersLabel = 'Less filters';
                     $scope.quantity = 200;
                 } else {
                     $('.content .filters').height('150px');
+                    $scope.filtersLabel = 'More filters';
                     $scope.quantity = 12;
                 }
             }
@@ -163,6 +166,7 @@
                                 $scope.allResults.push(tmp);
                             });
                             $scope.displayedResults = $scope.allResults;
+                            $scope.resultsNumber = $scope.displayedResults.length;
                             // $scope.filter();
                         });
                     }

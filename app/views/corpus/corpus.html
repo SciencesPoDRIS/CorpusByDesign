@@ -35,10 +35,8 @@
                 </div>
             </div>
             <div ng-class="['search-bottom']">
-                <div ng-class="['pull-left']">Nombre de résultats affichés</div>
-                <div ng-class="['pull-right', 'more-filters']" ng-click="collapseFilters()">
-                    <button>More filters</button>
-                </div>
+                <div ng-class="['pull-left', 'results-number']">{{resultsNumber}} results founded</div>
+                <div ng-class="['pull-right', 'more-filters']" ng-click="collapseFilters()">{{filtersLabel}}</div>
             </div>
         </div>
         <div ng-class="['list']">
