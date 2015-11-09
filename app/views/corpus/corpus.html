@@ -35,7 +35,9 @@
                 </div>
             </div>
             <div ng-class="['search-bottom']">
-                <div ng-class="['pull-left', 'results-number']">{{resultsNumber}} results founded</div>
+                <div ng-class="['pull-left', 'results-number']">
+                    <ng-pluralize count="resultsNumber" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>
+                </div>
                 <div ng-class="['pull-right', 'more-filters']" ng-click="collapseFilters()">{{filtersLabel}}</div>
             </div>
         </div>
