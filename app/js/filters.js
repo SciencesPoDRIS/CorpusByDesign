@@ -11,11 +11,7 @@
                 if (input === undefined) {
                     return '';
                 } else {
-                    var index = 0;
-                    while (categories[facet].values[index].id != input) {
-                        index++;
-                    }
-                    return categories[facet].values[index].name;
+                    return categories[facet].values[input].label;
                 }
             };
         }
