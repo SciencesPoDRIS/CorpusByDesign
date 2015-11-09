@@ -21,11 +21,11 @@
                 <div ng-class="['row', 'no-gutter']">
                     <div ng-repeat="category in categories" ng-class="['advanced-search']">
                         <div ng-attr-collapse="{{ $index != 0 ? 'isCollapsed' : '' }}">
-                            <label ng-class="['col-md-3', 'no-gutter', 'ellipsed']">{{category.name}}</label>
+                            <label ng-class="['col-md-3', 'no-gutter', 'ellipsed']">{{category.label}}</label>
                             <div ng-class="['col-md-9', 'no-gutter']">
                                 <div ng-repeat="value in category.values | limitTo:quantity" ng-class="['checkbox-inline', 'col-md-3', 'category-value', 'no-gutter', 'ellipsed']">
                                     <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" />
-                                    <span ng-class="['category-name']">{{value.name}} </span>
+                                    <span ng-class="['category-name']">{{value.label}} </span>
                                     <span ng-class="['category-count']"><em>({{value.count}})</em></span>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                 <div ng-class="['pull-left', 'results-number']">
                     <ng-pluralize count="resultsNumber" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>
                 </div>
-                <div ng-class="['pull-right', 'more-filters']" ng-click="collapseFilters()">{{filtersLabel}}</div>
+                <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters()">{{filtersLabel}}</div>
             </div>
         </div>
         <div ng-class="['list']">
