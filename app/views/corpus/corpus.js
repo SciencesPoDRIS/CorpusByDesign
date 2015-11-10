@@ -172,6 +172,9 @@
                             categories[index_02].values.filter(function(index) {
                                 return index.id == item[categories[index_02].mappedField];
                             })[0].count++;
+                            categories[index_02].values.filter(function(index) {
+                                return index.id == 'all';
+                            })[0].count++;
                         });
                         return true;
                     } else {
@@ -181,7 +184,13 @@
                 // Reorder categories by count attribute
                 $.each(categories, function(index, item) {
                     categories[index].values.sort(function(a, b) {
-                        return b.count - a.count
+                        if(a.id == 'all') {
+                            return 1;
+                        } else if (b.id == 'all') {
+                            return -1;
+                        } else {
+                            return b.count - a.count;
+                        }
                     });
                 });
                 $scope.resultsNumber = $scope.filteredResults.length;
