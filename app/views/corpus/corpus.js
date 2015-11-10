@@ -107,28 +107,27 @@
                 loadCorpus.getCorpus().then(function(data) {
                     $.each(data.split('\n').slice(1), function(index, item) {
                         item = item.split('\t');
-                        tmp = {
-                            'ID' : item[0],
-                            'NAME' : item[1],
-                            'PREFIXES' : item[2],
-                            'URL' : item[3],
-                            'STATUS' : item[4],
-                            'INDEGREE' : item[5],
-                            'FULL_NAME' : item[6],
-                            'ACTORS_TYPE' : item[7],
-                            'COUNTRY' : item[8],
-                            'AREA' : item[9],
-                            'ANTHROPOGENIC_CLIMATE_CHANGE' : item[10],
-                            'MITIGATION_ADAPTATION' : item[11],
-                            'INDUSTRIAL_DELEGATION' : item[12],
-                            'THEMATIC_DELEGATION' : item[13],
-                            'LANGUAGE' : item[14],
-                            'COLLECTION' : item[15],
-                            'ABSTRACT_DRAFT' : item[16],
-                            'ABSTRACT' : item[17],
-                            'COMMENT' : item[18]
-                        };
-                        $scope.initResults.push(tmp);
+                        $scope.initResults.push({
+                            'ID': item[0],
+                            'NAME': item[1],
+                            'PREFIXES': item[2],
+                            'URL': item[3],
+                            'STATUS': item[4],
+                            'INDEGREE': item[5],
+                            'FULL_NAME': item[6],
+                            'ACTORS_TYPE': item[7],
+                            'COUNTRY': item[8],
+                            'AREA': item[9],
+                            'ANTHROPOGENIC_CLIMATE_CHANGE': item[10],
+                            'MITIGATION_ADAPTATION': item[11],
+                            'INDUSTRIAL_DELEGATION': item[12],
+                            'THEMATIC_DELEGATION': item[13],
+                            'LANGUAGE': item[14],
+                            'COLLECTION': item[15],
+                            'ABSTRACT_DRAFT': item[16],
+                            'ABSTRACT': item[17],
+                            'COMMENT': item[18]
+                        });
                     });
                     $scope.filter();
                 });
@@ -157,10 +156,7 @@
                         searchCriteria[index_01] = [];
                         $.each(item_01.values, function(index_02, item_02) {
                             if (item_02.isSelected) {
-                                // console.log(index_02);
-                                // console.log(item_02);
-                                // searchCriteria[index_01].push(item_02.id);
-                                searchCriteria[index_01].push(index_02);
+                                searchCriteria[index_01].push(item_02.id);
                             }
                         });
                     }
@@ -169,20 +165,25 @@
                 $scope.filteredResults = $scope.initResults.filter(function(item) {
                     if ((
                             // Check if the searched term is present into the name of the site or into the actors' type of the site
-                            (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0))
-                        && isSearchedAmongCriteria(searchCriteria, item)
-                    ) {
+                            (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
                         // ids.push(item.ID);
                         // Increment categories count
                         $.each(categories, function(index_02, item_02) {
-                            categories[index_02].values[item[item_02.mappedField]].count++;
+                            categories[index_02].values.filter(function(index) {
+                                return index.id == item[categories[index_02].mappedField];
+                            })[0].count++;
                         });
                         return true;
                     } else {
                         return false;
                     }
                 });
-                // ToDO : Reorder categories by count attribute
+                // Reorder categories by count attribute
+                $.each(categories, function(index, item) {
+                    categories[index].values.sort(function(a, b) {
+                        return b.count - a.count
+                    });
+                });
                 $scope.resultsNumber = $scope.filteredResults.length;
                 $scope.display();
             }
@@ -190,31 +191,17 @@
             // Filter the results to display the current page according to pagination
             $scope.display = function() {
                 $scope.displayedResults = $scope.filteredResults;
-                // console.log(categories[$scope.nodesColor].values);
-                // console.log(categories[$scope.nodesColor].mappedField);
                 // Color nodes, according to the configuration file
                 $scope.graph.graph.nodes().forEach(function(n) {
-                    // console.log(n.attributes[categories[$scope.nodesColor].mappedField]);
-                    // console.log();
                     // Hide Heartland node because it has no attribute
                     if (n.id != '765ebd9e-f6c6-4175-8fd1-d18e1b546206') {
-                        n.color = categories[$scope.nodesColor].values[n.attributes[categories[$scope.nodesColor].mappedField]].color
-                        // n.color = categories[$scope.nodesColor].values.filter(function(item) {
-                        //     return item.id == n.attributes[categories[$scope.nodesColor].mappedField];
-                        // })[0].color;
+                        n.color = categories[$scope.nodesColor].values.filter(function(item) {
+                            return item.id == n.attributes[categories[$scope.nodesColor].mappedField];
+                        })[0].color;
                     }
                     // Change default label by the value of the column "FULL_NAME"
                     n.label = n.attributes.FULL_NAME;
                 });
-                // Color only selected nodes, according to the configuration file
-                // $scope.graph.graph.nodes().forEach(function(node) {
-                //     if (ids.indexOf(node.id) != -1) {
-                //         node.color = categories[$scope.nodesColor].values.filter(function(item) {
-                //             return item.id == node.attributes[categories[$scope.nodesColor].mappedField];
-                //         })[0].color;
-                //     }
-                //     
-                // });
                 $scope.graph.refresh();
             }
 
