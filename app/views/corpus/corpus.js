@@ -3,6 +3,7 @@
 
     var app = angular.module('webcorpus.corpus', [
         'ngRoute',
+        'ui.bootstrap',
         'webcorpus.conf',
         'webcorpus.services'
     ]);
@@ -33,6 +34,32 @@
             $scope.queryTerm = '';
             $scope.nodesColor = 'actorsType';
             $scope.initResults = [];
+
+            // Center the whole graph
+            $scope.sigmaCenter = function() {
+                var c = $scope.graph.cameras[0]
+                c.goTo({
+                    ratio: 1,
+                    x: 0,
+                    y: 0
+                })
+            }
+
+            // Zoom on the graph
+            $scope.sigmaZoom = function() {
+                var c = $scope.graph.cameras[0]
+                c.goTo({
+                    ratio: c.ratio / c.settings('zoomingRatio')
+                })
+            }
+
+            // Unzoom on the graph
+            $scope.sigmaUnzoom = function() {
+                var c = $scope.graph.cameras[0]
+                c.goTo({
+                    ratio: c.ratio * c.settings('zoomingRatio')
+                })
+            }
 
             $scope.moreFilters = function() {
                 $scope.isCollapsed = !$scope.isCollapsed;
