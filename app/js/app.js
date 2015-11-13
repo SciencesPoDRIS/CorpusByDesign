@@ -10,6 +10,7 @@
         'webcorpus.routes',
         'webcorpus.services',
         'webcorpus.webentity',
+        'webcorpus.description',
         'ngMaterial',
         'ui.bootstrap'
     ]);

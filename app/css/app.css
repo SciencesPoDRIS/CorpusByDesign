@@ -641,6 +641,14 @@ md-grid-tile a {
 }
 
 
+/* Description Page */
+
+.description {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
 /* Webentity Page */
 
 .webentity .back-button,

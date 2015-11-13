@@ -1,8 +1,7 @@
 (function() {
     'use strict';
 
-    var app = angular.module('webcorpus.corpus', [
-    ]);
+    var app = angular.module('webcorpus.corpus', []);
 
     app.controller('CorpusController', ['$scope', '$http', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor', 
         function($scope, $http, loadCorpora, loadCorpus, categories, nodesColor) {

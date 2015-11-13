@@ -1,0 +1,22 @@
+<!-- Header -->
+<div ng-include="'partials/header.html'"></div>
+<!-- Content -->
+<div ng-class="['row', 'content', 'full-height', 'description']">
+    <div>
+        <h3>Purpose of the corpus</h3>
+        <span ng-bind-html="purpose"></span>
+        <h3>Selection</h3>
+        <span ng-bind-html="selection"></span>
+        <h3>Indexing</h3>
+        <span ng-bind-html="indexing"></span>
+        <h3>Last update</h3>
+        <span ng-bind-html="update"></span>
+        <h3>Authors</h3>
+        <span ng-bind-html="authors"></span>
+        <h3>Size</h3>
+        <span ng-bind-html="size"></span>
+        <br/>
+        <br/>
+        <div ng-bind-html="footnote" ng-class="['foot-note']"></div>
+    </div>
+</div>

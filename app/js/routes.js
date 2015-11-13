@@ -12,7 +12,11 @@
                 templateUrl: 'views/corpus/corpus.html',
                 controller: 'CorpusController'
             }).
-            when('/WebEntity/:webEntityId', {
+            when('/description', {
+                templateUrl: 'views/description/description.html',
+                controller: 'DescriptionController'
+            }).
+            when('/webentity/:webEntityId', {
                 templateUrl: 'views/webentity/webentity.html',
                 controller: 'WebEntityCtrl'
             }).
