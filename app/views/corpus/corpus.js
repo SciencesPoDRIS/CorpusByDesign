@@ -2,23 +2,10 @@
     'use strict';
 
     var app = angular.module('webcorpus.corpus', [
-        'ngRoute',
-        'ui.bootstrap',
-        'webcorpus.conf',
-        'webcorpus.services'
     ]);
 
-    app.config(['$routeProvider',
-        function($routeProvider) {
-            $routeProvider.when('/', {
-                templateUrl: 'views/corpus/corpus.html',
-                controller: 'CorpusController'
-            })
-        }
-    ]);
-
-    app.controller('CorpusController', ['$scope', '$http', 'loadCorpora', 'loadCorpus', 'categories',
-        function($scope, $http, loadCorpora, loadCorpus, categories) {
+    app.controller('CorpusController', ['$scope', '$http', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor', 
+        function($scope, $http, loadCorpora, loadCorpus, categories, nodesColor) {
             // Init variables
             var filter,
                 ids,
@@ -32,7 +19,6 @@
             $scope.isCollapsed = true;
             $scope.quantity = 12;
             $scope.queryTerm = '';
-            $scope.nodesColor = 'actorsType';
             $scope.initResults = [];
 
             // Center the whole graph
@@ -224,15 +210,15 @@
                 $scope.display();
             }
 
-            // Filter the results to display the current page according to pagination
+            // Filter the results to display the current page
             $scope.display = function() {
                 $scope.displayedResults = $scope.filteredResults;
                 // Color nodes, according to the configuration file
                 $scope.graph.graph.nodes().forEach(function(n) {
                     // Hide Heartland node because it has no attribute
                     if (n.id != '765ebd9e-f6c6-4175-8fd1-d18e1b546206') {
-                        n.color = categories[$scope.nodesColor].values.filter(function(item) {
-                            return item.id == n.attributes[categories[$scope.nodesColor].mappedField];
+                        n.color = categories[nodesColor].values.filter(function(item) {
+                            return item.id == n.attributes[categories[nodesColor].mappedField];
                         })[0].color;
                     }
                     // Change default label by the value of the column "FULL_NAME"

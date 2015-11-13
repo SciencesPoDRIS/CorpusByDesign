@@ -3,14 +3,15 @@
 
     /* Load modules */
     var app = angular.module('webcorpus', [
-        'ngRoute',
-        'ngMaterial',
-        'ui.bootstrap',
         'webcorpus.conf',
+        'webcorpus.corpus',
         'webcorpus.directives',
         'webcorpus.filters',
+        'webcorpus.routes',
         'webcorpus.services',
-        'webcorpus.corpus'
+        'webcorpus.webentity',
+        'ngMaterial',
+        'ui.bootstrap'
     ]);
 
     /* Google analytics configuration */

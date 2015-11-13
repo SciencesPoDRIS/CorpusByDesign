@@ -1,0 +1,93 @@
+<!-- Header -->
+<div ng-include="'partials/header.html'"></div>
+<!-- Content -->
+<div ng-class="['row', 'content', 'full-height', 'webentity']">
+    <div ng-class="['back-button']">
+        <button type="button" ng-class="['btn', 'btn-danger']" ng-click="backToCorpus()">Back to corpus</button>
+    </div>
+    <div id="{{webEntity.ID}}" ng-class="['title']">
+        <h3>{{webEntity.FULL_NAME}}</h3>
+    </div>
+    <div ng-class="['row', 'no-gutter']">
+        <div ng-class="['col-md-6', 'no-gutter', 'full-height']">
+            <div ng-class="['graph']">
+                <div id="graph"></div>
+                <div ng-class="['sigma-tools']">
+                    <div ng-class="['btn-group-vertical']">
+                        <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaCenter();" tooltip-placement="right" tooltip="Center">
+                            <span ng-class="['glyphicon', 'glyphicon-record']"></span>
+                        </button>
+                        <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaZoom();" tooltip-placement="right" tooltip="Zoom">
+                            <span ng-class="['glyphicon', 'glyphicon-plus']"></span>
+                        </button>
+                        <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaUnzoom();" tooltip-placement="right" tooltip="Unzoom">
+                            <span ng-class="['glyphicon', 'glyphicon-minus']"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-class="['col-sm-12', 'col-md-6', 'no-gutter', 'full-height']">
+            <div ng-class="['metadata']">
+                <!-- <div>
+                <a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a>
+            </div>
+            <br /> -->
+                <table ng-class="['table', 'table-hover']">
+                    <tr>
+                        <td ng-class="['name']">Url</td>
+                        <td ng-class="['value']">{{webEntity.URL}}</td>
+                    </tr>
+                    <tr>
+                        <td ng-class="['name']">Actor's Type</td>
+                        <td ng-class="['value']">{{webEntity.ACTORS_TYPE | translate:'actorsType'}}</td>
+                    </tr>
+                    <tr>
+                        <td ng-class="['name']">Indegree</td>
+                        <td ng-class="['value']">{{webEntity.INDEGREE}}</td>
+                    </tr>
+                    <tr>
+                        <td ng-class="['name']">Country</td>
+                        <td ng-class="['value']">{{webEntity.COUNTRY}}</td>
+                    </tr>
+                    <tr>
+                        <td ng-class="['name']">Area</td>
+                        <td ng-class="['value']">{{webEntity.AREA}}</td>
+                    </tr>
+                    <tr>
+                        <td ng-class="['name']">Anthropogenic Climate Change</td>
+                        <td ng-class="['value']">{{webEntity.ANTHROPOGENIC_CLIMATE_CHANGE | translate:'anthropogenicClimateChange'}}</td>
+                    </tr>
+                    <tr>
+                        <td ng-class="['name']">Migration / Adaptation</td>
+                        <td ng-class="['value']">{{webEntity.MITIGATION_ADAPTATION | translate:'mitigationAdaptation'}}</td>
+                    </tr>
+                    <tr>
+                        <td ng-class="['name']">Industrial Delegation</td>
+                        <td ng-class="['value']">{{webEntity.INDUSTRIAL_DELEGATION | translate:'industrialDelegation'}}</td>
+                    </tr>
+                    <tr>
+                        <td ng-class="['name']">Thematic Delegation</td>
+                        <td ng-class="['value']">{{webEntity.THEMATIC_DELEGATION | translate:'thematicDelegation'}}</td>
+                    </tr>
+                    <tr>
+                        <td ng-class="['name']">Language</td>
+                        <td ng-class="['value']">{{webEntity.LANGUAGE}}</td>
+                    </tr>
+                    <tr>
+                        <td ng-class="['name']">Collection</td>
+                        <td ng-class="['value']">{{webEntity.COLLECTION | translate:'collection'}}</td>
+                    </tr>
+                    <tr>
+                        <td ng-class="['name']">Abstract</td>
+                        <td ng-class="['value']">{{webEntity.ABSTRACT}}</td>
+                    </tr>
+                </table>
+                <div ng-class="['thumbnail']">
+                    <!-- <img src="https://api.pagelr.com/capture?uri={{webEntity.URL}}&width=400&height=300"></img> -->
+                    <img src="http://www.robothumb.com/src/?url={{webEntity.URL}}&size=560x420"></img>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
