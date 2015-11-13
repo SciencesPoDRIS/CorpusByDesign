@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    /* Filters */
+    /* Routes */
 
     var app = angular.module('webcorpus.routes', ['ngRoute']);
 

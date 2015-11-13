@@ -87,10 +87,6 @@ a:visited {
     -ms-transform: scaleX(-1);
 }
 
-.subtitle {
-    margin: 0;
-}
-
 .subsubtitle {
     font-size: 0.45em;
     font-style: italic;
@@ -619,11 +615,20 @@ md-grid-tile a {
 
 /* Corpus Page */
 
-.corpus .title {
-    background-color: red;
+.corpus .presentation {
     height: 150px;
-    line-height: 50px;
     text-align: center;
+    padding-top: 10px;
+}
+
+.corpus .presentation .subtitle {
+    font-style: italic;
+}
+
+.corpus .presentation .read-more {
+    position: absolute;
+    right: 20px;
+    top: 47px;
 }
 
 .corpus .graph {

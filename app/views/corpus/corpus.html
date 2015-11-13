@@ -3,7 +3,15 @@
 <!-- Content -->
 <div ng-class="['row', 'content', 'full-height', 'corpus']">
     <div ng-class="['col-md-5', 'no-gutter', 'full-height']">
-        <div ng-class="['title']">{{corpora.title}}</div>
+        <div ng-class="['presentation']">
+            <div ng-class="['title']">
+                <h2 ng-class="['no-gutter']">{{corpora.title}}</h2>
+            </div>
+            <div ng-class="['subtitle']">
+                <h3 ng-class="['no-gutter']">{{corpora.subtitle}}</h2>
+            </div>
+            <div ng-class="['read-more']">Read more ...</div>
+        </div>
         <div ng-class="['graph']">
             <div id="graph"></div>
             <div ng-class="['sigma-tools']">

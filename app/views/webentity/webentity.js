@@ -35,7 +35,6 @@
                         $scope.webEntity.COMMENT = item[18];
                     }
                 });
-                console.log($scope.webEntity);
             });
 
             $scope.backToCorpus = function() {
@@ -107,7 +106,6 @@
                     $.each($scope.graph.graph.neighbors($routeParams.webEntityId), function(item, index) {
                         ids.push(item);
                     });
-                    // console.log(categories[nodesColor].mappedField);
                     $scope.graph.graph.nodes().forEach(function(node) {
                         if ((ids.indexOf(node.id) != -1) && (node.attributes[categories[nodesColor].mappedField] !== undefined)) {
                             node.color = categories[nodesColor].values.filter(function(item) {
