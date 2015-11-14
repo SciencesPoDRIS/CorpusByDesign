@@ -5,8 +5,10 @@
 
     var app = angular.module('webcorpus.routes', ['ngRoute']);
 
-    app.config(['$routeProvider',
-        function($routeProvider) {
+    app.config(['$routeProvider', '$locationProvider', 
+        function($routeProvider, $locationProvider) {
+            $locationProvider.html5Mode(true);
+
             $routeProvider.
             when('/', {
                 templateUrl: 'views/corpus/corpus.html',
