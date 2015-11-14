@@ -4,6 +4,11 @@
 .DS_Store
 
 #
+# Server conf
+#
+.htaccess
+
+#
 # Data files
 #
 data
