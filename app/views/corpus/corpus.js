@@ -3,7 +3,7 @@
 
     var app = angular.module('webcorpus.corpus', []);
 
-    app.controller('CorpusController', ['$scope', '$http', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor', 
+    app.controller('CorpusController', ['$scope', '$http', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor',
         function($scope, $http, loadCorpora, loadCorpus, categories, nodesColor) {
             // Init variables
             var filter,
@@ -112,37 +112,37 @@
                             // Simulate mouse out effect on the tiles
                             $('#' + n.data.node.id + ' img').removeClass('hover');
                         });
+
+                        // Load the corpus
+                        loadCorpus.getCorpus().then(function(data) {
+                            $.each(data.split('\n').slice(1), function(index, item) {
+                                item = item.split('\t');
+                                $scope.initResults.push({
+                                    'ID': item[0],
+                                    'NAME': item[1],
+                                    'PREFIXES': item[2],
+                                    'URL': item[3],
+                                    'STATUS': item[4],
+                                    'INDEGREE': item[5],
+                                    'FULL_NAME': item[6],
+                                    'ACTORS_TYPE': item[7],
+                                    'COUNTRY': item[8],
+                                    'AREA': item[9],
+                                    'ANTHROPOGENIC_CLIMATE_CHANGE': item[10],
+                                    'MITIGATION_ADAPTATION': item[11],
+                                    'INDUSTRIAL_DELEGATION': item[12],
+                                    'THEMATIC_DELEGATION': item[13],
+                                    'LANGUAGE': item[14],
+                                    'COLLECTION': item[15],
+                                    'ABSTRACT_DRAFT': item[16],
+                                    'ABSTRACT': item[17],
+                                    'COMMENT': item[18]
+                                });
+                            });
+                            $scope.filter();
+                        });
                     }
                 );
-
-                // Load the corpus
-                loadCorpus.getCorpus().then(function(data) {
-                    $.each(data.split('\n').slice(1), function(index, item) {
-                        item = item.split('\t');
-                        $scope.initResults.push({
-                            'ID': item[0],
-                            'NAME': item[1],
-                            'PREFIXES': item[2],
-                            'URL': item[3],
-                            'STATUS': item[4],
-                            'INDEGREE': item[5],
-                            'FULL_NAME': item[6],
-                            'ACTORS_TYPE': item[7],
-                            'COUNTRY': item[8],
-                            'AREA': item[9],
-                            'ANTHROPOGENIC_CLIMATE_CHANGE': item[10],
-                            'MITIGATION_ADAPTATION': item[11],
-                            'INDUSTRIAL_DELEGATION': item[12],
-                            'THEMATIC_DELEGATION': item[13],
-                            'LANGUAGE': item[14],
-                            'COLLECTION': item[15],
-                            'ABSTRACT_DRAFT': item[16],
-                            'ABSTRACT': item[17],
-                            'COMMENT': item[18]
-                        });
-                    });
-                    $scope.filter();
-                });
             }
 
             /* *
@@ -196,7 +196,7 @@
                 // Reorder categories by count attribute
                 $.each(categories, function(index, item) {
                     categories[index].values.sort(function(a, b) {
-                        if(a.id == 'all') {
+                        if (a.id == 'all') {
                             return 1;
                         } else if (b.id == 'all') {
                             return -1;
