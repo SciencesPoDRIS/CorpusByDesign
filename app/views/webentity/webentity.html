@@ -1,9 +1,12 @@
 <!-- Header -->
-<div ng-include="'partials/header.html'"></div>
+<div ng-include="'app/partials/header.html'"></div>
 <!-- Content -->
 <div ng-class="['row', 'content', 'full-height', 'webentity']">
     <div ng-class="['back-button']">
-        <button type="button" ng-class="['btn', 'btn-danger']" ng-click="backToCorpus()">Back to corpus</button>
+        <!-- <button type="button" ng-class="['btn', 'btn-danger']" ng-click="backToCorpus()">Back to corpus</button> -->
+        <a ng-href="#/" target="_self">
+            <button type="button" ng-class="['btn', 'btn-danger']">Back to corpus</button>
+        </a>
     </div>
     <div id="{{webEntity.ID}}" ng-class="['title']">
         <h3>{{webEntity.FULL_NAME}}</h3>
@@ -29,62 +32,57 @@
         </div>
         <div ng-class="['col-sm-12', 'col-md-6', 'no-gutter', 'full-height']">
             <div ng-class="['metadata']">
-                <!-- <div>
-                <a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a>
-            </div>
-            <br /> -->
                 <table ng-class="['table', 'table-hover']">
                     <tr>
-                        <td ng-class="['name']">Url</td>
-                        <td ng-class="['value']">{{webEntity.URL}}</td>
+                        <td ng-class="['name', 'col-md-4']">Url</td>
+                        <td ng-class="['value']"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
                     </tr>
                     <tr>
-                        <td ng-class="['name']">Actor's Type</td>
+                        <td ng-class="['name', 'col-md-4']">Actor's Type</td>
                         <td ng-class="['value']">{{webEntity.ACTORS_TYPE | translate:'actorsType'}}</td>
                     </tr>
                     <tr>
-                        <td ng-class="['name']">Indegree</td>
+                        <td ng-class="['name', 'col-md-4']">Indegree</td>
                         <td ng-class="['value']">{{webEntity.INDEGREE}}</td>
                     </tr>
                     <tr>
-                        <td ng-class="['name']">Country</td>
+                        <td ng-class="['name', 'col-md-4']">Country</td>
                         <td ng-class="['value']">{{webEntity.COUNTRY}}</td>
                     </tr>
                     <tr>
-                        <td ng-class="['name']">Area</td>
+                        <td ng-class="['name', 'col-md-4']">Area</td>
                         <td ng-class="['value']">{{webEntity.AREA}}</td>
                     </tr>
                     <tr>
-                        <td ng-class="['name']">Anthropogenic Climate Change</td>
+                        <td ng-class="['name', 'col-md-4']">Anthropogenic Climate Change</td>
                         <td ng-class="['value']">{{webEntity.ANTHROPOGENIC_CLIMATE_CHANGE | translate:'anthropogenicClimateChange'}}</td>
                     </tr>
                     <tr>
-                        <td ng-class="['name']">Migration / Adaptation</td>
+                        <td ng-class="['name', 'col-md-4']">Migration / Adaptation</td>
                         <td ng-class="['value']">{{webEntity.MITIGATION_ADAPTATION | translate:'mitigationAdaptation'}}</td>
                     </tr>
                     <tr>
-                        <td ng-class="['name']">Industrial Delegation</td>
+                        <td ng-class="['name', 'col-md-4']">Industrial Delegation</td>
                         <td ng-class="['value']">{{webEntity.INDUSTRIAL_DELEGATION | translate:'industrialDelegation'}}</td>
                     </tr>
                     <tr>
-                        <td ng-class="['name']">Thematic Delegation</td>
+                        <td ng-class="['name', 'col-md-4']">Thematic Delegation</td>
                         <td ng-class="['value']">{{webEntity.THEMATIC_DELEGATION | translate:'thematicDelegation'}}</td>
                     </tr>
                     <tr>
-                        <td ng-class="['name']">Language</td>
+                        <td ng-class="['name', 'col-md-4']">Language</td>
                         <td ng-class="['value']">{{webEntity.LANGUAGE}}</td>
                     </tr>
                     <tr>
-                        <td ng-class="['name']">Collection</td>
+                        <td ng-class="['name', 'col-md-4']">Collection</td>
                         <td ng-class="['value']">{{webEntity.COLLECTION | translate:'collection'}}</td>
                     </tr>
                     <tr>
-                        <td ng-class="['name']">Abstract</td>
+                        <td ng-class="['name', 'col-md-4']">Abstract</td>
                         <td ng-class="['value']">{{webEntity.ABSTRACT}}</td>
                     </tr>
                 </table>
                 <div ng-class="['thumbnail']">
-                    <!-- <img src="https://api.pagelr.com/capture?uri={{webEntity.URL}}&width=400&height=300"></img> -->
                     <img src="http://www.robothumb.com/src/?url={{webEntity.URL}}&size=560x420"></img>
                 </div>
             </div>

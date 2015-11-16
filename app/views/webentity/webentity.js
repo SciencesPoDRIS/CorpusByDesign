@@ -37,10 +37,6 @@
                 });
             });
 
-            $scope.backToCorpus = function() {
-                window.location.href = '/app/#/';
-            }
-
             // Center the whole graph
             $scope.sigmaCenter = function() {
                 var c = $scope.graph.cameras[0]
