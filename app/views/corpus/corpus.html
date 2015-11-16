@@ -1,5 +1,5 @@
 <!-- Header -->
-<div ng-include="'partials/header.html'"></div>
+<div ng-include="'app/partials/header.html'"></div>
 <!-- Content -->
 <div ng-class="['row', 'content', 'full-height', 'corpus']">
     <div ng-class="['col-md-5', 'no-gutter', 'full-height']">
@@ -10,7 +10,9 @@
             <div ng-class="['subtitle']">
                 <h3 ng-class="['no-gutter']">{{corpora.subtitle}}</h2>
             </div>
-            <div ng-class="['read-more']">Read more ...</div>
+            <div ng-class="['read-more']">
+                <a href="description">Read more ...</a>
+            </div>
         </div>
         <div ng-class="['graph']">
             <div id="graph"></div>
@@ -67,7 +69,7 @@
                 <div ng-class="['row', 'grid-list', 'no-gutter']" flex="">
                     <md-grid-list md-cols-sm="1" md-cols-md="3" md-cols-gt-md="3" md-row-height-gt-md="4:3" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="10px">
                         <md-grid-tile id="{{result.ID}}" ng-repeat="result in displayedResults" md-rowspan="1" md-colspan="1" md-colspan-sm="1" ng-class="['gray']">
-                            <a href="#/webentity/{{result.ID}}">
+                            <a href="webentity/{{result.ID}}">
                                 <img ng-class="['fit', 'grayscale']" src="http://www.robothumb.com/src/?url={{result.URL}}&size=320x240"></img>
                                 <md-grid-tile-footer ng-class="['tile-footer']">
                                     <h3>{{result.FULL_NAME}}</h3>

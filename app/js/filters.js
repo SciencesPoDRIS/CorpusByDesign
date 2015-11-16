@@ -15,7 +15,7 @@
                     while (categories[facet].values[index].id != input) {
                         index++;
                     }
-                    return categories[facet].values[index].name;
+                    return categories[facet].values[index].label;
                 }
             };
         }

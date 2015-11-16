@@ -11,15 +11,15 @@
 
             $routeProvider.
             when('/', {
-                templateUrl: 'views/corpus/corpus.html',
+                templateUrl: 'app/views/corpus/corpus.html',
                 controller: 'CorpusController'
             }).
             when('/description', {
-                templateUrl: 'views/description/description.html',
+                templateUrl: 'app/views/description/description.html',
                 controller: 'DescriptionController'
             }).
             when('/webentity/:webEntityId', {
-                templateUrl: 'views/webentity/webentity.html',
+                templateUrl: 'app/views/webentity/webentity.html',
                 controller: 'WebEntityCtrl'
             }).
             otherwise({

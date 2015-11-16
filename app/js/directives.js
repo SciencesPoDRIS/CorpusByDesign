@@ -19,7 +19,7 @@
                 }
                 $scope.columnWidth = 12 / $scope.columnsNumber;
             },
-            templateUrl: 'partials/graph-legend.html',
+            templateUrl: 'app/partials/graph-legend.html',
             replace: true
         };
     });
@@ -27,11 +27,11 @@
     app.directive('filters', [function(){
         return {
             restrict: 'E'
-            ,templateUrl: 'partials/filters/filters.html'
+            ,templateUrl: 'app/partials/filters/filters.html'
             ,scope: {
                 filters: '='
             }
-            ,link: 'partials/filters/filters.js'
+            ,link: 'app/partials/filters/filters.js'
         }
       }])
 
