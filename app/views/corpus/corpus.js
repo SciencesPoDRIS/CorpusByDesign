@@ -167,6 +167,8 @@
                     if (item_01.values !== undefined) {
                         searchCriteria[index_01] = [];
                         $.each(item_01.values, function(index_02, item_02) {
+                            // Reset count before filtering
+                            item_02.count = 0;
                             if (item_02.isSelected) {
                                 searchCriteria[index_01].push(item_02.id);
                             }
@@ -220,7 +222,7 @@
                             return item.id == n.attributes[categories[nodesColor].mappedField];
                         })[0].color;
                     } else {
-                        // Reset all nodes' color to the light grey
+                        // Else reset nodes' color to the light grey
                         n.color = '#d3d3d3';
                     }
                     // Change default label by the value of the column "FULL_NAME"
