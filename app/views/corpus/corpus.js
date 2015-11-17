@@ -173,12 +173,12 @@
                         });
                     }
                 });
-                // ids = [];
+                ids = [];
                 $scope.filteredResults = $scope.initResults.filter(function(item) {
                     if ((
                             // Check if the searched term is present into the name of the site or into the actors' type of the site
                             (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
-                        // ids.push(item.ID);
+                        ids.push(item.ID);
                         // Increment categories count
                         $.each(categories, function(index_02, item_02) {
                             categories[index_02].values.filter(function(index) {
@@ -215,10 +215,13 @@
                 // Color nodes, according to the configuration file
                 $scope.graph.graph.nodes().forEach(function(n) {
                     // Hide Heartland node because it has no attribute
-                    if (n.id != '765ebd9e-f6c6-4175-8fd1-d18e1b546206') {
+                    if ((n.id != '765ebd9e-f6c6-4175-8fd1-d18e1b546206') && (ids.indexOf(n.id) != -1)) {
                         n.color = categories[nodesColor].values.filter(function(item) {
                             return item.id == n.attributes[categories[nodesColor].mappedField];
                         })[0].color;
+                    } else {
+                        // Reset all nodes' color to the light grey
+                        n.color = '#d3d3d3';
                     }
                     // Change default label by the value of the column "FULL_NAME"
                     n.label = n.attributes.FULL_NAME;
