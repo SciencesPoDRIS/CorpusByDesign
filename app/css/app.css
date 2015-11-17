@@ -528,6 +528,12 @@ input[type="checkbox"]:checked:before {
     width: 100%;
 }
 
+.category-name {
+    display: inline-block;
+    vertical-align: top;
+    width: 58%;
+}
+
 
 /* Tiles */
 
