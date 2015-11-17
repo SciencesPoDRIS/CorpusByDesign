@@ -2,12 +2,7 @@
 <div ng-include="'app/partials/header.html'"></div>
 <!-- Content -->
 <div ng-class="['row', 'content', 'full-height', 'webentity']">
-    <div ng-class="['back-button']">
-        <!-- <button type="button" ng-class="['btn', 'btn-danger']" ng-click="backToCorpus()">Back to corpus</button> -->
-        <a ng-href="#/" target="_self">
-            <button type="button" ng-class="['btn', 'btn-danger']">Back to corpus</button>
-        </a>
-    </div>
+    <backtocorpus />
     <div id="{{webEntity.ID}}" ng-class="['title']">
         <h3>{{webEntity.FULL_NAME}}</h3>
     </div>

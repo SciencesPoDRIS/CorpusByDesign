@@ -5,7 +5,7 @@
 
     var app = angular.module('webcorpus.directives', []);
 
-    app.directive('legend', function() {
+    app.directive('legend', [function() {
         return {
             restrict: 'E',
             scope: {
@@ -22,17 +22,25 @@
             templateUrl: 'app/partials/graph-legend.html',
             replace: true
         };
-    });
+    }]);
 
-    app.directive('filters', [function(){
+    app.directive('backtocorpus', [function() {
         return {
-            restrict: 'E'
-            ,templateUrl: 'app/partials/filters/filters.html'
-            ,scope: {
+            restrict: 'E',
+            templateUrl: 'app/partials/backtocorpus.html',
+            replace: true
+        };
+    }]);
+
+    app.directive('filters', [function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'app/partials/filters/filters.html',
+            scope: {
                 filters: '='
-            }
-            ,link: 'app/partials/filters/filters.js'
+            },
+            link: 'app/partials/filters/filters.js'
         }
-      }])
+    }]);
 
 })();
