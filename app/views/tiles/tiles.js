@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    var app = angular.module('webcorpus.corpus', []);
+    var app = angular.module('webcorpus.tiles', []);
 
-    app.controller('CorpusController', ['$scope', '$http', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor',
+    app.controller('TilesController', ['$scope', '$http', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor',
         function($scope, $http, loadCorpora, loadCorpus, categories, nodesColor) {
             // Init variables
             var filter,
@@ -19,6 +19,8 @@
             $scope.quantity = 12;
             $scope.queryTerm = '';
             $scope.initResults = [];
+            // Default entities view as grid
+            $scope.view = 'tiles';
 
             // Center the whole graph
             $scope.sigmaCenter = function() {

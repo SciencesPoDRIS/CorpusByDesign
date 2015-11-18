@@ -4,7 +4,7 @@
     /* Load modules */
     var app = angular.module('webcorpus', [
         'webcorpus.conf',
-        'webcorpus.corpus',
+        'webcorpus.tiles',
         'webcorpus.directives',
         'webcorpus.filters',
         'webcorpus.routes',

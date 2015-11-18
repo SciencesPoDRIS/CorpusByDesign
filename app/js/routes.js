@@ -11,8 +11,8 @@
 
             $routeProvider.
             when('/', {
-                templateUrl: 'app/views/corpus/corpus.html',
-                controller: 'CorpusController'
+                templateUrl: 'app/views/tiles/tiles.html',
+                controller: 'TilesController'
             }).
             when('/description', {
                 templateUrl: 'app/views/description/description.html',
