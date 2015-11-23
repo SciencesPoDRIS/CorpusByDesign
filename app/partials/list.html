@@ -1,1 +1,15 @@
-list.html
+<div ng-class="['col-md-12', 'no-gutter', 'full-height']">
+    <!-- List -->
+    <div ng-class="['list']">
+        <a ng-repeat="result in displayedResults" ng-class="['cell', 'col-md-3', 'no-border']" href="webentity/{{result.ID}}">
+            <div ng-class="['col-md-3', 'thumbnail']">
+                <img ng-class="['fit', 'grayscale']" src="http://www.robothumb.com/src/?url={{result.URL}}&size=120x90"></img>
+            </div>
+            <div ng-class="['col-md-9']">
+                <div ng-class="['full-name', 'ellipsed']">{{result.FULL_NAME}}</div>
+                <div ng-class="['actors-type', 'ellipsed']">{{result.ACTORS_TYPE | translate:'actorsType'}}</div>
+                <div ng-class="['anthropogenic', 'ellipsed']">{{result.ANTHROPOGENIC_CLIMATE_CHANGE | translate:'anthropogenicClimateChange'}}</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -24,7 +24,7 @@
             // On view change ('grid', 'list', 'graph')
             $scope.changeView = function(view) {
                 // If the new view is grid or graph, reload the gexf graph
-                if(['grid', 'graph'].indexOf(view)) {
+                if(['grid', 'graph'].indexOf(view) >= 0) {
                     $scope.init();
                 }
             }
