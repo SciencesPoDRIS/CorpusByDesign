@@ -13,14 +13,21 @@
                 tmp;
 
             // Init scope variables
-            $scope.categories = [];
             $scope.filtersLabel = 'More filters';
             $scope.isCollapsed = true;
             $scope.quantity = 12;
             $scope.queryTerm = '';
             $scope.initResults = [];
             // Default entities view as grid
-            $scope.view = 'tiles';
+            $scope.view = 'grid';
+
+            // On view change ('grid', 'list', 'graph')
+            $scope.changeView = function(view) {
+                // If the new view is grid or graph, reload the gexf graph
+                if(['grid', 'graph'].indexOf(view)) {
+                    $scope.init();
+                }
+            }
 
             // Center the whole graph
             $scope.sigmaCenter = function() {
@@ -63,6 +70,7 @@
 
             $scope.init = function() {
                 // Load all categories from config file
+                $scope.categories = [];
                 $.each(categories, function(index, item) {
                     if (item.isDiplayed !== undefined && item.isDiplayed) {
                         $scope.categories.push(item);

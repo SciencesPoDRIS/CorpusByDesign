@@ -334,7 +334,6 @@ ul#menu_appli li:last-child a::after {
 /* Content */
 
 .content {
-    margin: 0;
     padding: 68px 0 0 0;
     width: 100%;
 }
@@ -428,12 +427,12 @@ ul#menu_appli li:last-child a::after {
     text-decoration: underline;
 }
 
-.content .list {
-    height: calc(100% - 150px);
+.corpus .tiles {
+    /*height: calc(100% - 150px);*/
     overflow-y: scroll;
     padding: 5px;
     position: absolute;
-    top: 150px;
+    top: 0;
     width: 100%;
 }
 
@@ -621,20 +620,28 @@ md-grid-tile a {
 
 /* Corpus Page */
 
-.corpus .presentation {
+.corpus {
+    height: calc(100% - 218px);
+}
+
+.presentation {
     height: 150px;
     text-align: center;
     padding-top: 10px;
 }
 
-.corpus .presentation .subtitle {
+.presentation .subtitle {
     font-style: italic;
 }
 
-.corpus .presentation .read-more {
+.presentation .read-more {
     position: absolute;
     right: 20px;
     top: 47px;
+}
+
+.presentation .views {
+    margin-top: 20px;
 }
 
 .corpus .graph {
@@ -643,7 +650,7 @@ md-grid-tile a {
     padding: 5px;
     position: absolute;
     right: 0;
-    top: 150px;
+    top: 0;
 }
 
 

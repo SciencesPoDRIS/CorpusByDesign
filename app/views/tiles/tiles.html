@@ -1,8 +1,11 @@
 <!-- Header -->
 <div ng-include="'app/partials/header.html'"></div>
 <!-- Content -->
-<div ng-class="['row', 'content', 'full-height', 'corpus']">
+<!-- First row -->
+<div ng-class="['row', 'content', 'no-gutter']">
+    <!-- Left column -->
     <div ng-class="['col-md-5', 'no-gutter', 'full-height']">
+        <!-- Corpus Header -->
         <div ng-class="['presentation']">
             <div ng-class="['title']">
                 <h2 ng-class="['no-gutter']">{{corpora.title}}</h2>
@@ -13,36 +16,22 @@
             <div ng-class="['read-more']">
                 <a href="description">Read more ...</a>
             </div>
-            <!-- <div class="btn-group">
-                <label ng-class="['btn', 'btn-default']" btn-radio="'tiles'" ng-model="view">
+            <div ng-class="['btn-group', 'views']">
+                <label ng-class="['btn', 'btn-default']" btn-radio="'grid'" ng-model="view" ng-change="changeView('grid')">
                     <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
                 </label>
-                <label ng-class="['btn', 'btn-default']" btn-radio="'list'" ng-model="view">
+                <label ng-class="['btn', 'btn-default']" btn-radio="'list'" ng-model="view" ng-change="changeView('list')">
                     <span ng-class="['glyphicon', 'glyphicon-th-list']" aria-hidden="true"></span>
                 </label>
-                <label ng-class="['btn', 'btn-default']" btn-radio="'graph'" ng-model="view">
+                <label ng-class="['btn', 'btn-default']" btn-radio="'graph'" ng-model="view" ng-change="changeView('graph')">
                     <span ng-class="['glyphicon', 'glyphicon-stop']" aria-hidden="true"></span>
                 </label>
-            </div> -->
-        </div>
-        <div ng-class="['graph']">
-            <div id="graph"></div>
-            <div ng-class="['sigma-tools']">
-                <div ng-class="['btn-group-vertical']">
-                    <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaCenter();" tooltip-placement="right" tooltip="Center">
-                        <span ng-class="['glyphicon', 'glyphicon-record']"></span>
-                    </button>
-                    <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaZoom();" tooltip-placement="right" tooltip="Zoom">
-                        <span ng-class="['glyphicon', 'glyphicon-plus']"></span>
-                    </button>
-                    <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaUnzoom();" tooltip-placement="right" tooltip="Unzoom">
-                        <span ng-class="['glyphicon', 'glyphicon-minus']"></span>
-                    </button>
-                </div>
             </div>
         </div>
     </div>
+    <!-- Right column -->
     <div ng-class="['col-md-7', 'no-gutter', 'full-height']">
+        <!-- Filters -->
         <div ng-class="['filters']">
             <div ng-class="['row', 'col-md-offset-3', 'col-md-6', 'search-bar']">
                 <md-input-container md-no-float>
@@ -75,22 +64,20 @@
                 <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters()">{{filtersLabel}}</div>
             </div>
         </div>
-        <div ng-class="['list']">
-            <div ng-class="['full-height']">
-                <div ng-class="['row', 'grid-list', 'no-gutter']" flex="">
-                    <md-grid-list md-cols-sm="1" md-cols-md="3" md-cols-gt-md="3" md-row-height-gt-md="4:3" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="10px">
-                        <md-grid-tile id="{{result.ID}}" ng-repeat="result in displayedResults" md-rowspan="1" md-colspan="1" md-colspan-sm="1" ng-class="['gray']">
-                            <a href="webentity/{{result.ID}}">
-                                <img ng-class="['fit', 'grayscale']" src="http://www.robothumb.com/src/?url={{result.URL}}&size=320x240"></img>
-                                <md-grid-tile-footer ng-class="['tile-footer']">
-                                    <h3>{{result.FULL_NAME}}</h3>
-                <p ng-class="['actors-type']">{{result.ACTORS_TYPE | translate:'actorsType'}}</p>
-                </md-grid-tile-footer>
-                </a>
-                </md-grid-tile>
-                </md-grid-list>
-            </div>
-        </div>
     </div>
 </div>
+<!-- Second row -->
+<div ng-class="['row', 'no-gutter', 'corpus']">
+    <div ng-switch on="view" ng-class="['full-height']">
+        <div ng-switch-when="grid" ng-class="['full-height']">
+            <div ng-include="'app/partials/grid.html'" ng-class="['full-height']"></div>
+        </div>
+        <div ng-switch-when="list" ng-class="['full-height']">
+            <div ng-include="'app/partials/list.html'" ng-class="['full-height']"></div>
+        </div>
+        <div ng-switch-when="graph" ng-class="['full-height']">
+            <div ng-include="'app/partials/graph.html'" ng-class="['full-height']"></div>
+        </div>
+        <div ng-switch-default></div>
+    </div>
 </div>
