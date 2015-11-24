@@ -6,8 +6,7 @@
     app.controller('TilesController', ['$scope', '$http', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor',
         function($scope, $http, loadCorpora, loadCorpus, categories, nodesColor) {
             // Init variables
-            var filter,
-                ids,
+            var ids,
                 result,
                 searchCriteria,
                 tmp;
@@ -25,7 +24,7 @@
             // On view change ('grid', 'list', 'graph')
             $scope.changeView = function(view) {
                 // If the new view is grid or graph, reload the gexf graph
-                if(['grid', 'graph'].indexOf(view) >= 0) {
+                if (['grid', 'graph'].indexOf(view) >= 0) {
                     $scope.init();
                 }
             }
@@ -96,8 +95,6 @@
                     },
                     function(s) {
                         $scope.graph = s;
-                        // Initialize the Sigma Filter API
-                        // filter = new sigma.plugins.filter(s);
                         // On node hover, color all the connected edges in the node color
                         $scope.graph.bind('overNode', function(n) {
                             // Get the connected edges
@@ -171,7 +168,7 @@
                 return result;
             }
 
-            $scope.filter = function() {
+            $scope.filter = function(category, value) {
                 // Create JSON object to encapsulate the search criteria
                 searchCriteria = {};
                 $.each(categories, function(index_01, item_01) {
@@ -206,18 +203,20 @@
                         return false;
                     }
                 });
-                // Reorder categories by count attribute
-                $.each(categories, function(index, item) {
-                    categories[index].values.sort(function(a, b) {
-                        if (a.id == 'all') {
-                            return 1;
-                        } else if (b.id == 'all') {
-                            return -1;
-                        } else {
-                            return b.count - a.count;
-                        }
+                // Reorder categories by count attribute, only on the first load of the page
+                if (category === undefined) {
+                    $.each(categories, function(index, item) {
+                        categories[index].values.sort(function(a, b) {
+                            if (a.id == 'all') {
+                                return 1;
+                            } else if (b.id == 'all') {
+                                return -1;
+                            } else {
+                                return b.count - a.count;
+                            }
+                        });
                     });
-                });
+                }
                 $scope.resultsNumber = $scope.filteredResults.length;
                 $scope.display();
             }
