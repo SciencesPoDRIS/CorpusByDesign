@@ -158,10 +158,6 @@ input[type=radio] {
     }
 }
 
-#logo-tools a {
-    border: none;
-}
-
 .logo_scpo {
     width: 11%;
 }
@@ -223,7 +219,6 @@ ul#menu_appli li:last-child a::after {
 
 .navbar {
     background-color: transparent;
-    border: none;
     left: 67px;
     top: 8px;
 }
@@ -306,10 +301,6 @@ ul#menu_appli li:last-child a::after {
         text-align: center;
         width: initial;
     }
-}
-
-#iframe_horaire {
-    border: none;
 }
 
 .horaire_bloc {
