@@ -15,7 +15,8 @@
             // Init scope variables
             $scope.filtersLabel = 'More filters';
             $scope.isCollapsed = true;
-            $scope.quantity = 12;
+            $scope.categoryQuantity = 3;
+            $scope.categoryItemsQuantity = 4;
             $scope.queryTerm = '';
             $scope.initResults = [];
             // Default entities view as grid
@@ -60,11 +61,11 @@
                 if (!$scope.isCollapsed) {
                     $('.content .filters').height('100%');
                     $scope.filtersLabel = 'Less filters';
-                    $scope.quantity = 200;
+                    $scope.categoryItemsQuantity = 200;
                 } else {
                     $('.content .filters').height('150px');
                     $scope.filtersLabel = 'More filters';
-                    $scope.quantity = 12;
+                    $scope.categoryItemsQuantity = 4;
                 }
             }
 
