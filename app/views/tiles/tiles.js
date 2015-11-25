@@ -17,7 +17,6 @@
             $scope.categoryQuantity = 3;
             $scope.categoryItemsQuantity = 4;
             $scope.queryTerm = '';
-            $scope.initResults = [];
             // Default entities view as grid
             $scope.view = 'grid';
 
@@ -122,6 +121,7 @@
                         });
 
                         // Load the corpus
+                        $scope.initResults = [];
                         loadCorpus.getCorpus().then(function(data) {
                             $.each(data.split('\n').slice(1), function(index, item) {
                                 item = item.split('\t');
