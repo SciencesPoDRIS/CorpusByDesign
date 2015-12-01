@@ -10,6 +10,7 @@
                 result,
                 searchCriteria,
                 tmp;
+            var defaultNodeColor = '#D3D3D3';
 
             // Init scope variables
             $scope.filtersLabel = 'More filters';
@@ -57,7 +58,7 @@
             $scope.moreFilters = function() {
                 $scope.isCollapsed = !$scope.isCollapsed;
                 if (!$scope.isCollapsed) {
-                    $('.content .filters').height('100%');
+                    $('.content .filters').height('420px');
                     $scope.filtersLabel = 'Less filters';
                     $scope.categoryItemsQuantity = 200;
                 } else {
@@ -86,7 +87,7 @@
                     '../data/COP21.gexf', {
                         container: 'graph',
                         settings: {
-                            defaultEdgeColor: '#d3d3d3',
+                            defaultEdgeColor: defaultNodeColor,
                             edgeColor: 'default',
                             labelThreshold: 100
                         },
@@ -113,7 +114,7 @@
                         // On node out, reset all edges color to the default one
                         $scope.graph.bind('outNode', function(n) {
                             $scope.graph.graph.edges().forEach(function(e) {
-                                e.color = '#d3d3d3';
+                                e.color = defaultNodeColor;
                             });
                             $scope.graph.refresh();
                             // Simulate mouse out effect on the tiles
@@ -134,17 +135,18 @@
                                     'INDEGREE': item[5],
                                     'FULL_NAME': item[6],
                                     'ACTORS_TYPE': item[7],
-                                    'COUNTRY': item[8],
-                                    'AREA': item[9],
-                                    'ANTHROPOGENIC_CLIMATE_CHANGE': item[10],
-                                    'MITIGATION_ADAPTATION': item[11],
-                                    'INDUSTRIAL_DELEGATION': item[12],
-                                    'THEMATIC_DELEGATION': item[13],
-                                    'LANGUAGE': item[14],
-                                    'COLLECTION': item[15],
-                                    'ABSTRACT_DRAFT': item[16],
-                                    'ABSTRACT': item[17],
-                                    'COMMENT': item[18]
+                                    'ACTORS_TYPE_2': item[8],
+                                    'COUNTRY': item[9],
+                                    'AREA': item[11],
+                                    'ANTHROPOGENIC_CLIMATE_CHANGE': item[12],
+                                    'REDUCING_EMISSIONS': item[13],
+                                    'MITIGATION_ADAPTATION': item[14],
+                                    'INDUSTRIAL_DELEGATION': item[15],
+                                    'THEMATIC_DELEGATION': item[16],
+                                    'LANGUAGE': item[17],
+                                    'COLLECTION': item[18],
+                                    'ABSTRACT_DRAFT': item[19],
+                                    'ABSTRACT': item[20]
                                 });
                             });
                             $scope.filter();
@@ -227,13 +229,19 @@
                 // Color nodes, according to the configuration file
                 $scope.graph.graph.nodes().forEach(function(n) {
                     // Hide Heartland node because it has no attribute
-                    if ((n.id != '765ebd9e-f6c6-4175-8fd1-d18e1b546206') && (ids.indexOf(n.id) != -1)) {
+                    if (ids.indexOf(n.id) != -1) {
                         n.color = categories[nodesColor].values.filter(function(item) {
-                            return item.id == n.attributes[categories[nodesColor].mappedField];
+                            if(n.attributes[categories[nodesColor].mappedField] == undefined) {
+                                // If no mappingon this node, set default color
+                                console.log(n.id);
+                                return item.id == 'other_unknown_not_categorized';
+                            } else {
+                                return item.id == n.attributes[categories[nodesColor].mappedField];
+                            }
                         })[0].color;
                     } else {
                         // Else reset nodes' color to the light grey
-                        n.color = '#d3d3d3';
+                        n.color = defaultNodeColor;
                     }
                     // Change default label by the value of the column "FULL_NAME"
                     n.label = n.attributes.FULL_NAME;
