@@ -10,7 +10,7 @@
         function($http) {
             return {
                 getCorpora: function() {
-                    return $http.get('../data/corpora.json').then(function(data) {
+                    return $http.get('../data/corpora.json', {cache: true}).then(function(data) {
                         return data.data.corpora;
                     });
                 }
@@ -23,7 +23,7 @@
         function($http) {
             return {
                 getCorpus: function() {
-                    return $http.get('../data/COP21.tsv').then(function(data) {
+                    return $http.get('../data/COP21.tsv', {cache: true}).then(function(data) {
                         return data.data;
                     });
                 }
