@@ -3,8 +3,8 @@
 
     var app = angular.module('webcorpus.tiles', []);
 
-    app.controller('TilesController', ['$scope', '$http', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor',
-        function($scope, $http, loadCorpora, loadCorpus, categories, nodesColor) {
+    app.controller('TilesController', ['$scope', '$http', '$location', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor',
+        function($scope, $http, $location, loadCorpora, loadCorpus, categories, nodesColor) {
             // Init variables
             var ids,
                 result,
@@ -119,6 +119,11 @@
                             $scope.graph.refresh();
                             // Simulate mouse out effect on the tiles
                             $('#' + n.data.node.id + ' img').removeClass('hover');
+                        });
+                        // On node click, open the webentity page
+                        $scope.graph.bind('clickNode', function(n) {
+                            $location.path('webentity/' + n.data.node.id);
+                            $scope.$apply();
                         });
 
                         // Load the corpus
