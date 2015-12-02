@@ -24,16 +24,16 @@
                         $scope.webEntity.ACTORS_TYPE = item[7];
                         $scope.webEntity.ACTORS_TYPE_2 = item[8];
                         $scope.webEntity.COUNTRY = item[9];
-                        $scope.webEntity.AREA = item[10];
-                        $scope.webEntity.ANTHROPOGENIC_CLIMATE_CHANGE = item[11];
-                        $scope.webEntity.REDUCING_EMISSIONS = item[12];
-                        $scope.webEntity.MITIGATION_ADAPTATION = item[13];
-                        $scope.webEntity.INDUSTRIAL_DELEGATION = item[14];
-                        $scope.webEntity.THEMATIC_DELEGATION = item[15];
-                        $scope.webEntity.LANGUAGE = item[16];
-                        $scope.webEntity.COLLECTION = item[17];
-                        $scope.webEntity.ABSTRACT_DRAFT = item[18];
-                        $scope.webEntity.ABSTRACT = item[19];
+                        $scope.webEntity.AREA = item[11];
+                        $scope.webEntity.ANTHROPOGENIC_CLIMATE_CHANGE = item[12];
+                        $scope.webEntity.REDUCING_EMISSIONS = item[13];
+                        $scope.webEntity.MITIGATION_ADAPTATION = item[14];
+                        $scope.webEntity.INDUSTRIAL_DELEGATION = item[15];
+                        $scope.webEntity.THEMATIC_DELEGATION = item[16];
+                        $scope.webEntity.LANGUAGE = item[17];
+                        $scope.webEntity.COLLECTION = item[18];
+                        $scope.webEntity.ABSTRACT_DRAFT = item[19];
+                        $scope.webEntity.ABSTRACT = item[20];
                     }
                 });
             });
