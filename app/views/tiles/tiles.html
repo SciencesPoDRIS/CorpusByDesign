@@ -58,10 +58,10 @@
                 </div>
             </div>
             <div ng-class="['search-bottom']">
-                <div ng-class="['pull-left', 'results-number']">
+                <div ng-class="['pull-left', 'more-filters']" ng-click="moreFilters()">{{filtersLabel}}</div>
+                <div ng-class="['pull-right', 'results-number']">
                     <ng-pluralize count="resultsNumber" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>
                 </div>
-                <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters()">{{filtersLabel}}</div>
             </div>
         </div>
     </div>

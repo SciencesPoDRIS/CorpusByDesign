@@ -408,22 +408,22 @@ ul#menu_appli li:last-child a::after {
     bottom: 0;
     height: 40px;
     line-height: 40px;
+    padding: 5px;
     position: absolute;
     width: 100%;
 }
 
 .content .filters .search-bottom .results-number {
     font-style: italic;
-    margin-left: 10px;
+    padding-right: 50px;
 }
 
 .content .filters .search-bottom .more-filters {
-    margin-right: 10px;
-    text-decoration: underline;
+    font-style: italic;
+    padding-left: 50px;
 }
 
 .corpus .tiles {
-    /*height: calc(100% - 150px);*/
     overflow-y: scroll;
     padding: 5px;
     position: absolute;
