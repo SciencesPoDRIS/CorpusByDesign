@@ -196,14 +196,16 @@
                             // Check if the searched term is present into the name of the site or into the actors' type of the site
                             (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
                         ids.push(item.ID);
-                        // Increment categories count
+                        // Increment categories count, for those who are displayed
                         $.each(categories, function(index_02, item_02) {
-                            categories[index_02].values.filter(function(index) {
-                                return index.id == item[categories[index_02].mappedField];
-                            })[0].count++;
-                            categories[index_02].values.filter(function(index) {
-                                return index.id == 'all';
-                            })[0].count++;
+                            if(categories[index_02].isDiplayed) {
+                                categories[index_02].values.filter(function(index) {
+                                    return index.id == item[categories[index_02].mappedField];
+                                })[0].count++;
+                                categories[index_02].values.filter(function(index) {
+                                    return index.id == 'all';
+                                })[0].count++;
+                            }
                         });
                         return true;
                     } else {
