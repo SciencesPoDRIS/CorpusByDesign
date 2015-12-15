@@ -187,7 +187,7 @@ ul#menu_appli {
     float: left;
     position: relative;
     top: 11px;
-    width: 365px;
+    width: 400px;
 }
 
 @media (max-width: 767px) {
@@ -257,28 +257,6 @@ ul#menu_appli li:last-child a::after {
         height: 32px;
         width: 100%;
     }
-}
-
-.catalog_title {
-    background: #e6142d;
-    border-radius: 3px;
-    color: #fafafa;
-    float: left;
-    height: 39px;
-    margin-left: 4px;
-    margin-right: 4px;
-    margin-top: 9px;
-    padding-top: 9px;
-    position: relative;
-    top: -9px;
-    width: 106px;
-}
-
-.catalog_title a,
-.catalog_title a:link,
-.catalog_title a:visited {
-    color: #fafafa;
-    text-decoration: none;
 }
 
 #social {
