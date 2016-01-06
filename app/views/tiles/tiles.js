@@ -179,7 +179,8 @@
                 // Create JSON object to encapsulate the search criteria
                 searchCriteria = {};
                 $.each(categories, function(index_01, item_01) {
-                    if (item_01.values !== undefined) {
+                    // Don't put language as a search criteria
+                    if ((item_01.values !== undefined) && (index_01 != 'language')) {
                         searchCriteria[index_01] = [];
                         $.each(item_01.values, function(index_02, item_02) {
                             // Reset count before filtering
