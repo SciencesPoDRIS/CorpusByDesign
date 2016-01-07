@@ -386,7 +386,6 @@ ul#menu_appli li:last-child a::after {
     bottom: 0;
     height: 40px;
     line-height: 40px;
-    padding: 5px;
     position: absolute;
     width: 100%;
 }

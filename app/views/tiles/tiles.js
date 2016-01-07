@@ -58,7 +58,7 @@
             $scope.moreFilters = function() {
                 $scope.isCollapsed = !$scope.isCollapsed;
                 if (!$scope.isCollapsed) {
-                    $('.content .filters').height('420px');
+                    $('.content .filters').height(($(window).height() - 68) + 'px');
                     $scope.filtersLabel = 'Less filters';
                     $scope.categoryItemsQuantity = 200;
                 } else {
