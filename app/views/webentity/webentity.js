@@ -95,8 +95,8 @@
                     var node = $.grep($scope.graph.graph.nodes(), function(item, index) {
                         return item.id == $routeParams.webEntityId;
                     })[0];
-                    var color = $.grep(categories.actorsType.values, function(item, index) {
-                        return item.id == node.attributes.ACTORS_TYPE;
+                    var color = $.grep(categories.actorsType2.values, function(item, index) {
+                        return item.id == node.attributes.ACTORS_TYPE_2;
                     })[0].color;
                     var ids = [];
                     ids.push($routeParams.webEntityId);
