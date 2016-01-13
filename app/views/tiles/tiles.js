@@ -95,37 +95,36 @@
                     },
                     function(s) {
                         $scope.graph = s;
-                        // On node hover, color all the connected edges in the node color
-                        $scope.graph.bind('overNode', function(n) {
-                            // Get the connected edges
-                            $scope.graph.graph.edges().forEach(function(e, i) {
-                                if (e.source == n.data.node.id || e.target == n.data.node.id) {
-                                    e.color = n.data.node.color;
-                                    // Remove edge from edges array
-                                    $scope.graph.graph.dropEdge(e.id);
-                                    // Add edge as last element of edges array (to render it at the top of other edges)
-                                    $scope.graph.graph.addEdge(e);
-                                }
-                            });
+                        $scope.graph.bind('overNode outNode', function(n) {
+                            // On node hover, color all the connected edges in the node color
+                            if(n.type == 'overNode') {
+                                // Get the connected edges
+                                $scope.graph.graph.edges().forEach(function(e, i) {
+                                    if (e.source == n.data.node.id || e.target == n.data.node.id) {
+                                        e.color = n.data.node.color;
+                                        // Remove edge from edges array
+                                        $scope.graph.graph.dropEdge(e.id);
+                                        // Add edge as last element of edges array (to render it at the top of other edges)
+                                        $scope.graph.graph.addEdge(e);
+                                    }
+                                });
+                                // Simulate mouse hover effect on the tiles
+                                $('#' + n.data.node.id + ' img').addClass('hover');
+                            // On node out, reset all edges color to the default one
+                            } else if(n.type == 'outNode') {
+                                $scope.graph.graph.edges().forEach(function(e) {
+                                    e.color = defaultNodeColor;
+                                });
+                                // Simulate mouse out effect on the tiles
+                                $('#' + n.data.node.id + ' img').removeClass('hover');
+                            }
                             $scope.graph.refresh();
-                            // Simulate mouse hover effect on the tiles
-                            $('#' + n.data.node.id + ' img').addClass('hover');
-                        });
-                        // On node out, reset all edges color to the default one
-                        $scope.graph.bind('outNode', function(n) {
-                            $scope.graph.graph.edges().forEach(function(e) {
-                                e.color = defaultNodeColor;
-                            });
-                            $scope.graph.refresh();
-                            // Simulate mouse out effect on the tiles
-                            $('#' + n.data.node.id + ' img').removeClass('hover');
                         });
                         // On node click, open the webentity page
                         $scope.graph.bind('clickNode', function(n) {
                             $location.path('webentity/' + n.data.node.id);
                             $scope.$apply();
                         });
-
                         // Load the corpus
                         $scope.initResults = [];
                         loadCorpus.getCorpus().then(function(data) {
