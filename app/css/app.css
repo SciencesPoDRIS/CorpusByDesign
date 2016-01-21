@@ -49,6 +49,11 @@ body {
     width: 100%;
 }
 
+/* Fix focus */
+*:focus {
+    outline: none;
+}
+
 h1 {
     font-size: 1.4em;
     line-height: 20px;
@@ -656,4 +661,14 @@ md-grid-tile a {
 
 .webentity .thumbnail {
     text-align: center;
+}
+
+.webentity .value {
+    position: relative;
+}
+
+.webentity .value .icon {
+    bottom: 0;
+    position: absolute;
+    right: 5px;
 }

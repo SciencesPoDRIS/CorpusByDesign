@@ -76,6 +76,23 @@
                         <td ng-class="['name', 'col-md-4']">Abstract</td>
                         <td ng-class="['value']">{{webEntity.ABSTRACT}}</td>
                     </tr> -->
+
+                    <tr>
+                        <td ng-class="['name', 'col-md-4', 'neighbors']">Neighbors</td>
+                        <td ng-class="['value']">
+                            <div ng-class="['col-md-11']">
+                                <div ng-repeat="node in webEntity.NEIGHBORS" ng-attr-collapse="{{$index >= neighborsQuantity ? 'isCollapsed' : ''}}">
+                                    <a title="{{node.attributes.FULL_NAME}} | New window" href="{{node.attributes.URL}}" target="_blank">
+                                        {{node.attributes.FULL_NAME}}</a> ({{node.attributes.ACTORS_TYPE_2 | translate:'actorsType2'}})
+                                    </a>
+                                </div>
+                            </div>
+                            <div ng-class="['col-md-1', 'icon']" ng-click="collapse()">
+                                <i class="material-icons" ng-if="!isCollapsed">keyboard_arrow_left</i>
+                                <i class="material-icons" ng-if="isCollapsed">keyboard_arrow_down</i>
+                            </div>
+                        </td>
+                    </tr>
                 </table>
                 <div ng-class="['thumbnail']">
                     <img src="http://www.robothumb.com/src/?url={{webEntity.URL}}&size=560x420"></img>

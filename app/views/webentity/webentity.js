@@ -6,37 +6,12 @@
     app.controller('WebEntityCtrl', ['$scope', '$routeParams', '$http', 'loadCorpus', 'categories', 'nodesColor', 
         function($scope, $routeParams, $http, loadCorpus, categories, nodesColor) {
             // Init variables
-            var filter;
+            var filter, neighbors;
 
-            // Load corpus
-            loadCorpus.getCorpus().then(function(data) {
-                $.each(data.split('\n').slice(1), function(index, item) {
-                    item = item.split('\t');
-                    if (item[0] == $routeParams.webEntityId) {
-                        $scope.webEntity = {};
-                        $scope.webEntity.ID = item[0];
-                        $scope.webEntity.NAME = item[1];
-                        $scope.webEntity.PREFIXES = item[2];
-                        $scope.webEntity.URL = item[3];
-                        $scope.webEntity.STATUS = item[4];
-                        $scope.webEntity.INDEGREE = item[5];
-                        $scope.webEntity.FULL_NAME = item[6];
-                        $scope.webEntity.ACTORS_TYPE = item[7];
-                        $scope.webEntity.ACTORS_TYPE_2 = item[8];
-                        $scope.webEntity.COUNTRY = item[9];
-                        $scope.webEntity.AREA = item[11];
-                        $scope.webEntity.ANTHROPOGENIC_CLIMATE_CHANGE = item[12];
-                        $scope.webEntity.REDUCING_EMISSIONS = item[13];
-                        $scope.webEntity.MITIGATION_ADAPTATION = item[14];
-                        $scope.webEntity.INDUSTRIAL_DELEGATION = item[15];
-                        $scope.webEntity.THEMATIC_DELEGATION = item[16];
-                        $scope.webEntity.LANGUAGE = item[17];
-                        $scope.webEntity.COLLECTION = item[18];
-                        $scope.webEntity.ABSTRACT_DRAFT = item[19];
-                        $scope.webEntity.ABSTRACT = item[20];
-                    }
-                });
-            });
+            // Init scope variables
+            $scope.isCollapsed = true;
+            // Quantity of neighbors nodes displayed by default
+            $scope.neighborsQuantity = 5;
 
             // Center the whole graph
             $scope.sigmaCenter = function() {
@@ -64,15 +39,27 @@
                 })
             }
 
-            // Add a method to the graph model that returns an
-            // object with every neighbors of a node inside
+            // Collapse or uncollapse neighbors
+            $scope.collapse = function() {
+                $scope.isCollapsed = !$scope.isCollapsed;
+                if($scope.isCollapsed) {
+                    $scope.neighborsQuantity = 500;
+                } else {
+                    $scope.neighborsQuantity = 5;
+                    // Scroll to the neighbors part
+                    $(window).scrollTop($('.neighbors').offset().top - 70);
+                }
+            }
+
+            // Add a method to the graph model that returns an object with every neighbors of a node inside
             if (!sigma.classes.graph.hasMethod('neighbors')) {
                 sigma.classes.graph.addMethod('neighbors', function(nodeId) {
                     var k,
-                        neighbors = {},
+                        neighbors = [],
                         index = this.allNeighborsIndex[nodeId] || {};
-                    for (k in index)
-                        neighbors[k] = this.nodesIndex[k];
+                    for (k in index) {
+                        neighbors.push(this.nodesIndex[k])
+                    }
                     return neighbors;
                 });
             };
@@ -100,9 +87,11 @@
                     })[0].color;
                     var ids = [];
                     ids.push($routeParams.webEntityId);
-                    $.each($scope.graph.graph.neighbors($routeParams.webEntityId), function(item, index) {
-                        ids.push(item);
+                    neighbors = $scope.graph.graph.neighbors($routeParams.webEntityId);
+                    $.each(neighbors, function(index, item) {
+                        ids.push(item.id);
                     });
+                    // Color the connected nodes
                     $scope.graph.graph.nodes().forEach(function(node) {
                         if ((ids.indexOf(node.id) != -1) && (node.attributes[categories[nodesColor].mappedField] !== undefined)) {
                             node.color = categories[nodesColor].values.filter(function(item) {
@@ -120,6 +109,38 @@
                             $scope.graph.graph.addEdge(e);
                         }
                     });
+
+                    // Load corpus
+                    loadCorpus.getCorpus().then(function(data) {
+                        $.each(data.split('\n').slice(1), function(index, item) {
+                            item = item.split('\t');
+                            if (item[0] == $routeParams.webEntityId) {
+                                $scope.webEntity = {};
+                                $scope.webEntity.ID = item[0];
+                                $scope.webEntity.NAME = item[1];
+                                $scope.webEntity.PREFIXES = item[2];
+                                $scope.webEntity.URL = item[3];
+                                $scope.webEntity.STATUS = item[4];
+                                $scope.webEntity.INDEGREE = item[5];
+                                $scope.webEntity.FULL_NAME = item[6];
+                                $scope.webEntity.ACTORS_TYPE = item[7];
+                                $scope.webEntity.ACTORS_TYPE_2 = item[8];
+                                $scope.webEntity.COUNTRY = item[9];
+                                $scope.webEntity.AREA = item[11];
+                                $scope.webEntity.ANTHROPOGENIC_CLIMATE_CHANGE = item[12];
+                                $scope.webEntity.REDUCING_EMISSIONS = item[13];
+                                $scope.webEntity.MITIGATION_ADAPTATION = item[14];
+                                $scope.webEntity.INDUSTRIAL_DELEGATION = item[15];
+                                $scope.webEntity.THEMATIC_DELEGATION = item[16];
+                                $scope.webEntity.LANGUAGE = item[17];
+                                $scope.webEntity.COLLECTION = item[18];
+                                $scope.webEntity.ABSTRACT_DRAFT = item[19];
+                                $scope.webEntity.ABSTRACT = item[20];
+                                $scope.webEntity.NEIGHBORS = neighbors;
+                            }
+                        });
+                    });
+
                     $scope.graph.refresh();
                 }
             );
