@@ -5,5 +5,4 @@
     angular.module('webcorpus.conf', [])
         // Google Analytics Id
         .constant('googleAnalyticsId', 'XX-XXXXXXXX-X');
-
 })();
