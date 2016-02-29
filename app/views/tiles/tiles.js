@@ -16,7 +16,6 @@
             $scope.filtersLabel = 'More filters';
             $scope.isCollapsed = true;
             $scope.categoryQuantity = 3;
-            $scope.categoryItemsQuantity = 4;
             $scope.queryTerm = '';
             // Default entities view as grid
             $scope.view = 'grid';
@@ -60,11 +59,9 @@
                 if (!$scope.isCollapsed) {
                     $('.content .filters').height(($(window).height() - 68) + 'px');
                     $scope.filtersLabel = 'Less filters';
-                    $scope.categoryItemsQuantity = 200;
                 } else {
                     $('.content .filters').height('150px');
                     $scope.filtersLabel = 'More filters';
-                    $scope.categoryItemsQuantity = 4;
                 }
             }
 
@@ -202,9 +199,6 @@
                                 categories[index_02].values.filter(function(index) {
                                     return index.id == item[categories[index_02].mappedField];
                                 })[0].count++;
-                                categories[index_02].values.filter(function(index) {
-                                    return index.id == 'all';
-                                })[0].count++;
                             }
                         });
                         return true;
@@ -212,20 +206,25 @@
                         return false;
                     }
                 });
-                // Reorder categories by count attribute, only on the first load of the page
-                if (category === undefined) {
-                    $.each(categories, function(index, item) {
-                        categories[index].values.sort(function(a, b) {
-                            if (a.id == 'all') {
-                                return 1;
-                            } else if (b.id == 'all') {
-                                return -1;
-                            } else {
-                                return b.count - a.count;
-                            }
-                        });
+                
+                $.each(categories, function(index, item) {
+                    // Reorder categories by alphabetical order
+                    categories[index].values.sort(function(a, b) {
+                        if(a.label.toLowerCase() < b.label.toLowerCase()) {
+                            return -1;
+                        } else if(a.label.toLowerCase() > b.label.toLowerCase()) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
                     });
-                }
+                    // Calculate
+                    $.each(categories[index].values, function(index2, item2) {
+                        item2.count_percent = (item2.count / $scope.initResults.length * 100).toFixed();
+                        console.log(item2.count_percent);
+                    });
+                });
+                // console.log($scope.initResults.length);
                 $scope.resultsNumber = $scope.filteredResults.length;
                 $scope.display();
             }

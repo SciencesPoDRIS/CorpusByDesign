@@ -387,6 +387,31 @@ ul#menu_appli li:last-child a::after {
     width: 100%;
 }
 
+.content .filters .facets > div {
+    width: 1080px;
+}
+
+.content .filters .facets .facet {
+    float: left;
+    margin: 0 5px;
+    width: 170px;
+}
+
+.content .filters .facets label {
+    text-align: center;
+    width: 100%;
+}
+
+.content .filters .facets md-progress-linear {
+    margin-bottom: 15px;
+    margin-left: 20px;
+    width: 70%;
+}
+
+.content .filters .facets .count-percent {
+    line-height: normal;
+}
+
 .content .filters .search-bottom {
     bottom: 0;
     height: 40px;
@@ -459,10 +484,6 @@ ul#menu_appli li:last-child a::after {
 
 
 /* Checkboxes */
-
-.checkbox-inline.category-value {
-    margin-left: 0;
-}
 
 .filters input[type="checkbox"] {
     -webkit-appearance: none;

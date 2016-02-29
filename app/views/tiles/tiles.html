@@ -40,19 +40,18 @@
                 </md-input-container>
             </div>
             <div ng-class="['no-gutter', 'facets']">
-                <!-- The first label is always shown -->
-                <div ng-class="['row', 'no-gutter']">
-                    <div ng-repeat="category in categories" ng-class="['advanced-search']">
-                        <div ng-attr-collapse="{{ $index >= categoryQuantity ? 'isCollapsed' : '' }}">
-                            <label ng-class="['col-md-3', 'no-gutter', 'ellipsed']">{{category.label}}</label>
-                            <div ng-class="['col-md-9', 'no-gutter']">
-                                <div ng-repeat="value in category.values | limitTo:categoryItemsQuantity" ng-class="['checkbox-inline', 'col-md-3', 'category-value', 'no-gutter']">
-                                    <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" />
-                                    <span ng-class="['category-name', 'ellipsed']">{{value.label}} </span>
-                                    <span ng-class="['category-count']"><em>({{value.count}})</em></span>
-                                </div>
+                <div ng-class="['row', 'no-gutter', 'full-height']">
+                    <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet']">
+                        <label>{{category.label}}</label>
+                        <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter']">
+                            <div>
+                                <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" />
+                                <span ng-class="['category-name', 'ellipsed']"> {{value.label}}</span>
                             </div>
-                            <div class="separator" ng-if="!isCollapsed" />
+                            <div>
+                                <span ng-class="['pull-right', 'count-percent']">{{value.count_percent}}%</span>
+                                <md-progress-linear md-mode="determinate" value="{{value.count_percent}}"></md-progress-linear>
+                            </div>
                         </div>
                     </div>
                 </div>
