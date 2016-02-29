@@ -240,7 +240,6 @@
                         n.color = categories[nodesColor].values.filter(function(item) {
                             if(n.attributes[categories[nodesColor].mappedField] == undefined) {
                                 // If no mappingon this node, set default color
-                                console.log(n.id);
                                 return item.id == 'other_unknown_not_categorized';
                             } else {
                                 return item.id == n.attributes[categories[nodesColor].mappedField];
