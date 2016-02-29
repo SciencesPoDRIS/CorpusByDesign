@@ -388,7 +388,7 @@ ul#menu_appli li:last-child a::after {
 }
 
 .content .filters .facets > div {
-    width: 1080px;
+    width: 720px;
 }
 
 .content .filters .facets .facet {
