@@ -422,12 +422,12 @@ ul#menu_appli li:last-child a::after {
 
 .content .filters .search-bottom .results-number {
     font-style: italic;
-    padding-right: 50px;
+    padding-left: 50px;
 }
 
 .content .filters .search-bottom .more-filters {
     font-style: italic;
-    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .corpus .tiles {
