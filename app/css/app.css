@@ -405,7 +405,50 @@ ul#menu_appli li:last-child a::after {
 .content .filters .facets md-progress-linear {
     margin-bottom: 15px;
     margin-left: 20px;
-    width: 70%;
+    width: 58%;
+}
+
+.content .filters .facets .facet .grey md-progress-linear .md-container {
+    background-color: rgba(131,135,141, 0.3);
+}
+.content .filters .facets .facet .grey md-progress-linear .md-bar2 {
+    background-color: rgba(131,135,141, 1);
+}
+.content .filters .facets .facet .pink md-progress-linear .md-container {
+    background-color: rgba(246, 165, 203, 0.3);
+}
+.content .filters .facets .facet .pink md-progress-linear .md-bar2 {
+    background-color: rgba(246, 165, 203, 1);
+}
+.content .filters .facets .facet .yellow md-progress-linear .md-container {
+    background-color: rgba(230,225,116, 0.3);
+}
+.content .filters .facets .facet .yellow md-progress-linear .md-bar2 {
+    background-color: rgba(230,225,116, 1);
+}
+.content .filters .facets .facet .green md-progress-linear .md-container {
+    background-color: rgba(131,231,204, 0.3);
+}
+.content .filters .facets .facet .green md-progress-linear .md-bar2 {
+    background-color: rgba(131,231,204, 1);
+}
+.content .filters .facets .facet .orange md-progress-linear .md-container {
+    background-color: rgba(251,169,149, 0.3);
+}
+.content .filters .facets .facet .orange md-progress-linear .md-bar2 {
+    background-color: rgba(251,169,149, 1);
+}
+.content .filters .facets .facet .brown md-progress-linear .md-container {
+    background-color: rgba(206,167,100, 0.3);
+}
+.content .filters .facets .facet .brown md-progress-linear .md-bar2 {
+    background-color: rgba(206,167,100, 1);
+}
+.content .filters .facets .facet .purple md-progress-linear .md-container {
+    background-color: rgba(190,175,215, 0.3);
+}
+.content .filters .facets .facet .purple md-progress-linear .md-bar2 {
+    background-color: rgba(190,175,215, 1);
 }
 
 .content .filters .facets .count-percent {

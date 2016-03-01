@@ -181,15 +181,17 @@
                         $.each(item_01.values, function(index_02, item_02) {
                             // Reset count before filtering
                             item_02.count = 0;
-                            if (item_02.isSelected) {
+                            if(item_02.isSelected) {
                                 searchCriteria[index_01].push(item_02.id);
                             }
+                            // Set default color
+                            item_02.color = 'grey';
                         });
                     }
                 });
                 ids = [];
                 $scope.filteredResults = $scope.initResults.filter(function(item) {
-                    if ((
+                    if((
                             // Check if the searched term is present into the name of the site or into the actors' type of the site
                             (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
                         ids.push(item.ID);
@@ -206,12 +208,12 @@
                         return false;
                     }
                 });
-                
+                // ToDo : Order by count increasing
+                // Set color by order (pink, yellow, green, orange, brown, purple)
                 $.each(categories, function(index, item) {
                     // Reorder categories by alphabetical order
                     categories[index].values.sort(function(a, b) {
                         // 'Not applicable' should be the last item
-                        console.log(a.id);
                         if(a.id == 'not_applicable') {
                             return 1;
                         } else if(b.id == 'not_applicable') {
@@ -230,9 +232,9 @@
                             return 0;
                         }
                     });
-                    // Calculate
-                    $.each(categories[index].values, function(index2, item2) {
-                        item2.count_percent = (item2.count / $scope.initResults.length * 100).toFixed();
+                    // Calculate the item count in percentil for the progress bar
+                    $.each(categories[index].values, function(index_02, item_02) {
+                        item_02.count_percent = ((parseFloat(item_02.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
                     });
                 });
                 $scope.resultsNumber = $scope.filteredResults.length;
@@ -248,7 +250,7 @@
                     if (ids.indexOf(n.id) != -1) {
                         n.color = categories[nodesColor].values.filter(function(item) {
                             if(n.attributes[categories[nodesColor].mappedField] == undefined) {
-                                // If no mappingon this node, set default color
+                                // If no mapping on this node, set default color
                                 return item.id == 'other_unknown_not_categorized';
                             } else {
                                 return item.id == n.attributes[categories[nodesColor].mappedField];
