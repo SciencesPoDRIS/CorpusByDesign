@@ -564,8 +564,8 @@ input[type="checkbox"]:checked:before {
     width: 20px;
 }
 
-.category-value > label {
-    width: 100%;
+.checkbox {
+    cursor: default;
 }
 
 .category-name {

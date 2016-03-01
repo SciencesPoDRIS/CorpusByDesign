@@ -54,6 +54,7 @@
                 })
             }
 
+            // Expand filters
             $scope.moreFilters = function() {
                 $scope.isCollapsed = !$scope.isCollapsed;
                 if (!$scope.isCollapsed) {
@@ -63,6 +64,28 @@
                     $('.content .filters').height('150px');
                     $scope.filtersLabel = 'More filters';
                 }
+            }
+
+            $scope.selectAll = function(categoryId) {
+                $.each($scope.categories, function(index_01, item_01) {
+                    if(item_01.id == categoryId) {
+                        $.each(item_01.values, function(index_02, item_02) {
+                            item_02.isSelected = true;
+                        });
+                    }
+                });
+                $scope.filter();
+            }
+
+            $scope.deselectAll = function(categoryId) {
+                $.each($scope.categories, function(index_01, item_01) {
+                    if(item_01.id == categoryId) {
+                        $.each(item_01.values, function(index_02, item_02) {
+                            item_02.isSelected = false;
+                        });
+                    }
+                });
+                $scope.filter();
             }
 
             $scope.init = function() {
@@ -122,6 +145,12 @@
                             $location.path('webentity/' + n.data.node.id);
                             $scope.$apply();
                         });
+                        // For a checkbox, on click on label
+                        $('.checkbox > span').click(
+                            function() {
+                                $(this).siblings('input').click();
+                            }
+                        );
                         // Load the corpus
                         $scope.initResults = [];
                         loadCorpus.getCorpus().then(function(data) {
