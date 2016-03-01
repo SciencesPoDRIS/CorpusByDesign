@@ -48,7 +48,7 @@
                                 <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" />
                                 <span ng-class="['category-name', 'ellipsed']"> {{value.label}}</span>
                             </div>
-                            <div class="{{value.color}}">
+                            <div class="{{value.colorClass}}">
                                 <span ng-class="['pull-right', 'count-percent']">{{value.count_percent}}%</span>
                                 <md-progress-linear md-mode="determinate" value="{{value.count_percent}}"></md-progress-linear>
                             </div>

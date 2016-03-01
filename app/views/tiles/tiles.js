@@ -3,8 +3,8 @@
 
     var app = angular.module('webcorpus.tiles', []);
 
-    app.controller('TilesController', ['$scope', '$http', '$location', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor',
-        function($scope, $http, $location, loadCorpora, loadCorpus, categories, nodesColor) {
+    app.controller('TilesController', ['$scope', '$http', '$location', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor', 'colors',
+        function($scope, $http, $location, loadCorpora, loadCorpus, categories, nodesColor, colors) {
             // Init variables
             var ids,
                 result,
@@ -185,7 +185,8 @@
                                 searchCriteria[index_01].push(item_02.id);
                             }
                             // Set default color
-                            item_02.color = 'grey';
+                            item_02.colorClass = '#83878D';
+                            item_02.colorClass = 'grey';
                         });
                     }
                 });
@@ -208,10 +209,20 @@
                         return false;
                     }
                 });
-                // ToDo : Order by count increasing
-                // Set color by order (pink, yellow, green, orange, brown, purple)
+                
                 $.each(categories, function(index, item) {
-                    // Reorder categories by alphabetical order
+                    // Order items of a category by count descending order
+                    categories[index].values.sort(function(a, b) {
+                        return b.count - a.count;
+                    });
+                    // Set colors to nodes and loadBar
+                    if(categories[index].id == nodesColor) {
+                        $.each(categories[index].values.slice(0, 6), function(index_02, item_02) {
+                            item_02.color = colors[index_02].color;
+                            item_02.colorClass = colors[index_02].label;
+                        });
+                    }
+                    // Order items of a category by alphabetical ascending order
                     categories[index].values.sort(function(a, b) {
                         // 'Not applicable' should be the last item
                         if(a.id == 'not_applicable') {
