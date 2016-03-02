@@ -42,9 +42,13 @@
             <div ng-class="['no-gutter', 'facets']">
                 <div ng-class="['row', 'no-gutter', 'full-height']">
                     <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', category.id]">
-                        <label>{{category.label}}</label>
-                        <span ng-class="['category-name', 'ellipsed']" ng-click="selectAll(category.id);"> Select all</span>
-                        <span ng-class="['category-name', 'ellipsed']" ng-click="deselectAll(category.id);"> Deselect all</span>
+                        <label ng-class="['ellipsed']">{{category.label}}</label>
+                        <span ng-class="['ellipsed']" ng-click="selectAll(category.id);">
+                            <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Select all
+                        </span>
+                        <span ng-class="['ellipsed']" ng-click="deselectAll(category.id);">
+                            <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Deselect all
+                        </span>
                         <hr />
                         <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter']">
                             <div ng-class="['checkbox']">
