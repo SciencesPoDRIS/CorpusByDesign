@@ -14,6 +14,7 @@
 
             // Init scope variables
             $scope.filtersLabel = 'More filters';
+            $scope.filtersIcon = 'glyphicon-chevron-down';
             $scope.isCollapsed = true;
             $scope.categoryQuantity = 3;
             $scope.queryTerm = '';
@@ -60,9 +61,11 @@
                 if (!$scope.isCollapsed) {
                     $('.content .filters').height(($(window).height() - 68) + 'px');
                     $scope.filtersLabel = 'Less filters';
+                    $scope.filtersIcon = 'glyphicon-chevron-up';
                 } else {
                     $('.content .filters').height('150px');
                     $scope.filtersLabel = 'More filters';
+                    $scope.filtersIcon = 'glyphicon-chevron-down';
                 }
             }
 
@@ -179,6 +182,7 @@
                                     'ABSTRACT': item[20]
                                 });
                             });
+                            $scope.initResultsCount = $scope.initResults.length;
                             $scope.filter();
                         });
                     }
@@ -277,7 +281,7 @@
                         item_02.count_percent = ((parseFloat(item_02.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
                     });
                 });
-                $scope.resultsNumber = $scope.filteredResults.length;
+                $scope.filteredResultsCount = $scope.filteredResults.length;
                 $scope.display();
             }
 

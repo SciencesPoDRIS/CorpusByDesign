@@ -4,33 +4,41 @@
 <!-- First row -->
 <div ng-class="['row', 'content', 'no-gutter']">
     <!-- Left column -->
-    <div ng-class="['col-md-5', 'no-gutter', 'full-height']">
+    <div ng-class="['col-md-7', 'no-gutter', 'full-height']">
         <!-- Corpus Header -->
         <div ng-class="['presentation']">
-            <div ng-class="['title']">
-                <h2 ng-class="['no-gutter']">{{corpora.title}}</h2>
+            <div ng-class="['site-title']">
+                <h1>
+                    <a href="/">Web Corpus</a>
+                </h1>
             </div>
-            <div ng-class="['subtitle']">
-                <h3 ng-class="['no-gutter']">{{corpora.subtitle}}</h2>
+            <div ng-class="['row', 'no-gutter']">
+                <div ng-class="['col-md-6', 'title', 'no-gutter']">
+                    <h2 ng-class="['no-gutter']">{{corpora.title}}</h2>
+                </div>
+                <div ng-class="['col-md-6', 'methodology']">
+                    <a href="description">Methodology</a>
+                </div>
             </div>
-            <div ng-class="['read-more']">
-                <a href="description">Read more ...</a>
-            </div>
-            <div ng-class="['btn-group', 'views']">
-                <label ng-class="['btn', 'btn-default']" btn-radio="'grid'" ng-model="view" ng-change="changeView('grid')">
-                    <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
-                </label>
-                <label ng-class="['btn', 'btn-default']" btn-radio="'list'" ng-model="view" ng-change="changeView('list')">
-                    <span ng-class="['glyphicon', 'glyphicon-th-list']" aria-hidden="true"></span>
-                </label>
-                <label ng-class="['btn', 'btn-default']" btn-radio="'graph'" ng-model="view" ng-change="changeView('graph')">
-                    <span ng-class="['glyphicon', 'glyphicon-stop']" aria-hidden="true"></span>
-                </label>
+            <div ng-class="['row', 'no-gutter', 'info-viz']">
+                <div ng-class="['col-md-4']">{{initResultsCount}} nodes</div>
+                <div ng-class="['btn-group', 'views', 'col-md-4']">
+                    <label ng-class="['btn', 'btn-default']" btn-radio="'grid'" ng-model="view" ng-change="changeView('grid')">
+                        <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
+                    </label>
+                    <label ng-class="['btn', 'btn-default']" btn-radio="'list'" ng-model="view" ng-change="changeView('list')">
+                        <span ng-class="['glyphicon', 'glyphicon-th-list']" aria-hidden="true"></span>
+                    </label>
+                    <label ng-class="['btn', 'btn-default']" btn-radio="'graph'" ng-model="view" ng-change="changeView('graph')">
+                        <span ng-class="['glyphicon', 'glyphicon-stop']" aria-hidden="true"></span>
+                    </label>
+                </div>
+                <div ng-class="['col-md-4']">col_03</div>
             </div>
         </div>
     </div>
     <!-- Right column -->
-    <div ng-class="['col-md-7', 'no-gutter', 'full-height']">
+    <div ng-class="['col-md-5', 'no-gutter', 'full-height']">
         <!-- Filters -->
         <div ng-class="['filters']">
             <div ng-class="['row', 'col-md-offset-3', 'col-md-6', 'search-bar']">
@@ -44,10 +52,10 @@
                     <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', category.id]">
                         <label ng-class="['ellipsed']">{{category.label}}</label>
                         <span ng-class="['ellipsed']" ng-click="selectAll(category.id);">
-                            <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Select all
+                            <span ng-class="['glyphicon', 'glyphicon-check']" aria-hidden="true"></span> Select all
                         </span>
                         <span ng-class="['ellipsed']" ng-click="deselectAll(category.id);">
-                            <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Deselect all
+                            <span ng-class="['glyphicon', 'glyphicon-unchecked']" aria-hidden="true"></span> Deselect all
                         </span>
                         <hr />
                         <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter']">
@@ -65,9 +73,12 @@
             </div>
             <div ng-class="['search-bottom']">
                 <div ng-class="['pull-left', 'results-number']">
-                    <ng-pluralize count="resultsNumber" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>
+                    <ng-pluralize count="filteredResultsCount" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>
                 </div>
-                <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters()">{{filtersLabel}}</div>
+                <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters()">
+                    {{filtersLabel}}
+                    <span ng-class="['glyphicon', '{{filtersIcon}}']" />
+                </div>
             </div>
         </div>
     </div>

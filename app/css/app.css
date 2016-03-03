@@ -667,22 +667,17 @@ md-grid-tile a {
 
 .presentation {
     height: 150px;
-    text-align: center;
     padding-top: 10px;
 }
 
-.presentation .subtitle {
-    font-style: italic;
-}
-
-.presentation .read-more {
+.presentation .methodology {
     position: absolute;
     right: 20px;
     top: 47px;
 }
 
-.presentation .views {
-    margin-top: 20px;
+.presentation .info-viz {
+    line-height: 34px;
 }
 
 .corpus .graph {
