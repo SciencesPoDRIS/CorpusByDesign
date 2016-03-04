@@ -36,6 +36,9 @@
     border: none !important;
 }
 
+.no-uppercase {
+    text-transform: capitalize;
+}
 
 /* General */
 
@@ -311,8 +314,11 @@ ul#menu_appli li:last-child a::after {
 
 /* Content */
 
-.content {
+.first-row {
     padding: 68px 0 0 0;
+}
+
+.content {
     width: 100%;
 }
 
@@ -666,14 +672,8 @@ md-grid-tile a {
 }
 
 .presentation {
-    height: 150px;
+    height: 50px;
     padding-top: 10px;
-}
-
-.presentation .methodology {
-    position: absolute;
-    right: 20px;
-    top: 47px;
 }
 
 .presentation .info-viz {

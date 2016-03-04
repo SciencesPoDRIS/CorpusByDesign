@@ -18,6 +18,7 @@
             $scope.isCollapsed = true;
             $scope.categoryQuantity = 3;
             $scope.queryTerm = '';
+            $scope.selectedCategory = categories[nodesColor].label;
             // Default entities view as grid
             $scope.view = 'grid';
 
@@ -55,6 +56,13 @@
                 })
             }
 
+            // Change nodes color on the graph and the filters parts
+            $scope.changeNodesColor = function(e) {
+                nodesColor = e.currentTarget.id;
+                $scope.selectedCategory = categories[nodesColor].label;
+                $scope.filter();
+            }
+
             // Expand filters
             $scope.moreFilters = function() {
                 $scope.isCollapsed = !$scope.isCollapsed;
@@ -71,7 +79,7 @@
 
             $scope.selectAll = function(categoryId) {
                 $.each($scope.categories, function(index_01, item_01) {
-                    if(item_01.id == categoryId) {
+                    if (item_01.id == categoryId) {
                         $.each(item_01.values, function(index_02, item_02) {
                             item_02.isSelected = true;
                         });
@@ -82,7 +90,7 @@
 
             $scope.deselectAll = function(categoryId) {
                 $.each($scope.categories, function(index_01, item_01) {
-                    if(item_01.id == categoryId) {
+                    if (item_01.id == categoryId) {
                         $.each(item_01.values, function(index_02, item_02) {
                             item_02.isSelected = false;
                         });
@@ -120,7 +128,7 @@
                         $scope.graph = s;
                         $scope.graph.bind('overNode outNode', function(n) {
                             // On node hover, color all the connected edges in the node color
-                            if(n.type == 'overNode') {
+                            if (n.type == 'overNode') {
                                 // Get the connected edges
                                 $scope.graph.graph.edges().forEach(function(e, i) {
                                     if (e.source == n.data.node.id || e.target == n.data.node.id) {
@@ -133,8 +141,8 @@
                                 });
                                 // Simulate mouse hover effect on the tiles
                                 $('#' + n.data.node.id + ' img').addClass('hover');
-                            // On node out, reset all edges color to the default one
-                            } else if(n.type == 'outNode') {
+                                // On node out, reset all edges color to the default one
+                            } else if (n.type == 'outNode') {
                                 $scope.graph.graph.edges().forEach(function(e) {
                                     e.color = defaultNodeColor;
                                 });
@@ -214,7 +222,7 @@
                         $.each(item_01.values, function(index_02, item_02) {
                             // Reset count before filtering
                             item_02.count = 0;
-                            if(item_02.isSelected) {
+                            if (item_02.isSelected) {
                                 searchCriteria[index_01].push(item_02.id);
                             }
                             // Set default color
@@ -225,13 +233,13 @@
                 });
                 ids = [];
                 $scope.filteredResults = $scope.initResults.filter(function(item) {
-                    if((
+                    if ((
                             // Check if the searched term is present into the name of the site or into the actors' type of the site
                             (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
                         ids.push(item.ID);
                         // Increment categories count, for those who are displayed
                         $.each(categories, function(index_02, item_02) {
-                            if(categories[index_02].isDiplayed) {
+                            if (categories[index_02].isDiplayed) {
                                 categories[index_02].values.filter(function(index) {
                                     return index.id == item[categories[index_02].mappedField];
                                 })[0].count++;
@@ -242,14 +250,14 @@
                         return false;
                     }
                 });
-                
+
                 $.each(categories, function(index, item) {
                     // Order items of a category by count descending order
                     categories[index].values.sort(function(a, b) {
                         return b.count - a.count;
                     });
                     // Set colors to nodes and loadBar
-                    if(categories[index].id == nodesColor) {
+                    if (categories[index].id == nodesColor) {
                         $.each(categories[index].values.slice(0, 6), function(index_02, item_02) {
                             item_02.color = colors[index_02].color;
                             item_02.colorClass = colors[index_02].label;
@@ -258,20 +266,20 @@
                     // Order items of a category by alphabetical ascending order
                     categories[index].values.sort(function(a, b) {
                         // 'Not applicable' should be the last item
-                        if(a.id == 'not_applicable') {
+                        if (a.id == 'not_applicable') {
                             return 1;
-                        } else if(b.id == 'not_applicable') {
+                        } else if (b.id == 'not_applicable') {
                             return -1;
-                        // 'Don't know' should be the before second last item
-                        } else if(a.id == 'dont_know') {
+                            // 'Don't know' should be the before second last item
+                        } else if (a.id == 'dont_know') {
                             return 1;
-                        } else if(b.id == 'dont_know') {
+                        } else if (b.id == 'dont_know') {
                             return -1;
-                        } else if(a.label.toLowerCase() < b.label.toLowerCase()) {
+                        } else if (a.label.toLowerCase() < b.label.toLowerCase()) {
                             return -1;
-                        } else if(a.label.toLowerCase() > b.label.toLowerCase()) {
+                        } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
                             return 1;
-                        // Should never happen
+                            // Should never happen
                         } else {
                             return 0;
                         }
@@ -293,7 +301,7 @@
                     // Hide Heartland node because it has no attribute
                     if (ids.indexOf(n.id) != -1) {
                         n.color = categories[nodesColor].values.filter(function(item) {
-                            if(n.attributes[categories[nodesColor].mappedField] == undefined) {
+                            if (n.attributes[categories[nodesColor].mappedField] == undefined) {
                                 // If no mapping on this node, set default color
                                 return item.id == 'other_unknown_not_categorized';
                             } else {
