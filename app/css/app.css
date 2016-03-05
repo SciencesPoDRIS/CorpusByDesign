@@ -612,7 +612,7 @@ input[type="checkbox"]:checked:before {
 
 md-grid-list md-grid-tile md-grid-tile-footer,
 md-grid-list md-grid-tile md-grid-tile-header {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     bottom: -2px;
     text-align: initial;
 }
@@ -670,7 +670,7 @@ md-grid-tile a {
 }
 
 .tile-footer h3 {
-    font-size: 1.1em;
+    font-size: 0.9em;
     font-weight: bold;
     margin-left: 0;
     overflow: hidden;
