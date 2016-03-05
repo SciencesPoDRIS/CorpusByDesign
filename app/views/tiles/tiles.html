@@ -74,7 +74,7 @@
             <div ng-class="['no-gutter', 'facets']">
                 <div ng-class="['row', 'no-gutter', 'full-height']">
                     <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', category.id]">
-                        <label ng-class="['ellipsed']">{{category.label}}</label>
+                        <label ng-class="['ellipsed']" title="{{category.label}}">{{category.label}}</label>
                         <span ng-class="['ellipsed']" ng-click="selectAll(category.id);">
                             <span ng-class="['glyphicon', 'glyphicon-check']" aria-hidden="true"></span> Select all
                         </span>
@@ -101,7 +101,7 @@
                 </div>
                 <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters()">
                     {{filtersLabel}}
-                    <span ng-class="['glyphicon', '{{filtersIcon}}']" />
+                    <span ng-class="{'glyphicon' : true, 'glyphicon-chevron-down' : isCollapsed, 'glyphicon-chevron-up' : !isCollapsed}" />
                 </div>
             </div>
         </div>

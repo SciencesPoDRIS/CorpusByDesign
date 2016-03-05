@@ -5,6 +5,10 @@
 
     app.controller('TilesController', ['$scope', '$http', '$location', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor', 'colors',
         function($scope, $http, $location, loadCorpora, loadCorpus, categories, nodesColor, colors) {
+
+            $('[data-toggle="tooltip"]').tooltip()
+
+
             // Init variables
             var ids,
                 result,
@@ -70,11 +74,9 @@
                 if (!$scope.isCollapsed) {
                     $('.content .filters').height(($(window).height() - 68) + 'px');
                     $scope.filtersLabel = 'Less filters';
-                    $scope.filtersIcon = 'glyphicon-chevron-up';
                 } else {
                     $('.content .filters').height('150px');
                     $scope.filtersLabel = 'More filters';
-                    $scope.filtersIcon = 'glyphicon-chevron-down';
                 }
             }
 
