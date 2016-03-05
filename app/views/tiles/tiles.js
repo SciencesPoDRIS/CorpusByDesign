@@ -19,6 +19,7 @@
             $scope.categoryQuantity = 3;
             $scope.queryTerm = '';
             $scope.selectedCategory = categories[nodesColor].label;
+            $scope.legend = [];
             // Default entities view as grid
             $scope.view = 'grid';
 
@@ -226,7 +227,6 @@
                                 searchCriteria[index_01].push(item_02.id);
                             }
                             // Set default color
-                            item_02.colorClass = '#83878D';
                             item_02.colorClass = 'grey';
                         });
                     }
@@ -250,7 +250,6 @@
                         return false;
                     }
                 });
-
                 $.each(categories, function(index, item) {
                     // Order items of a category by count descending order
                     categories[index].values.sort(function(a, b) {
@@ -261,6 +260,8 @@
                         $.each(categories[index].values.slice(0, 6), function(index_02, item_02) {
                             item_02.color = colors[index_02].color;
                             item_02.colorClass = colors[index_02].label;
+                            // Create the legend object
+                            $scope.legend[index_02] = {'id' : item_02.id, 'label' : item_02.label, 'color' : item_02.color};
                         });
                     }
                     // Order items of a category by alphabetical ascending order

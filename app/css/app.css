@@ -40,6 +40,13 @@
     text-transform: capitalize;
 }
 
+.slash {
+    bottom: 0;
+    margin: 0 10px;
+    position: absolute;
+}
+
+
 /* General */
 
 body {
@@ -58,10 +65,22 @@ body {
 }
 
 h1 {
-    font-size: 1.4em;
-    line-height: 20px;
+    font-size: 3.2em;
     margin: 0 0 8px;
     padding: 0 5px 2px;
+
+}
+
+h1 > a:link,
+h1 > a:visited {
+    border: none;
+}
+
+h2 {
+    bottom: 0;
+    font-size: 2.0em;
+    margin: 0 0 0 25px;
+    position: absolute;
 }
 
 a:link,
@@ -345,16 +364,11 @@ ul#menu_appli li:last-child a::after {
     background-color: #FFF;
 }
 
-.legend {
-    margin: 0;
+.legend .item {
+    padding: 5px 15px;
 }
 
-.legend .key-item {
-    height: 20px;
-    margin: 5px 0;
-}
-
-.legend .key-item .key-color {
+.legend .item-color {
     border-radius: 10px;
     display: inline-block;
     height: 20px;
@@ -362,10 +376,11 @@ ul#menu_appli li:last-child a::after {
     width: 20px;
 }
 
-.legend .key-item .key-name {
+.legend .item-label {
     display: inline-block;
     line-height: 20px;
     vertical-align: middle;
+    width: calc(100% - 25px);
 }
 
 
@@ -508,6 +523,7 @@ ul#menu_appli li:last-child a::after {
 .content .search-bar .glyphicon-search {
     color: #343333;
     top: 3px;
+    width: 5%;
 }
 
 @media (max-width: 767px) {
@@ -673,11 +689,8 @@ md-grid-tile a {
 
 .presentation {
     height: 50px;
-    padding-top: 10px;
-}
-
-.presentation .info-viz {
     line-height: 34px;
+    padding-top: 10px;
 }
 
 .corpus .graph {

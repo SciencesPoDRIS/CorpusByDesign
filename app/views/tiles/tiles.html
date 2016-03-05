@@ -5,14 +5,17 @@
 <div ng-class="['first-row', 'row']">
     <div ng-class="['col-md-7']">
         <div ng-class="['pull-left']">
-            <h1>
-            <a href="/">Web Corpus</a>
-        </h1>
+            <h1 ng-class="['no-gutter']">
+                <a href="/">Web Corpus</a>
+            </h1>
         </div>
-        <div ng-class="['title', 'pull-left']">
-            <h2 ng-class="['no-gutter']">
-            {{corpora.title}}
-        </h2>
+        <div ng-class="['pull-left']">
+            <div ng-class="['slash']"> / </div>
+        </div>
+        <div ng-class="['pull-left']">
+            <h2>
+                {{corpora.title}}
+            </h2>
         </div>
     </div>
     <div ng-class="['col-md-5', 'no-gutter']">
@@ -23,35 +26,38 @@
 <div ng-class="['row', 'content', 'no-gutter']">
     <!-- Left column -->
     <div ng-class="['col-md-7', 'no-gutter', 'full-height']">
-        <!-- Corpus Header -->
-        <div ng-class="['presentation']">
-            <div ng-class="['row', 'no-gutter', 'info-viz']">
-                <div ng-class="['col-md-3']">{{initResultsCount}} nodes</div>
-                <div ng-class="['col-md-3', 'btn-group', 'views']">
-                    <label ng-class="['btn', 'btn-default']" btn-radio="'grid'" ng-model="view" ng-change="changeView('grid')">
-                        <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
-                    </label>
-                    <label ng-class="['btn', 'btn-default']" btn-radio="'list'" ng-model="view" ng-change="changeView('list')">
-                        <span ng-class="['glyphicon', 'glyphicon-th-list']" aria-hidden="true"></span>
-                    </label>
-                    <label ng-class="['btn', 'btn-default']" btn-radio="'graph'" ng-model="view" ng-change="changeView('graph')">
-                        <span ng-class="['glyphicon', 'glyphicon-stop']" aria-hidden="true"></span>
-                    </label>
-                </div>
-                <div ng-class="['col-md-6']">
-                    <label>Nodes Color</label>
-                    <md-menu>
-                        <md-button ng-click="$mdOpenMenu($event)" ng-class="['no-uppercase']">
-                            {{selectedCategory}}
-                            <span ng-class="['glyphicon', 'glyphicon-chevron-down']" aria-hidden="true"></span>
-                        </md-button>
-                        <md-menu-content>
-                            <md-menu-item ng-repeat="category in categories">
-                                <md-button id="{{category.id}}" ng-click="changeNodesColor($event)">{{category.label}}</md-button>
-                            </md-menu-item>
-                        </md-menu-content>
-                    </md-menu>
-                </div>
+        <div ng-class="['row', 'no-gutter', 'presentation']">
+            <div ng-class="['col-md-3']">{{initResultsCount}} nodes</div>
+            <div ng-class="['col-md-3', 'btn-group', 'views']">
+                <label ng-class="['btn', 'btn-default']" btn-radio="'grid'" ng-model="view" ng-change="changeView('grid')">
+                    <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
+                </label>
+                <label ng-class="['btn', 'btn-default']" btn-radio="'list'" ng-model="view" ng-change="changeView('list')">
+                    <span ng-class="['glyphicon', 'glyphicon-th-list']" aria-hidden="true"></span>
+                </label>
+                <label ng-class="['btn', 'btn-default']" btn-radio="'graph'" ng-model="view" ng-change="changeView('graph')">
+                    <span ng-class="['glyphicon', 'glyphicon-stop']" aria-hidden="true"></span>
+                </label>
+            </div>
+            <div ng-class="['col-md-6']">
+                <label>Nodes Color</label>
+                <md-menu>
+                    <md-button ng-click="$mdOpenMenu($event)" ng-class="['no-uppercase']">
+                        {{selectedCategory}}
+                        <span ng-class="['glyphicon', 'glyphicon-chevron-down']" aria-hidden="true"></span>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item ng-repeat="category in categories">
+                            <md-button id="{{category.id}}" ng-click="changeNodesColor($event)">{{category.label}}</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+        </div>
+        <div ng-class="['row', 'no-gutter', 'legend']">
+            <div ng-repeat="item in legend" ng-class="['item', 'pull-left', 'col-md-3']">
+                <div ng-class="['item-color']" style="background-color: {{item.color}};"></div>
+                <span ng-class="['item-label', 'ellipsed']">{{item.label}}</span>
             </div>
         </div>
     </div>
