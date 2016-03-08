@@ -5,8 +5,10 @@
 
     app.controller('DescriptionController', ['$scope', '$sce', 'loadCorpora',
         function($scope, $sce, loadCorpora) {
+
+            // Load all the corpora descriptions
             loadCorpora.getCorpora().then(function(data) {
-                $scope.corpus = data[0];
+                $scope.corpora = data[0];
                 $scope.purpose = $sce.trustAsHtml(data[0].purpose);
                 $scope.selection = $sce.trustAsHtml(data[0].selection);
                 $scope.indexing = $sce.trustAsHtml(data[0].indexing);

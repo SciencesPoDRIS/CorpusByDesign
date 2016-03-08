@@ -19,89 +19,90 @@
         <a href="description">Methodology</a>
     </div>
 </div>
-<div ng-class="['row', 'content', 'full-height', 'webentity', 'first-row']">
-    <!-- <backtocorpus />
-    <div id="{{webEntity.ID}}" ng-class="['title']">
-        <h3>{{webEntity.FULL_NAME}}</h3>
-    </div> -->
-    <div ng-class="['row', 'no-gutter']">
-        <div ng-class="['col-md-6', 'no-gutter', 'full-height']">
-            <div ng-class="['graph']">
-                <div id="graph"></div>
-                <div ng-class="['sigma-tools']">
-                    <div ng-class="['btn-group-vertical']">
-                        <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaCenter();" tooltip-placement="right" tooltip="Center">
-                            <span ng-class="['glyphicon', 'glyphicon-record']"></span>
-                        </button>
-                        <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaZoom();" tooltip-placement="right" tooltip="Zoom">
-                            <span ng-class="['glyphicon', 'glyphicon-plus']"></span>
-                        </button>
-                        <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaUnzoom();" tooltip-placement="right" tooltip="Unzoom">
-                            <span ng-class="['glyphicon', 'glyphicon-minus']"></span>
-                        </button>
-                    </div>
+<div ng-class="['row', 'content', 'full-height', 'webentity', 'no-gutter']">
+    <div ng-class="['col-sm-12', 'col-md-6', 'no-gutter', 'full-height']">
+        <div ng-class="['row', 'graph', 'no-gutter']">
+            <div id="graph"></div>
+            <div ng-class="['sigma-tools']">
+                <div ng-class="['btn-group-vertical']">
+                    <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaCenter();" tooltip-placement="right" tooltip="Center">
+                        <span ng-class="['glyphicon', 'glyphicon-record']"></span>
+                    </button>
+                    <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaZoom();" tooltip-placement="right" tooltip="Zoom">
+                        <span ng-class="['glyphicon', 'glyphicon-plus']"></span>
+                    </button>
+                    <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaUnzoom();" tooltip-placement="right" tooltip="Unzoom">
+                        <span ng-class="['glyphicon', 'glyphicon-minus']"></span>
+                    </button>
                 </div>
             </div>
         </div>
-        <div ng-class="['col-sm-12', 'col-md-6', 'no-gutter', 'full-height']">
-            <div ng-class="['metadata']">
-                <table ng-class="['table', 'table-hover']">
-                    <tr>
-                        <td ng-class="['name', 'col-md-4']">URL</td>
-                        <td ng-class="['value']"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
-                    </tr>
-                    <tr>
-                        <td ng-class="['name', 'col-md-4']">Actor's Type</td>
-                        <td ng-class="['value']">{{webEntity.ACTORS_TYPE_2 | translate:'actorsType2'}}</td>
-                    </tr>
-                    <tr>
-                        <td ng-class="['name', 'col-md-4']">Indegree</td>
-                        <td ng-class="['value']">{{webEntity.INDEGREE}}</td>
-                    </tr>
-                    <tr>
-                        <td ng-class="['name', 'col-md-4']">Country</td>
-                        <td ng-class="['value']">{{webEntity.COUNTRY | translate:'country'}}</td>
-                    </tr>
-                    <tr>
-                        <td ng-class="['name', 'col-md-4']">Anthropogenic Climate Change</td>
-                        <td ng-class="['value']">{{webEntity.ANTHROPOGENIC_CLIMATE_CHANGE | translate:'anthropogenicClimateChange'}}</td>
-                    </tr>
-                    <tr>
-                        <td ng-class="['name', 'col-md-4']">Mitigation / Adaptation</td>
-                        <td ng-class="['value']">{{webEntity.MITIGATION_ADAPTATION | translate:'mitigationAdaptation'}}</td>
-                    </tr>
-                    <tr>
-                        <td ng-class="['name', 'col-md-4']">Language</td>
-                        <td ng-class="['value']">{{webEntity.LANGUAGE | translate:'language'}}</td>
-                    </tr>
-                    <tr>
-                        <td ng-class="['name', 'col-md-4']">Collection</td>
-                        <td ng-class="['value']">{{webEntity.COLLECTION | translate:'collection'}}</td>
-                    </tr>
-                    <tr>
-                        <td ng-class="['name', 'col-md-4']">Abstract</td>
-                        <td ng-class="['value']">{{webEntity.ABSTRACT}}</td>
-                    </tr>
-                    <tr ng-class="['neighbors']">
-                        <td ng-class="['name', 'col-md-4']">Neighbors</td>
-                        <td ng-class="['value']">
-                            <ul ng-class="['col-md-11']">
-                                <li ng-repeat="node in webEntity.NEIGHBORS" ng-attr-collapse="{{$index >= neighborsQuantity ? 'isCollapsed' : ''}}">
-                                    <a title="{{node.attributes.FULL_NAME}} | New window" href="{{node.attributes.URL}}" target="_blank">
+        <div ng-class="['row', 'no-gutter', 'abstract']">
+            <div>Abstract</div>
+            <div>
+                {{webEntity.ABSTRACT}}
+            </div>
+        </div>
+    </div>
+    <div ng-class="['col-sm-12', 'col-md-6', 'no-gutter', 'full-height']">
+        <div ng-class="['metadata']">
+            <table ng-class="['table', 'table-hover']">
+                <tr>
+                    <td ng-class="['name', 'col-md-4']">URL</td>
+                    <td ng-class="['value']"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
+                </tr>
+                <tr>
+                    <td ng-class="['name', 'col-md-4']">Actor's Type</td>
+                    <td ng-class="['value']">{{webEntity.ACTORS_TYPE_2 | translate:'actorsType2'}}</td>
+                </tr>
+                <tr>
+                    <td ng-class="['name', 'col-md-4']">Indegree</td>
+                    <td ng-class="['value']">{{webEntity.INDEGREE}}</td>
+                </tr>
+                <tr>
+                    <td ng-class="['name', 'col-md-4']">Country</td>
+                    <td ng-class="['value']">{{webEntity.COUNTRY | translate:'country'}}</td>
+                </tr>
+                <tr>
+                    <td ng-class="['name', 'col-md-4']">Anthropogenic Climate Change</td>
+                    <td ng-class="['value']">{{webEntity.ANTHROPOGENIC_CLIMATE_CHANGE | translate:'anthropogenicClimateChange'}}</td>
+                </tr>
+                <tr>
+                    <td ng-class="['name', 'col-md-4']">Mitigation / Adaptation</td>
+                    <td ng-class="['value']">{{webEntity.MITIGATION_ADAPTATION | translate:'mitigationAdaptation'}}</td>
+                </tr>
+                <tr>
+                    <td ng-class="['name', 'col-md-4']">Language</td>
+                    <td ng-class="['value']">{{webEntity.LANGUAGE | translate:'language'}}</td>
+                </tr>
+                <tr>
+                    <td ng-class="['name', 'col-md-4']">Collection</td>
+                    <td ng-class="['value']">{{webEntity.COLLECTION | translate:'collection'}}</td>
+                </tr>
+                <!-- <tr>
+                    <td ng-class="['name', 'col-md-4']">Abstract</td>
+                    <td ng-class="['value']">{{webEntity.ABSTRACT}}</td>
+                </tr> -->
+                <tr ng-class="['neighbors']">
+                    <td ng-class="['name', 'col-md-4']">Neighbors</td>
+                    <td ng-class="['value']">
+                        <ul ng-class="['col-md-11']">
+                            <li ng-repeat="node in webEntity.NEIGHBORS" ng-attr-collapse="{{$index >= neighborsQuantity ? 'isCollapsed' : ''}}">
+                                <a title="{{node.attributes.FULL_NAME}} | New window" href="{{node.attributes.URL}}" target="_blank">
                                         {{node.attributes.FULL_NAME}}</a> ({{node.attributes.ACTORS_TYPE_2 | translate:'actorsType2'}})
-                                    </a>
-                                </li>
-                            </ul>
-                            <div ng-class="['col-md-1', 'icon']" ng-click="collapse()">
-                                <i class="material-icons" ng-if="!isCollapsed">keyboard_arrow_up</i>
-                                <i class="material-icons" ng-if="isCollapsed">keyboard_arrow_down</i>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <div ng-class="['thumbnail']">
-                    <img src="http://www.robothumb.com/src/?url={{webEntity.URL}}&size=560x420"></img>
-                </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <div ng-class="['col-md-1', 'icon']" ng-click="collapse()">
+                            <i class="material-icons" ng-if="!isCollapsed">keyboard_arrow_up</i>
+                            <i class="material-icons" ng-if="isCollapsed">keyboard_arrow_down</i>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div ng-class="['thumbnail']">
+                <img src="http://www.robothumb.com/src/?url={{webEntity.URL}}&size=560x420"></img>
+                <span ng-class="['italic']">Thumbnail of the targeted website</span>
             </div>
         </div>
     </div>

@@ -329,7 +329,7 @@ ul#menu_appli li:last-child a::after {
 .first-row h2,
 .first-row h3,
 .first-row .slash {
-    line-height: 50px;
+    line-height: 49px;
     margin: 0;
     vertical-align: middle;
 }
@@ -732,6 +732,10 @@ md-grid-tile a {
 
 .webentity .graph {
     height: 500px;
+    padding: 5px;
+}
+
+.webentity .abstract {
     padding: 5px;
 }
 

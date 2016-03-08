@@ -256,6 +256,7 @@
                         return false;
                     }
                 });
+                $scope.legend = [];
                 $.each(categories, function(index, item) {
                     // Order items of a category by count descending order
                     categories[index].values.sort(function(a, b) {

@@ -1,8 +1,22 @@
 <!-- Header -->
 <div ng-include="'app/partials/header.html'"></div>
+<!-- First row -->
+<div ng-class="['first-row', 'row', 'no-gutter']">
+    <div ng-class="['col-md-7']">
+        <h1 ng-class="['no-gutter', 'pull-left']">
+            <a href="/">Web Corpus</a>
+        </h1>
+        <span ng-class="['slash', 'pull-left']">/</span>
+        <h2 ng-class="['pull-left']">
+            {{corpora.title}}
+        </h2>
+    </div>
+    <div ng-class="['col-md-5', 'no-gutter']">
+        <a href="description">Methodology</a>
+    </div>
+</div>
 <!-- Content -->
 <div ng-class="['row', 'content', 'full-height', 'description']">
-    <backtocorpus />
     <div>
         <h3>Purpose of the corpus</h3>
         <span ng-bind-html="purpose"></span>

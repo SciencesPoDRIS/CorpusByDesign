@@ -24,14 +24,6 @@
         };
     }]);
 
-    app.directive('backtocorpus', [function() {
-        return {
-            restrict: 'E',
-            templateUrl: 'app/partials/backtocorpus.html',
-            replace: true
-        };
-    }]);
-
     app.directive('filters', [function() {
         return {
             restrict: 'E',
