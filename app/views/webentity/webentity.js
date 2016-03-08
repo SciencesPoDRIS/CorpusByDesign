@@ -3,8 +3,8 @@
 
     var app = angular.module('webcorpus.webentity', []);
 
-    app.controller('WebEntityCtrl', ['$scope', '$routeParams', '$http', 'loadCorpus', 'categories', 'nodesColor', 
-        function($scope, $routeParams, $http, loadCorpus, categories, nodesColor) {
+    app.controller('WebEntityCtrl', ['$scope', '$routeParams', '$http', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor',
+        function($scope, $routeParams, $http, loadCorpora, loadCorpus, categories, nodesColor) {
             // Init variables
             var filter, neighbors;
 
@@ -12,6 +12,11 @@
             $scope.isCollapsed = true;
             // Quantity of neighbors nodes displayed by default
             $scope.neighborsQuantity = 5;
+
+            // Load all the corpora descriptions
+            loadCorpora.getCorpora().then(function(data) {
+                $scope.corpora = data[0];
+            });
 
             // Center the whole graph
             $scope.sigmaCenter = function() {
@@ -42,7 +47,7 @@
             // Collapse or uncollapse neighbors
             $scope.collapse = function() {
                 $scope.isCollapsed = !$scope.isCollapsed;
-                if($scope.isCollapsed) {
+                if ($scope.isCollapsed) {
                     $scope.neighborsQuantity = 500;
                 } else {
                     $scope.neighborsQuantity = 5;
