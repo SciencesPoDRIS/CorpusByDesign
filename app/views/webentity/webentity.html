@@ -1,7 +1,7 @@
 <!-- Header -->
 <div ng-include="'app/partials/header.html'"></div>
 <!-- Content -->
-<div ng-class="['row', 'content', 'full-height', 'webentity']">
+<div ng-class="['row', 'content', 'full-height', 'webentity', 'first-row']">
     <backtocorpus />
     <div id="{{webEntity.ID}}" ng-class="['title']">
         <h3>{{webEntity.FULL_NAME}}</h3>
@@ -29,7 +29,7 @@
             <div ng-class="['metadata']">
                 <table ng-class="['table', 'table-hover']">
                     <tr>
-                        <td ng-class="['name', 'col-md-4']">Url</td>
+                        <td ng-class="['name', 'col-md-4']">URL</td>
                         <td ng-class="['value']"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
                     </tr>
                     <tr>
@@ -64,18 +64,18 @@
                         <td ng-class="['name', 'col-md-4']">Abstract</td>
                         <td ng-class="['value']">{{webEntity.ABSTRACT}}</td>
                     </tr>
-                    <tr>
-                        <td ng-class="['name', 'col-md-4', 'neighbors']">Neighbors</td>
+                    <tr ng-class="['neighbors']">
+                        <td ng-class="['name', 'col-md-4']">Neighbors</td>
                         <td ng-class="['value']">
-                            <div ng-class="['col-md-11']">
-                                <div ng-repeat="node in webEntity.NEIGHBORS" ng-attr-collapse="{{$index >= neighborsQuantity ? 'isCollapsed' : ''}}">
+                            <ul ng-class="['col-md-11']">
+                                <li ng-repeat="node in webEntity.NEIGHBORS" ng-attr-collapse="{{$index >= neighborsQuantity ? 'isCollapsed' : ''}}">
                                     <a title="{{node.attributes.FULL_NAME}} | New window" href="{{node.attributes.URL}}" target="_blank">
                                         {{node.attributes.FULL_NAME}}</a> ({{node.attributes.ACTORS_TYPE_2 | translate:'actorsType2'}})
                                     </a>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
                             <div ng-class="['col-md-1', 'icon']" ng-click="collapse()">
-                                <i class="material-icons" ng-if="!isCollapsed">keyboard_arrow_left</i>
+                                <i class="material-icons" ng-if="!isCollapsed">keyboard_arrow_up</i>
                                 <i class="material-icons" ng-if="isCollapsed">keyboard_arrow_down</i>
                             </div>
                         </td>

@@ -8,13 +8,13 @@
 
             $('[data-toggle="tooltip"]').tooltip()
 
-
             // Init variables
             var ids,
                 result,
                 searchCriteria,
                 tmp;
-            var defaultNodeColor = '#D3D3D3';
+            var defaultNodeColor = '#d3d3d3';
+            var defaultEdgeColor = '#e9e9e9';
 
             // Init scope variables
             $scope.filtersLabel = 'More filters';
@@ -75,30 +75,34 @@
                     $('.content .filters').height(($(window).height() - 68) + 'px');
                     $scope.filtersLabel = 'Less filters';
                 } else {
-                    $('.content .filters').height('150px');
+                    $('.content .filters').height('200px');
                     $scope.filtersLabel = 'More filters';
                 }
             }
 
             $scope.selectAll = function(categoryId) {
-                $.each($scope.categories, function(index_01, item_01) {
-                    if (item_01.id == categoryId) {
-                        $.each(item_01.values, function(index_02, item_02) {
-                            item_02.isSelected = true;
-                        });
-                    }
-                });
-                $scope.filter();
-            }
-
-            $scope.deselectAll = function(categoryId) {
-                $.each($scope.categories, function(index_01, item_01) {
-                    if (item_01.id == categoryId) {
-                        $.each(item_01.values, function(index_02, item_02) {
-                            item_02.isSelected = false;
-                        });
-                    }
-                });
+                // If is checked, check all the facets of this category
+                var element = $('input#' + categoryId);
+                if (element.prop('checked')) {
+                    $.each($scope.categories, function(index_01, item_01) {
+                        if (item_01.id == categoryId) {
+                            $.each(item_01.values, function(index_02, item_02) {
+                                item_02.isSelected = true;
+                            });
+                        }
+                    });
+                    element.parent().attr('title', 'Unselect all');
+                // Else, uncheck all the facets of this category
+                } else {
+                    $.each($scope.categories, function(index_01, item_01) {
+                        if (item_01.id == categoryId) {
+                            $.each(item_01.values, function(index_02, item_02) {
+                                item_02.isSelected = false;
+                            });
+                        }
+                    });
+                    element.parent().attr('title', 'Select all');
+                }
                 $scope.filter();
             }
 
@@ -121,7 +125,7 @@
                     '../data/COP21.gexf', {
                         container: 'graph',
                         settings: {
-                            defaultEdgeColor: defaultNodeColor,
+                            defaultEdgeColor: defaultEdgeColor,
                             edgeColor: 'default',
                             labelThreshold: 100
                         },
@@ -147,7 +151,7 @@
                                 // On node out, reset all edges color to the default one
                             } else if (n.type == 'outNode') {
                                 $scope.graph.graph.edges().forEach(function(e) {
-                                    e.color = defaultNodeColor;
+                                    e.color = defaultEdgeColor;
                                 });
                                 // Simulate mouse out effect on the tiles
                                 $('#' + n.data.node.id + ' img').removeClass('hover');
@@ -263,7 +267,7 @@
                             item_02.color = colors[index_02].color;
                             item_02.colorClass = colors[index_02].label;
                             // Create the legend object
-                            $scope.legend[index_02] = {'id' : item_02.id, 'label' : item_02.label, 'color' : item_02.color};
+                            $scope.legend[index_02] = { 'id': item_02.id, 'label': item_02.label, 'color': item_02.color };
                         });
                     }
                     // Order items of a category by alphabetical ascending order

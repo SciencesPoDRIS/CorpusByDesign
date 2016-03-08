@@ -2,7 +2,7 @@
 <div ng-include="'app/partials/header.html'"></div>
 <!-- Content -->
 <!-- First row -->
-<div ng-class="['first-row', 'row']">
+<div ng-class="['first-row', 'row', 'no-gutter']">
     <div ng-class="['col-md-7']">
         <div ng-class="['pull-left']">
             <h1 ng-class="['no-gutter']">
@@ -39,7 +39,7 @@
                     <span ng-class="['glyphicon', 'glyphicon-stop']" aria-hidden="true"></span>
                 </label>
             </div>
-            <div ng-class="['col-md-6']">
+            <div ng-class="['col-md-6', 'nodes-color']">
                 <label>Nodes Color</label>
                 <md-menu>
                     <md-button ng-click="$mdOpenMenu($event)" ng-class="['no-uppercase']">
@@ -74,14 +74,10 @@
             <div ng-class="['no-gutter', 'facets']">
                 <div ng-class="['row', 'no-gutter', 'full-height']">
                     <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', category.id]">
-                        <label ng-class="['ellipsed']" title="{{category.label}}">{{category.label}}</label>
-                        <span ng-class="['ellipsed']" ng-click="selectAll(category.id);">
-                            <span ng-class="['glyphicon', 'glyphicon-check']" aria-hidden="true"></span> Select all
-                        </span>
-                        <span ng-class="['ellipsed']" ng-click="deselectAll(category.id);">
-                            <span ng-class="['glyphicon', 'glyphicon-unchecked']" aria-hidden="true"></span> Deselect all
-                        </span>
-                        <hr />
+                        <div ng-class="['checkbox']" title="Unselect all">
+                            <input id="{{category.id}}" type="checkbox" ng-click="selectAll(category.id);" checked/>
+                            <span ng-class="['category-name', 'ellipsed']"> {{category.label}}</span>
+                        </div>
                         <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter']">
                             <div ng-class="['checkbox']">
                                 <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" />
