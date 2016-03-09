@@ -12,6 +12,7 @@
             $scope.isCollapsed = true;
             // Quantity of neighbors nodes displayed by default
             $scope.neighborsQuantity = 5;
+            $scope.corpusId = $routeParams.corpusId;
 
             // Load all the corpora descriptions
             loadCorpora.getCorpora().then(function(data) {
@@ -71,7 +72,7 @@
 
             // Load the graph
             sigma.parsers.gexf(
-                '../data/COP21.gexf', {
+                '../data/' + $scope.corpusId + '.gexf', {
                     container: 'graph',
                     settings: {
                         defaultEdgeColor: '#d3d3d3',
@@ -83,7 +84,6 @@
                     // Initialize the Sigma Filter API
                     filter = new sigma.plugins.filter(s);
                     $scope.graph = s;
-                    // Color only selected nodes, according to the configuration file
                     var node = $.grep($scope.graph.graph.nodes(), function(item, index) {
                         return item.id == $routeParams.webEntityId;
                     })[0];
@@ -96,7 +96,7 @@
                     $.each(neighbors, function(index, item) {
                         ids.push(item.id);
                     });
-                    // Color the connected nodes
+                    // Color the connected nodes, ie the selected node and its neighbors
                     $scope.graph.graph.nodes().forEach(function(node) {
                         if ((ids.indexOf(node.id) != -1) && (node.attributes[categories[nodesColor].mappedField] !== undefined)) {
                             node.color = categories[nodesColor].values.filter(function(item) {
@@ -116,7 +116,7 @@
                     });
 
                     // Load corpus
-                    loadCorpus.getCorpus().then(function(data) {
+                    loadCorpus.getCorpus($scope.corpusId).then(function(data) {
                         $.each(data.split('\n').slice(1), function(index, item) {
                             item = item.split('\t');
                             if (item[0] == $routeParams.webEntityId) {

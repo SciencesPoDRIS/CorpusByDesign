@@ -325,16 +325,14 @@ ul#menu_appli li:last-child a::after {
     padding: 68px 0 10px 0;
 }
 
-.first-row h1,
-.first-row h2,
-.first-row h3,
-.first-row .slash {
+.first-row .title span {
+    font-size: 2.2em;
     line-height: 49px;
     margin: 0;
     vertical-align: middle;
 }
 
-.first-row .slash {
+.first-row span.slash {
     margin: 0 10px;
 }
 
@@ -505,7 +503,7 @@ ul#menu_appli li:last-child a::after {
     overflow-y: scroll;
     padding: 5px;
     position: absolute;
-    top: 80px;
+    top: 85px;
     width: 100%;
 }
 
@@ -695,11 +693,18 @@ md-grid-tile a {
 .presentation {
     height: 50px;
     line-height: 34px;
+    margin-bottom: 1px;
     padding-top: 10px;
+    text-align: center;
 }
 
 .presentation .nodes-color label {
     font-weight: normal;
+    margin-bottom: 0;
+}
+
+.presentation .nodes-color button {
+    margin-bottom: 0;
 }
 
 .corpus .graph {

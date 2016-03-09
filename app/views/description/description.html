@@ -2,17 +2,32 @@
 <div ng-include="'app/partials/header.html'"></div>
 <!-- First row -->
 <div ng-class="['first-row', 'row', 'no-gutter']">
-    <div ng-class="['col-md-7']">
-        <h1 ng-class="['no-gutter', 'pull-left']">
+    <div ng-class="['col-md-7', 'title']">
+        <span ng-class="['no-gutter', 'pull-left']">
             <a href="/">Web Corpus</a>
-        </h1>
+        </span>
         <span ng-class="['slash', 'pull-left']">/</span>
-        <h2 ng-class="['pull-left']">
-            {{corpora.title}}
-        </h2>
+        <span ng-class="['pull-left']">
+            <a href="corpus/{{corpusId}}">{{corpora.title}}</a>
+        </span>
     </div>
     <div ng-class="['col-md-5', 'no-gutter']">
-        <a href="description">Methodology</a>
+        <div ng-class="['row', 'no-gutter']">
+            <div ng-class="['col-md-6']">
+                <a href="description">Methodology</a>
+            </div>
+            <div ng-class="['col-md-6', 'btn-group', 'views']">
+                <label ng-class="['btn', 'btn-default']" btn-radio="'grid'" ng-model="view" ng-click="changeView('grid')">
+                    <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
+                </label>
+                <label ng-class="['btn', 'btn-default']" btn-radio="'list'" ng-model="view" ng-click="changeView('list')">
+                    <span ng-class="['glyphicon', 'glyphicon-th-list']" aria-hidden="true"></span>
+                </label>
+                <label ng-class="['btn', 'btn-default']" btn-radio="'graph'" ng-model="view" ng-click="changeView('graph')">
+                    <span ng-class="['glyphicon', 'glyphicon-stop']" aria-hidden="true"></span>
+                </label>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Content -->

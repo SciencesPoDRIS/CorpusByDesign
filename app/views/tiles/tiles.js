@@ -3,11 +3,8 @@
 
     var app = angular.module('webcorpus.tiles', []);
 
-    app.controller('TilesController', ['$scope', '$http', '$location', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor', 'colors',
-        function($scope, $http, $location, loadCorpora, loadCorpus, categories, nodesColor, colors) {
-
-            $('[data-toggle="tooltip"]').tooltip()
-
+    app.controller('TilesController', ['$scope', '$routeParams', '$http', '$location', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor', 'colors',
+        function($scope, $routeParams, $http, $location, loadCorpora, loadCorpus, categories, nodesColor, colors) {
             // Init variables
             var ids,
                 result,
@@ -23,16 +20,14 @@
             $scope.categoryQuantity = 3;
             $scope.queryTerm = '';
             $scope.selectedCategory = categories[nodesColor].label;
-            $scope.legend = [];
             // Default entities view as grid
             $scope.view = 'grid';
+            $scope.corpusId = $routeParams.corpusId;
 
             // On view change ('grid', 'list', 'graph')
             $scope.changeView = function(view) {
-                // If the new view is grid or graph, reload the gexf graph
-                if (['grid', 'graph'].indexOf(view) >= 0) {
-                    $scope.init();
-                }
+                $scope.view = view;
+                $scope.init();
             }
 
             // Center the whole graph
@@ -72,7 +67,7 @@
             $scope.moreFilters = function() {
                 $scope.isCollapsed = !$scope.isCollapsed;
                 if (!$scope.isCollapsed) {
-                    $('.content .filters').height(($(window).height() - 68) + 'px');
+                    $('.content .filters').height(($(window).height() - 127) + 'px');
                     $scope.filtersLabel = 'Less filters';
                 } else {
                     $('.content .filters').height('200px');
@@ -85,23 +80,23 @@
                 var element = $('input#' + categoryId);
                 if (element.prop('checked')) {
                     $.each($scope.categories, function(index_01, item_01) {
+                        item_01.check = 'Unselect all';
                         if (item_01.id == categoryId) {
                             $.each(item_01.values, function(index_02, item_02) {
                                 item_02.isSelected = true;
                             });
                         }
                     });
-                    element.parent().attr('title', 'Unselect all');
                 // Else, uncheck all the facets of this category
                 } else {
                     $.each($scope.categories, function(index_01, item_01) {
+                        item_01.check = 'Select all';
                         if (item_01.id == categoryId) {
                             $.each(item_01.values, function(index_02, item_02) {
                                 item_02.isSelected = false;
                             });
                         }
                     });
-                    element.parent().attr('title', 'Select all');
                 }
                 $scope.filter();
             }
@@ -110,6 +105,7 @@
                 // Load all categories from config file
                 $scope.categories = [];
                 $.each(categories, function(index, item) {
+                    item.check = 'Unselect all';
                     if (item.isDiplayed !== undefined && item.isDiplayed) {
                         $scope.categories.push(item);
                     }
@@ -122,7 +118,7 @@
 
                 // Load the graph
                 sigma.parsers.gexf(
-                    '../data/COP21.gexf', {
+                    '../data/' + $scope.corpusId + '.gexf', {
                         container: 'graph',
                         settings: {
                             defaultEdgeColor: defaultEdgeColor,
@@ -160,7 +156,7 @@
                         });
                         // On node click, open the webentity page
                         $scope.graph.bind('clickNode', function(n) {
-                            $location.path('webentity/' + n.data.node.id);
+                            $location.path('corpus/' + $scope.corpusId + '/webentity/' + n.data.node.id);
                             $scope.$apply();
                         });
                         // For a checkbox, on click on label
@@ -171,7 +167,7 @@
                         );
                         // Load the corpus
                         $scope.initResults = [];
-                        loadCorpus.getCorpus().then(function(data) {
+                        loadCorpus.getCorpus($scope.corpusId).then(function(data) {
                             $.each(data.split('\n').slice(1), function(index, item) {
                                 item = item.split('\t');
                                 $scope.initResults.push({
@@ -232,7 +228,8 @@
                             if (item_02.isSelected) {
                                 searchCriteria[index_01].push(item_02.id);
                             }
-                            // Set default color
+                            // Set default nodes color
+                            item_02.color = defaultNodeColor;
                             item_02.colorClass = 'grey';
                         });
                     }
@@ -292,6 +289,27 @@
                             return 0;
                         }
                     });
+                    // Order items of legend by alphabetical ascending order
+                    $scope.legend.sort(function(a, b) {
+                        // 'Not applicable' should be the last item
+                        if (a.id == 'not_applicable') {
+                            return 1;
+                        } else if (b.id == 'not_applicable') {
+                            return -1;
+                            // 'Don't know' should be the before second last item
+                        } else if (a.id == 'dont_know') {
+                            return 1;
+                        } else if (b.id == 'dont_know') {
+                            return -1;
+                        } else if (a.label.toLowerCase() < b.label.toLowerCase()) {
+                            return -1;
+                        } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
+                            return 1;
+                            // Should never happen
+                        } else {
+                            return 0;
+                        }
+                    });
                     // Calculate the item count in percentil for the progress bar
                     $.each(categories[index].values, function(index_02, item_02) {
                         item_02.count_percent = ((parseFloat(item_02.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
@@ -306,7 +324,6 @@
                 $scope.displayedResults = $scope.filteredResults;
                 // Color nodes, according to the configuration file
                 $scope.graph.graph.nodes().forEach(function(n) {
-                    // Hide Heartland node because it has no attribute
                     if (ids.indexOf(n.id) != -1) {
                         n.color = categories[nodesColor].values.filter(function(item) {
                             if (n.attributes[categories[nodesColor].mappedField] == undefined) {

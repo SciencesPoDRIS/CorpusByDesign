@@ -2,17 +2,32 @@
 <div ng-include="'app/partials/header.html'"></div>
 <!-- First row -->
 <div ng-class="['first-row', 'row', 'no-gutter']">
-    <div ng-class="['col-md-7']">
-        <h1 ng-class="['no-gutter', 'pull-left']">
+    <div ng-class="['col-md-7', 'title']">
+        <span ng-class="['no-gutter', 'pull-left']">
             <a href="/">Web Corpus</a>
-        </h1>
+        </span>
         <span ng-class="['slash', 'pull-left']">/</span>
-        <h2 ng-class="['pull-left']">
-            {{corpora.title}}
-        </h2>
+        <span ng-class="['pull-left']">
+            <a href="corpus/{{corpusId}}">{{corpora.title}}</a>
+        </span>
     </div>
     <div ng-class="['col-md-5', 'no-gutter']">
-        <a href="description">Methodology</a>
+        <div ng-class="['row', 'no-gutter']">
+            <div ng-class="['col-md-6']">
+                <a href="description">Methodology</a>
+            </div>
+            <div ng-class="['col-md-6', 'btn-group', 'views']">
+                <label ng-class="['btn', 'btn-default']" btn-radio="'grid'" ng-model="view" ng-click="changeView('grid');">
+                    <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
+                </label>
+                <label ng-class="['btn', 'btn-default']" btn-radio="'list'" ng-model="view" ng-click="changeView('list');">
+                    <span ng-class="['glyphicon', 'glyphicon-th-list']" aria-hidden="true"></span>
+                </label>
+                <label ng-class="['btn', 'btn-default']" btn-radio="'graph'" ng-model="view" ng-click="changeView('graph');">
+                    <span ng-class="['glyphicon', 'glyphicon-stop']" aria-hidden="true"></span>
+                </label>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Second row -->
@@ -20,18 +35,6 @@
     <!-- Left column -->
     <div ng-class="['col-md-7', 'no-gutter', 'full-height']">
         <div ng-class="['row', 'no-gutter', 'presentation']">
-            <div ng-class="['col-md-3']">{{initResultsCount}} nodes</div>
-            <div ng-class="['col-md-3', 'btn-group', 'views']">
-                <label ng-class="['btn', 'btn-default']" btn-radio="'grid'" ng-model="view" ng-change="changeView('grid')">
-                    <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
-                </label>
-                <label ng-class="['btn', 'btn-default']" btn-radio="'list'" ng-model="view" ng-change="changeView('list')">
-                    <span ng-class="['glyphicon', 'glyphicon-th-list']" aria-hidden="true"></span>
-                </label>
-                <label ng-class="['btn', 'btn-default']" btn-radio="'graph'" ng-model="view" ng-change="changeView('graph')">
-                    <span ng-class="['glyphicon', 'glyphicon-stop']" aria-hidden="true"></span>
-                </label>
-            </div>
             <div ng-class="['col-md-6', 'nodes-color']">
                 <label>Nodes Color</label>
                 <md-menu>
@@ -46,11 +49,12 @@
                     </md-menu-content>
                 </md-menu>
             </div>
+            <div ng-class="['col-md-6']">{{initResultsCount}} nodes</div>
         </div>
         <div ng-class="['row', 'no-gutter', 'legend']">
             <div ng-repeat="item in legend" ng-class="['item', 'pull-left', 'col-md-3']">
                 <div ng-class="['item-color']" style="background-color: {{item.color}};"></div>
-                <span ng-class="['item-label', 'ellipsed']">{{item.label}}</span>
+                <span ng-class="['item-label', 'ellipsed']" uib-tooltip="{{item.label}}" tooltip-placement="bottom-left">{{item.label}}</span>
             </div>
         </div>
     </div>
@@ -67,12 +71,12 @@
             <div ng-class="['no-gutter', 'facets']">
                 <div ng-class="['row', 'no-gutter', 'full-height']">
                     <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', category.id]">
-                        <div ng-class="['checkbox']" title="Unselect all">
+                        <div ng-class="['checkbox']" uib-tooltip="{{category.check}}" tooltip-placement="bottom">
                             <input id="{{category.id}}" type="checkbox" ng-click="selectAll(category.id);" checked/>
                             <span ng-class="['category-name', 'ellipsed']"> {{category.label}}</span>
                         </div>
                         <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter']">
-                            <div ng-class="['checkbox']">
+                            <div ng-class="['checkbox']" uib-tooltip="{{value.label}}">
                                 <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" />
                                 <span ng-class="['category-name', 'ellipsed']"> {{value.label}}</span>
                             </div>

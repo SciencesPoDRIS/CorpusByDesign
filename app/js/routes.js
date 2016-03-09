@@ -10,20 +10,20 @@
             $locationProvider.html5Mode(true);
 
             $routeProvider.
-            when('/', {
-                templateUrl: 'app/views/tiles/tiles.html',
-                controller: 'TilesController'
-            }).
             when('/description', {
                 templateUrl: 'app/views/description/description.html',
                 controller: 'DescriptionController'
             }).
-            when('/webentity/:webEntityId', {
+            when('/corpus/:corpusId', {
+                templateUrl: 'app/views/tiles/tiles.html',
+                controller: 'TilesController'
+            }).
+            when('/corpus/:corpusId/webentity/:webEntityId', {
                 templateUrl: 'app/views/webentity/webentity.html',
                 controller: 'WebEntityCtrl'
             }).
             otherwise({
-                redirectTo: '/'
+                redirectTo: '/corpus/climatechanges'
             });
         }
     ]);

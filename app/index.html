@@ -13,7 +13,8 @@
     <meta name="description" content="Frontend interface to display web corpus">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
-    <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"> -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="app/css/angular-material.min.css">
     <link rel="stylesheet" href="app/css/app.css">
     <link rel="shortcut icon" href="http://www.sciencespo.fr/bibliotheque/sites/kit2site02.bibliotheque/themes/montheme/favicon.ico" type="image/x-icon">
@@ -24,14 +25,17 @@
     <div ng-view ng-class="['full-height']"></div>
     <!-- Project lib dependencies -->
     <script type="text/javascript" src="app/lib/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="app/lib/angular.min.js"></script>
-    <script type="text/javascript" src="app/lib/angular-animate.min.js"></script>
+    <!-- <script type="text/javascript" src="app/lib/angular.min.js"></script> -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <!-- <script type="text/javascript" src="app/lib/angular-animate.min.js"></script> -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
     <script type="text/javascript" src="app/lib/angular-aria.min.js"></script>
     <script type="text/javascript" src="app/lib/angular-material.min.js"></script>
     <script type="text/javascript" src="app/lib/angular-route.min.js"></script>
     <script type="text/javascript" src="app/lib/bootstrap.min.js"></script>
     <!-- Force to use version 0.12.0 because of compatibility with angular -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+    <!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script> -->
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.2.4.js"></script>
     <script type="text/javascript" src="app/lib/sigma.min.js"></script>
     <script type="text/javascript" src="app/lib/sigma.parsers.gexf.min.js"></script>
     <script type="text/javascript" src="app/lib/sigma.plugins.filter.js"></script>

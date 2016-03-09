@@ -22,8 +22,8 @@
     app.factory('loadCorpus', ['$http',
         function($http) {
             return {
-                getCorpus: function() {
-                    return $http.get('../data/COP21.tsv', {cache: true}).then(function(data) {
+                getCorpus: function(corpusId) {
+                    return $http.get('../data/' + corpusId + '.tsv', {cache: true}).then(function(data) {
                         return data.data;
                     });
                 }
