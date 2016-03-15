@@ -5,17 +5,17 @@
 
     var app = angular.module('webcorpus.filters', []);
 
-    app.filter('translate', ['categories',
-        function(categories, input) {
-            return function(input, facet) {
+    app.filter('translate', [
+        function() {
+            return function(input, $scope, facet) {
                 if (input === undefined) {
                     return '';
                 } else {
                     var index = 0;
-                    while (categories[facet].values[index].id != input) {
+                    while ($scope.categories[facet].values[index].id != input) {
                         index++;
                     }
-                    return categories[facet].values[index].label;
+                    return $scope.categories[facet].values[index].label;
                 }
             };
         }

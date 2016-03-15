@@ -1,62 +1,24 @@
 <!-- Left column -->
-<div ng-class="['col-md-7', 'no-gutter', 'full-height']">
-    <!-- Presentation -->
-    <div ng-class="['row', 'no-gutter', 'presentation']">
-        <div ng-class="['col-md-6', 'nodes-color']">
-            <label>Nodes Color</label>
-            <md-menu>
-                <md-button ng-click="$mdOpenMenu($event)" ng-class="['no-uppercase']" aria-label="selectedCategory">
-                    {{selectedCategory}}
-                    <span ng-class="['glyphicon', 'glyphicon-chevron-down']" aria-hidden="true"></span>
-                </md-button>
-                <md-menu-content>
-                    <md-menu-item ng-repeat="category in categories">
-                        <md-button id="{{category.id}}" ng-click="changeNodesColor($event)">{{category.label}}</md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-        </div>
-        <div ng-class="['col-md-6']">{{initResultsCount}} nodes</div>
-    </div>
-    <!-- Legend -->
-    <div ng-class="['row', 'no-gutter', 'legend']">
-        <div ng-repeat="item in legend" ng-class="['item', 'pull-left', 'col-md-3']">
-            <div ng-class="['item-color']" style="background-color: {{item.color}};"></div>
-            <span ng-class="['item-label', 'ellipsed']" uib-tooltip="{{item.label}}" tooltip-placement="bottom-left">{{item.label}}</span>
-        </div>
-    </div>
+<div ng-class="['col-md-7', 'no-gutter', 'full-height']" ng-controller="mapController">
     <!-- Graph -->
-    <div ng-class="['row', 'no-gutter', 'graph']">
-        <div id="graph"></div>
-        <div ng-class="['sigma-tools']">
-            <div ng-class="['btn-group-vertical']">
-                <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaCenter();" data-toggle="tooltip" data-placement="right" title="Center">
-                    <span ng-class="['glyphicon', 'glyphicon-record']"></span>
-                </button>
-                <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaZoom();" tooltip-placement="right" tooltip="Zoom">
-                    <span ng-class="['glyphicon', 'glyphicon-plus']"></span>
-                </button>
-                <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaUnzoom();" tooltip-placement="right" tooltip="Unzoom">
-                    <span ng-class="['glyphicon', 'glyphicon-minus']"></span>
-                </button>
-            </div>
-        </div>
+    <div id="map" ng-class="['full-height']">
     </div>
 </div>
 <!-- Right column -->
 <div ng-class="['col-md-5', 'no-gutter', 'full-height']">
+    <!-- Filters -->
     <div ng-class="['row', 'no-gutter', 'full-height']">
-        <!-- <my-filters categories="categories"/> -->
+        <!-- <my-filters categories="categories" /> -->
         <div ng-class="['filters']">
             <div ng-class="['row', 'col-md-offset-3', 'col-md-6', 'search-bar']">
                 <md-input-container md-no-float>
                     <span ng-class="['glyphicon', 'glyphicon-search', 'icon-flip-horizontal']" aria-hidden="true"></span>
-                    <span><input ng-model="$parent.queryTerm" type="text" placeholder="What are you looking for ?" ng-change="filter();" ng-class="['full-width']"/></span>
+                    <span><input ng-model="$parent.$parent.queryTerm" type="text" placeholder="What are you looking for ?" ng-change="filter();" ng-class="['full-width']"/></span>
                 </md-input-container>
             </div>
             <div ng-class="['no-gutter', 'facets']">
                 <div ng-class="['row', 'no-gutter', 'full-height']">
-                    <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', category.id]" ng-if="category.isDiplayed">
+                    <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', '{{category.id}}']" ng-if="category.isDiplayed">
                         <div ng-class="['checkbox']" uib-tooltip="{{category.check}}" tooltip-placement="bottom">
                             <input id="{{category.id}}" type="checkbox" ng-click="selectAll(category.id);" checked/>
                             <span ng-class="['category-name', 'ellipsed']"> {{category.label}}</span>
@@ -86,18 +48,19 @@
         </div>
     </div>
     <!-- Tiles -->
-    <div ng-class="['row', 'full-height', 'tiles']">
+    <div ng-class="['row', 'no-gutter', 'full-height', 'tiles']">
+        TILES
         <div ng-class="['full-height']">
             <div ng-class="['row', 'grid-list', 'no-gutter']" flex="">
                 <md-grid-list md-cols-sm="1" md-cols-md="3" md-cols-gt-md="3" md-row-height-gt-md="4:3" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="10px">
                     <md-grid-tile id="{{result.ID}}" ng-repeat="result in displayedResults" md-rowspan="1" md-colspan="1" md-colspan-sm="1" ng-class="['gray']">
-                        <a href="corpus/{{corpus}}/webentity/{{result.ID}}">
+                        <!-- <a href="corpus/{{corpus}}/webentity/{{result.ID}}"> -->
                             <img ng-class="['fit', 'grayscale']" src="http://www.robothumb.com/src/?url={{result.URL}}&size=320x240"></img>
                             <md-grid-tile-footer ng-class="['tile-footer']">
                                 <h3>{{result.FULL_NAME}}</h3>
                                 <p ng-class="['actors-type']">{{result.ACTORS_TYPE | translate:this:'actorsType'}}</p>
                             </md-grid-tile-footer>
-                        </a>
+                        <!-- </a> -->
                     </md-grid-tile>
                 </md-grid-list>
             </div>

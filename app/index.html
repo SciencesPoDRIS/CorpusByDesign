@@ -13,8 +13,7 @@
     <meta name="description" content="Frontend interface to display web corpus">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
-    <!-- <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css"> -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css">
     <link rel="stylesheet" href="app/css/angular-material.min.css">
     <link rel="stylesheet" href="app/css/app.css">
     <link rel="shortcut icon" href="http://www.sciencespo.fr/bibliotheque/sites/kit2site02.bibliotheque/themes/montheme/favicon.ico" type="image/x-icon">
@@ -25,22 +24,23 @@
     <div ng-view ng-class="['full-height']"></div>
     <!-- Project lib dependencies -->
     <script type="text/javascript" src="app/lib/jquery-2.1.4.min.js"></script>
-    <!-- <script type="text/javascript" src="app/lib/angular.min.js"></script> -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
-    <!-- <script type="text/javascript" src="app/lib/angular-animate.min.js"></script> -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+    <script type="text/javascript" src="app/lib/angular.min.js"></script>
+    <script type="text/javascript" src="app/lib/angular-animate.min.js"></script>
     <script type="text/javascript" src="app/lib/angular-aria.min.js"></script>
     <script type="text/javascript" src="app/lib/angular-material.min.js"></script>
     <script type="text/javascript" src="app/lib/angular-route.min.js"></script>
     <script type="text/javascript" src="app/lib/bootstrap.min.js"></script>
-    <!-- Force to use version 0.12.0 because of compatibility with angular -->
-    <!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script> -->
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.2.4.js"></script>
+    <script type="text/javascript" src="app/lib/ui-bootstrap-tpls-1.2.4.min.js"></script>
     <script type="text/javascript" src="app/lib/sigma.min.js"></script>
     <script type="text/javascript" src="app/lib/sigma.parsers.gexf.min.js"></script>
     <script type="text/javascript" src="app/lib/sigma.plugins.filter.js"></script>
     <script type="text/javascript" src="app/lib/jquery.csv-0.71.min.js"></script>
-    <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+    <!-- d3.js -->
+    <script src="app/lib/d3.v3.min.js"></script>
+    <!-- Topojson -->
+    <script src="app/lib/topojson.v1.min.js"></script>
+    <!-- Google Analytics -->
+    <script type="text/javascript" async="" src="app/lib/ga.js"></script>
     <!-- Project configuration files -->
     <script type="text/javascript" src="app/conf/conf.default.js"></script>
     <script type="text/javascript" src="app/conf/conf.js"></script>
@@ -50,7 +50,7 @@
     <script type="text/javascript" src="app/js/filters.js"></script>
     <script type="text/javascript" src="app/js/routes.js"></script>
     <script type="text/javascript" src="app/js/services.js"></script>
-    <script type="text/javascript" src="app/views/tiles/tiles.js"></script>
+    <script type="text/javascript" src="app/views/main/main.js"></script>
     <script type="text/javascript" src="app/views/webentity/webentity.js"></script>
     <script type="text/javascript" src="app/views/description/description.js"></script>
     <!-- Add Google Analytics -->

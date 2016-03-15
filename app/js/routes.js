@@ -10,13 +10,13 @@
             $locationProvider.html5Mode(true);
 
             $routeProvider.
-            when('/description', {
+            when('/corpus/:corpusId/description', {
                 templateUrl: 'app/views/description/description.html',
                 controller: 'DescriptionController'
             }).
             when('/corpus/:corpusId', {
-                templateUrl: 'app/views/tiles/tiles.html',
-                controller: 'TilesController'
+                templateUrl: 'app/views/main/main.html',
+                controller: 'MainController'
             }).
             when('/corpus/:corpusId/webentity/:webEntityId', {
                 templateUrl: 'app/views/webentity/webentity.html',

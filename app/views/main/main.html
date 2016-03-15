@@ -14,17 +14,11 @@
     <div ng-class="['col-md-5', 'no-gutter']">
         <div ng-class="['row', 'no-gutter']">
             <div ng-class="['col-md-6']">
-                <a href="description">Methodology</a>
+                <a href="corpus/{{corpusId}}/description">Methodology</a>
             </div>
             <div ng-class="['col-md-6', 'btn-group', 'views']">
-                <label ng-class="['btn', 'btn-default']" btn-radio="'grid'" ng-model="view" ng-click="changeView('grid');">
+                <label ng-repeat="availableView in availableViews" ng-class="['btn', 'btn-default']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView('{{availableView}}');">
                     <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
-                </label>
-                <label ng-class="['btn', 'btn-default']" btn-radio="'list'" ng-model="view" ng-click="changeView('list');">
-                    <span ng-class="['glyphicon', 'glyphicon-th-list']" aria-hidden="true"></span>
-                </label>
-                <label ng-class="['btn', 'btn-default']" btn-radio="'graph'" ng-model="view" ng-click="changeView('graph');">
-                    <span ng-class="['glyphicon', 'glyphicon-stop']" aria-hidden="true"></span>
                 </label>
             </div>
         </div>
@@ -33,12 +27,13 @@
 <!-- Second row -->
 <div ng-class="['row', 'content', 'no-gutter']">
     <!-- Left column -->
+    <!--
     <div ng-class="['col-md-7', 'no-gutter', 'full-height']">
         <div ng-class="['row', 'no-gutter', 'presentation']">
             <div ng-class="['col-md-6', 'nodes-color']">
                 <label>Nodes Color</label>
                 <md-menu>
-                    <md-button ng-click="$mdOpenMenu($event)" ng-class="['no-uppercase']">
+                    <md-button ng-click="$mdOpenMenu($event)" ng-class="['no-uppercase']" aria-label="selectedCategory">
                         {{selectedCategory}}
                         <span ng-class="['glyphicon', 'glyphicon-chevron-down']" aria-hidden="true"></span>
                     </md-button>
@@ -51,16 +46,11 @@
             </div>
             <div ng-class="['col-md-6']">{{initResultsCount}} nodes</div>
         </div>
-        <div ng-class="['row', 'no-gutter', 'legend']">
-            <div ng-repeat="item in legend" ng-class="['item', 'pull-left', 'col-md-3']">
-                <div ng-class="['item-color']" style="background-color: {{item.color}};"></div>
-                <span ng-class="['item-label', 'ellipsed']" uib-tooltip="{{item.label}}" tooltip-placement="bottom-left">{{item.label}}</span>
-            </div>
-        </div>
     </div>
+    -->
     <!-- Right column -->
+    <!--
     <div ng-class="['col-md-5', 'no-gutter', 'full-height']">
-        <!-- Filters -->
         <div ng-class="['filters']">
             <div ng-class="['row', 'col-md-offset-3', 'col-md-6', 'search-bar']">
                 <md-input-container md-no-float>
@@ -70,7 +60,7 @@
             </div>
             <div ng-class="['no-gutter', 'facets']">
                 <div ng-class="['row', 'no-gutter', 'full-height']">
-                    <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', category.id]">
+                    <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', category.id]" ng-if="category.isDiplayed">
                         <div ng-class="['checkbox']" uib-tooltip="{{category.check}}" tooltip-placement="bottom">
                             <input id="{{category.id}}" type="checkbox" ng-click="selectAll(category.id);" checked/>
                             <span ng-class="['category-name', 'ellipsed']"> {{category.label}}</span>
@@ -92,26 +82,18 @@
                 <div ng-class="['pull-left', 'results-number']">
                     <ng-pluralize count="filteredResultsCount" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>
                 </div>
-                <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters()">
+                <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters();">
                     {{filtersLabel}}
                     <span ng-class="{'glyphicon' : true, 'glyphicon-chevron-down' : isCollapsed, 'glyphicon-chevron-up' : !isCollapsed}" />
                 </div>
             </div>
         </div>
     </div>
+    -->
 </div>
 <!-- Third row -->
 <div ng-class="['row', 'no-gutter', 'corpus']">
-    <div ng-switch on="view" ng-class="['full-height']">
-        <div ng-switch-when="grid" ng-class="['full-height']">
-            <div ng-include="'app/partials/grid.html'" ng-class="['full-height']"></div>
-        </div>
-        <div ng-switch-when="list" ng-class="['full-height']">
-            <div ng-include="'app/partials/list.html'" ng-class="['full-height']"></div>
-        </div>
-        <div ng-switch-when="graph" ng-class="['full-height']">
-            <div ng-include="'app/partials/graph.html'" ng-class="['full-height']"></div>
-        </div>
-        <div ng-switch-default></div>
+    <div ng-class="['full-height', '{{availableView}}']" ng-show="availableView == currentView" ng-repeat="availableView in availableViews">
+        <div ng-include="'app/partials/' + availableView + '.html'" ng-class="['full-height']"></div>
     </div>
 </div>
