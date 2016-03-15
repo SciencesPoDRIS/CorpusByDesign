@@ -21,7 +21,9 @@
                 width = 965,
                 height = 585,
                 country,
-                state;
+                state,
+                countryDefaultColor = '#cde',
+                countryOverColor = '#123';
 
             var projection = d3.geo.equirectangular()
                 .center([-75, -35])
@@ -54,7 +56,9 @@
                         return d.id;
                     })
                     .attr("d", path)
-                    .on("click", $scope.country_clicked);
+                    .on("click", $scope.countryClicked)
+                    .on("mouseenter", $scope.countryHoverIn)
+                    .on("mouseleave", $scope.countryHoverOut);
             });
 
             $scope.zoom = function(xyz) {
@@ -77,7 +81,7 @@
                 return [x, y, z];
             }
 
-            $scope.country_clicked = function(country) {
+            $scope.countryClicked = function(country) {
                 // Unselect all area checkboxes but the one of the area clicked
                 $.each($scope.categories.area.values, function(index, item) {
                     if(item.id != country.id) {
@@ -86,6 +90,14 @@
                     
                 });
                 $scope.filter2();
+            }
+
+            $scope.countryHoverIn = function(country) {
+                $('#' + country.id).attr('fill', countryOverColor);
+            }
+
+            $scope.countryHoverOut = function(country) {
+                $('#' + country.id).attr('fill', countryDefaultColor);
             }
 
             $(window).resize(function() {
