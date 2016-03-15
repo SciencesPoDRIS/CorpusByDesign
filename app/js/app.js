@@ -17,13 +17,17 @@
 
     app.controller('mapController', ['$scope', '$window',
         function($scope, $window) {
-            var m_width = $("#map").width(),
+            var m_width = $('#map').width(),
                 width = 965,
                 height = 585,
                 country,
                 state,
                 countryDefaultColor = '#cde',
                 countryOverColor = '#123';
+
+            var div = d3.select('body').append('div')
+                .attr('class', 'tooltip')
+                .style('opacity', 0);
 
             var projection = d3.geo.equirectangular()
                 .center([-75, -35])
@@ -33,42 +37,42 @@
             var path = d3.geo.path()
                 .projection(projection);
 
-            var svg = d3.select("#map").append("svg")
-                .attr("preserveAspectRatio", "xMidYMid meet")
-                .attr("viewBox", "0 0 " + width + " " + height);
+            var svg = d3.select('#map').append('svg')
+                .attr('preserveAspectRatio', 'xMidYMid meet')
+                .attr('viewBox', '0 0 ' + width + ' ' + height);
 
-            svg.append("rect")
-                .attr("class", "background")
-                .attr("width", width)
-                .attr("height", height)
-                .on("click", $scope.country_clicked);
+            svg.append('rect')
+                .attr('class', 'background')
+                .attr('width', width)
+                .attr('height', height)
+                .on('click', $scope.country_clicked);
 
-            var g = svg.append("g");
+            var g = svg.append('g');
 
-            d3.json("../data/latinamerica.topo.json", function(error, us) {
-                g.append("g")
-                    .attr("id", "countries")
-                    .selectAll("path")
+            d3.json('../data/latinamerica.topo.json', function(error, us) {
+                g.append('g')
+                    .attr('id', 'countries')
+                    .selectAll('path')
                     .data(topojson.feature(us, us.objects.countries).features)
                     .enter()
-                    .append("path")
-                    .attr("id", function(d) {
+                    .append('path')
+                    .attr('id', function(d) {
                         return d.id;
                     })
-                    .attr("d", path)
-                    .on("click", $scope.countryClicked)
-                    .on("mouseenter", $scope.countryHoverIn)
-                    .on("mouseleave", $scope.countryHoverOut);
+                    .attr('d', path)
+                    .on('click', $scope.countryClicked)
+                    .on('mouseenter', $scope.countryHoverIn)
+                    .on('mouseleave', $scope.countryHoverOut);
             });
 
             $scope.zoom = function(xyz) {
                 g.transition()
                     .duration(750)
-                    .attr("transform", "translate(" + projection.translate() + ")scale(" + xyz[2] + ")translate(-" + xyz[0] + ",-" + xyz[1] + ")")
-                    .selectAll(["#countries"])
-                    .style("stroke-width", 1.0 / xyz[2] + "px")
-                    .selectAll(".city")
-                    .attr("d", path.pointRadius(20.0 / xyz[2]));
+                    .attr('transform', 'translate(' + projection.translate() + ')scale(' + xyz[2] + ')translate(-' + xyz[0] + ',-' + xyz[1] + ')')
+                    .selectAll(['#countries'])
+                    .style('stroke-width', 1.0 / xyz[2] + 'px')
+                    .selectAll('.city')
+                    .attr('d', path.pointRadius(20.0 / xyz[2]));
             }
 
             $scope.get_xyz = function(d) {
@@ -84,27 +88,46 @@
             $scope.countryClicked = function(country) {
                 // Unselect all area checkboxes but the one of the area clicked
                 $.each($scope.categories.area.values, function(index, item) {
-                    if(item.id != country.id) {
+                    if (item.id != country.id) {
                         item.isSelected = false;
                     }
-                    
+
                 });
                 $scope.filter2();
             }
 
             $scope.countryHoverIn = function(country) {
+                // Change country color
                 $('#' + country.id).attr('fill', countryOverColor);
+                // Display a tooltip with the country name
+                div.transition().duration(300)
+                    .style('opacity', 1)
+                    .text($scope.getCountryLabel(country.id))
+                    .style('left', (d3.event.pageX) + 'px')
+                    .style('top', (d3.event.pageY - 30) + 'px');
             }
 
             $scope.countryHoverOut = function(country) {
+                // Restore default country color
                 $('#' + country.id).attr('fill', countryDefaultColor);
+                // Hide the tooltip
+                div.transition().duration(300)
+                    .style('opacity', 0);
+            }
+
+            $scope.getCountryLabel = function(countryId) {
+                return $scope.categories.area.values.filter(
+                    function(item, index) {
+                        return item.id == countryId;
+                    }
+                )[0].label;
             }
 
             $(window).resize(function() {
-                var w = $("#map").width();
+                var w = $('#map').width();
                 var h = $('#map').height();
-                svg.attr("width", w);
-                svg.attr("height", h);
+                svg.attr('width', w);
+                svg.attr('height', h);
             });
         }
     ]);
