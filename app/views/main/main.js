@@ -58,7 +58,14 @@
             $scope.changeNodesColor = function(e) {
                 nodesColor = e.currentTarget.id;
                 $scope.selectedCategory = $scope.categories[nodesColor].label;
-                $scope.filter();
+                switch ($scope.corpusId) {
+                    case 'climatechanges':
+                        $scope.filter();
+                        break;
+                    case 'latinamerica':
+                        $scope.filter2();
+                        break;
+                }
             }
 
             // Expand filters
@@ -98,7 +105,14 @@
                         }
                     });
                 }
-                $scope.filter();
+                switch ($scope.corpusId) {
+                    case 'climatechanges':
+                        $scope.filter();
+                        break;
+                    case 'latinamerica':
+                        $scope.filter2();
+                        break;
+                }
             }
 
             $scope.init2 = function(currentView) {
@@ -254,6 +268,10 @@
             }
 
             $scope.filter = function(category, value) {
+                if($scope.corpusId == 'latinamerica') {
+                    $scope.filter2();
+                    return;
+                }
                 // Create JSON object to encapsulate the search criteria
                 searchCriteria = {};
                 $.each($scope.categories, function(index_01, item_01) {
@@ -461,14 +479,13 @@
                     });
                 });
                 $scope.filteredResultsCount = $scope.filteredResults.length;
-                $scope.display();
+                $scope.display2();
             }
 
             // Filter the results to display the current page
             $scope.display = function() {
                 $scope.displayedResults = $scope.filteredResults;
                 // Color nodes, according to the configuration file
-                /*
                 $scope.graph.graph.nodes().forEach(function(n) {
                     if (ids.indexOf(n.id) != -1) {
                         n.color = $scope.categories[nodesColor].values.filter(function(item) {
@@ -487,11 +504,21 @@
                     n.label = n.attributes.FULL_NAME;
                 });
                 $scope.graph.refresh();
-                */
             }
 
-            // $scope.init();
-            $scope.init2();
+            // Filter the results to display the current page
+            $scope.display2 = function() {
+                $scope.displayedResults = $scope.filteredResults;
+            }
+
+            switch ($scope.corpusId) {
+                case 'climatechanges':
+                    $scope.init();
+                    break;
+                case 'latinamerica':
+                    $scope.init2();
+                    break;
+            }
         }
     ]);
 

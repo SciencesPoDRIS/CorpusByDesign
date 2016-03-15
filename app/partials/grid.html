@@ -51,7 +51,7 @@
             <div ng-class="['row', 'col-md-offset-3', 'col-md-6', 'search-bar']">
                 <md-input-container md-no-float>
                     <span ng-class="['glyphicon', 'glyphicon-search', 'icon-flip-horizontal']" aria-hidden="true"></span>
-                    <span><input ng-model="$parent.queryTerm" type="text" placeholder="What are you looking for ?" ng-change="filter();" ng-class="['full-width']"/></span>
+                    <span><input ng-model="$parent.$parent.queryTerm" type="text" placeholder="What are you looking for ?" ng-change="filter();" ng-class="['full-width']"/></span>
                 </md-input-container>
             </div>
             <div ng-class="['no-gutter', 'facets']">
