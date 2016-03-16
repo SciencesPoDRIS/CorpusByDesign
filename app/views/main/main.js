@@ -8,8 +8,10 @@
             // Init variables
             var ids,
                 nodesColor,
-                result,
+                bool_01,
+                bool_02,
                 searchCriteria,
+                elementCriteriaValues,
                 tmp;
             var defaultNodeColor = '#d3d3d3';
             var defaultEdgeColor = '#f1f1f1';
@@ -205,22 +207,27 @@
             }
 
             /* *
-             * Return true if the node matches the search criteria, else return false
-             * @var node 
-             * @var searchCriteria JSONobject
+             * Return true if the element matches the search criteria, else return false
+             * @var element 
+             * @var searchCriteria JSONObject
              * 
              * @return boolean
              * */
-            var isSearchedAmongCriteria = function(searchCriteria, node) {
-                result = true;
-                $.each(searchCriteria, function(index, item) {
-                    result = result && (item.indexOf(node[$scope.categories[index].mappedField]) >= 0);
+            var isSearchedAmongCriteria = function(searchCriteria, element) {
+                bool_01 = true;
+                $.each(searchCriteria, function(index_01, item_01) {
+                    bool_02 = false;
+                    elementCriteriaValues = element[$scope.categories[index_01].mappedField].split(' ; ');
+                    $.each(elementCriteriaValues, function(index_02, item_02) {
+                        bool_02 = bool_02 || (item_01.indexOf(item_02) >= 0);
+                    });
+                    bool_01 = bool_01 && bool_02;
                 });
-                return result;
+                return bool_01;
             }
 
             $scope.filter = function(category, value) {
-                if($scope.corpusId == 'ameriquelatine') {
+                if ($scope.corpusId == 'ameriquelatine') {
                     $scope.filter2();
                     return;
                 }
@@ -251,9 +258,9 @@
                         // Increment categories count, for those who are displayed
                         $.each($scope.categories, function(index_02, item_02) {
                             if ($scope.categories[index_02].isDiplayed) {
-                                $scope.categories[index_02].values.filter(function(index) {
-                                    return index.id == item[$scope.categories[index_02].mappedField];
-                                })[0].count++;
+                                // $scope.categories[index_02].values.filter(function(index) {
+                                //     return index.id == item[$scope.categories[index_02].mappedField];
+                                // })[0].count++;
                             }
                         });
                         return true;
@@ -350,15 +357,17 @@
                 $scope.filteredResults = $scope.initResults.filter(function(item) {
                     if ((
                             // Check if the searched term is present into the name of the site or into the actors' type of the site
-                            // (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
-                            (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT_FR.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT_ES.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.KEYWORDS_FR.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.KEYWORDS_EN.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.KEYWORDS_ES.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
+                            (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ACTORS_TYPE.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.AREA.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT_FR.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT_ES.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
                         ids.push(item.ID);
                         // Increment categories count, for those who are displayed
                         $.each($scope.categories, function(index_02, item_02) {
                             if ($scope.categories[index_02].isDiplayed) {
-                                $scope.categories[index_02].values.filter(function(index) {
-                                    return index.id == item[$scope.categories[index_02].mappedField];
-                                })[0].count++;
+                                elementCriteriaValues = item[$scope.categories[index_02].mappedField].split(' ; ');
+                                $.each(elementCriteriaValues, function(index_03, item_03) {
+                                    $scope.categories[index_02].values.filter(function(index) {
+                                        return index.id == item_03;
+                                    })[0].count ++;
+                                });
                             }
                         });
                         return true;
@@ -366,7 +375,6 @@
                         return false;
                     }
                 });
-                // $scope.legend = [];
                 $.each($scope.categories, function(index, item) {
                     // Order items of a category by count descending order
                     $scope.categories[index].values.sort(function(a, b) {
@@ -377,8 +385,6 @@
                         $.each($scope.categories[index].values.slice(0, 6), function(index_02, item_02) {
                             item_02.color = colors[index_02].color;
                             item_02.colorClass = colors[index_02].label;
-                            // Create the legend object
-                            // $scope.legend[index_02] = { 'id': item_02.id, 'label': item_02.label, 'color': item_02.color };
                         });
                     }
                     // Order items of a category by alphabetical ascending order
@@ -402,29 +408,6 @@
                             return 0;
                         }
                     });
-                    // Order items of legend by alphabetical ascending order
-                    /*
-                    $scope.legend.sort(function(a, b) {
-                        // 'Not applicable' should be the last item
-                        if (a.id == 'not_applicable') {
-                            return 1;
-                        } else if (b.id == 'not_applicable') {
-                            return -1;
-                            // 'Don't know' should be the before second last item
-                        } else if (a.id == 'dont_know') {
-                            return 1;
-                        } else if (b.id == 'dont_know') {
-                            return -1;
-                        } else if (a.label.toLowerCase() < b.label.toLowerCase()) {
-                            return -1;
-                        } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
-                            return 1;
-                            // Should never happen
-                        } else {
-                            return 0;
-                        }
-                    });
-                    */
                     // Calculate the item count in percentil for the progress bar
                     $.each($scope.categories[index].values, function(index_02, item_02) {
                         item_02.count_percent = ((parseFloat(item_02.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
