@@ -49,7 +49,7 @@
 
             var g = svg.append('g');
 
-            d3.json('../data/latinamerica.topo.json', function(error, us) {
+            d3.json('../data/ameriquelatine.topo.json', function(error, us) {
                 g.append('g')
                     .attr('id', 'countries')
                     .selectAll('path')

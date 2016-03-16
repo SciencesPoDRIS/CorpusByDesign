@@ -63,7 +63,7 @@
                     case 'climatechanges':
                         $scope.filter();
                         break;
-                    case 'latinamerica':
+                    case 'ameriquelatine':
                         $scope.filter2();
                         break;
                 }
@@ -110,7 +110,7 @@
                     case 'climatechanges':
                         $scope.filter();
                         break;
-                    case 'latinamerica':
+                    case 'ameriquelatine':
                         $scope.filter2();
                         break;
                 }
@@ -269,7 +269,7 @@
             }
 
             $scope.filter = function(category, value) {
-                if($scope.corpusId == 'latinamerica') {
+                if($scope.corpusId == 'ameriquelatine') {
                     $scope.filter2();
                     return;
                 }
@@ -516,7 +516,7 @@
                 case 'climatechanges':
                     $scope.init();
                     break;
-                case 'latinamerica':
+                case 'ameriquelatine':
                     $scope.init2();
                     break;
             }
