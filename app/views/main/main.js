@@ -15,9 +15,7 @@
             var defaultEdgeColor = '#f1f1f1';
 
             // Init scope variables
-            $scope.filtersLabel = 'More filters';
             $scope.filtersIcon = 'glyphicon-chevron-down';
-            $scope.isCollapsed = true;
             $scope.categoryQuantity = 3;
             $scope.queryTerm = '';
             $scope.corpusId = $routeParams.corpusId;
@@ -59,53 +57,6 @@
             $scope.changeNodesColor = function(e) {
                 nodesColor = e.currentTarget.id;
                 $scope.selectedCategory = $scope.categories[nodesColor].label;
-                switch ($scope.corpusId) {
-                    case 'climatechanges':
-                        $scope.filter();
-                        break;
-                    case 'ameriquelatine':
-                        $scope.filter2();
-                        break;
-                }
-            }
-
-            // Expand filters
-            $scope.moreFilters = function() {
-                $scope.isCollapsed = !$scope.isCollapsed;
-                if (!$scope.isCollapsed) {
-                    $('.filters').height(($(window).height() - 127) + 'px');
-                    $scope.filtersLabel = 'Less filters';
-                } else {
-                    $('.filters').height('200px');
-                    $scope.filtersLabel = 'More filters';
-                }
-            }
-
-            $scope.selectAll = function(categoryId) {
-                // If is checked, check all the facets of this category
-                var element = $('input#' + categoryId);
-                if (element.prop('checked')) {
-                    $.each($scope.categories, function(index_01, item_01) {
-                        // ToDo : use jQuery selector to optimize it
-                        item_01.check = 'Unselect all';
-                        if (item_01.id == categoryId) {
-                            $.each(item_01.values, function(index_02, item_02) {
-                                item_02.isSelected = true;
-                            });
-                        }
-                    });
-                    // Else, uncheck all the facets of this category
-                } else {
-                    $.each($scope.categories, function(index_01, item_01) {
-                        // ToDo : use jQuery selector to optimize it
-                        item_01.check = 'Select all';
-                        if (item_01.id == categoryId) {
-                            $.each(item_01.values, function(index_02, item_02) {
-                                item_02.isSelected = false;
-                            });
-                        }
-                    });
-                }
                 switch ($scope.corpusId) {
                     case 'climatechanges':
                         $scope.filter();
