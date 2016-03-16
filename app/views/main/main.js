@@ -21,6 +21,7 @@
             $scope.categoryQuantity = 3;
             $scope.queryTerm = '';
             $scope.corpusId = $routeParams.corpusId;
+            $scope.lang = $routeParams.lang;
 
             // On view change ('grid', 'list', 'graph', 'map')
             $scope.changeView = function(currentView) {
@@ -214,7 +215,7 @@
                         });
                         // On node click, open the webentity page
                         $scope.graph.bind('clickNode', function(n) {
-                            $location.path('corpus/' + $scope.corpusId + '/webentity/' + n.data.node.id);
+                            $location.path($scope.lang + '/' + $scope.corpusId + '/' + n.data.node.id);
                             $scope.$apply();
                         });
                         // Load the corpus

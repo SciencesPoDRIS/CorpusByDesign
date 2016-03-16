@@ -3,20 +3,25 @@
 
     var app = angular.module('webcorpus.webentity', []);
 
-    app.controller('WebEntityCtrl', ['$scope', '$routeParams', '$http', 'loadCorpora', 'loadCorpus', 'categories', 'nodesColor',
-        function($scope, $routeParams, $http, loadCorpora, loadCorpus, categories, nodesColor) {
+    app.controller('WebEntityCtrl', ['$scope', '$routeParams', '$http', 'loadCorpora', 'loadCorpus',
+        function($scope, $routeParams, $http, loadCorpora, loadCorpus) {
             // Init variables
-            var filter, neighbors;
+            var filter,
+                neighbors,
+                nodesColor;
 
             // Init scope variables
             $scope.isCollapsed = true;
             // Quantity of neighbors nodes displayed by default
             $scope.neighborsQuantity = 5;
             $scope.corpusId = $routeParams.corpusId;
+            $scope.lang = $routeParams.lang;
 
             // Load all the corpora descriptions
             loadCorpora.getCorpora().then(function(data) {
-                $scope.corpora = data[0];
+                $scope.corpora = data[$scope.corpusId];
+                nodesColor = $scope.corpora.nodesColor;
+                $scope.categories = $scope.corpora.categories;
             });
 
             // Center the whole graph
@@ -87,7 +92,7 @@
                     var node = $.grep($scope.graph.graph.nodes(), function(item, index) {
                         return item.id == $routeParams.webEntityId;
                     })[0];
-                    var color = $.grep(categories.actorsType2.values, function(item, index) {
+                    var color = $.grep($scope.categories.actorsType2.values, function(item, index) {
                         return item.id == node.attributes.ACTORS_TYPE_2;
                     })[0].color;
                     var ids = [];
@@ -98,9 +103,9 @@
                     });
                     // Color the connected nodes, ie the selected node and its neighbors
                     $scope.graph.graph.nodes().forEach(function(node) {
-                        if ((ids.indexOf(node.id) != -1) && (node.attributes[categories[nodesColor].mappedField] !== undefined)) {
-                            node.color = categories[nodesColor].values.filter(function(item) {
-                                return item.id == node.attributes[categories[nodesColor].mappedField];
+                        if ((ids.indexOf(node.id) != -1) && (node.attributes[$scope.categories[nodesColor].mappedField] !== undefined)) {
+                            node.color = $scope.categories[nodesColor].values.filter(function(item) {
+                                return item.id == node.attributes[$scope.categories[nodesColor].mappedField];
                             })[0].color;
                         }
                     });

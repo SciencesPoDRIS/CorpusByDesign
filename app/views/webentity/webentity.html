@@ -4,11 +4,11 @@
 <div ng-class="['first-row', 'row', 'no-gutter']">
     <div ng-class="['col-md-7', 'title']">
         <span ng-class="['no-gutter', 'pull-left']">
-            <a href="/">Web Corpus</a>
+            <a href="{{lang}}/{{corpusId}}">Web Corpus</a>
         </span>
         <span ng-class="['slash', 'pull-left']">/</span>
         <span ng-class="['pull-left']">
-            <a href="corpus/{{corpusId}}">{{corpora.title}}</a>
+            <a href="{{lang}}/{{corpusId}}">{{corpora.title}}</a>
         </span>
         <span ng-class="['slash', 'pull-left']">/</span>
         <span ng-class="['pull-left']">
@@ -18,7 +18,7 @@
     <div ng-class="['col-md-5', 'no-gutter']">
         <div ng-class="['row', 'no-gutter']">
             <div ng-class="['col-md-6']">
-                <a href="description">Methodology</a>
+                <a href="{{lang}}/{{corpusId}}/methodology">Methodology</a>
             </div>
             <div ng-class="['col-md-6', 'btn-group', 'views']">
                 <label ng-class="['btn', 'btn-default']" btn-radio="'grid'" ng-model="view" ng-click="changeView('grid')">

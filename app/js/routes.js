@@ -10,20 +10,20 @@
             $locationProvider.html5Mode(true);
 
             $routeProvider.
-            when('/corpus/:corpusId/description', {
-                templateUrl: 'app/views/description/description.html',
-                controller: 'DescriptionController'
-            }).
-            when('/corpus/:corpusId', {
+            when('/:lang/:corpusId', {
                 templateUrl: 'app/views/main/main.html',
                 controller: 'MainController'
             }).
-            when('/corpus/:corpusId/webentity/:webEntityId', {
+            when('/:lang/:corpusId/methodology', {
+                templateUrl: 'app/views/methodology/methodology.html',
+                controller: 'MethodologyController'
+            }).
+            when('/:lang/:corpusId/:webEntityId', {
                 templateUrl: 'app/views/webentity/webentity.html',
                 controller: 'WebEntityCtrl'
             }).
             otherwise({
-                redirectTo: '/corpus/climatechanges'
+                redirectTo: '/en/climatechanges'
             });
         }
     ]);

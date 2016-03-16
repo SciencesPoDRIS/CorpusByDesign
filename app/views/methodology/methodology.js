@@ -1,11 +1,12 @@
 (function() {
     'use strict';
 
-    var app = angular.module('webcorpus.description', []);
+    var app = angular.module('webcorpus.methodology', []);
 
-    app.controller('DescriptionController', ['$scope', '$routeParams', '$sce', 'loadCorpora',
+    app.controller('MethodologyController', ['$scope', '$routeParams', '$sce', 'loadCorpora',
         function($scope, $routeParams, $sce, loadCorpora) {
             $scope.corpusId = $routeParams.corpusId;
+            $scope.lang = $routeParams.lang;
 
             // Load all the corpora descriptions
             loadCorpora.getCorpora().then(function(data) {
