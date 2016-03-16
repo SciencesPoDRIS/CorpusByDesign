@@ -10,13 +10,13 @@
     <div ng-class="['no-gutter', 'facets']">
         <div ng-class="['row', 'no-gutter', 'full-height']">
             <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', '{{category.id}}']" ng-if="category.isDiplayed">
-                <div ng-class="['checkbox']" uib-tooltip="{{category.check}}" tooltip-placement="bottom">
+                <div ng-class="['checkbox', 'all']">
                     <input id="{{category.id}}" type="checkbox" ng-click="selectAll(category.id);" checked />
                     <span ng-class="['category-name', 'ellipsed']"> {{category.label}}</span>
                 </div>
                 <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter']">
                     <div ng-class="['checkbox']" uib-tooltip="{{value.label}}">
-                        <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="$parent.$parent.$parent.$parent.filter(category.id, value.id);" />
+                        <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" />
                         <span ng-class="['category-name', 'ellipsed']"> {{value.label}}</span>
                     </div>
                     <div ng-class="[value.colorClass]">

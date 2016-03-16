@@ -15,7 +15,6 @@
                 corpusId: '=',
                 filteredResultsCount: '='
             },
-
             link: function($scope, element, attrs) {
                 // Uncollapse filters
                 $scope.filtersLabel = 'More filters';
@@ -31,38 +30,41 @@
                     }
                 }
 
-                $.each($scope.categories, function(index_01, item_01) {
-                    item_01.check = 'Unselect all';
-                });
                 $scope.selectAll = function(categoryId) {
-                    // If is checked, check all the facets of this category
-                    var element = $('input#' + categoryId);
-                    if (element.prop('checked')) {
-                        $.each($scope.categories, function(index_01, item_01) {
-                            item_01.check = 'Unselect all';
-                            if (item_01.id == categoryId) {
-                                $.each(item_01.values, function(index_02, item_02) {
-                                    item_02.isSelected = true;
-                                });
-                            }
-                        });
-                        // Else, uncheck all the facets of this category
-                    } else {
-                        $.each($scope.categories, function(index_01, item_01) {
-                            item_01.check = 'Select all';
-                            if (item_01.id == categoryId) {
-                                $.each(item_01.values, function(index_02, item_02) {
-                                    item_02.isSelected = false;
-                                });
-                            }
-                        });
-                    }
+                    $('.' + categoryId + ' .checkbox.all input').prop('checked', true);
+                    // Check all the facets of this category
+                    $.each($scope.categories, function(index_01, item_01) {
+                        if (item_01.id == categoryId) {
+                            $.each(item_01.values, function(index_02, item_02) {
+                                item_02.isSelected = true;
+                            });
+                        }
+                    });
                     switch ($scope.corpusId) {
                         case 'climatechanges':
                             $scope.$parent.filter();
                             break;
                         case 'ameriquelatine':
                             $scope.$parent.filter2();
+                            break;
+                    }
+                }
+
+                $scope.filter = function(categoryId, value) {
+                    $('.' + categoryId + ' .checkbox:not(.all) :checked').length
+                    // If all the checkboxes are of this category are selected, force the check of the "all" checkbox
+                    if($('.' + categoryId + ' .checkbox:not(.all) :checked').length == $('.' + categoryId + ' .checkbox:not(.all)').length) {
+                        $('.' + categoryId + ' .checkbox.all input').prop('checked', true);
+                    // Else, force the uncheck of the "all" checkbox
+                    } else {
+                        $('.' + categoryId + ' .checkbox.all input').prop('checked', false);
+                    }
+                    switch ($scope.corpusId) {
+                        case 'climatechanges':
+                            $scope.$parent.filter(categoryId, value);
+                            break;
+                        case 'ameriquelatine':
+                            $scope.$parent.filter2(categoryId, value);
                             break;
                     }
                 }
