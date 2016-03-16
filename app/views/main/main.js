@@ -15,6 +15,7 @@
                 tmp;
             var defaultNodeColor = '#d3d3d3';
             var defaultEdgeColor = '#f1f1f1';
+            var multiValuesSeparator = ' ; ';
 
             // Init scope variables
             $scope.filtersIcon = 'glyphicon-chevron-down';
@@ -217,7 +218,7 @@
                 bool_01 = true;
                 $.each(searchCriteria, function(index_01, item_01) {
                     bool_02 = false;
-                    elementCriteriaValues = element[$scope.categories[index_01].mappedField].split(' ; ');
+                    elementCriteriaValues = element[$scope.categories[index_01].mappedField].split(multiValuesSeparator);
                     $.each(elementCriteriaValues, function(index_02, item_02) {
                         bool_02 = bool_02 || (item_01.indexOf(item_02) >= 0);
                     });
@@ -362,7 +363,7 @@
                         // Increment categories count, for those who are displayed
                         $.each($scope.categories, function(index_02, item_02) {
                             if ($scope.categories[index_02].isDiplayed) {
-                                elementCriteriaValues = item[$scope.categories[index_02].mappedField].split(' ; ');
+                                elementCriteriaValues = item[$scope.categories[index_02].mappedField].split(multiValuesSeparator);
                                 $.each(elementCriteriaValues, function(index_03, item_03) {
                                     $scope.categories[index_02].values.filter(function(index) {
                                         return index.id == item_03;
