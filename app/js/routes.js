@@ -23,7 +23,7 @@
                 controller: 'WebEntityCtrl'
             }).
             otherwise({
-                redirectTo: '/en/climatechanges'
+                redirectTo: '/fr/ameriquelatine'
             });
         }
     ]);
