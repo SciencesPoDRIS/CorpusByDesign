@@ -47,43 +47,6 @@
 <div ng-class="['col-md-5', 'no-gutter', 'full-height']">
     <div ng-class="['row', 'no-gutter', 'full-height']">
         <my-filters categories="categories" query-term="$parent.$parent.queryTerm" corpus-id="corpusId" filtered-results-count="filteredResultsCount" />
-        <!-- <div ng-class="['filters']">
-            <div ng-class="['row', 'col-md-offset-3', 'col-md-6', 'search-bar']">
-                <md-input-container md-no-float>
-                    <span ng-class="['glyphicon', 'glyphicon-search', 'icon-flip-horizontal']" aria-hidden="true"></span>
-                    <span><input ng-model="$parent.$parent.queryTerm" type="text" placeholder="What are you looking for ?" ng-change="filter();" ng-class="['full-width']"/></span>
-                </md-input-container>
-            </div>
-            <div ng-class="['no-gutter', 'facets']">
-                <div ng-class="['row', 'no-gutter', 'full-height']">
-                    <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', category.id]" ng-if="category.isDiplayed">
-                        <div ng-class="['checkbox']" uib-tooltip="{{category.check}}" tooltip-placement="bottom">
-                            <input id="{{category.id}}" type="checkbox" ng-click="selectAll(category.id);" checked/>
-                            <span ng-class="['category-name', 'ellipsed']"> {{category.label}}</span>
-                        </div>
-                        <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter']">
-                            <div ng-class="['checkbox']" uib-tooltip="{{value.label}}">
-                                <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" />
-                                <span ng-class="['category-name', 'ellipsed']"> {{value.label}}</span>
-                            </div>
-                            <div ng-class="[value.colorClass]">
-                                <span ng-class="['pull-right', 'count-percent']">{{value.count_percent}}%</span>
-                                <md-progress-linear md-mode="determinate" value="{{value.count_percent}}"></md-progress-linear>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div ng-class="['search-bottom']">
-                <div ng-class="['pull-left', 'results-number']">
-                    <ng-pluralize count="filteredResultsCount" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>
-                </div>
-                <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters();">
-                    {{filtersLabel}}
-                    <span ng-class="{'glyphicon' : true, 'glyphicon-chevron-down' : isCollapsed, 'glyphicon-chevron-up' : !isCollapsed}" />
-                </div>
-            </div>
-        </div> -->
     </div>
     <!-- Tiles -->
     <div ng-class="['row', 'full-height', 'tiles']">
