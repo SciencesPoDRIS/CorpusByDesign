@@ -97,19 +97,13 @@
                                 'FULL_NAME': item[6],
                                 'ACTORS_TYPE': item[7],
                                 'SOURCE': item[8],
-                                'SPA': item[9],
-                                'POR': item[10],
-                                'ENG': item[11],
-                                'FRE': item[12],
-                                'GER': item[13],
-                                'CAT': item[14],
-                                'MUL': item[15],
                                 'AREA': item[16],
                                 'ABSTRACT_FR': item[18],
                                 'ABSTRACT_ES': item[19],
                                 'KEYWORDS_FR': item[21],
                                 'KEYWORDS_EN': item[22],
-                                'KEYWORDS_ES': item[23]
+                                'KEYWORDS_ES': item[23],
+                                'LANGUAGE': item[26]
                             });
                         });
                         $scope.initResultsCount = $scope.initResults.length;
@@ -259,9 +253,9 @@
                         // Increment categories count, for those who are displayed
                         $.each($scope.categories, function(index_02, item_02) {
                             if ($scope.categories[index_02].isDiplayed) {
-                                // $scope.categories[index_02].values.filter(function(index) {
-                                //     return index.id == item[$scope.categories[index_02].mappedField];
-                                // })[0].count++;
+                                $scope.categories[index_02].values.filter(function(index) {
+                                    return index.id == item[$scope.categories[index_02].mappedField];
+                                })[0].count++;
                             }
                         });
                         return true;
@@ -340,7 +334,7 @@
                 searchCriteria = {};
                 $.each($scope.categories, function(index_01, item_01) {
                     // Don't put language as a search criteria
-                    if ((item_01.values !== undefined) && (index_01 != 'language')) {
+                    if (item_01.values !== undefined) {
                         searchCriteria[index_01] = [];
                         $.each(item_01.values, function(index_02, item_02) {
                             // Reset count before filtering
@@ -367,7 +361,7 @@
                                 $.each(elementCriteriaValues, function(index_03, item_03) {
                                     $scope.categories[index_02].values.filter(function(index) {
                                         return index.id == item_03;
-                                    })[0].count ++;
+                                    })[0].count++;
                                 });
                             }
                         });

@@ -8,14 +8,20 @@
     app.filter('translate', [
         function() {
             return function(input, $scope, facet) {
+                var txt, i;
                 if (input === undefined) {
                     return '';
                 } else {
-                    var index = 0;
-                    while ($scope.categories[facet].values[index].id != input) {
-                        index++;
-                    }
-                    return $scope.categories[facet].values[index].label;
+                    txt = '';
+                    $.each(input.split(' ; '), function(index, item) {
+                        i = 0;
+                        while ($scope.categories[facet].values[i].id != item) {
+                            i++;
+                        }
+                        txt += (txt == '' ? '' : ' / ');
+                        txt += $scope.categories[facet].values[i].label;
+                    });
+                    return txt;
                 }
             };
         }
