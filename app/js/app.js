@@ -26,7 +26,7 @@
                 countryOverColor = '#123';
 
             var div = d3.select('body').append('div')
-                .attr('class', 'tooltip')
+                .attr('class', 'tooltip country-tooltip')
                 .style('opacity', 0);
 
             var projection = d3.geo.equirectangular()
