@@ -22,10 +22,10 @@
                 $scope.moreFilters = function() {
                     $scope.isCollapsed = !$scope.isCollapsed;
                     if (!$scope.isCollapsed) {
-                        $('.filters').height(($(window).height() - 127) + 'px');
+                        $('.my-filters').height(($(window).height() - 127) + 'px');
                         $scope.filtersLabel = 'Less filters';
                     } else {
-                        $('.filters').height('200px');
+                        $('.my-filters').height('200px');
                         $scope.filtersLabel = 'More filters';
                     }
                 }
@@ -51,7 +51,6 @@
                 }
 
                 $scope.filter = function(categoryId, value) {
-                    $('.' + categoryId + ' .checkbox:not(.all) :checked').length
                     // If all the checkboxes are of this category are selected, force the check of the "all" checkbox
                     if($('.' + categoryId + ' .checkbox:not(.all) :checked').length == $('.' + categoryId + ' .checkbox:not(.all)').length) {
                         $('.' + categoryId + ' .checkbox.all input').prop('checked', true);

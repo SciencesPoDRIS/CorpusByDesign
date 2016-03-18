@@ -1,20 +1,20 @@
 <div ng-class="['my-filters']">
-    <div ng-class="['row', 'col-md-offset-3', 'col-md-6', 'search-bar']">
+    <div ng-class="['col-md-offset-3', 'col-md-6', 'search-bar']">
         <md-input-container md-no-float>
             <span ng-class="['glyphicon', 'glyphicon-search', 'icon-flip-horizontal']" aria-hidden="true"></span>
             <span>
-                <input ng-model="queryTerm" type="text" placeholder="What are you looking for ?" ng-change="$parent.filter();" ng-class="['full-width']"/>
+                <input ng-model="queryTerm" type="text" placeholder="What are you looking for ?" ng-change="filter();" ng-class="['full-width']"/>
             </span>
         </md-input-container>
     </div>
-    <div ng-class="['no-gutter', 'facets']">
+    <div ng-class="['no-gutter', 'col-md-12', 'facets']">
         <div ng-class="['row', 'no-gutter', 'full-height']">
-            <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', '{{category.id}}']" ng-if="category.isDiplayed">
+            <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', '{{category.id}}']" ng-if="category.isDiplayed" ng-model="categories">
                 <div ng-class="['checkbox', 'all']">
                     <input id="{{category.id}}" type="checkbox" ng-click="selectAll(category.id);" checked />
                     <span ng-class="['category-name', 'ellipsed']"> {{category.label}}</span>
                 </div>
-                <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter']">
+                <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter']" ng-model="$parent.value">
                     <div ng-class="['checkbox']" uib-tooltip="{{value.label}}">
                         <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" />
                         <span ng-class="['category-name', 'ellipsed']"> {{value.label}}</span>

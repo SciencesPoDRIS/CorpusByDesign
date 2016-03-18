@@ -39,13 +39,14 @@
 
             var svg = d3.select('#map').append('svg')
                 .attr('preserveAspectRatio', 'xMidYMid meet')
-                .attr('viewBox', '0 0 ' + width + ' ' + height);
+                .attr('viewBox', '0 0 ' + width + ' ' + height)
+                .attr('class', 'full-height');
 
             svg.append('rect')
                 .attr('class', 'background')
                 .attr('width', width)
                 .attr('height', height)
-                .on('click', $scope.country_clicked);
+                .on('click', $scope.countryClicked);
 
             var g = svg.append('g');
 
@@ -90,8 +91,9 @@
                 $.each($scope.categories.area.values, function(index, item) {
                     if (item.id != country.id) {
                         item.isSelected = false;
+                    } else {
+                        item.isSelected = true;
                     }
-
                 });
                 $scope.filter2();
             }
