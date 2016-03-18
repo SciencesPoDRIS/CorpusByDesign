@@ -72,7 +72,7 @@ h1 > a:visited {
 
 a:link,
 a:visited {
-    border-bottom: 1px dotted #343333;
+    /*border-bottom: 1px dotted #343333;*/
     color: #343333;
     text-decoration: none;
 }
@@ -406,17 +406,14 @@ ul#menu_appli li:last-child a::after {
     padding: 5px;
     position: absolute;
     top: 40px;
+    white-space: nowrap;
     width: 100%;
 }
 
-.my-filters .facets > div {
-    /*width: 720px;*/
-    width: 540px;
-}
-
 .my-filters .facets .facet {
-    float: left;
+    display: inline-block;
     margin: 0 5px;
+    vertical-align: top;
     width: 170px;
 }
 
@@ -546,13 +543,9 @@ ul#menu_appli li:last-child a::after {
     text-align: center;
 }
 
-.my-filters .search-bar md-input-container.md-default-theme:not(.md-input-invalid) .md-input {
-    border-bottom: 1px solid #343333;
-}
-
 .my-filters .search-bar md-input-container:not(.md-input-invalid).md-input-focused .md-input,
 .my-filters .search-bar md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input {
-    border-bottom: 1px solid #e6142d;
+    border-bottom: 2px solid #e6142d;
     padding-bottom: 1px;
 }
 
