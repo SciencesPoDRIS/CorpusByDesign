@@ -2,26 +2,20 @@
 <div ng-include="'app/partials/header.html'"></div>
 <!-- First row -->
 <div ng-class="['first-row', 'row', 'no-gutter']">
-    <div ng-class="['col-md-7', 'title']">
-        <span ng-class="['no-gutter', 'pull-left']">
-            <a href="{{lang}}/{{corpusId}}">Web Corpus</a>
+    <div ng-class="['col-md-12', 'title']">
+        <span>
+            <a href="{{lang}}/{{corpusId}}">Corpus Web</a>
         </span>
-        <span ng-class="['slash', 'pull-left']">/</span>
-        <span ng-class="['pull-left']">
+        <span ng-class="['slash']">/</span>
+        <span>
             <a href="{{lang}}/{{corpusId}}">{{corpora.title}}</a>
         </span>
-    </div>
-    <div ng-class="['col-md-5', 'no-gutter']">
-        <div ng-class="['row', 'no-gutter']">
-            <div ng-class="['col-md-6']">
-                <a href="{{lang}}/{{corpusId}}/methodology">Methodology</a>
-            </div>
-            <div ng-class="['col-md-6', 'btn-group', 'views']">
-                <label ng-repeat="availableView in availableViews" ng-class="['btn', 'btn-default']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView('{{availableView}}');">
-                    <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
-                </label>
-            </div>
-        </div>
+        <span ng-class="['methodology']">
+            <a href="{{lang}}/{{corpusId}}/methodology">Methodology</a>
+        </span>
+        <!-- <label ng-repeat="availableView in availableViews" ng-class="['btn', 'btn-default']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView('{{availableView}}');">
+            <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
+        </label> -->
     </div>
 </div>
 <!-- Second row -->
