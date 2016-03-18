@@ -337,7 +337,9 @@ ul#menu_appli li:last-child a::after {
 }
 
 .first-row .methodology {
-    font-size: 0.8em;
+    display: inline;
+    font-size: 1.2em;
+    vertical-align: middle;
 }
 
 /* Graph */
@@ -389,7 +391,7 @@ ul#menu_appli li:last-child a::after {
 
 /* Filters */
 
-.filters {
+.my-filters {
     background-color: white;
     height: 200px;
     position: absolute;
@@ -397,7 +399,7 @@ ul#menu_appli li:last-child a::after {
     z-index: 1;
 }
 
-.filters .facets {
+.my-filters .facets {
     bottom: 40px;
     min-height: 75px;
     overflow-y: auto;
@@ -407,89 +409,89 @@ ul#menu_appli li:last-child a::after {
     width: 100%;
 }
 
-.filters .facets > div {
+.my-filters .facets > div {
     /*width: 720px;*/
     width: 540px;
 }
 
-.filters .facets .facet {
+.my-filters .facets .facet {
     float: left;
     margin: 0 5px;
     width: 170px;
 }
 
-.filters .facets label {
+.my-filters .facets label {
     font-weight: normal;
     width: 100%;
 }
 
-.filters .facets md-progress-linear {
+.my-filters .facets md-progress-linear {
     margin-bottom: 15px;
     margin-left: 20px;
     width: 58%;
 }
 
-.filters .facets .facet .grey md-progress-linear .md-container {
+.my-filters .facets .facet .grey md-progress-linear .md-container {
     background-color: rgba(131, 135, 141, 0.3);
 }
 
-.filters .facets .facet .grey md-progress-linear .md-bar2 {
+.my-filters .facets .facet .grey md-progress-linear .md-bar2 {
     background-color: rgba(131, 135, 141, 1);
 }
 
-.filters .facets .facet .pink md-progress-linear .md-container {
+.my-filters .facets .facet .pink md-progress-linear .md-container {
     background-color: rgba(246, 165, 203, 0.3);
 }
 
-.filters .facets .facet .pink md-progress-linear .md-bar2 {
+.my-filters .facets .facet .pink md-progress-linear .md-bar2 {
     background-color: rgba(246, 165, 203, 1);
 }
 
-.filters .facets .facet .yellow md-progress-linear .md-container {
+.my-filters .facets .facet .yellow md-progress-linear .md-container {
     background-color: rgba(230, 225, 116, 0.3);
 }
 
-.filters .facets .facet .yellow md-progress-linear .md-bar2 {
+.my-filters .facets .facet .yellow md-progress-linear .md-bar2 {
     background-color: rgba(230, 225, 116, 1);
 }
 
-.filters .facets .facet .green md-progress-linear .md-container {
+.my-filters .facets .facet .green md-progress-linear .md-container {
     background-color: rgba(131, 231, 204, 0.3);
 }
 
-.filters .facets .facet .green md-progress-linear .md-bar2 {
+.my-filters .facets .facet .green md-progress-linear .md-bar2 {
     background-color: rgba(131, 231, 204, 1);
 }
 
-.filters .facets .facet .orange md-progress-linear .md-container {
+.my-filters .facets .facet .orange md-progress-linear .md-container {
     background-color: rgba(251, 169, 149, 0.3);
 }
 
-.filters .facets .facet .orange md-progress-linear .md-bar2 {
+.my-filters .facets .facet .orange md-progress-linear .md-bar2 {
     background-color: rgba(251, 169, 149, 1);
 }
 
-.filters .facets .facet .brown md-progress-linear .md-container {
+.my-filters .facets .facet .brown md-progress-linear .md-container {
     background-color: rgba(206, 167, 100, 0.3);
 }
 
-.filters .facets .facet .brown md-progress-linear .md-bar2 {
+.my-filters .facets .facet .brown md-progress-linear .md-bar2 {
     background-color: rgba(206, 167, 100, 1);
 }
 
-.filters .facets .facet .purple md-progress-linear .md-container {
+.my-filters .facets .facet .purple md-progress-linear .md-container {
     background-color: rgba(190, 175, 215, 0.3);
 }
 
-.filters .facets .facet .purple md-progress-linear .md-bar2 {
+.my-filters .facets .facet .purple md-progress-linear .md-bar2 {
     background-color: rgba(190, 175, 215, 1);
 }
 
-.filters .facets .count-percent {
+.my-filters .facets .count-percent {
     line-height: 5px;
 }
 
-.filters .search-bottom {
+.my-filters .search-bottom {
     bottom: 0;
     height: 40px;
     line-height: 40px;
@@ -497,12 +499,12 @@ ul#menu_appli li:last-child a::after {
     width: 100%;
 }
 
-.filters .search-bottom .results-number {
+.my-filters .search-bottom .results-number {
     font-style: italic;
     padding-left: 50px;
 }
 
-.filters .search-bottom .more-filters {
+.my-filters .search-bottom .more-filters {
     font-style: italic;
     padding-right: 50px;
 }
@@ -510,46 +512,46 @@ ul#menu_appli li:last-child a::after {
 
 /* Search */
 
-.filters .search-bar {
+.my-filters .search-bar {
     height: 40px;
     padding-bottom: 15px;
 }
 
 @media (max-width: 767px) {
-    .filters .search-bar {
+    .my-filters .search-bar {
         margin: 0;
     }
 }
 
-.filters .search-bar input.full-width {
+.my-filters .search-bar input.full-width {
     display: inline;
     width: 95%;
 }
 
-.filters .search-bar .glyphicon-search {
+.my-filters .search-bar .glyphicon-search {
     color: #343333;
     top: 3px;
     width: 5%;
 }
 
 @media (max-width: 767px) {
-    .filters .search-bar .glyphicon-search {
+    .my-filters .search-bar .glyphicon-search {
         float: left;
         padding-top: 8px;
     }
 }
 
-.filters .search-bar md-input-container {
+.my-filters .search-bar md-input-container {
     display: inline;
     text-align: center;
 }
 
-.filters .search-bar md-input-container.md-default-theme:not(.md-input-invalid) .md-input {
+.my-filters .search-bar md-input-container.md-default-theme:not(.md-input-invalid) .md-input {
     border-bottom: 1px solid #343333;
 }
 
-.filters .search-bar md-input-container:not(.md-input-invalid).md-input-focused .md-input,
-.filters .search-bar md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input {
+.my-filters .search-bar md-input-container:not(.md-input-invalid).md-input-focused .md-input,
+.my-filters .search-bar md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input {
     border-bottom: 1px solid #e6142d;
     padding-bottom: 1px;
 }
@@ -557,7 +559,7 @@ ul#menu_appli li:last-child a::after {
 
 /* Checkboxes */
 
-.filters input[type="checkbox"] {
+.my-filters input[type="checkbox"] {
     -webkit-appearance: none;
     background-color: #ffffff;
     border: 1px solid #dbdbdb;
@@ -571,7 +573,7 @@ ul#menu_appli li:last-child a::after {
 }
 
 @media (max-width: 767px) {
-    .filters input[type="checkbox"] {
+    .my-filters input[type="checkbox"] {
         margin: 0 0 -0.25px 8px;
     }
 }
@@ -585,7 +587,7 @@ input[type="checkbox"]:checked:before {
     width: 1.25em;
 }
 
-.filters .key-color {
+.my-filters .key-color {
     border-radius: 10px;
     display: inline-block;
     height: 20px;

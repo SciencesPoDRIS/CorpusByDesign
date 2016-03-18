@@ -10,14 +10,15 @@
         <span>
             <a href="{{lang}}/{{corpusId}}">{{corpora.title}}</a>
         </span>
-        <span ng-class="['methodology']">
+        <div ng-class="['methodology']">
             <a href="{{lang}}/{{corpusId}}/methodology">Methodology</a>
-        </span>
+        </div>
         <!-- <label ng-repeat="availableView in availableViews" ng-class="['btn', 'btn-default']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView('{{availableView}}');">
             <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
         </label> -->
     </div>
 </div>
+<!-- Second row -->
 <div ng-class="['row', 'content', 'full-height', 'webentity', 'no-gutter']">
     <div ng-class="['col-sm-12', 'col-md-6', 'no-gutter', 'full-height']">
         <div ng-class="['row', 'graph', 'no-gutter']">
