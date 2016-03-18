@@ -322,12 +322,12 @@ ul#menu_appli li:last-child a::after {
 
 .first-row {
     background-color: #e9e9e9;
-    padding: 68px 0 10px 0;
+    padding: 68px 0 5px 0;
 }
 
 .first-row .title span {
-    font-size: 2.2em;
-    line-height: 49px;
+    font-size: 1.8em;
+    line-height: 40px;
     margin: 0;
     vertical-align: middle;
 }
@@ -336,10 +336,9 @@ ul#menu_appli li:last-child a::after {
     margin: 0 10px;
 }
 
-.content {
-    width: 100%;
+.first-row .methodology {
+    font-size: 0.8em;
 }
-
 
 /* Graph */
 
@@ -549,6 +548,7 @@ ul#menu_appli li:last-child a::after {
     border-bottom: 1px solid #343333;
 }
 
+.filters .search-bar md-input-container:not(.md-input-invalid).md-input-focused .md-input,
 .filters .search-bar md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input {
     border-bottom: 1px solid #e6142d;
     padding-bottom: 1px;
