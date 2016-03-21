@@ -17,6 +17,7 @@
             var defaultNodeColor = '#d3d3d3';
             var defaultEdgeColor = '#f1f1f1';
             var multiValuesSeparator = ' ; ';
+            var firstLoad = true;
 
             // Init scope variables
             $scope.filtersIcon = 'glyphicon-chevron-down';
@@ -365,9 +366,12 @@
                     // Check that this item should be displayed
                     if (item.isDiplayed) {
                         // Filter items from facet where the count is null
-                        $scope.categories[index].values = $.grep($scope.categories[index].values, function(item_02, index_02) {
-                            return item_02.count > 0;
-                        });
+                        if (firstLoad) {
+                            firstLoad = false;
+                            $scope.categories[index].values = $.grep($scope.categories[index].values, function(item_02, index_02) {
+                                return item_02.count > 0;
+                            });
+                        }
                         // Calculate the item count in percentil for the progress bar
                         $.each($scope.categories[index].values, function(index_02, item_02) {
                             item_02.count_percent = ((parseFloat(item_02.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
@@ -455,4 +459,4 @@
         }
     ]);
 
-})()
+})();
