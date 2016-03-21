@@ -241,7 +241,11 @@
                 $scope.filteredResults = $scope.initResults.filter(function(item) {
                     if ((
                             // Check if the searched term is present into the name of the site or into the actors' type of the site
-                            (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
+                            (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
+                            || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
+                            || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
+                            || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0))
+                            && isSearchedAmongCriteria(searchCriteria, item)) {
                         ids.push(item.ID);
                         // Increment categories count, for those who are displayed
                         $.each($scope.categories, function(index_02, item_02) {
@@ -344,7 +348,14 @@
                 $scope.filteredResults = $scope.initResults.filter(function(item) {
                     if ((
                             // Check if the searched term is present into the name of the site or into the actors' type of the site
-                            (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ACTORS_TYPE.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.AREA.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT_FR.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT_ES.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
+                            (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
+                            || (item.ACTORS_TYPE.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
+                            || (item.AREA.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
+                            || (item.ABSTRACT_FR.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
+                            || (item.ABSTRACT_ES.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
+                            || (item.CANDIDATE_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
+                            || (item.POLITICAL_PARTY.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0))
+                            && isSearchedAmongCriteria(searchCriteria, item)) {
                         ids.push(item.ID);
                         // Increment categories count, for those who are displayed
                         $.each($scope.categories, function(index_02, item_02) {
