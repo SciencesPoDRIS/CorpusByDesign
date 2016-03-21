@@ -6,12 +6,13 @@
     app.controller('MainController', ['$scope', '$routeParams', '$http', '$location', 'loadCorpora', 'loadCorpus', 'colors',
         function($scope, $routeParams, $http, $location, loadCorpora, loadCorpus, colors) {
             // Init variables
-            var ids,
-                nodesColor,
-                bool_01,
+            var bool_01,
                 bool_02,
-                searchCriteria,
                 elementCriteriaValues,
+                ids,
+                itemFacets,
+                nodesColor,
+                searchCriteria,
                 tmp;
             var defaultNodeColor = '#d3d3d3';
             var defaultEdgeColor = '#f1f1f1';
@@ -23,6 +24,11 @@
             $scope.queryTerm = '';
             $scope.corpusId = $routeParams.corpusId;
             $scope.lang = $routeParams.lang;
+
+            // For a checkbox, on click on label
+            $(document.body).on('click', '.checkbox > span', function() {
+                $(this).siblings('input').click();
+            });
 
             // On view change ('grid', 'list', 'graph', 'map')
             $scope.changeView = function(currentView) {
@@ -71,13 +77,6 @@
             }
 
             $scope.init2 = function(currentView) {
-                // For a checkbox, on click on label
-                $('.checkbox > span').click(
-                    function() {
-                        $(this).siblings('input').click();
-                    }
-                );
-
                 // Load the corpus configurations
                 loadCorpora.getCorpora().then(function(data) {
                     $scope.corpora = data[$scope.corpusId];
@@ -89,22 +88,15 @@
                     // Load the corpus content
                     $scope.initResults = [];
                     loadCorpus.getCorpus($scope.corpusId).then(function(data) {
-                        $.each(data.split('\n').slice(1), function(index, item) {
-                            item = item.split('\t');
-                            $scope.initResults.push({
-                                'ID': item[0],
-                                'URL': item[5],
-                                'FULL_NAME': item[6],
-                                'ACTORS_TYPE': item[7],
-                                'SOURCE': item[8],
-                                'AREA': item[16],
-                                'ABSTRACT_FR': item[18],
-                                'ABSTRACT_ES': item[19],
-                                'KEYWORDS_FR': item[21],
-                                'KEYWORDS_EN': item[22],
-                                'KEYWORDS_ES': item[23],
-                                'LANGUAGE': item[26]
+                        data = data.split('\n');
+                        itemFacets = data[0].split('\t')
+                        $.each(data.slice(1), function(index_01, item_01) {
+                            item_01 = item_01.split('\t');
+                            tmp = {};
+                            $.each(itemFacets, function(index_02, item_02) {
+                                tmp[item_02] = item_01[index_02];
                             });
+                            $scope.initResults.push(tmp);
                         });
                         $scope.initResultsCount = $scope.initResults.length;
                         $scope.filter2();
@@ -370,42 +362,54 @@
                     }
                 });
                 $.each($scope.categories, function(index, item) {
-                    // Order items of a category by count descending order
-                    $scope.categories[index].values.sort(function(a, b) {
-                        return b.count - a.count;
-                    });
-                    // Set colors to nodes and loadBar
-                    if ($scope.categories[index].id == nodesColor) {
-                        $.each($scope.categories[index].values.slice(0, 6), function(index_02, item_02) {
-                            item_02.color = colors[index_02].color;
-                            item_02.colorClass = colors[index_02].label;
+                    // Check that this item should be displayed
+                    if (item.isDiplayed) {
+                        // Filter items from facet where the count is null
+                        $scope.categories[index].values = $.grep($scope.categories[index].values, function(item_02, index_02) {
+                            return item_02.count > 0;
+                        });
+                        // Calculate the item count in percentil for the progress bar
+                        $.each($scope.categories[index].values, function(index_02, item_02) {
+                            item_02.count_percent = ((parseFloat(item_02.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
+                        });
+                        // Order items of a category by count descending order
+                        $scope.categories[index].values.sort(function(a, b) {
+                            return b.count - a.count;
+                        });
+                        // Set colors to nodes and loadBar
+                        if ($scope.categories[index].id == nodesColor) {
+                            $.each($scope.categories[index].values.slice(0, 6), function(index_02, item_02) {
+                                item_02.color = colors[index_02].color;
+                                item_02.colorClass = colors[index_02].label;
+                            });
+                        }
+                        // Order items of a category by alphabetical ascending order
+                        $scope.categories[index].values.sort(function(a, b) {
+                            // 'not_applicable' should be the last item
+                            if (a.id == 'not_applicable') {
+                                return 1;
+                            } else if (b.id == 'not_applicable') {
+                                return -1;
+                                // 'dont_know' should be the  second last item
+                            } else if (a.id == 'dont_know') {
+                                return 1;
+                            } else if (b.id == 'dont_know') {
+                                return -1;
+                                // 'other' should be the third last item
+                            } else if (a.id == 'other') {
+                                return 1;
+                            } else if (b.id == 'other') {
+                                return -1;
+                            } else if (a.label.toLowerCase() < b.label.toLowerCase()) {
+                                return -1;
+                            } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
+                                return 1;
+                                // Should never happen
+                            } else {
+                                return 0;
+                            }
                         });
                     }
-                    // Order items of a category by alphabetical ascending order
-                    $scope.categories[index].values.sort(function(a, b) {
-                        // 'Not applicable' should be the last item
-                        if (a.id == 'not_applicable') {
-                            return 1;
-                        } else if (b.id == 'not_applicable') {
-                            return -1;
-                            // 'Don't know' should be the before second last item
-                        } else if (a.id == 'dont_know') {
-                            return 1;
-                        } else if (b.id == 'dont_know') {
-                            return -1;
-                        } else if (a.label.toLowerCase() < b.label.toLowerCase()) {
-                            return -1;
-                        } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
-                            return 1;
-                            // Should never happen
-                        } else {
-                            return 0;
-                        }
-                    });
-                    // Calculate the item count in percentil for the progress bar
-                    $.each($scope.categories[index].values, function(index_02, item_02) {
-                        item_02.count_percent = ((parseFloat(item_02.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
-                    });
                 });
                 $scope.filteredResultsCount = $scope.filteredResults.length;
                 $scope.display2();
@@ -451,4 +455,4 @@
         }
     ]);
 
-})();
+})()
