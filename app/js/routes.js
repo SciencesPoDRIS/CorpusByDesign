@@ -11,8 +11,8 @@
 
             $routeProvider.
             when('/:lang/:corpusId', {
-                templateUrl: 'app/views/main/main.html',
-                controller: 'MainController'
+                templateUrl: 'app/views/corpus/corpus.html',
+                controller: 'CorpusController'
             }).
             when('/:lang/:corpusId/methodology', {
                 templateUrl: 'app/views/methodology/methodology.html',

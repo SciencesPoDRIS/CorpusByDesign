@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    var app = angular.module('webcorpus.main', []);
+    var app = angular.module('webcorpus.corpus', []);
 
-    app.controller('MainController', ['$scope', '$routeParams', '$http', '$location', 'loadCorpora', 'loadCorpus', 'colors',
+    app.controller('CorpusController', ['$scope', '$routeParams', '$http', '$location', 'loadCorpora', 'loadCorpus', 'colors',
         function($scope, $routeParams, $http, $location, loadCorpora, loadCorpus, colors) {
             // Init variables
             var bool_01,
