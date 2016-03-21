@@ -9,7 +9,7 @@
     </div>
     <div ng-class="['no-gutter', 'col-md-12', 'facets']">
         <div ng-class="['row', 'no-gutter', 'full-height']">
-            <div ng-repeat="category in categories" ng-class="['advanced-search', 'full-height', 'facet', '{{category.id}}']" ng-if="category.isDiplayed" ng-model="categories">
+            <div ng-repeat="category in categories" ng-class="['col-md-4', 'advanced-search', 'full-height', 'facet', '{{category.id}}']" ng-if="category.isDiplayed" ng-model="categories">
                 <div ng-class="['checkbox', 'all']">
                     <input id="{{category.id}}" type="checkbox" ng-click="selectAll(category.id);" checked />
                     <span ng-class="['category-name', 'ellipsed']"> {{category.label}}</span>

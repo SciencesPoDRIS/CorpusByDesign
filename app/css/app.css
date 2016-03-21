@@ -412,9 +412,9 @@ ul#menu_appli li:last-child a::after {
 
 .my-filters .facets .facet {
     display: inline-block;
+    float: none;
     margin: 0 5px;
     vertical-align: top;
-    width: 170px;
 }
 
 .my-filters .facets label {
@@ -425,7 +425,7 @@ ul#menu_appli li:last-child a::after {
 .my-filters .facets md-progress-linear {
     margin-bottom: 15px;
     margin-left: 20px;
-    width: 58%;
+    width: 55%;
 }
 
 .my-filters .facets .facet .grey md-progress-linear .md-container {
