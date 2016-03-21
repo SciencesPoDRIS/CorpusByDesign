@@ -14,7 +14,7 @@
                     <input id="{{category.id}}" type="checkbox" ng-click="selectAll(category.id);" checked />
                     <span ng-class="['category-name', 'ellipsed']"> {{category.label}}</span>
                 </div>
-                <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter']" ng-model="$parent.value">
+                <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter', {'disable' : value.count == 0}]" ng-model="$parent.value">
                     <div ng-class="['checkbox']" uib-tooltip="{{value.label}}">
                         <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" />
                         <span ng-class="['category-name', 'ellipsed']"> {{value.label}}</span>
