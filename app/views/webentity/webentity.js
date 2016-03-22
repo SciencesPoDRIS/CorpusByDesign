@@ -22,6 +22,8 @@
                 $scope.corpora = data[$scope.corpusId];
                 nodesColor = $scope.corpora.nodesColor;
                 $scope.categories = $scope.corpora.categories;
+                // Load the specific corpus configuration
+                $scope.subtitle = $sce.trustAsHtml($scope.corpora.subtitle);
             });
 
             // Center the whole graph
@@ -75,6 +77,23 @@
                 });
             };
 
+            // Load corpus
+            var itemFacets;
+            loadCorpus.getCorpus($scope.corpusId).then(function(data) {
+                data = data.split('\n');
+                itemFacets = data[0].split('\t');
+                $.each(data.slice(1), function(index_01, item_01) {
+                    item_01 = item_01.split('\t');
+                    if (item_01[0] == $routeParams.webEntityId) {
+                        $scope.webEntity = {};
+                        $.each(itemFacets, function(index_02, item_02) {
+                            $scope.webEntity[item_02] = item_01[index_02];
+                        });
+                    }
+                });
+            });
+
+            /*
             // Load the graph
             sigma.parsers.gexf(
                 '../data/' + $scope.corpusId + '.gexf', {
@@ -120,41 +139,13 @@
                         }
                     });
 
-                    // Load corpus
-                    loadCorpus.getCorpus($scope.corpusId).then(function(data) {
-                        $.each(data.split('\n').slice(1), function(index, item) {
-                            item = item.split('\t');
-                            if (item[0] == $routeParams.webEntityId) {
-                                $scope.webEntity = {};
-                                $scope.webEntity.ID = item[0];
-                                $scope.webEntity.NAME = item[1];
-                                $scope.webEntity.PREFIXES = item[2];
-                                $scope.webEntity.URL = item[3];
-                                $scope.webEntity.STATUS = item[4];
-                                $scope.webEntity.INDEGREE = item[5];
-                                $scope.webEntity.FULL_NAME = item[6];
-                                $scope.webEntity.ACTORS_TYPE = item[7];
-                                $scope.webEntity.ACTORS_TYPE_2 = item[8];
-                                $scope.webEntity.COUNTRY = item[9];
-                                $scope.webEntity.AREA = item[11];
-                                $scope.webEntity.ANTHROPOGENIC_CLIMATE_CHANGE = item[12];
-                                $scope.webEntity.REDUCING_EMISSIONS = item[13];
-                                $scope.webEntity.MITIGATION_ADAPTATION = item[14];
-                                $scope.webEntity.INDUSTRIAL_DELEGATION = item[15];
-                                $scope.webEntity.THEMATIC_DELEGATION = item[16];
-                                $scope.webEntity.LANGUAGE = item[17];
-                                $scope.webEntity.COLLECTION = item[18];
-                                $scope.webEntity.ABSTRACT_DRAFT = item[19];
-                                $scope.webEntity.ABSTRACT = item[20];
-                                $scope.webEntity.NEIGHBORS = neighbors;
-                            }
-                        });
-                    });
+
 
                     $scope.graph.refresh();
                 }
             );
+            */
         }
     ]);
 
-})();
+})()

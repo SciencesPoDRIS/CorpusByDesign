@@ -2,7 +2,7 @@
 <div ng-include="'app/partials/header.html'"></div>
 <!-- First row -->
 <div ng-class="['first-row', 'row', 'no-gutter']">
-    <div ng-class="['col-md-12', 'title']">
+    <div ng-class="['col-md-9', 'title']">
         <span>
             <a href="{{lang}}/{{corpusId}}">Corpus Web</a>
         </span>
@@ -10,12 +10,17 @@
         <span>
             <a href="{{lang}}/{{corpusId}}">{{corpora.title}}</a>
         </span>
-        <div ng-class="['methodology']">
-            <a href="{{lang}}/{{corpusId}}/methodology">Methodology</a>
-        </div>
         <!-- <label ng-repeat="availableView in availableViews" ng-class="['btn', 'btn-default']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView('{{availableView}}');">
             <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
         </label> -->
+    </div>
+    <div ng-class="['col-md-3']">
+        <div ng-class="['methodology']">
+            <a href="{{lang}}/{{corpusId}}/methodology">
+                <div ng-class="['title']">Methodology</div>
+                <div ng-class="['subtitle']" ng-bind-html="subtitle"></div>
+            </a>
+        </div>
     </div>
 </div>
 <!-- Second row -->
@@ -47,6 +52,11 @@
     <div ng-class="['col-sm-12', 'col-md-6', 'no-gutter', 'full-height']">
         <div ng-class="['metadata']">
             <table ng-class="['table', 'table-hover']">
+                <tr ng-repeat="(key, value) in webEntity">
+                    <td ng-class="['name', 'col-md-4']">{{key}}</td>
+                    <td ng-class="['value']">{{value}}</td>
+                </tr>
+                <!--
                 <tr>
                     <td ng-class="['name', 'col-md-4']">URL</td>
                     <td ng-class="['value']"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
@@ -79,10 +89,10 @@
                     <td ng-class="['name', 'col-md-4']">Collection</td>
                     <td ng-class="['value']">{{webEntity.COLLECTION | translate:this:'collection'}}</td>
                 </tr>
-                <!-- <tr>
+                <tr>
                     <td ng-class="['name', 'col-md-4']">Abstract</td>
                     <td ng-class="['value']">{{webEntity.ABSTRACT}}</td>
-                </tr> -->
+                </tr>
                 <tr ng-class="['neighbors']">
                     <td ng-class="['name', 'col-md-4']">Neighbors</td>
                     <td ng-class="['value']">
@@ -99,6 +109,7 @@
                         </div>
                     </td>
                 </tr>
+                -->
             </table>
             <div ng-class="['thumbnail']">
                 <img src="http://www.robothumb.com/src/?url={{webEntity.URL}}&size=560x420"></img>

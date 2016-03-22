@@ -3,8 +3,8 @@
 
     var app = angular.module('webcorpus.corpus', []);
 
-    app.controller('CorpusController', ['$scope', '$routeParams', '$http', '$location', 'loadCorpora', 'loadCorpus', 'colors',
-        function($scope, $routeParams, $http, $location, loadCorpora, loadCorpus, colors) {
+    app.controller('CorpusController', ['$scope', '$routeParams', '$http', '$location', 'loadCorpora', 'loadCorpus', 'colors', '$sce',
+        function($scope, $routeParams, $http, $location, loadCorpora, loadCorpus, colors, $sce) {
             // Init variables
             var bool_01,
                 bool_02,
@@ -85,12 +85,14 @@
                     $scope.categories = $scope.corpora.categories;
                     $scope.currentView = (currentView == undefined ? $scope.corpora.defaultView : currentView);
                     $scope.availableViews = $scope.corpora.availableViews;
+                    // Load the specific corpus configuration
+                    $scope.subtitle = $sce.trustAsHtml($scope.corpora.subtitle);
 
                     // Load the corpus content
                     $scope.initResults = [];
                     loadCorpus.getCorpus($scope.corpusId).then(function(data) {
                         data = data.split('\n');
-                        itemFacets = data[0].split('\t')
+                        itemFacets = data[0].split('\t');
                         $.each(data.slice(1), function(index_01, item_01) {
                             item_01 = item_01.split('\t');
                             tmp = {};

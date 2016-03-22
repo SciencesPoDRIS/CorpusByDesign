@@ -18,6 +18,8 @@
                 $scope.update = $sce.trustAsHtml($scope.corpora.update);
                 $scope.authors = $sce.trustAsHtml($scope.corpora.authors);
                 $scope.size = $sce.trustAsHtml($scope.corpora.size);
+                // Load the specific corpus configuration
+                $scope.subtitle = $sce.trustAsHtml($scope.corpora.subtitle);
             });
         }
     ]);

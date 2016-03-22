@@ -336,11 +336,14 @@ ul#menu_appli li:last-child a::after {
     margin: 0 10px;
 }
 
-.first-row .methodology {
-    display: inline;
-    font-size: 1.2em;
-    vertical-align: middle;
+.first-row .methodology .title {
+    font-size: 18px;
 }
+
+.first-row .methodology .subtitle {
+
+}
+
 
 /* Graph */
 
@@ -737,7 +740,6 @@ md-grid-tile a {
 /* Corpus Page */
 
 .corpus {
-    /*height: calc(100% - 180px);*/
     height: calc(100% - 127px);
 }
 
@@ -773,7 +775,7 @@ md-grid-tile a {
 
 /* Methodology Page */
 
-.methodology {
+.content.methodology {
     padding-left: 15px;
     padding-right: 15px;
 }
