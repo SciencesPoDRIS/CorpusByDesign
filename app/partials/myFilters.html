@@ -1,18 +1,21 @@
 <div ng-class="['my-filters']">
     <div ng-class="['col-md-offset-3', 'col-md-6', 'search-bar']">
         <md-input-container md-no-float>
-            <span ng-class="['glyphicon', 'glyphicon-search', 'icon-flip-horizontal']" aria-hidden="true"></span>
+            <md-icon ng-class="['icon-flip-horizontal']">search</md-icon>
             <span>
-                <input ng-model="queryTerm" type="text" placeholder="What are you looking for ?" ng-change="filter();" ng-class="['full-width']"/>
+                <input ng-model="$parent.$parent.$parent.queryTerm" type="text" placeholder="What are you looking for ?" ng-change="filter();" ng-class="['full-width']"/>
             </span>
         </md-input-container>
     </div>
     <div ng-class="['no-gutter', 'col-md-12', 'facets']">
         <div ng-class="['row', 'no-gutter', 'full-height']">
-            <div ng-repeat="category in categories" ng-class="['col-md-4', 'advanced-search', 'full-height', 'facet', '{{category.id}}']" ng-if="category.isDiplayed" ng-model="categories">
+            <div ng-repeat="category in categories" ng-class="['col-md-4', 'advanced-search', 'full-height', 'facet', '{{category.id}}', category.isHighlighted ? 'highlighted' : '']" ng-if="category.isDiplayed" ng-model="categories">
                 <div ng-class="['checkbox', 'all']">
                     <input id="{{category.id}}" type="checkbox" ng-click="selectAll(category.id);" checked />
-                    <span ng-class="['category-name', 'ellipsed']"> {{category.label}}</span>
+                    <span ng-class="['category-name', 'ellipsed']">
+                        <span ng-if="category.isHighlighted"> {{prefix}} :</span> {{category.label}}
+                    </span>
+                    <md-icon ng-show="isCollapsed" uib-tooltip="{{category.label}}" tooltip-placement="bottom">help</md-icon>
                 </div>
                 <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter', {'disable' : value.count == 0}]" ng-model="$parent.value">
                     <div ng-class="['checkbox']" uib-tooltip="{{value.label}}">
@@ -33,7 +36,8 @@
         </div>
         <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters();">
             {{filtersLabel}}
-            <span ng-class="{'glyphicon' : true, 'glyphicon-chevron-down' : isCollapsed, 'glyphicon-chevron-up' : !isCollapsed}" />
+            <md-icon ng-show="isCollapsed">keyboard_arrow_down</md-icon>
+            <md-icon ng-show="!isCollapsed">keyboard_arrow_up</md-icon>
         </div>
     </div>
 </div>

@@ -18,7 +18,7 @@
                         while ($scope.categories[facet].values[i].id != item) {
                             i++;
                         }
-                        txt += (txt == '' ? '' : ' / ');
+                        txt += (txt == '' ? '' : ', ');
                         txt += $scope.categories[facet].values[i].label;
                     });
                     return txt;

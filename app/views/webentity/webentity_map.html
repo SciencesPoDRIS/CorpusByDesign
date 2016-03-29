@@ -1,0 +1,97 @@
+<!-- Header -->
+<div ng-include="'app/partials/header.html'"></div>
+<!-- First row -->
+<div ng-class="['first-row', 'row', 'no-gutter']">
+    <div ng-class="['col-md-5', 'title']">
+        <span>
+            <a href="{{lang}}/{{corpusId}}">Corpus Web</a>
+        </span>
+        <span ng-class="['slash']">/</span>
+        <span>
+            <a href="{{lang}}/{{corpusId}}">{{corpora.title}}</a>
+        </span>
+        <span ng-class="['slash']">/</span>
+        <span>
+            <a href="{{lang}}/{{corpusId}}/map/{{webEntity.ID}}">{{webEntity.FULL_NAME}}</a>
+        </span>
+        <!-- <label ng-repeat="availableView in availableViews" ng-class="['btn', 'btn-default', 'btn-view']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView('{{availableView}}');">
+            <md-icon ng-if="availableView == 'grid'">view_module</md-icon>
+            <md-icon ng-if="availableView == 'list'">view_week</md-icon>
+            <md-icon ng-if="availableView == 'graph'">bubble_chart</md-icon>
+            <md-icon ng-if="availableView == 'map'">public</md-icon>
+        </label> -->
+    </div>
+    <div ng-class="['col-md-7']">
+        <div ng-class="['methodology']">
+            <a href="{{lang}}/{{corpusId}}/methodology">
+                <div ng-class="['title']">Methodology</div>
+                <div ng-class="['subtitle']" ng-bind-html="subtitle"></div>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Second row -->
+<div ng-class="['row', 'content', 'webentity', 'no-gutter']">
+    <div ng-class="['col-sm-12', 'col-md-5', 'no-gutter', 'full-height']" ng-controller="mapController">
+        <!-- Thumbnail -->
+        <div ng-class="['thumbnail']">
+            <img src="http://manet.medialab.sciences-po.fr/?url={{webEntity.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
+            <span ng-class="['italic']">Thumbnail of the targeted website</span>
+        </div>
+    </div>
+    <div ng-class="['col-sm-12', 'col-md-7', 'no-gutter', 'full-height']">
+        <div ng-class="['metadata']">
+            <table ng-class="['table', 'table-hover']">
+                <tr ng-show="isShowable('FULL_NAME');">
+                    <td ng-class="['name', 'col-md-4']">Nom</td>
+                    <td ng-class="['value']">{{webEntity.FULL_NAME}}</td>
+                </tr>
+                <tr ng-show="isShowable('URL');">
+                    <td ng-class="['name', 'col-md-4']">URL</td>
+                    <td ng-class="['value']"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
+                </tr>
+                <tr ng-show="webEntity.CORPUS == 'perou'">
+                    <td ng-class="['name', 'col-md-4']">Corpus</td>
+                    <td ng-class="['value']">Site d'intérêt pour la campagne électorale et les élections générales 2016 au Pérou</td>
+                </tr>
+                <tr ng-show="isShowable('CANDIDATE_NAME');">
+                    <td ng-class="['name', 'col-md-4']">Nom du candidat (en usage)</td>
+                    <td ng-class="['value']">{{webEntity.CANDIDATE_NAME}}</td>
+                </tr>
+                <tr ng-show="isShowable('CANDIDATE_FORENAME');">
+                    <td ng-class="['name', 'col-md-4']">Nom du candidat (officiel)</td>
+                    <td ng-class="['value']">{{webEntity.CANDIDATE_FORENAME}}</td>
+                </tr>
+                <tr ng-show="isShowable('POLITICAL_PARTY');">
+                    <td ng-class="['name', 'col-md-4']">Parti politique</td>
+                    <td ng-class="['value']">{{webEntity.POLITICAL_PARTY}}</td>
+                </tr>
+                <tr ng-show="isShowable('SOURCE');">
+                    <td ng-class="['name', 'col-md-4']">Type(s) de source</td>
+                    <td ng-class="['value']">{{webEntity.SOURCE | translate:this:'source'}}</td>
+                </tr>
+                <tr ng-show="isShowable('ACTORS_TYPE');">
+                    <td ng-class="['name', 'col-md-4']">Type(s) d'acteur</td>
+                    <td ng-class="['value']">{{webEntity.ACTORS_TYPE | translate:this:'actorsType'}}</td>
+                </tr>
+                <tr ng-show="isShowable('LANGUAGE');">
+                    <td ng-class="['name', 'col-md-4']">Langue(s) du site</td>
+                    <td ng-class="['value']">{{webEntity.LANGUAGE | translate:this:'language'}}</td>
+                </tr>
+                <tr ng-show="isShowable('AREA');">
+                    <td ng-class="['name', 'col-md-4']">Zone(s) géographique(s) concernée(s)</td>
+                    <td ng-class="['value']">{{webEntity.AREA | translate:this:'area'}}</td>
+                </tr>
+                <tr ng-show="isShowable('ABSTRACT_FR');">
+                    <td ng-class="['name', 'col-md-4']">Résumé</td>
+                    <td ng-class="['value']">{{webEntity.ABSTRACT_FR}}</td>
+                </tr>
+                <tr ng-show="isShowable('ABSTRACT_FR');">
+                    <td ng-class="['name', 'col-md-4']">Resumen</td>
+                    <td ng-class="['value']">{{webEntity.ABSTRACT_ES}}</td>
+                </tr>
+            </table>
+            <div>Attention : certains sites peuvent être inaccessibles certains jours. Ne pas hésiter à les consulter à un autre moment.</div>
+        </div>
+    </div>
+    </d

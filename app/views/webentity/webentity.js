@@ -3,10 +3,11 @@
 
     var app = angular.module('webcorpus.webentity', []);
 
-    app.controller('WebEntityCtrl', ['$scope', '$routeParams', '$http', 'loadCorpora', 'loadCorpus',
-        function($scope, $routeParams, $http, loadCorpora, loadCorpus) {
+    app.controller('WebEntityCtrl', ['$scope', '$routeParams', '$http', 'loadCorpora', 'loadCorpus', '$sce',
+        function($scope, $routeParams, $http, loadCorpora, loadCorpus, $sce) {
             // Init variables
             var filter,
+                itemFacets,
                 neighbors,
                 nodesColor;
 
@@ -15,7 +16,9 @@
             // Quantity of neighbors nodes displayed by default
             $scope.neighborsQuantity = 5;
             $scope.corpusId = $routeParams.corpusId;
+            $scope.webEntityId = $routeParams.webEntityId;
             $scope.lang = $routeParams.lang;
+            $scope.currentView = 'webentity';
 
             // Load all the corpora descriptions
             loadCorpora.getCorpora().then(function(data) {
@@ -64,6 +67,12 @@
                 }
             }
 
+            // Return true if this field should be shown for this item, otherwise return false
+            // A facet is showable for an item if it is not empty and not equal to 'not_applicable'
+            $scope.isShowable = function(item) {
+                return ($scope.webEntity && $scope.webEntity[item] && ($scope.webEntity[item] != '') && ($scope.webEntity[item] != 'not_applicable'));
+            }
+
             // Add a method to the graph model that returns an object with every neighbors of a node inside
             if (!sigma.classes.graph.hasMethod('neighbors')) {
                 sigma.classes.graph.addMethod('neighbors', function(nodeId) {
@@ -78,13 +87,12 @@
             };
 
             // Load corpus
-            var itemFacets;
             loadCorpus.getCorpus($scope.corpusId).then(function(data) {
                 data = data.split('\n');
                 itemFacets = data[0].split('\t');
                 $.each(data.slice(1), function(index_01, item_01) {
                     item_01 = item_01.split('\t');
-                    if (item_01[0] == $routeParams.webEntityId) {
+                    if (item_01[0] == $scope.webEntityId) {
                         $scope.webEntity = {};
                         $.each(itemFacets, function(index_02, item_02) {
                             $scope.webEntity[item_02] = item_01[index_02];
@@ -109,14 +117,14 @@
                     filter = new sigma.plugins.filter(s);
                     $scope.graph = s;
                     var node = $.grep($scope.graph.graph.nodes(), function(item, index) {
-                        return item.id == $routeParams.webEntityId;
+                        return item.id == $scope.webEntityId;
                     })[0];
                     var color = $.grep($scope.categories.actorsType2.values, function(item, index) {
                         return item.id == node.attributes.ACTORS_TYPE_2;
                     })[0].color;
                     var ids = [];
-                    ids.push($routeParams.webEntityId);
-                    neighbors = $scope.graph.graph.neighbors($routeParams.webEntityId);
+                    ids.push($scope.webEntityId);
+                    neighbors = $scope.graph.graph.neighbors($scope.webEntityId);
                     $.each(neighbors, function(index, item) {
                         ids.push(item.id);
                     });
@@ -130,7 +138,7 @@
                     });
                     // Color the connected edges
                     $scope.graph.graph.edges().forEach(function(e, i) {
-                        if (e.source == $routeParams.webEntityId || e.target == $routeParams.webEntityId) {
+                        if (e.source == $scope.webEntityId || e.target == $scope.webEntityId) {
                             e.color = color;
                             // Remove edge from edges array
                             $scope.graph.graph.dropEdge(e.id);
@@ -138,8 +146,6 @@
                             $scope.graph.graph.addEdge(e);
                         }
                     });
-
-
 
                     $scope.graph.refresh();
                 }

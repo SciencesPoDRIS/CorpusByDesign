@@ -20,7 +20,6 @@
             var firstLoad = true;
 
             // Init scope variables
-            $scope.filtersIcon = 'glyphicon-chevron-down';
             $scope.categoryQuantity = 3;
             $scope.queryTerm = '';
             $scope.corpusId = $routeParams.corpusId;
@@ -197,23 +196,51 @@
             }
 
             /* *
-             * Return true if the element matches the search criteria, else return false
-             * @var element 
+             * Return true if the item matches the search criteria, else return false
+             * @var item 
              * @var searchCriteria JSONObject
              * 
              * @return boolean
              * */
-            var isSearchedAmongCriteria = function(searchCriteria, element) {
+            var isSearchedAmongCriteria = function(searchCriteria, item) {
                 bool_01 = true;
                 $.each(searchCriteria, function(index_01, item_01) {
                     bool_02 = false;
-                    elementCriteriaValues = element[$scope.categories[index_01].mappedField].split(multiValuesSeparator);
+                    elementCriteriaValues = item[$scope.categories[index_01].mappedField].split(multiValuesSeparator);
                     $.each(elementCriteriaValues, function(index_02, item_02) {
                         bool_02 = bool_02 || (item_01.indexOf(item_02) >= 0);
                     });
                     bool_01 = bool_01 && bool_02;
                 });
                 return bool_01;
+            }
+
+            // Remove accentuated characters from a string
+            var accentsTidy = function(s) {
+                var r = s.toLowerCase();
+                r = r.replace(new RegExp(/\s/g),"");
+                r = r.replace(new RegExp(/[àáâãäå]/g),"a");
+                r = r.replace(new RegExp(/æ/g),"ae");
+                r = r.replace(new RegExp(/ç/g),"c");
+                r = r.replace(new RegExp(/[èéêë]/g),"e");
+                r = r.replace(new RegExp(/[ìíîï]/g),"i");
+                r = r.replace(new RegExp(/ñ/g),"n");
+                r = r.replace(new RegExp(/[òóôõö]/g),"o");
+                r = r.replace(new RegExp(/œ/g),"oe");
+                r = r.replace(new RegExp(/[ùúûü]/g),"u");
+                r = r.replace(new RegExp(/[ýÿ]/g),"y");
+                r = r.replace(new RegExp(/\W/g),"");
+                return r;
+            };
+
+            var isSearchedFullText = function(query, item) {
+                var result = (query == '') ? true : false;
+                query = query.split(' ').map(function(s) { return accentsTidy(s); });
+                tmp = accentsTidy(item.FULL_NAME) + ' ' + accentsTidy(item.ACTORS_TYPE) + ' ' + accentsTidy(item.AREA) + ' ' + accentsTidy(item.ABSTRACT_FR) + ' ' + accentsTidy(item.ABSTRACT_ES) + ' ' + accentsTidy(item.CANDIDATE_NAME) + ' ' + accentsTidy(item.POLITICAL_PARTY);
+                for (var i in query) {
+                    result = result || (tmp.indexOf(query[i]) == -1 ? false : true);
+                }
+                return result;
             }
 
             $scope.filter = function(category, value) {
@@ -243,11 +270,7 @@
                 $scope.filteredResults = $scope.initResults.filter(function(item) {
                     if ((
                             // Check if the searched term is present into the name of the site or into the actors' type of the site
-                            (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
-                            || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
-                            || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
-                            || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0))
-                            && isSearchedAmongCriteria(searchCriteria, item)) {
+                            (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
                         ids.push(item.ID);
                         // Increment categories count, for those who are displayed
                         $.each($scope.categories, function(index_02, item_02) {
@@ -348,16 +371,7 @@
                 });
                 ids = [];
                 $scope.filteredResults = $scope.initResults.filter(function(item) {
-                    if ((
-                            // Check if the searched term is present into the name of the site or into the actors' type of the site
-                            (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
-                            || (item.ACTORS_TYPE.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
-                            || (item.AREA.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
-                            || (item.ABSTRACT_FR.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
-                            || (item.ABSTRACT_ES.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
-                            || (item.CANDIDATE_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)
-                            || (item.POLITICAL_PARTY.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0))
-                            && isSearchedAmongCriteria(searchCriteria, item)) {
+                    if (isSearchedFullText($scope.queryTerm, item) && isSearchedAmongCriteria(searchCriteria, item)) {
                         ids.push(item.ID);
                         // Increment categories count, for those who are displayed
                         $.each($scope.categories, function(index_02, item_02) {
@@ -380,7 +394,6 @@
                     if (item.isDiplayed) {
                         // Filter items from facet where the count is null
                         if (firstLoad) {
-                            firstLoad = false;
                             $scope.categories[index].values = $.grep($scope.categories[index].values, function(item_02, index_02) {
                                 return item_02.count > 0;
                             });
@@ -397,7 +410,6 @@
                         if ($scope.categories[index].id == nodesColor) {
                             $.each($scope.categories[index].values.slice(0, 6), function(index_02, item_02) {
                                 item_02.color = colors[index_02].color;
-                                item_02.colorClass = colors[index_02].label;
                             });
                         }
                         // Order items of a category by alphabetical ascending order
@@ -417,9 +429,9 @@
                                 return 1;
                             } else if (b.id == 'other') {
                                 return -1;
-                            } else if (a.label.toLowerCase() < b.label.toLowerCase()) {
+                            } else if (accentsTidy(a.label) < accentsTidy(b.label)) {
                                 return -1;
-                            } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
+                            } else if (accentsTidy(a.label) > accentsTidy(b.label)) {
                                 return 1;
                                 // Should never happen
                             } else {
@@ -428,6 +440,7 @@
                         });
                     }
                 });
+                firstLoad = false;
                 $scope.filteredResultsCount = $scope.filteredResults.length;
                 $scope.display2();
             }

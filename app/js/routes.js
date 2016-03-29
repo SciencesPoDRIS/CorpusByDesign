@@ -22,6 +22,10 @@
                 templateUrl: 'app/views/webentity/webentity.html',
                 controller: 'WebEntityCtrl'
             }).
+            when('/:lang/:corpusId/map/:webEntityId', {
+                templateUrl: 'app/views/webentity/webentity_map.html',
+                controller: 'WebEntityCtrl'
+            }).
             otherwise({
                 redirectTo: '/fr/ameriquelatine'
             });

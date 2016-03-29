@@ -11,9 +11,9 @@
             templateUrl: 'app/partials/myFilters.html',
             scope: {
                 categories: '=',
-                queryTerm: '=',
                 corpusId: '=',
-                filteredResultsCount: '='
+                filteredResultsCount: '=',
+                prefix: '='
             },
             link: function($scope, element, attrs) {
                 // Uncollapse filters
@@ -25,7 +25,7 @@
                         $('.my-filters').height(($(window).height() - 127) + 'px');
                         $scope.filtersLabel = 'Less filters';
                     } else {
-                        $('.my-filters').height('200px');
+                        $('.my-filters').height('210px');
                         $scope.filtersLabel = 'More filters';
                     }
                 }

@@ -1,5 +1,6 @@
 /* app css stylesheet */
 
+
 /* Class Tools */
 
 .red {
@@ -39,6 +40,10 @@
     text-transform: capitalize;
 }
 
+.italic {
+    font-style: italic;
+}
+
 
 /* General */
 
@@ -51,7 +56,6 @@ body {
     padding: 0;
     width: 100%;
 }
-
 
 /* Fix focus */
 
@@ -340,8 +344,8 @@ ul#menu_appli li:last-child a::after {
     font-size: 18px;
 }
 
-.first-row .methodology .subtitle {
-
+.first-row .btn-view {
+    padding: 5px;
 }
 
 
@@ -364,6 +368,12 @@ ul#menu_appli li:last-child a::after {
 
 .sigma-tools .btn-link {
     background-color: #fff;
+}
+
+.sigma-tools md-icon {
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
 }
 
 .legend {
@@ -396,7 +406,7 @@ ul#menu_appli li:last-child a::after {
 
 .my-filters {
     background-color: white;
-    height: 200px;
+    height: 210px;
     position: absolute;
     width: 100%;
     z-index: 1;
@@ -416,8 +426,13 @@ ul#menu_appli li:last-child a::after {
 .my-filters .facets .facet {
     display: inline-block;
     float: none;
-    margin: 0 5px;
+    margin: 0 2px;
+    padding: 0 5px;
     vertical-align: top;
+}
+
+.my-filters .facets .facet.highlighted {
+    background-color: #cecece;
 }
 
 .my-filters .facets label {
@@ -528,19 +543,6 @@ ul#menu_appli li:last-child a::after {
     width: 95%;
 }
 
-.my-filters .search-bar .glyphicon-search {
-    color: #343333;
-    top: 3px;
-    width: 5%;
-}
-
-@media (max-width: 767px) {
-    .my-filters .search-bar .glyphicon-search {
-        float: left;
-        padding-top: 8px;
-    }
-}
-
 .my-filters .search-bar md-input-container {
     display: inline;
     text-align: center;
@@ -551,9 +553,13 @@ ul#menu_appli li:last-child a::after {
     border-bottom: 2px solid #e6142d;
     padding-bottom: 1px;
 }
+.my-filters .search-bar md-input-container:not(.md-input-invalid).md-input-focused md-icon,
+.my-filters .search-bar md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused md-icon {
+    color: rgba(0,0,0,0.87);
+}
 
 
-/* Checkboxes */
+/* MyFilters part : checkboxes */
 
 .my-filters input[type="checkbox"] {
     -webkit-appearance: none;
@@ -591,15 +597,19 @@ input[type="checkbox"]:checked:before {
     width: 20px;
 }
 
-.checkbox {
+.my-filters .checkbox {
     cursor: default;
+}
+
+.my-filters .checkbox.all {
+    font-weight: bold;
 }
 
 .my-filters .category-value.disable {
     color: #A6ACAF;
 }
 
-.category-name {
+.my-filters .category-name {
     display: inline-block;
     vertical-align: top;
     width: 85%;
@@ -609,11 +619,11 @@ input[type="checkbox"]:checked:before {
 /* Tiles */
 
 .corpus .tiles {
-    height: calc(100% - 200px);
+    height: calc(100% - 210px);
     overflow-y: scroll;
     padding: 5px;
     position: absolute;
-    top: 200px;
+    top: 210px;
     width: 100%;
 }
 
@@ -641,6 +651,17 @@ md-grid-tile {
 
 md-grid-tile a {
     border: 1px solid #b6b6b6;
+}
+
+a.md-button.md-primary.md-fab.tile-link {
+    background-color: #cecece;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+a.md-button.md-primary.md-fab.tile-link:hover {
+    background-color: #6e6e6e;
 }
 
 .tile-footer {
@@ -740,7 +761,7 @@ md-grid-tile a {
 /* Corpus Page */
 
 .corpus {
-    height: calc(100% - 127px);
+    height: calc(100% - 138px);
 }
 
 .presentation {
@@ -770,14 +791,6 @@ md-grid-tile a {
     position: absolute;
     right: 0;
     top: 0;
-}
-
-
-/* Methodology Page */
-
-.content.methodology {
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 
@@ -820,5 +833,4 @@ md-grid-tile a {
 }
 
 .webentity .neighbors li.collapse.in {
-    display: list-item;
-}
+    display: list-ite

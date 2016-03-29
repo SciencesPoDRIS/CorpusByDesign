@@ -2,7 +2,7 @@
 <div ng-include="'app/partials/header.html'"></div>
 <!-- First row -->
 <div ng-class="['first-row', 'row', 'no-gutter']">
-    <div ng-class="['col-md-9', 'title']">
+    <div ng-class="['col-md-5', 'title']">
         <span>
             <a href="{{lang}}/{{corpusId}}">Corpus Web</a>
         </span>
@@ -10,11 +10,14 @@
         <span>
             <a href="{{lang}}/{{corpusId}}">{{corpora.title}}</a>
         </span>
-        <!-- <label ng-repeat="availableView in availableViews" ng-class="['btn', 'btn-default']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView('{{availableView}}');">
-            <span ng-class="['glyphicon', 'glyphicon-th-large']" aria-hidden="true"></span>
+        <!-- <label ng-repeat="availableView in availableViews" ng-class="['btn', 'btn-default', 'btn-view']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView('{{availableView}}');">
+            <md-icon ng-if="availableView == 'grid'">view_module</md-icon>
+            <md-icon ng-if="availableView == 'list'">view_week</md-icon>
+            <md-icon ng-if="availableView == 'graph'">bubble_chart</md-icon>
+            <md-icon ng-if="availableView == 'map'">public</md-icon>
         </label> -->
     </div>
-    <div ng-class="['col-md-3']">
+    <div ng-class="['col-md-7']">
         <div ng-class="['methodology']">
             <a href="{{lang}}/{{corpusId}}/methodology">
                 <div ng-class="['title']">Methodology</div>
@@ -31,13 +34,13 @@
             <div ng-class="['sigma-tools']">
                 <div ng-class="['btn-group-vertical']">
                     <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaCenter();" tooltip-placement="right" tooltip="Center">
-                        <span ng-class="['glyphicon', 'glyphicon-record']"></span>
+                        <md-icon>adjust</md-icon>
                     </button>
                     <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaZoom();" tooltip-placement="right" tooltip="Zoom">
-                        <span ng-class="['glyphicon', 'glyphicon-plus']"></span>
+                        <md-icon>add</md-icon>
                     </button>
                     <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaUnzoom();" tooltip-placement="right" tooltip="Unzoom">
-                        <span ng-class="['glyphicon', 'glyphicon-minus']"></span>
+                        <md-icon>remove</md-icon>
                     </button>
                 </div>
             </div>
@@ -52,11 +55,6 @@
     <div ng-class="['col-sm-12', 'col-md-6', 'no-gutter', 'full-height']">
         <div ng-class="['metadata']">
             <table ng-class="['table', 'table-hover']">
-                <tr ng-repeat="(key, value) in webEntity">
-                    <td ng-class="['name', 'col-md-4']">{{key}}</td>
-                    <td ng-class="['value']">{{value}}</td>
-                </tr>
-                <!--
                 <tr>
                     <td ng-class="['name', 'col-md-4']">URL</td>
                     <td ng-class="['value']"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
@@ -109,12 +107,11 @@
                         </div>
                     </td>
                 </tr>
-                -->
             </table>
             <div ng-class="['thumbnail']">
-                <img src="http://www.robothumb.com/src/?url={{webEntity.URL}}&size=560x420"></img>
+                <img src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
                 <span ng-class="['italic']">Thumbnail of the targeted website</span>
             </div>
         </div>
     </div>
-</div>
+</div
