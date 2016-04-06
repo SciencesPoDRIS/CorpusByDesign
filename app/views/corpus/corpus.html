@@ -10,7 +10,7 @@
         <span>
             <a href="{{lang}}/{{corpusId}}">{{corpora.title}}</a>
         </span>
-        <!-- <label ng-repeat="availableView in availableViews" ng-class="['btn', 'btn-default', 'btn-view']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView('{{availableView}}');">
+        <!-- <label ng-repeat="availableView in corpora.availableViews" ng-class="['btn', 'btn-default', 'btn-view']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView('{{availableView}}');">
             <md-icon ng-if="availableView == 'grid'">view_module</md-icon>
             <md-icon ng-if="availableView == 'list'">view_week</md-icon>
             <md-icon ng-if="availableView == 'graph'">bubble_chart</md-icon>
@@ -28,7 +28,7 @@
 </div>
 <!-- Second row -->
 <div ng-class="['row', 'no-gutter', 'corpus', 'content']">
-    <div ng-class="['full-height', '{{availableView}}']" ng-show="availableView == currentView" ng-repeat="availableView in availableViews">
+    <div ng-class="['full-height', '{{availableView}}']" ng-show="availableView == currentView" ng-repeat="availableView in corpora.availableViews">
         <div ng-include="'app/partials/' + availableView + '.html'" ng-class="['full-height']"></div>
     </div>
 </div>

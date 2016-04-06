@@ -3,32 +3,30 @@
 
     var app = angular.module('webcorpus.corpus', []);
 
-    app.controller('CorpusController', ['$scope', '$routeParams', '$http', '$location', 'loadCorpora', 'loadCorpus', 'colors', '$sce',
-        function($scope, $routeParams, $http, $location, loadCorpora, loadCorpus, colors, $sce) {
+    app.controller('CorpusController', ['$scope', '$routeParams', '$location', 'loadCorpora', 'loadCorpus', 'colors', '$sce',
+        function($scope, $routeParams, $location, loadCorpora, loadCorpus, colors, $sce) {
             // Init variables
             var bool_01,
                 bool_02,
+                currentLine,
                 elementCriteriaValues,
+                headers,
                 ids,
-                itemFacets,
-                nodesColor,
+                i, j,
                 searchCriteria,
-                tmp;
+                obj;
             var defaultNodeColor = '#d3d3d3';
-            var defaultEdgeColor = '#f1f1f1';
             var multiValuesSeparator = ' ; ';
             var firstLoad = true;
 
             // Init scope variables
-            $scope.categoryQuantity = 3;
             $scope.queryTerm = '';
+            // Init routing variables
             $scope.corpusId = $routeParams.corpusId;
             $scope.lang = $routeParams.lang;
 
-            // For a checkbox, on click on label
-            $(document.body).on('click', '.checkbox > span', function() {
-                $(this).siblings('input').click();
-            });
+            // Quick and dirty fix to hide overflow on main page
+            $('body').css('overflow-y', 'hidden');
 
             // On view change ('grid', 'list', 'graph', 'map')
             $scope.changeView = function(currentView) {
@@ -36,163 +34,30 @@
                 $scope.init(currentView);
             }
 
-            // Center the whole graph
-            $scope.sigmaCenter = function() {
-                var c = $scope.graph.cameras[0]
-                c.goTo({
-                    ratio: 1,
-                    x: 0,
-                    y: 0
-                })
-            }
-
-            // Zoom on the graph
-            $scope.sigmaZoom = function() {
-                var c = $scope.graph.cameras[0]
-                c.goTo({
-                    ratio: c.ratio / c.settings('zoomingRatio')
-                })
-            }
-
-            // Unzoom on the graph
-            $scope.sigmaUnzoom = function() {
-                var c = $scope.graph.cameras[0]
-                c.goTo({
-                    ratio: c.ratio * c.settings('zoomingRatio')
-                })
-            }
-
-            // Change nodes color on the graph and the filters parts
-            $scope.changeNodesColor = function(e) {
-                nodesColor = e.currentTarget.id;
-                $scope.selectedCategory = $scope.categories[nodesColor].label;
-                switch ($scope.corpusId) {
-                    case 'climatechanges':
-                        $scope.filter();
-                        break;
-                    case 'ameriquelatine':
-                        $scope.filter2();
-                        break;
-                }
-            }
-
-            $scope.init2 = function(currentView) {
+            $scope.init = function(currentView) {
                 // Load the corpus configurations
-                loadCorpora.getCorpora().then(function(data) {
-                    $scope.corpora = data[$scope.corpusId];
-                    nodesColor = $scope.corpora.nodesColor;
-                    $scope.categories = $scope.corpora.categories;
+                loadCorpora.getCorpora($scope.corpusId).then(function(data) {
+                    $scope.corpora = data;
                     $scope.currentView = (currentView == undefined ? $scope.corpora.defaultView : currentView);
-                    $scope.availableViews = $scope.corpora.availableViews;
-                    // Load the specific corpus configuration
                     $scope.subtitle = $sce.trustAsHtml($scope.corpora.subtitle);
-
+                    
                     // Load the corpus content
                     $scope.initResults = [];
                     loadCorpus.getCorpus($scope.corpusId).then(function(data) {
                         data = data.split('\n');
-                        itemFacets = data[0].split('\t');
-                        $.each(data.slice(1), function(index_01, item_01) {
-                            item_01 = item_01.split('\t');
-                            tmp = {};
-                            $.each(itemFacets, function(index_02, item_02) {
-                                tmp[item_02] = item_01[index_02];
-                            });
-                            $scope.initResults.push(tmp);
-                        });
+                        headers = data[0].split('\t');
+                        for (i = 1; i < data.length; i++) {
+                            obj = {};
+                            currentLine = data[i].split('\t');
+                            for (j = 0; j < headers.length; j++) {
+                                obj[headers[j]] = currentLine[j];
+                            }
+                            $scope.initResults.push(obj);
+                        }
                         $scope.initResultsCount = $scope.initResults.length;
-                        $scope.filter2();
+                        $scope.filter();
                     });
                 });
-            }
-
-            $scope.init = function(currentView) {
-                // Load the corpus configurations
-                loadCorpora.getCorpora().then(function(data) {
-                    $scope.corpora = data[$scope.corpusId];
-                    nodesColor = $scope.corpora.nodesColor;
-                    $scope.categories = $scope.corpora.categories;
-                    $scope.currentView = (currentView == undefined ? $scope.corpora.defaultView : currentView);
-                    $scope.availableViews = $scope.corpora.availableViews;
-                    // Load the specific corpus configuration
-                    $scope.selectedCategory = $scope.categories[nodesColor].label;
-                });
-
-                // Load the graph
-                sigma.parsers.gexf(
-                    '../data/' + $scope.corpusId + '.gexf', {
-                        container: 'graph',
-                        settings: {
-                            defaultEdgeColor: defaultEdgeColor,
-                            edgeColor: 'default',
-                            labelThreshold: 100
-                        }
-                    },
-                    function(s) {
-                        $scope.graph = s;
-                        $scope.graph.bind('overNode outNode', function(n) {
-                            // On node hover, color all the connected edges in the node color
-                            if (n.type == 'overNode') {
-                                // Get the connected edges
-                                $scope.graph.graph.edges().forEach(function(e, i) {
-                                    if (e.source == n.data.node.id || e.target == n.data.node.id) {
-                                        e.color = n.data.node.color;
-                                        // Remove edge from edges array
-                                        $scope.graph.graph.dropEdge(e.id);
-                                        // Add edge as last element of edges array (to render it at the top of other edges)
-                                        $scope.graph.graph.addEdge(e);
-                                    }
-                                });
-                                // Simulate mouse hover effect on the tiles
-                                $('#' + n.data.node.id + ' img').addClass('hover');
-                                // On node out, reset all edges color to the default one
-                            } else if (n.type == 'outNode') {
-                                $scope.graph.graph.edges().forEach(function(e) {
-                                    e.color = defaultEdgeColor;
-                                });
-                                // Simulate mouse out effect on the tiles
-                                $('#' + n.data.node.id + ' img').removeClass('hover');
-                            }
-                            $scope.graph.refresh();
-                        });
-                        // On node click, open the webentity page
-                        $scope.graph.bind('clickNode', function(n) {
-                            $location.path($scope.lang + '/' + $scope.corpusId + '/' + n.data.node.id);
-                            $scope.$apply();
-                        });
-                        // Load the corpus
-                        $scope.initResults = [];
-                        loadCorpus.getCorpus($scope.corpusId).then(function(data) {
-                            $.each(data.split('\n').slice(1), function(index, item) {
-                                item = item.split('\t');
-                                $scope.initResults.push({
-                                    'ID': item[0],
-                                    'NAME': item[1],
-                                    'PREFIXES': item[2],
-                                    'URL': item[3],
-                                    'STATUS': item[4],
-                                    'INDEGREE': item[5],
-                                    'FULL_NAME': item[6],
-                                    'ACTORS_TYPE': item[7],
-                                    'ACTORS_TYPE_2': item[8],
-                                    'COUNTRY': item[9],
-                                    'AREA': item[11],
-                                    'ANTHROPOGENIC_CLIMATE_CHANGE': item[12],
-                                    'REDUCING_EMISSIONS': item[13],
-                                    'MITIGATION_ADAPTATION': item[14],
-                                    'INDUSTRIAL_DELEGATION': item[15],
-                                    'THEMATIC_DELEGATION': item[16],
-                                    'LANGUAGE': item[17],
-                                    'COLLECTION': item[18],
-                                    'ABSTRACT_DRAFT': item[19],
-                                    'ABSTRACT': item[20]
-                                });
-                            });
-                            $scope.initResultsCount = $scope.initResults.length;
-                            $scope.filter();
-                        });
-                    }
-                );
             }
 
             /* *
@@ -206,7 +71,7 @@
                 bool_01 = true;
                 $.each(searchCriteria, function(index_01, item_01) {
                     bool_02 = false;
-                    elementCriteriaValues = item[$scope.categories[index_01].mappedField].split(multiValuesSeparator);
+                    elementCriteriaValues = item[$scope.corpora.categories[index_01].mappedField].split(multiValuesSeparator);
                     $.each(elementCriteriaValues, function(index_02, item_02) {
                         bool_02 = bool_02 || (item_01.indexOf(item_02) >= 0);
                     });
@@ -215,32 +80,33 @@
                 return bool_01;
             }
 
-            // Remove accentuated characters from a string
+            // Replace accentuated characters from a string
             var accentsTidy = function(s) {
-                var r = s.toLowerCase();
-                r = r.replace(new RegExp(/\s/g),"");
-                r = r.replace(new RegExp(/[àáâãäå]/g),"a");
-                r = r.replace(new RegExp(/æ/g),"ae");
-                r = r.replace(new RegExp(/ç/g),"c");
-                r = r.replace(new RegExp(/[èéêë]/g),"e");
-                r = r.replace(new RegExp(/[ìíîï]/g),"i");
-                r = r.replace(new RegExp(/ñ/g),"n");
-                r = r.replace(new RegExp(/[òóôõö]/g),"o");
-                r = r.replace(new RegExp(/œ/g),"oe");
-                r = r.replace(new RegExp(/[ùúûü]/g),"u");
-                r = r.replace(new RegExp(/[ýÿ]/g),"y");
-                r = r.replace(new RegExp(/\W/g),"");
-                return r;
+                return s.toLowerCase()
+                    .replace(/[àáâãäå]/g, 'a')
+                    .replace(/æ/g, 'ae')
+                    .replace(/ç/g, 'c')
+                    .replace(/[èéêë]/g, 'e')
+                    .replace(/[ìíîï]/g, 'i')
+                    .replace(/ñ/g, 'n')
+                    .replace(/[òóôõö]/g, 'o')
+                    .replace(/œ/g, 'oe')
+                    .replace(/[ùúûü]/g, 'u')
+                    .replace(/[ýÿ]/g, 'y')
+                    .replace(/[^\w\s]/g, '');
             };
 
             var isSearchedFullText = function(query, item) {
-                var result = (query == '') ? true : false;
-                query = query.split(' ').map(function(s) { return accentsTidy(s); });
-                tmp = accentsTidy(item.FULL_NAME) + ' ' + accentsTidy(item.ACTORS_TYPE) + ' ' + accentsTidy(item.AREA) + ' ' + accentsTidy(item.ABSTRACT_FR) + ' ' + accentsTidy(item.ABSTRACT_ES) + ' ' + accentsTidy(item.CANDIDATE_NAME) + ' ' + accentsTidy(item.POLITICAL_PARTY);
-                for (var i in query) {
-                    result = result || (tmp.indexOf(query[i]) == -1 ? false : true);
+                if (query == '') {
+                    return true;
+                } else {
+                    bool_01 = false;
+                    obj = accentsTidy([item.FULL_NAME, item.ACTORS_TYPE, item.AREA, item.ABSTRACT_FR, item.ABSTRACT_ES, item.CANDIDATE_NAME, item.POLITICAL_PARTY].join(' '));
+                    for (i = 0; i < query.length; i++) {
+                        bool_01 = bool_01 || (obj.indexOf(query[i]) == -1 ? false : true);
+                    }
+                    return bool_01;
                 }
-                return result;
             }
 
             $scope.filter = function(category, value) {
@@ -250,7 +116,7 @@
                 }
                 // Create JSON object to encapsulate the search criteria
                 searchCriteria = {};
-                $.each($scope.categories, function(index_01, item_01) {
+                $.each($scope.corpora.categories, function(index_01, item_01) {
                     // Don't put language as a search criteria
                     if ((item_01.values !== undefined) && (index_01 != 'language')) {
                         searchCriteria[index_01] = [];
@@ -273,10 +139,10 @@
                             (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
                         ids.push(item.ID);
                         // Increment categories count, for those who are displayed
-                        $.each($scope.categories, function(index_02, item_02) {
-                            if ($scope.categories[index_02].isDiplayed) {
-                                $scope.categories[index_02].values.filter(function(index) {
-                                    return index.id == item[$scope.categories[index_02].mappedField];
+                        $.each($scope.corpora.categories, function(index_02, item_02) {
+                            if ($scope.corpora.categories[index_02].isDiplayed) {
+                                $scope.corpora.categories[index_02].values.filter(function(index) {
+                                    return index.id == item[$scope.corpora.categories[index_02].mappedField];
                                 })[0].count++;
                             }
                         });
@@ -286,14 +152,14 @@
                     }
                 });
                 $scope.legend = [];
-                $.each($scope.categories, function(index, item) {
+                $.each($scope.corpora.categories, function(index, item) {
                     // Order items of a category by count descending order
-                    $scope.categories[index].values.sort(function(a, b) {
+                    $scope.corpora.categories[index].values.sort(function(a, b) {
                         return b.count - a.count;
                     });
                     // Set colors to nodes and loadBar
-                    if ($scope.categories[index].id == nodesColor) {
-                        $.each($scope.categories[index].values.slice(0, 6), function(index_02, item_02) {
+                    if ($scope.corpora.categories[index].id == $scope.corpora.nodesColor) {
+                        $.each($scope.corpora.categories[index].values.slice(0, 6), function(index_02, item_02) {
                             item_02.color = colors[index_02].color;
                             item_02.colorClass = colors[index_02].label;
                             // Create the legend object
@@ -301,7 +167,7 @@
                         });
                     }
                     // Order items of a category by alphabetical ascending order
-                    $scope.categories[index].values.sort(function(a, b) {
+                    $scope.corpora.categories[index].values.sort(function(a, b) {
                         // 'Not applicable' should be the last item
                         if (a.id == 'not_applicable') {
                             return 1;
@@ -343,7 +209,7 @@
                         }
                     });
                     // Calculate the item count in percentil for the progress bar
-                    $.each($scope.categories[index].values, function(index_02, item_02) {
+                    $.each($scope.corpora.categories[index].values, function(index_02, item_02) {
                         item_02.count_percent = ((parseFloat(item_02.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
                     });
                 });
@@ -354,31 +220,30 @@
             $scope.filter2 = function(category, value) {
                 // Create JSON object to encapsulate the search criteria
                 searchCriteria = {};
-                $.each($scope.categories, function(index_01, item_01) {
-                    if (item_01.values !== undefined) {
-                        searchCriteria[index_01] = [];
-                        $.each(item_01.values, function(index_02, item_02) {
-                            // Reset count before filtering
-                            item_02.count = 0;
-                            if (item_02.isSelected) {
-                                searchCriteria[index_01].push(item_02.id);
-                            }
-                            // Set default nodes color
-                            item_02.color = defaultNodeColor;
-                            item_02.colorClass = 'grey';
-                        });
-                    }
+                $.each($scope.corpora.categories, function(index_01, item_01) {
+                    searchCriteria[index_01] = [];
+                    $.each(item_01.values, function(index_02, item_02) {
+                        // Reset count before filtering
+                        item_02.count = 0;
+                        if (item_02.isSelected) {
+                            searchCriteria[index_01].push(item_02.id);
+                        }
+                        // Set default nodes color
+                        item_02.color = defaultNodeColor;
+                        item_02.colorClass = 'grey';
+                    });
                 });
                 ids = [];
+                $scope.queryTermFormatted = accentsTidy($scope.queryTerm).split(' ');
                 $scope.filteredResults = $scope.initResults.filter(function(item) {
-                    if (isSearchedFullText($scope.queryTerm, item) && isSearchedAmongCriteria(searchCriteria, item)) {
+                    if (isSearchedFullText($scope.queryTermFormatted, item) && isSearchedAmongCriteria(searchCriteria, item)) {
                         ids.push(item.ID);
                         // Increment categories count, for those who are displayed
-                        $.each($scope.categories, function(index_02, item_02) {
-                            if ($scope.categories[index_02].isDiplayed) {
-                                elementCriteriaValues = item[$scope.categories[index_02].mappedField].split(multiValuesSeparator);
+                        $.each($scope.corpora.categories, function(index_02, item_02) {
+                            if ($scope.corpora.categories[index_02].isDiplayed) {
+                                elementCriteriaValues = item[$scope.corpora.categories[index_02].mappedField].split(multiValuesSeparator);
                                 $.each(elementCriteriaValues, function(index_03, item_03) {
-                                    $scope.categories[index_02].values.filter(function(index) {
+                                    $scope.corpora.categories[index_02].values.filter(function(index) {
                                         return index.id == item_03;
                                     })[0].count++;
                                 });
@@ -389,55 +254,43 @@
                         return false;
                     }
                 });
-                $.each($scope.categories, function(index, item) {
+                $.each($scope.corpora.categories, function(index, item) {
                     // Check that this item should be displayed
                     if (item.isDiplayed) {
                         // Filter items from facet where the count is null
                         if (firstLoad) {
-                            $scope.categories[index].values = $.grep($scope.categories[index].values, function(item_02, index_02) {
+                            $scope.corpora.categories[index].values = $.grep($scope.corpora.categories[index].values, function(item_02, index_02) {
                                 return item_02.count > 0;
                             });
                         }
                         // Calculate the item count in percentil for the progress bar
-                        $.each($scope.categories[index].values, function(index_02, item_02) {
+                        $.each($scope.corpora.categories[index].values, function(index_02, item_02) {
                             item_02.count_percent = ((parseFloat(item_02.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
                         });
                         // Order items of a category by count descending order
-                        $scope.categories[index].values.sort(function(a, b) {
+                        $scope.corpora.categories[index].values.sort(function(a, b) {
                             return b.count - a.count;
                         });
                         // Set colors to nodes and loadBar
-                        if ($scope.categories[index].id == nodesColor) {
-                            $.each($scope.categories[index].values.slice(0, 6), function(index_02, item_02) {
+                        if ($scope.corpora.categories[index].id == $scope.corpora.nodesColor) {
+                            $.each($scope.corpora.categories[index].values.slice(0, 6), function(index_02, item_02) {
                                 item_02.color = colors[index_02].color;
                             });
                         }
                         // Order items of a category by alphabetical ascending order
-                        $scope.categories[index].values.sort(function(a, b) {
-                            // 'not_applicable' should be the last item
-                            if (a.id == 'not_applicable') {
-                                return 1;
-                            } else if (b.id == 'not_applicable') {
-                                return -1;
-                                // 'dont_know' should be the  second last item
-                            } else if (a.id == 'dont_know') {
-                                return 1;
-                            } else if (b.id == 'dont_know') {
-                                return -1;
-                                // 'other' should be the third last item
-                            } else if (a.id == 'other') {
-                                return 1;
-                            } else if (b.id == 'other') {
-                                return -1;
-                            } else if (accentsTidy(a.label) < accentsTidy(b.label)) {
+                        $scope.corpora.categories[index].values.sort(function(a, b) {
+                            if (accentsTidy(a.label) < accentsTidy(b.label)) {
                                 return -1;
                             } else if (accentsTidy(a.label) > accentsTidy(b.label)) {
                                 return 1;
-                                // Should never happen
-                            } else {
-                                return 0;
                             }
                         });
+                        var t = ['other', 'dont_know', 'not_applicable'];
+                        for (i = 0; i < t.length; i++) {
+                            j = $scope.corpora.categories[index].values.map(function(e) {
+                                return e.id; }).indexOf(t[i]);
+                            $scope.corpora.categories[index].values.push($scope.corpora.categories[index].values.splice(j, 1)[0])
+                        }
                     }
                 });
                 firstLoad = false;
@@ -451,12 +304,12 @@
                 // Color nodes, according to the configuration file
                 $scope.graph.graph.nodes().forEach(function(n) {
                     if (ids.indexOf(n.id) != -1) {
-                        n.color = $scope.categories[nodesColor].values.filter(function(item) {
-                            if (n.attributes[$scope.categories[nodesColor].mappedField] == undefined) {
+                        n.color = $scope.corpora.categories[$scope.corpora.nodesColor].values.filter(function(item) {
+                            if (n.attributes[$scope.corpora.categories[$scope.corpora.nodesColor].mappedField] == undefined) {
                                 // If no mapping on this node, set default color
                                 return item.id == 'other_unknown_not_categorized';
                             } else {
-                                return item.id == n.attributes[$scope.categories[nodesColor].mappedField];
+                                return item.id == n.attributes[$scope.corpora.categories[$scope.corpora.nodesColor].mappedField];
                             }
                         })[0].color;
                     } else {
@@ -474,14 +327,7 @@
                 $scope.displayedResults = $scope.filteredResults;
             }
 
-            switch ($scope.corpusId) {
-                case 'climatechanges':
-                    $scope.init();
-                    break;
-                case 'ameriquelatine':
-                    $scope.init2();
-                    break;
-            }
+            $scope.init();
         }
     ]);
 

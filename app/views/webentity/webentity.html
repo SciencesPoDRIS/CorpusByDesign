@@ -29,22 +29,8 @@
 <!-- Second row -->
 <div ng-class="['row', 'content', 'full-height', 'webentity', 'no-gutter']">
     <div ng-class="['col-sm-12', 'col-md-6', 'no-gutter', 'full-height']">
-        <div ng-class="['row', 'graph', 'no-gutter']">
-            <div id="graph"></div>
-            <div ng-class="['sigma-tools']">
-                <div ng-class="['btn-group-vertical']">
-                    <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaCenter();" tooltip-placement="right" tooltip="Center">
-                        <md-icon>adjust</md-icon>
-                    </button>
-                    <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaZoom();" tooltip-placement="right" tooltip="Zoom">
-                        <md-icon>add</md-icon>
-                    </button>
-                    <button type="button" ng-class="['btn', 'btn-link', 'btn-xs']" ng-click="sigmaUnzoom();" tooltip-placement="right" tooltip="Unzoom">
-                        <md-icon>remove</md-icon>
-                    </button>
-                </div>
-            </div>
-        </div>
+        <!-- Graph -->
+        <my-graph corpus-id="corpusId" corpora="corpora" />
         <div ng-class="['row', 'no-gutter', 'abstract']">
             <div>Abstract</div>
             <div>

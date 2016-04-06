@@ -8,8 +8,7 @@
             // Init variables
             var filter,
                 itemFacets,
-                neighbors,
-                nodesColor;
+                neighbors;
 
             // Init scope variables
             $scope.isCollapsed = true;
@@ -21,39 +20,52 @@
             $scope.currentView = 'webentity';
 
             // Load all the corpora descriptions
-            loadCorpora.getCorpora().then(function(data) {
-                $scope.corpora = data[$scope.corpusId];
-                nodesColor = $scope.corpora.nodesColor;
-                $scope.categories = $scope.corpora.categories;
+            loadCorpora.getCorpora($scope.corpusId).then(function(data) {
+                $scope.corpora = data;
                 // Load the specific corpus configuration
                 $scope.subtitle = $sce.trustAsHtml($scope.corpora.subtitle);
+
+                // Load corpus
+                loadCorpus.getCorpus($scope.corpusId).then(function(data) {
+                    data = data.split('\n');
+                    itemFacets = data[0].split('\t');
+                    $.each(data.slice(1), function(index_01, item_01) {
+                        item_01 = item_01.split('\t');
+                        if (item_01[0] == $scope.webEntityId) {
+                            $scope.webEntity = {};
+                            $.each(itemFacets, function(index_02, item_02) {
+                                $scope.webEntity[item_02] = item_01[index_02];
+                            });
+                        }
+                    });
+                });
             });
 
             // Center the whole graph
-            $scope.sigmaCenter = function() {
-                var c = $scope.graph.cameras[0]
-                c.goTo({
-                    ratio: 1,
-                    x: 0,
-                    y: 0
-                })
-            }
+            // $scope.sigmaCenter = function() {
+            //     var c = $scope.graph.cameras[0]
+            //     c.goTo({
+            //         ratio: 1,
+            //         x: 0,
+            //         y: 0
+            //     })
+            // }
 
             // Zoom on the graph
-            $scope.sigmaZoom = function() {
-                var c = $scope.graph.cameras[0]
-                c.goTo({
-                    ratio: c.ratio / c.settings('zoomingRatio')
-                })
-            }
+            // $scope.sigmaZoom = function() {
+            //     var c = $scope.graph.cameras[0]
+            //     c.goTo({
+            //         ratio: c.ratio / c.settings('zoomingRatio')
+            //     })
+            // }
 
             // Unzoom on the graph
-            $scope.sigmaUnzoom = function() {
-                var c = $scope.graph.cameras[0]
-                c.goTo({
-                    ratio: c.ratio * c.settings('zoomingRatio')
-                })
-            }
+            // $scope.sigmaUnzoom = function() {
+            //     var c = $scope.graph.cameras[0]
+            //     c.goTo({
+            //         ratio: c.ratio * c.settings('zoomingRatio')
+            //     })
+            // }
 
             // Collapse or uncollapse neighbors
             $scope.collapse = function() {
@@ -86,21 +98,6 @@
                 });
             };
 
-            // Load corpus
-            loadCorpus.getCorpus($scope.corpusId).then(function(data) {
-                data = data.split('\n');
-                itemFacets = data[0].split('\t');
-                $.each(data.slice(1), function(index_01, item_01) {
-                    item_01 = item_01.split('\t');
-                    if (item_01[0] == $scope.webEntityId) {
-                        $scope.webEntity = {};
-                        $.each(itemFacets, function(index_02, item_02) {
-                            $scope.webEntity[item_02] = item_01[index_02];
-                        });
-                    }
-                });
-            });
-
             /*
             // Load the graph
             sigma.parsers.gexf(
@@ -119,7 +116,7 @@
                     var node = $.grep($scope.graph.graph.nodes(), function(item, index) {
                         return item.id == $scope.webEntityId;
                     })[0];
-                    var color = $.grep($scope.categories.actorsType2.values, function(item, index) {
+                    var color = $.grep($scope.corpora.categories.actorsType2.values, function(item, index) {
                         return item.id == node.attributes.ACTORS_TYPE_2;
                     })[0].color;
                     var ids = [];
@@ -130,9 +127,9 @@
                     });
                     // Color the connected nodes, ie the selected node and its neighbors
                     $scope.graph.graph.nodes().forEach(function(node) {
-                        if ((ids.indexOf(node.id) != -1) && (node.attributes[$scope.categories[nodesColor].mappedField] !== undefined)) {
-                            node.color = $scope.categories[nodesColor].values.filter(function(item) {
-                                return item.id == node.attributes[$scope.categories[nodesColor].mappedField];
+                        if ((ids.indexOf(node.id) != -1) && (node.attributes[$scope.corpora.categories[$scope.corpora.nodesColor].mappedField] !== undefined)) {
+                            node.color = $scope.corpora.categories[$scope.corpora.nodesColor].values.filter(function(item) {
+                                return item.id == node.attributes[$scope.corpora.categories[$scope.corpora.nodesColor].mappedField];
                             })[0].color;
                         }
                     });

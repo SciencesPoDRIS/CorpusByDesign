@@ -1,6 +1,5 @@
 /* app css stylesheet */
 
-
 /* Class Tools */
 
 .red {
@@ -402,11 +401,11 @@ ul#menu_appli li:last-child a::after {
 }
 
 
-/* Filters */
+/* MyFilters part : Facets */
 
 .my-filters {
     background-color: white;
-    height: 210px;
+    height: 213px;
     position: absolute;
     width: 100%;
     z-index: 1;
@@ -426,8 +425,8 @@ ul#menu_appli li:last-child a::after {
 .my-filters .facets .facet {
     display: inline-block;
     float: none;
-    margin: 0 2px;
-    padding: 0 5px;
+    margin: 0 2px 5px 2px;
+    padding: 0 5px 8px 5px;
     vertical-align: top;
 }
 
@@ -437,13 +436,18 @@ ul#menu_appli li:last-child a::after {
 
 .my-filters .facets label {
     font-weight: normal;
-    width: 100%;
+    padding: 0;
+    width: 90%;
+}
+
+.my-filters .facets .all > label {
+    font-weight: bold;
 }
 
 .my-filters .facets md-progress-linear {
     margin-bottom: 15px;
     margin-left: 20px;
-    width: 55%;
+    width: 70%;
 }
 
 .my-filters .facets .facet .grey md-progress-linear .md-container {
@@ -525,7 +529,7 @@ ul#menu_appli li:last-child a::after {
 }
 
 
-/* Search */
+/* MyFilters part : Search */
 
 .my-filters .search-bar {
     height: 40px;
@@ -559,7 +563,7 @@ ul#menu_appli li:last-child a::after {
 }
 
 
-/* MyFilters part : checkboxes */
+/* MyFilters part : Checkboxes */
 
 .my-filters input[type="checkbox"] {
     -webkit-appearance: none;
@@ -569,6 +573,7 @@ ul#menu_appli li:last-child a::after {
     color: #e6142d;
     height: 1.25em;
     margin: 0;
+    outline: none;
     position: relative;
     vertical-align: top;
     width: 1.25em;
@@ -603,6 +608,8 @@ input[type="checkbox"]:checked:before {
 
 .my-filters .checkbox.all {
     font-weight: bold;
+    line-height: 24px;
+    vertical-align: middle;
 }
 
 .my-filters .category-value.disable {
@@ -612,7 +619,7 @@ input[type="checkbox"]:checked:before {
 .my-filters .category-name {
     display: inline-block;
     vertical-align: top;
-    width: 85%;
+    width: 80%;
 }
 
 
@@ -761,7 +768,7 @@ a.md-button.md-primary.md-fab.tile-link:hover {
 /* Corpus Page */
 
 .corpus {
-    height: calc(100% - 138px);
+    height: calc(100% - 153px);
 }
 
 .presentation {
@@ -833,4 +840,12 @@ a.md-button.md-primary.md-fab.tile-link:hover {
 }
 
 .webentity .neighbors li.collapse.in {
-    display: list-ite
+    display: list-item;
+}
+
+
+/* Methodology Page */
+
+.content.methodology {
+    padding: 15px;
+}

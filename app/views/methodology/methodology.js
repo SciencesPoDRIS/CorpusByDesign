@@ -5,12 +5,13 @@
 
     app.controller('MethodologyController', ['$scope', '$routeParams', '$sce', 'loadCorpora',
         function($scope, $routeParams, $sce, loadCorpora) {
+            // Init routing variables
             $scope.corpusId = $routeParams.corpusId;
             $scope.lang = $routeParams.lang;
 
             // Load all the corpora descriptions
-            loadCorpora.getCorpora().then(function(data) {
-                $scope.corpora = data[$scope.corpusId];
+            loadCorpora.getCorpora($scope.corpusId).then(function(data) {
+                $scope.corpora = data;
                 $scope.purpose = $sce.trustAsHtml($scope.corpora.purpose);
                 $scope.selection = $sce.trustAsHtml($scope.corpora.selection);
                 $scope.indexing = $sce.trustAsHtml($scope.corpora.indexing);
@@ -18,7 +19,6 @@
                 $scope.update = $sce.trustAsHtml($scope.corpora.update);
                 $scope.authors = $sce.trustAsHtml($scope.corpora.authors);
                 $scope.size = $sce.trustAsHtml($scope.corpora.size);
-                // Load the specific corpus configuration
                 $scope.subtitle = $sce.trustAsHtml($scope.corpora.subtitle);
             });
         }

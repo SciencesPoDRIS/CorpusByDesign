@@ -9,9 +9,9 @@
     app.factory('loadCorpora', ['$http',
         function($http) {
             return {
-                getCorpora: function() {
+                getCorpora: function(corpusId) {
                     return $http.get('../data/corpora.json', {cache: true}).then(function(data) {
-                        return data.data.corpora;
+                        return data.data.corpora[corpusId];
                     });
                 }
             }

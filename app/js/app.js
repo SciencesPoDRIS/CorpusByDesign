@@ -15,8 +15,9 @@
         'ui.bootstrap'
     ]);
 
-    app.controller('mapController', ['$scope', '$window',
-        function($scope, $window) {
+    app.controller('mapController', ['$scope', '$window', '$timeout',
+        function($scope, $window, $timeout) {
+
             var m_width = $('#map').width(),
                 width = 965,
                 height = 585,
@@ -30,8 +31,7 @@
                 .style('opacity', 0);
 
             var projection = d3.geo.equirectangular()
-                .center([-75, -35])
-                .scale(300)
+                .center([-50, -15])
                 .translate([width / 2, height / 1.5]);
 
             var path = d3.geo.path()
@@ -88,7 +88,7 @@
 
             $scope.countryClicked = function(country) {
                 // Unselect all area checkboxes but the one of the area clicked
-                $.each($scope.categories.area.values, function(index, item) {
+                $.each($scope.corpora.categories.area.values, function(index, item) {
                     if (item.id != country.id) {
                         item.isSelected = false;
                     } else {
@@ -118,18 +118,24 @@
             }
 
             $scope.getCountryLabel = function(countryId) {
-                return $scope.categories.area.values.filter(
+                return $scope.corpora.categories.area.values.filter(
                     function(item, index) {
                         return item.id == countryId;
                     }
                 )[0].label;
             }
 
+            // Recalculate the map dimensions when the whole DOM is loaded
+            $timeout(
+                function() {
+                    $(window).resize();
+                }
+            );
+
             $(window).resize(function() {
-                var w = $('#map').width();
-                var h = $('#map').height();
-                svg.attr('width', w);
-                svg.attr('height', h);
+                svg.attr('width', $('#map').width());
+                svg.attr('height', $('#map').height());
+                d3.select('g').attr('transform', 'scale(3.8) translate(-300, -300)');
             });
         }
     ]);
