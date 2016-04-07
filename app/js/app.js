@@ -135,7 +135,7 @@
             $(window).resize(function() {
                 svg.attr('width', $('#map').width());
                 svg.attr('height', $('#map').height());
-                d3.select('g').attr('transform', 'scale(3.8) translate(-300, -300)');
+                d3.select('g').attr('transform', 'scale(3.6) translate(-300, -300)');
             });
         }
     ]);
