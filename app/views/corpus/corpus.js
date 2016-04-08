@@ -293,7 +293,6 @@
                         }
                     }
                 });
-                firstLoad = false;
                 $scope.filteredResultsCount = $scope.filteredResults.length;
                 $scope.display2();
             }
@@ -325,6 +324,11 @@
             // Filter the results to display the current page
             $scope.display2 = function() {
                 $scope.displayedResults = $scope.filteredResults;
+                if(!firstLoad) {
+                    $scope.$apply();
+                } else {
+                    firstLoad = false;
+                }
             }
 
             $scope.init();
