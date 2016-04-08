@@ -24,11 +24,13 @@
                     if (!$scope.isCollapsed) {
                         $('.my-filters').height(($(window).height() - 138) + 'px');
                         $scope.filtersLabel = 'Less filters';
-                        $('.grid-list .tile-link').hide()
+                        $('.grid-list .tile-link').hide();
+                        $('.my-filters .facets').css('overflow-y', 'auto');
                     } else {
                         $('.my-filters').height('213px');
                         $scope.filtersLabel = 'More filters';
                         $('.grid-list .tile-link').show();
+                        $('.my-filters .facets').css('overflow-y', 'hidden');
                     }
                 }
 
