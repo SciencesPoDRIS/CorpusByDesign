@@ -20,12 +20,14 @@
             <md-icon ng-if="availableView == 'graph'">bubble_chart</md-icon>
             <md-icon ng-if="availableView == 'map'">public</md-icon>
         </label> -->
+        <div ng-class="['update']">Update : {{corpora.update}}</div>
     </div>
     <div ng-class="['col-md-7']">
         <div ng-class="['methodology']">
             <a href="{{lang}}/{{corpusId}}/methodology">
                 <div ng-class="['title']">Methodology</div>
                 <div ng-class="['subtitle']" ng-bind-html="subtitle"></div>
+                <span> [...]</span>
             </a>
         </div>
     </div>
