@@ -1,5 +1,8 @@
 <div ng-class="['my-filters']">
-    <div ng-class="['col-md-offset-3', 'col-md-6', 'search-bar']">
+    <div ng-class="['col-md-3', 'search-bar']">
+        Filtered by ...
+    </div>
+    <div ng-class="['col-md-6', 'search-bar']">
         <md-input-container md-no-float>
             <md-icon ng-class="['icon-flip-horizontal']">search</md-icon>
             <span>
@@ -11,18 +14,26 @@
         <div ng-class="['row', 'no-gutter', 'full-height']">
             <div ng-repeat="category in categories" ng-class="['col-md-4', 'advanced-search', 'facet', '{{category.id}}', category.isHighlighted ? 'highlighted' : '']" ng-if="category.isDiplayed" ng-model="categories">
                 <div ng-class="['checkbox', 'all']">
-                    <label ng-class="['category-name', 'ellipsed']">
+                    <!-- <label ng-class="['category-name', 'ellipsed']">
                         <input id="{{category.id}}" type="checkbox" ng-click="selectAll(category.id);" checked />
                         <span ng-if="category.isHighlighted"> {{prefix}} :</span> {{category.label}}
-                    </label>
+                    </label> -->
+                    <md-checkbox aria-label="Select All" ng-checked="isAllChecked(category.id);" md-indeterminate="isIndeterminate(category.id);" ng-click="selectAll(category.id);">
+                        {{category.label}}
+                    </md-checkbox>
                     <md-icon uib-tooltip="{{category.label}}" tooltip-placement="bottom">help</md-icon>
                 </div>
                 <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter', {'disable' : value.count == 0}]" ng-model="$parent.value">
                     <div ng-class="['checkbox']" uib-tooltip="{{value.label}}">
-                        <label ng-class="['category-name', 'ellipsed']">
-                            <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" />
-                             {{value.label}}
-                        </label>
+                        <!-- <label ng-class="['category-name', 'ellipsed']">
+                            <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" /> {{value.label}}
+                        </label> -->
+                        <md-checkbox ng-model="value.isSelected" ng-change="filter(category.id, value.id);">
+                            {{value.label}}
+                        </md-checkbox>
+                        <!-- md-checkbox ng-checked="exists(value);" ng-click="toggle(value);">
+                            {{value.label}}
+                        </md-checkbox -->
                     </div>
                     <div ng-class="'{{value.colorClass}}'">
                         <span ng-class="['pull-right', 'count-percent']">{{value.count_percent}}%</span>

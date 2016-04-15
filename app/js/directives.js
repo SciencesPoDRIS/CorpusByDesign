@@ -54,6 +54,25 @@
                     }
                 }
 
+                $scope.isAllChecked = function(categoryId) {
+                    return $("div." + categoryId + " .checkbox:not('.all')").length == $("div." + categoryId + " .checkbox:not('.all') .md-checked").length;
+                }
+
+                $scope.isIndeterminate = function(categoryId) {
+                    return ($("div." + categoryId + " .checkbox:not('.all') .md-checked").length !== 0 && 
+                        $("div." + categoryId + " .checkbox:not('.all')").length !== $("div." + categoryId + " .checkbox:not('.all') .md-checked").length);
+                    return true;
+                }
+
+                $scope.exists = function(value) {
+                    return value.isSelected;
+                }
+
+                $scope.toggle = function(value) {
+                    value.isSelected = !value.isSelected;
+                    return value.isSelected;
+                }
+
                 $scope.filter = function(categoryId, value) {
                     // If all the checkboxes are of this category are selected, force the check of the "all" checkbox
                     if ($('.' + categoryId + ' .checkbox:not(.all) :checked').length == $('.' + categoryId + ' .checkbox:not(.all)').length) {
