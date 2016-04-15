@@ -335,6 +335,10 @@ ul#menu_appli li:last-child a::after {
     vertical-align: middle;
 }
 
+.first-row .title .update {
+    margin-left: 50px;
+}
+
 .first-row span.slash {
     margin: 0 10px;
 }
