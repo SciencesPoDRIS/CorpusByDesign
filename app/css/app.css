@@ -537,6 +537,13 @@ ul#menu_appli li:last-child a::after {
 
 /* MyFilters part : Search */
 
+.my-filters .filtered-by {
+    font-size: 14px;
+    height: 30px;
+    line-height: 26px;
+    padding: 2px 0 2px 10px;
+}
+
 .my-filters .search-bar {
     height: 40px;
     line-height: 25px;
