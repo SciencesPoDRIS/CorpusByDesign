@@ -516,6 +516,7 @@ ul#menu_appli li:last-child a::after {
 }
 
 .my-filters .facets .count-percent {
+    font-size: 10px;
     line-height: 5px;
 }
 
