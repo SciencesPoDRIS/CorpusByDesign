@@ -27,7 +27,7 @@
                         $('.grid-list .tile-link').hide();
                         $('.my-filters .facets').css('overflow-y', 'auto');
                     } else {
-                        $('.my-filters').height('213px');
+                        $('.my-filters').height('188px');
                         $scope.filtersLabel = 'More filters';
                         $('.grid-list .tile-link').show();
                         $('.my-filters .facets').css('overflow-y', 'hidden');

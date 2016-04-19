@@ -140,6 +140,13 @@
         }
     ]);
 
+    /* Theming */
+    app.config(function($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+            .primaryPalette('pink')
+            .accentPalette('red');
+    });
+
     /* Google analytics configuration */
     app.run(function(googleAnalyticsId, $rootScope, $location) {
         $rootScope.$on('$routeChangeSuccess', function() {
