@@ -14,10 +14,6 @@
         <div ng-class="['row', 'no-gutter', 'full-height']">
             <div ng-repeat="category in categories" ng-class="['col-md-4', 'advanced-search', 'facet', '{{category.id}}', category.isHighlighted ? 'highlighted' : '']" ng-if="category.isDiplayed" ng-model="categories">
                 <div ng-class="['checkbox', 'all']">
-                    <!-- <label ng-class="['category-name', 'ellipsed']">
-                        <input id="{{category.id}}" type="checkbox" ng-click="selectAll(category.id);" checked />
-                        <span ng-if="category.isHighlighted"> {{prefix}} :</span> {{category.label}}
-                    </label> -->
                     <md-checkbox aria-label="Select All" ng-checked="isAllChecked(category.id);" md-indeterminate="isIndeterminate(category.id);" ng-click="selectAll(category.id);">
                         {{category.label}}
                     </md-checkbox>
@@ -25,19 +21,13 @@
                 </div>
                 <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter', {'disable' : value.count == 0}]" ng-model="$parent.value">
                     <div ng-class="['checkbox']" uib-tooltip="{{value.label}}">
-                        <!-- <label ng-class="['category-name', 'ellipsed']">
-                            <input id="{{value.id}}" type="checkbox" name="{{category.id}}" ng-model="value.isSelected" ng-change="filter(category.id, value.id);" /> {{value.label}}
-                        </label> -->
                         <md-checkbox ng-model="value.isSelected" ng-change="filter(category.id, value.id);">
                             {{value.label}}
+                            <div ng-class="'{{value.colorClass}}'">
+                                <span ng-class="['pull-right', 'count-percent']">{{value.count_percent}}%</span>
+                                <md-progress-linear md-mode="determinate" value="{{value.count_percent}}"></md-progress-linear>
+                            </div>
                         </md-checkbox>
-                        <!-- md-checkbox ng-checked="exists(value);" ng-click="toggle(value);">
-                            {{value.label}}
-                        </md-checkbox -->
-                    </div>
-                    <div ng-class="'{{value.colorClass}}'">
-                        <span ng-class="['pull-right', 'count-percent']">{{value.count_percent}}%</span>
-                        <md-progress-linear md-mode="determinate" value="{{value.count_percent}}"></md-progress-linear>
                     </div>
                 </div>
             </div>
