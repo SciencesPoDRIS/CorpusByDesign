@@ -29,8 +29,6 @@
                         $('.my-filters').height(($(window).height() - 138) + 'px');
                         // Replace button label
                         $scope.filtersLabel = 'Less filters';
-                        // Hide links on tiles
-                        $('.grid-list .tile-link').hide();
                         // Show vertical scrollbar
                         $('.my-filters .facets').css('overflow-y', 'auto');
                     } else {
@@ -38,8 +36,6 @@
                         $('.my-filters').height('188px');
                         // Replace button label
                         $scope.filtersLabel = 'More filters';
-                        // Show links on tiles
-                        $('.grid-list .tile-link').show();
                         // Hide vertical scrollbar
                         $('.my-filters .facets').css('overflow-y', 'hidden');
                     }
@@ -87,7 +83,6 @@
                 $scope.isIndeterminate = function(categoryId) {
                     return ($("div." + categoryId + " .checkbox:not('.all') .md-checked").length !== 0 &&
                         $("div." + categoryId + " .checkbox:not('.all')").length !== $("div." + categoryId + " .checkbox:not('.all') .md-checked").length);
-                    return true;
                 }
 
                 $scope.exists = function(value) {

@@ -426,7 +426,7 @@ ul#menu_appli li:last-child a::after {
     height: 188px;
     position: absolute;
     width: 100%;
-    z-index: 1;
+    z-index: 21;
 }
 
 .my-filters .facets {
