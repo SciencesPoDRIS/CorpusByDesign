@@ -343,7 +343,11 @@ ul#menu_appli li:last-child a::after {
 
 .first-row {
     background-color: #e9e9e9;
-    padding: 68px 0 5px 0;
+    padding-top: 68px;
+}
+
+.first-row > div {
+    padding: 5px 15px;
 }
 
 .first-row .title span {
@@ -459,7 +463,7 @@ ul#menu_appli li:last-child a::after {
 }
 
 .my-filters .facets md-progress-linear {
-    width: 90%;
+    width: 88%;
 }
 
 .my-filters .facets .facet md-progress-linear ._md-container {
