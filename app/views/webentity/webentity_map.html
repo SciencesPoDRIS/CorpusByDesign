@@ -10,10 +10,6 @@
         <span>
             <a href="{{lang}}/{{corpusId}}">{{corpora.title}}</a>
         </span>
-        <span ng-class="['slash']">></span>
-        <span>
-            <a href="{{lang}}/{{corpusId}}/map/{{webEntity.ID}}">{{webEntity.FULL_NAME}}</a>
-        </span>
         <!-- <label ng-repeat="availableView in availableViews" ng-class="['btn', 'btn-default', 'btn-view']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView('{{availableView}}');">
             <md-icon ng-if="availableView == 'grid'">view_module</md-icon>
             <md-icon ng-if="availableView == 'list'">view_week</md-icon>
@@ -42,12 +38,9 @@
         </div>
     </div>
     <div ng-class="['col-sm-12', 'col-md-7', 'no-gutter', 'full-height']">
+        <div ng-class="['title']">{{webEntity.FULL_NAME}}</div>
         <div ng-class="['metadata']">
             <table ng-class="['table', 'table-hover']">
-                <tr ng-show="isShowable('FULL_NAME');">
-                    <td ng-class="['name', 'col-md-4']">Nom</td>
-                    <td ng-class="['value']">{{webEntity.FULL_NAME}}</td>
-                </tr>
                 <tr ng-show="isShowable('URL');">
                     <td ng-class="['name', 'col-md-4']">URL</td>
                     <td ng-class="['value']"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>

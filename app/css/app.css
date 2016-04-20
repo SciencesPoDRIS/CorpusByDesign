@@ -809,9 +809,10 @@ a.md-button.md-primary.md-fab.tile-link:hover {
 
 /* Webentity Page */
 
-.webentity .back-button,
 .webentity .title {
-    padding-left: 20px;
+    font-size: 25px;
+    line-height: 35px;
+    text-align: center;
 }
 
 .webentity .graph {
