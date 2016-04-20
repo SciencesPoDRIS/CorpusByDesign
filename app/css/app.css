@@ -57,6 +57,24 @@ body {
     width: 100%;
 }
 
+/* Change Placeholder default font */
+*::-webkit-input-placeholder {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+*:-ms-input-placeholder {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+*:-moz-placeholder {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+*::-moz-placeholder {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+
 /* Fix focus */
 
 *:focus {
