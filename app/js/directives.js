@@ -21,15 +21,26 @@
                 $scope.isCollapsed = true;
                 $scope.moreFilters = function() {
                     $scope.isCollapsed = !$scope.isCollapsed;
+                    // Scroll to the top left of filters
+                    $('.facets').scrollTop(0);
+                    $('.facets').scrollLeft(0);
                     if (!$scope.isCollapsed) {
+                        // Calculate filters height
                         $('.my-filters').height(($(window).height() - 138) + 'px');
+                        // Replace button label
                         $scope.filtersLabel = 'Less filters';
+                        // Hide links on tiles
                         $('.grid-list .tile-link').hide();
+                        // Show vertical scrollbar
                         $('.my-filters .facets').css('overflow-y', 'auto');
                     } else {
+                        // Calculate filters height
                         $('.my-filters').height('188px');
+                        // Replace button label
                         $scope.filtersLabel = 'More filters';
+                        // Show links on tiles
                         $('.grid-list .tile-link').show();
+                        // Hide vertical scrollbar
                         $('.my-filters .facets').css('overflow-y', 'hidden');
                     }
                 }
