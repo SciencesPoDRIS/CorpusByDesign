@@ -610,7 +610,7 @@ ul#menu_appli li:last-child a::after {
 .my-filters md-checkbox ._md-label {
     margin-left: 25px;
     margin-top: -7px;
-    width: 100%;
+    width: 90%;
 }
 
 .my-filters md-checkbox ._md-label > span,
