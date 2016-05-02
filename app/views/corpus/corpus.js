@@ -110,7 +110,7 @@
             }
 
             $scope.filter = function(category, value) {
-                if ($scope.corpusId == 'ameriquelatine') {
+                if ($scope.corpusId == 'amerique-latine') {
                     $scope.filter2();
                     return;
                 }

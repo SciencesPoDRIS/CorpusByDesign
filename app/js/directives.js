@@ -67,10 +67,10 @@
                         });
                     }
                     switch ($scope.corpusId) {
-                        case 'climatechanges':
+                        case 'climate-changes':
                             $scope.$parent.filter();
                             break;
-                        case 'ameriquelatine':
+                        case 'amerique-latine':
                             $scope.$parent.filter2();
                             break;
                     }
@@ -103,10 +103,10 @@
                         $('.' + categoryId + ' .checkbox.all input').prop('checked', false);
                     }
                     switch ($scope.corpusId) {
-                        case 'climatechanges':
+                        case 'climate-changes':
                             $scope.$parent.filter(categoryId, value);
                             break;
-                        case 'ameriquelatine':
+                        case 'amerique-latine':
                             $scope.$parent.filter2(categoryId, value);
                             break;
                     }
@@ -161,10 +161,10 @@
                     nodesColor = e.currentTarget.id;
                     $scope.selectedCategory = $scope.categories[nodesColor].label;
                     switch ($scope.corpusId) {
-                        case 'climatechanges':
+                        case 'climate-changes':
                             $scope.filter();
                             break;
-                        case 'ameriquelatine':
+                        case 'amerique-latine':
                             $scope.filter2();
                             break;
                     }

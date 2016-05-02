@@ -27,7 +27,7 @@
                 controller: 'WebEntityCtrl'
             }).
             otherwise({
-                redirectTo: '/fr/ameriquelatine'
+                redirectTo: '/fr/amerique-latine'
             });
         }
     ]);
