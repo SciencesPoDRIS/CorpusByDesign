@@ -324,7 +324,7 @@
             $scope.display2 = function() {
                 $scope.displayedResults = $scope.filteredResults;
                 if(!firstLoad) {
-                    // $scope.$apply();
+                    $scope.$apply();
                 } else {
                     firstLoad = false;
                 }
