@@ -1,2 +1,6 @@
 # CorpusByDesign
-Template study to build a frontend to manipulate corpora from the web
+Template study to build a frontend to manipulate corpus from the web
+
+
+## Install
+npm install

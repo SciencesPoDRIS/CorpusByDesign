@@ -16,7 +16,7 @@ data
 #
 # Lib files
 #
-app/lib
+node_modules
 
 #
 # Conf files

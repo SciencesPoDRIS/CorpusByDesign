@@ -13,8 +13,8 @@
     <meta name="description" content="Frontend interface to display web corpus">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
-    <link rel="stylesheet" type="text/css" href="app/lib/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.0-rc2/angular-material.min.css">
+    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/node_modules/angular-material/angular-material.min.css">
     <link rel="stylesheet" type="text/css" href="app/css/app.css">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.sciencespo.fr/bibliotheque/sites/kit2site02.bibliotheque/themes/montheme/favicon.ico">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -24,37 +24,21 @@
 <body>
     <div ng-view ng-class="['full-height']"></div>
     <!-- Project lib dependencies -->
-    <!-- // <script type="text/javascript" src="app/lib/jquery-2.1.4.min.js"></script> -->
-    <!-- // <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-    <!-- // <script type="text/javascript" src="app/lib/angular.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
-    <!-- // <script type="text/javascript" src="app/lib/angular-animate.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-animate.min.js"></script>
-    <!-- // <script type="text/javascript" src="app/lib/angular-aria.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-aria.min.js"></script>
-    <!-- // <script type="text/javascript" src="app/lib/angular-material.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.0-rc2/angular-material.min.js"></script>
-    <!-- // <script type="text/javascript" src="app/lib/angular-route.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-route.min.js"></script>
-    <!-- // <script type="text/javascript" src="app/lib/bootstrap.min.js"></script> -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="app/lib/ui-bootstrap-tpls-1.2.4.min.js"></script>
-    <!-- // <script type="text/javascript" src="https://raw.githubusercontent.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-tpls-1.2.5.min.js"></script> -->
-    <script type="text/javascript" src="app/lib/sigma.min.js"></script>
-    <script type="text/javascript" src="app/lib/sigma.parsers.gexf.min.js"></script>
-    <script type="text/javascript" src="app/lib/sigma.plugins.filter.js"></script>
-    <!-- // <script type="text/javascript" src="app/lib/jquery.csv-0.71.min.js"></script> -->
-    <!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script> -->
-    <!-- d3.js -->
-    <!-- // <script type="text/javascript" src="app/lib/d3.v3.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/angular/angular.min.js"></script>
+    <script src="/node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="/node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="/node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="/node_modules/angular-material/angular-material.min.js"></script>
+    <script src="/node_modules/angular-route/angular-route.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="/node_modules/sigma/build/sigma.min.js"></script>
+    <script src="/node_modules/sigma/build/plugins/sigma.parsers.gexf.min.js"></script>
+    <script src="/node_modules/sigma/build/plugins/sigma.plugins.filter.min.js"></script>
+    <script src="/node_modules/d3/d3.min.js"></script>
     <!-- TopoJSON -->
-    <!-- // <script type="text/javascript" src="app/lib/topojson.v1.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.js"></script>
-    <!-- Google Analytics -->
-    <!-- // <script type="text/javascript" async="" src="app/lib/ga.js"></script> -->
-    <!-- // <script src="https://www.google-analytics.com/analytics.js"></script> -->
+    <script src="/node_modules/topojson/build/topojson.min.js"></script>
     <!-- Project configuration files -->
     <script type="text/javascript" src="app/conf/conf.default.js"></script>
     <script type="text/javascript" src="app/conf/conf.js"></script>
