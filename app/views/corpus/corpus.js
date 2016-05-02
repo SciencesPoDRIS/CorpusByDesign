@@ -40,7 +40,6 @@
                     $scope.corpora = data;
                     $scope.currentView = (currentView == undefined ? $scope.corpora.defaultView : currentView);
                     $scope.subtitle = $sce.trustAsHtml($scope.corpora.subtitle);
-                    
                     // Load the corpus content
                     $scope.initResults = [];
                     loadCorpus.getCorpus($scope.corpusId).then(function(data) {
