@@ -15,8 +15,8 @@
         'ui.bootstrap'
     ]);
 
-    app.controller('mapController', ['$scope', '$window', '$timeout',
-        function($scope, $window, $timeout) {
+    app.controller('mapController', ['$scope', '$routeParams', '$window', '$timeout',
+        function($scope, $routeParams, $window, $timeout) {
 
             var m_width = $('#map').width(),
                 width = 965,
@@ -50,7 +50,7 @@
 
             var g = svg.append('g');
 
-            d3.json('../data/amerique-latine.topo.json', function(error, us) {
+            d3.json('../data/' + $scope.corpusId + '.topo.json', function(error, us) {
                 g.append('g')
                     .attr('id', 'countries')
                     .selectAll('path')
