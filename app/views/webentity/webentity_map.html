@@ -51,15 +51,15 @@
                 </tr>
                 <tr ng-show="isShowable('CANDIDATE_NAME');">
                     <td ng-class="['name', 'col-md-4']">Nom du candidat (en usage)</td>
-                    <td ng-class="['value']">{{webEntity.CANDIDATE_NAME}}</td>
+                    <td ng-class="['value']">{{webEntity.CANDIDATE_NAME | translate:this:'candidate_name'}}</td>
                 </tr>
                 <tr ng-show="isShowable('CANDIDATE_FORENAME');">
                     <td ng-class="['name', 'col-md-4']">Nom du candidat (officiel)</td>
-                    <td ng-class="['value']">{{webEntity.CANDIDATE_FORENAME}}</td>
+                    <td ng-class="['value']">{{webEntity.CANDIDATE_NAME | translate:this:'candidate_name2'}}</td>
                 </tr>
                 <tr ng-show="isShowable('POLITICAL_PARTY');">
                     <td ng-class="['name', 'col-md-4']">Parti politique</td>
-                    <td ng-class="['value']">{{webEntity.POLITICAL_PARTY}}</td>
+                    <td ng-class="['value']">{{webEntity.POLITICAL_PARTY | translate:this:'political_party'}}</td>
                 </tr>
                 <tr ng-show="isShowable('SOURCE');">
                     <td ng-class="['name', 'col-md-4']">Type(s) de source</td>
