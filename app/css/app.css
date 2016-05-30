@@ -45,6 +45,12 @@
     font-style: italic;
 }
 
+/* tooltip background color */
+md-tooltip .md-content {
+    background-color: black;
+    opacity: 1;
+}
+
 
 /* General */
 
