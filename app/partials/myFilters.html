@@ -17,7 +17,12 @@
                     <md-checkbox aria-label="Select All" ng-checked="isAllChecked(category.id);" md-indeterminate="isIndeterminate(category.id);" ng-click="selectAll(category.id);">
                         {{category.label}}
                     </md-checkbox>
-                    <md-icon uib-tooltip="{{category.label}}" tooltip-placement="bottom">help</md-icon>
+                    <md-button class="md-icon-button" aria-label="{{category.label}}">
+                        <md-tooltip md-direction="left">
+                            {{category.label}}
+                        </md-tooltip>
+                        <md-icon>help</md-icon>
+                    </md-button>
                 </div>
                 <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter', {'disable' : value.count == 0}]" ng-model="$parent.value">
                     <div ng-class="['checkbox']" uib-tooltip="{{value.label}}">
