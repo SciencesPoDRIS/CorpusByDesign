@@ -350,11 +350,15 @@ ul#menu_appli li:last-child a::after {
     padding: 5px 15px;
 }
 
-.first-row .title span {
+.first-row .title > span {
     font-size: 1.8em;
     line-height: 30px;
     margin: 0;
     vertical-align: middle;
+}
+
+.first-row .last-update {
+    padding-left: 20px;
 }
 
 .first-row .methodology .title {

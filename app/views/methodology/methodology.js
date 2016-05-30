@@ -16,6 +16,7 @@
                 $scope.selection = $sce.trustAsHtml($scope.corpora.selection);
                 $scope.indexing = $sce.trustAsHtml($scope.corpora.indexing);
                 $scope.footnote = $sce.trustAsHtml($scope.corpora.footnote);
+                $scope.creation = $sce.trustAsHtml($scope.corpora.creation);
                 $scope.update = $sce.trustAsHtml($scope.corpora.update);
                 $scope.authors = $sce.trustAsHtml($scope.corpora.authors);
                 $scope.size = $sce.trustAsHtml($scope.corpora.size);
