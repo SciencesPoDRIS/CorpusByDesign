@@ -10,7 +10,7 @@
                     <md-icon>keyboard_arrow_down</md-icon>
                 </md-button>
                 <md-menu-content>
-                    <md-menu-item ng-repeat="category in categories">
+                    <md-menu-item ng-repeat="category in categories | displayedCategories:corpora.categories">
                         <md-button id="{{category.id}}" ng-click="changeNodesColor($event)">{{category.label}}</md-button>
                     </md-menu-item>
                 </md-menu-content>
@@ -34,7 +34,6 @@
         <my-filters categories="corpora.categories" query-term="$parent.$parent.queryTerm" corpus-id="corpusId" filtered-results-count="filteredResultsCount" prefix="corpora.prefix" />
     </div>
     <!-- Tiles -->
-    <div><b>TILES</b></div>
     <div ng-class="['row', 'no-gutter', 'full-height', 'tiles']">
         <div ng-class="['full-height']">
             <div ng-class="['row', 'grid-list', 'no-gutter', 'full-height']" flex="">

@@ -27,4 +27,18 @@
         }
     ]);
 
+    app.filter('displayedCategories', [
+        function() {
+            return function(input, search) {
+                var result = {};
+                angular.forEach(search, function(value, key) {
+                    if(value.isDiplayed) {
+                        result[key] = value;
+                    }
+                });
+                return result;
+            }
+        }
+    ]);
+
 })();
