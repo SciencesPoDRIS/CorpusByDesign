@@ -1,5 +1,5 @@
 <!-- Left column -->
-<div ng-class="['col-md-7', 'no-gutter', 'full-height']">
+<div ng-class="['col-md-5', 'no-gutter', 'full-height']">
     <!-- Presentation -->
     <div ng-class="['row', 'no-gutter', 'presentation']">
         <div ng-class="['col-md-6', 'nodes-color']">
@@ -29,17 +29,18 @@
     <my-graph corpus-id="corpusId" corpora="corpora" />
 </div>
 <!-- Right column -->
-<div ng-class="['col-md-5', 'no-gutter', 'full-height']">
+<div ng-class="['col-md-7', 'no-gutter', 'full-height']">
     <div ng-class="['row', 'no-gutter', 'full-height']">
         <my-filters categories="corpora.categories" query-term="$parent.$parent.queryTerm" corpus-id="corpusId" filtered-results-count="filteredResultsCount" prefix="corpora.prefix" />
     </div>
     <!-- Tiles -->
-    <div ng-class="['row', 'full-height', 'tiles']">
+    <div><b>TILES</b></div>
+    <div ng-class="['row', 'no-gutter', 'full-height', 'tiles']">
         <div ng-class="['full-height']">
             <div ng-class="['row', 'grid-list', 'no-gutter', 'full-height']" flex="">
-                <md-grid-list md-cols-sm="1" md-cols-md="3" md-cols-gt-md="3" md-row-height-gt-md="4:3" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="10px">
+                <md-grid-list md-cols-sm="2" md-cols-md="4" md-cols-gt-md="5" md-row-height-gt-md="4:3" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="10px">
                     <md-grid-tile id="{{result.ID}}" ng-repeat="result in displayedResults" md-rowspan="1" md-colspan="1" md-colspan-sm="1" ng-class="['gray']">
-                        <a href="{{lang}}/{{corpusId}}/{{result.ID}}" target="_blank">
+                        <a href="{{lang}}/{{corpusId}}/{{result.ID}}" target="_blank" ng-class="['fit']">
                             <img ng-class="['fit', 'grayscale']" src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
                             <md-button ng-class="['md-fab', 'md-primary', 'md-mini', 'tile-link']" aria-label="add" ng-href="{{result.URL}}" target="_blank">
                                 <md-icon>link</md-icon>

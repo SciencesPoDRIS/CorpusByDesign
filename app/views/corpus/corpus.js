@@ -300,6 +300,7 @@
             $scope.display = function() {
                 $scope.displayedResults = $scope.filteredResults;
                 // Color nodes, according to the configuration file
+                /*
                 $scope.graph.graph.nodes().forEach(function(n) {
                     if (ids.indexOf(n.id) != -1) {
                         n.color = $scope.corpora.categories[$scope.corpora.nodesColor].values.filter(function(item) {
@@ -318,6 +319,7 @@
                     n.label = n.attributes.FULL_NAME;
                 });
                 $scope.graph.refresh();
+                */
             }
 
             // Filter the results to display the current page
