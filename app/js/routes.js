@@ -27,7 +27,8 @@
                 controller: 'WebEntityCtrl'
             }).
             otherwise({
-                redirectTo: '/fr/amerique-latine'
+                templateUrl: 'app/views/welcome/welcome.html',
+                controller: 'WelcomeController'
             });
         }
     ]);

@@ -5,12 +5,13 @@
     var app = angular.module('webcorpus', [
         'webcorpus.conf',
         'webcorpus.corpus',
+        'webcorpus.methodology',
+        'webcorpus.webentity',
+        'webcorpus.welcome',
         'webcorpus.directives',
         'webcorpus.filters',
         'webcorpus.routes',
         'webcorpus.services',
-        'webcorpus.webentity',
-        'webcorpus.methodology',
         'ngMaterial',
         'ui.bootstrap'
     ]);
