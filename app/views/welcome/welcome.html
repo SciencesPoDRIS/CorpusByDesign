@@ -1,1 +1,46 @@
-WELCOME !!!
+<!-- Header -->
+<div ng-include="'app/partials/header.html'"></div>
+<!-- First row -->
+<div ng-class="['first-row', 'row', 'no-gutter']">
+    <div ng-class="['col-md-5', 'title']">
+        <span>
+            <a href="{{lang}}">Corpus Web</a>
+        </span>
+    </div>
+</div>
+<!-- Second row -->
+<div ng-class="['row', 'content', 'welcome', 'no-gutter']">
+    <div ng-repeat="(corpusId, corpus) in corpora" ng-class="['corpus']">
+        <a href="{{lang}}/{{corpusId}}">
+            <div ng-class="['row', 'no-gutter']">
+                <div ng-class="['col-md-2']">
+                    <img src="images/{{corpusId}}.png" ng-class="['fit']" />
+                </div>
+                <div ng-class="['col-md-10']">
+                    <div ng-class="['row', 'no-gutter']">
+                        <span ng-class="['value', 'title']">{{corpus.title}}</span>
+                    </div>
+                    <div ng-class="['row', 'no-gutter']">
+                        <span ng-class="['col-md-1', 'no-gutter']">Date du corpus</span>
+                        <span ng-class="['value']">{{corpus.creation}}</span>
+                    </div>
+                    <div ng-class="['row', 'no-gutter']">
+                        <span ng-class="['col-md-1', 'no-gutter']">Auteurs</span>
+                        <span ng-class="['value']">{{corpus.authors}}</span>
+                    </div>
+                    <div ng-class="['row', 'no-gutter']">
+                        <span ng-class="['value']">{{corpus.purpose}}</span>
+                    </div>
+                </div>
+            </div>
+            <div ng-class="['row', 'no-gutter']">
+                <div ng-class="['col-md-12']">
+                    <span ng-repeat="tool in corpus.tools" ng-class="['tool']">
+                        <md-icon>local_offer</md-icon>
+                        {{tool}}
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
