@@ -9,7 +9,7 @@
 .htaccess
 
 #
-# Data files
+# Data folder
 #
 data
 
@@ -22,3 +22,8 @@ node_modules
 # Conf files
 #
 app/conf/conf.js
+
+#
+# Images folder
+#
+images
