@@ -99,10 +99,14 @@
                 if (query == '') {
                     return true;
                 } else {
-                    bool_01 = false;
-                    obj = accentsTidy([item.FULL_NAME, item.ACTORS_TYPE, item.AREA, item.ABSTRACT_FR, item.ABSTRACT_ES, item.CANDIDATE_NAME, item.POLITICAL_PARTY].join(' '));
+                    bool_01 = true;
+                    var valuesToFilter = ['not_applicable', 'dont_know'];
+                    var queryTermFormatted = accentsTidy($.map($scope.corpora.fullTextSearchFields, function(value, index) {
+                        return $.inArray(item[value], valuesToFilter) ? item[value] : '';
+                    }).join(' '));
+                    console.log(queryTermFormatted);
                     for (i = 0; i < query.length; i++) {
-                        bool_01 = bool_01 || (obj.indexOf(query[i]) == -1 ? false : true);
+                        bool_01 = bool_01 && (queryTermFormatted.indexOf(query[i]) == -1 ? false : true);
                     }
                     return bool_01;
                 }
@@ -133,9 +137,10 @@
                 });
                 ids = [];
                 $scope.filteredResults = $scope.initResults.filter(function(item) {
-                    if ((
+                    $scope.queryTermFormatted = accentsTidy($scope.queryTerm).split(' ');
+                    if (isSearchedFullText($scope.queryTermFormatted, item) && isSearchedAmongCriteria(searchCriteria, item)) {
+                    // if ((
                             // Check if the searched term is present into the name of the site or into the actors' type of the site
-                            (item.FULL_NAME.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.INDUSTRIAL_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.THEMATIC_DELEGATION.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0) || (item.ABSTRACT.toLowerCase().indexOf($scope.queryTerm.toLowerCase()) >= 0)) && isSearchedAmongCriteria(searchCriteria, item)) {
                         ids.push(item.ID);
                         // Increment categories count, for those who are displayed
                         $.each($scope.corpora.categories, function(index_02, item_02) {
