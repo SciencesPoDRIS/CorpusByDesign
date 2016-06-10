@@ -11,8 +11,9 @@
 <!-- Second row -->
 <div ng-class="['row', 'content', 'welcome', 'no-gutter']">
     <div ng-repeat="(corpusId, corpus) in corpora" ng-class="['corpus']">
-        <a href="{{lang}}/{{corpusId}}">
-            <div ng-class="['row', 'no-gutter']">
+        
+        <div ng-class="['row', 'no-gutter']">
+            <a href="{{lang}}/{{corpusId}}">
                 <div ng-class="['col-md-2']">
                     <img src="images/{{corpusId}}.png" ng-class="['fit']" />
                 </div>
@@ -32,15 +33,17 @@
                         <span ng-class="['value']">{{corpus.purpose}}</span>
                     </div>
                 </div>
-            </div>
-            <div ng-class="['row', 'no-gutter']">
-                <div ng-class="['col-md-12']">
-                    <span ng-repeat="tool in corpus.tools" ng-class="['tool']">
+            </a>
+        </div>
+        <div ng-class="['row', 'no-gutter']">
+            <div ng-class="['col-md-12']">
+                <span ng-repeat="tool in corpus.tools" ng-class="['tool']">
+                    <a href="{{tool.url}}" target="_blank">
                         <md-icon>local_offer</md-icon>
-                        {{tool}}
-                    </span>
-                </div>
+                        {{tool.name}}
+                    </a>
+                </span>
             </div>
-        </a>
+        </div>
     </div>
 </div>
