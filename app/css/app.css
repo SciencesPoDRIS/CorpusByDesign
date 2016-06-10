@@ -226,6 +226,7 @@ input[type=radio] {
 
 ul#menu_appli {
     float: left;
+    margin-right: 5px;
     position: relative;
     top: 11px;
     width: 400px;
@@ -280,7 +281,7 @@ ul#menu_appli li:last-child a::after {
 
 #cata_ent {
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 14px;
     height: 45px !important;
     margin-top: 4px;
     padding: 3px;
