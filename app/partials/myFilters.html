@@ -25,7 +25,10 @@
                     </md-button>
                 </div>
                 <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter', {'disable' : value.count == 0}]" ng-model="$parent.value">
-                    <div ng-class="['checkbox']" uib-tooltip="{{value.label}}">
+                    <div ng-class="['checkbox']">
+                        <md-tooltip md-direction="right">
+                            {{value.label}}
+                        </md-tooltip>
                         <md-checkbox ng-model="value.isSelected" ng-change="filter(category.id, value.id);">
                             {{value.label}}
                             <div ng-class="'{{value.colorClass}}'">

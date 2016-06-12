@@ -22,7 +22,12 @@
     <div ng-class="['row', 'no-gutter', 'legend']">
         <div ng-repeat="item in legend" ng-class="['item', 'pull-left', 'col-md-3']">
             <div ng-class="['item-color']" style="background-color: {{item.color}};"></div>
-            <span ng-class="['item-label', 'ellipsed']" uib-tooltip="{{item.label}}" tooltip-placement="bottom-left">{{item.label}}</span>
+            <span ng-class="['item-label', 'ellipsed']">
+                <md-tooltip md-direction="right">
+                    {{item.label}}
+                </md-tooltip>
+                {{item.label}}
+            </span>
         </div>
     </div>
     <!-- Graph -->
