@@ -1,14 +1,23 @@
 <div ng-class="['col-md-12', 'no-gutter', 'full-height']">
     <!-- List -->
     <div ng-class="['list']">
-        <a ng-repeat="result in displayedResults" ng-class="['cell', 'col-md-3', 'no-border']" href="{{lang}}/{{corpusId}}/{{result.ID}}">
-            <div ng-class="['col-md-3', 'thumbnail']">
-                <img ng-class="['fit', 'grayscale']" src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
-            </div>
-            <div ng-class="['col-md-9']">
-                <div ng-class="['full-name', 'ellipsed']">{{result.FULL_NAME}}</div>
-                <div ng-class="['actors-type', 'ellipsed']">{{result.ACTORS_TYPE | translate:this:'actorsType'}}</div>
-            </div>
-        </div>
+        <table>
+            <tr>
+                <th>Thumbnail</th>
+                <th>Name</th>
+                <th>Actor's Type</th>
+            </tr>
+            <tr ng-repeat="result in displayedResults" ng-class="['cell', 'no-border']">
+                <td ng-class="['thumbnail']">
+                    <img ng-class="['fit', 'grayscale']" src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
+                </td>
+                <td>
+                    <div ng-class="['full-name', 'ellipsed']">{{result.FULL_NAME}}</div>
+                </td>
+                <td>
+                    <div ng-class="['actors-type', 'ellipsed']">{{result.ACTORS_TYPE | translate:this:'actorsType'}}</div>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>

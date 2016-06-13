@@ -25,9 +25,6 @@
             $scope.corpusId = $routeParams.corpusId;
             $scope.lang = $routeParams.lang;
 
-            // Quick and dirty fix to hide overflow on main page
-            $('body').css('overflow-y', 'hidden');
-
             // On view change ('grid', 'list', 'graph', 'map')
             $scope.changeView = function(currentView) {
                 $scope.currentView = currentView;
