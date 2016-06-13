@@ -10,8 +10,7 @@
 </div>
 <!-- Second row -->
 <div ng-class="['row', 'content', 'welcome', 'no-gutter']">
-    <div ng-repeat="(corpusId, corpus) in corpora" ng-class="['corpus']">
-        
+    <div ng-repeat="(corpusId, corpus) in corpora" ng-if="corpus.isDiplayed" ng-class="['corpus']">
         <div ng-class="['row', 'no-gutter']">
             <a href="{{lang}}/{{corpusId}}">
                 <div ng-class="['col-md-2']">
