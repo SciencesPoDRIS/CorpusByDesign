@@ -7,31 +7,34 @@
 
     app.config(['$routeProvider', '$locationProvider', 
         function($routeProvider, $locationProvider) {
-            $locationProvider.html5Mode(true);
+            // $locationProvider.html5Mode({
+            //     enabled: true,
+            //     requireBase: false
+            // });
 
             $routeProvider.
             // Welcome page
             when('/:lang', {
-                templateUrl: 'app/views/welcome/welcome.html',
+                templateUrl: 'views/welcome/welcome.html',
                 controller: 'WelcomeController'
             }).
             // Corpus page
             when('/:lang/:corpusId', {
-                templateUrl: 'app/views/corpus/corpus.html',
+                templateUrl: 'views/corpus/corpus.html',
                 controller: 'CorpusController'
             }).
             // Methodoloy page of a corpus
             when('/:lang/:corpusId/methodology', {
-                templateUrl: 'app/views/methodology/methodology.html',
+                templateUrl: 'views/methodology/methodology.html',
                 controller: 'MethodologyController'
             }).
             // Web entity description page of a corpus
             when('/:lang/:corpusId/:webEntityId', {
-                templateUrl: 'app/views/webentity/webentity.html',
+                templateUrl: 'views/webentity/webentity.html',
                 controller: 'WebEntityCtrl'
             }).
             when('/:lang/:corpusId/map/:webEntityId', {
-                templateUrl: 'app/views/webentity/webentity_map.html',
+                templateUrl: 'views/webentity/webentity_map.html',
                 controller: 'WebEntityCtrl'
             }).
             // Set default page as the welcome page in english

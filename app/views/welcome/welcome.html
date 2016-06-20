@@ -1,5 +1,5 @@
 <!-- Header -->
-<div ng-include="'app/partials/header.html'"></div>
+<div ng-include="'partials/header.html'"></div>
 <!-- First row -->
 <div ng-class="['first-row', 'row', 'no-gutter']">
     <div ng-class="['col-md-5', 'title']">
@@ -12,9 +12,9 @@
 <div ng-class="['row', 'content', 'welcome', 'no-gutter']">
     <div ng-repeat="(corpusId, corpus) in corpora" ng-if="corpus.isDiplayed" ng-class="['corpus']">
         <div ng-class="['row', 'no-gutter']">
-            <a href="{{lang}}/{{corpusId}}">
+            <a href="#/{{lang}}/{{corpusId}}">
                 <div ng-class="['col-md-2']">
-                    <img src="images/{{corpusId}}.png" ng-class="['fit']" />
+                    <img src="../images/{{corpusId}}.png" ng-class="['fit']" />
                 </div>
                 <div ng-class="['col-md-10']">
                     <div ng-class="['row', 'no-gutter']">

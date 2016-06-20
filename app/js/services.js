@@ -10,7 +10,7 @@
         function($http) {
             return {
                 getCorpora: function(corpusId) {
-                    return $http.get('data/corpora.json', { cache: true }).then(function(data) {
+                    return $http.get('../data/corpora.json', { cache: true }).then(function(data) {
                         return (typeof corpusId === 'undefined') ? data.data.corpora : data.data.corpora[corpusId];
                     });
                 }
@@ -23,7 +23,7 @@
         function($http) {
             return {
                 getCorpus: function(corpusId) {
-                    return $http.get('data/' + corpusId + '.tsv', { cache: true }).then(function(data) {
+                    return $http.get('../data/' + corpusId + '.tsv', { cache: true }).then(function(data) {
                         return data.data;
                     });
                 }
