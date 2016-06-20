@@ -42,6 +42,11 @@
                     }
                 }
 
+                $scope.currentCategoryId = undefined; // Just a reminder that we use this
+                $scope.setCategory = function(cid) {
+                    $scope.currentCategoryId = cid;
+                }
+
                 $scope.selectAll = function(categoryId) {
                     // Hide links on tiles
                     $('.grid-list .tile-link').hide();

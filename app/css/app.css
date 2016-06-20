@@ -525,6 +525,10 @@ ul#menu_appli li:last-child a::after {
     background-color: #FAFAFA;
 }
 
+.filter-category-box.selected {
+    background-color: #f9f2dc;
+}
+
 .filter-category-label {
     font-size: 1.4em;
 }

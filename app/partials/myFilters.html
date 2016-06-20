@@ -43,9 +43,11 @@
                 <div flex="40" class="filter-categories" layout="column">
                     <div
                         ng-repeat="category in categories"
-                        ng-class="['advanced-search', 'filter-category-box', '{{category.id}}', category.isHighlighted ? 'highlighted' : '']"
+                        class="advanced-search filter-category-box {{category.id}}"
+                        ng-class="{'highlighted': category.isHighlighted, 'selected': currentCategoryId == category.id}"
                         ng-if="category.isDiplayed"
                         ng-model="categories"
+                        ng-click="setCategory(category.id)"
                     >
                         <md-tooltip md-direction="bottom">
                             {{category.tooltip}}
