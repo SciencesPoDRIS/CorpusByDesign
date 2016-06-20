@@ -7,7 +7,7 @@
             </span>
         </md-input-container>
     </div>
-    <!-- <div ng-class="['no-gutter', 'col-md-12', 'facets']">
+    <div ng-class="['no-gutter', 'col-md-12', 'facets']">
         <div ng-class="['row', 'no-gutter', 'full-height']">
             <div ng-repeat="category in categories" ng-class="['col-md-4', 'advanced-search', 'facet', '{{category.id}}', category.isHighlighted ? 'highlighted' : '']" ng-if="category.isDiplayed" ng-model="categories">
                 <div ng-class="['checkbox', 'all']">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
     <div ng-class="['search-bottom']">
         <div ng-class="['pull-left', 'results-number']">
             <ng-pluralize count="filteredResultsCount" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>

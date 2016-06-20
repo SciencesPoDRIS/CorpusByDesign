@@ -1,38 +1,11 @@
 <!-- Header -->
 <div ng-include="'partials/header.html'"></div>
 <!-- First row -->
-<div ng-class="['first-row', 'row', 'no-gutter']">
-    <div ng-class="['col-md-5', 'title']">
-        <div ng-class="['pull-right']">
-            <label ng-repeat="availableView in corpora.availableViews" ng-class="['btn', 'btn-default', 'btn-view']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView(availableView);">
-                <md-icon ng-if="availableView == 'grid'">view_module</md-icon>
-                <md-icon ng-if="availableView == 'list'">view_week</md-icon>
-                <md-icon ng-if="availableView == 'graph'">bubble_chart</md-icon>
-                <md-icon ng-if="availableView == 'map'">public</md-icon>
-            </label>
-        </div>
-        <span>
-            <a href="{{lang}}">Corpus Web</a>
-        </span>
-        <span ng-class="['slash']">></span>
-        <span>
-            <a href="{{lang}}/{{corpusId}}">{{corpora.title}}</a>
-        </span>
-        <div>
-            <span ng-class="['creation-date']">Date de création : {{corpora.creation}}</span>
-            <span ng-class="['last-update']">Date de mise à jour : {{corpora.update}}</span>
-        </div>
-    </div>
-    <div ng-class="['col-md-7']">
-        <div ng-class="['methodology']">
-            <a href="{{lang}}/{{corpusId}}/methodology">
-                <span ng-class="['title']">Methodology</span>
-                <span ng-class="['subtitle']" ng-bind-html="subtitle"></span>
-                <span> [...]</span>
-            </a>
-        </div>
-    </div>
-</div>
+<top-bar
+    corpus="corpora"
+    lang="lang"
+    corpus-id="corpusId"
+></top-bar>
 <!-- Second row -->
 <div ng-class="['row', 'no-gutter', 'corpus', 'content']">
     <div ng-class="['full-height', '{{availableView}}']" ng-if="availableView == currentView" ng-repeat="availableView in corpora.availableViews">

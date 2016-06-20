@@ -219,4 +219,24 @@
         };
     }]);
 
+    app.directive('topBar', ['$sce', function($sce) {
+        return {
+            restrict: 'E',
+            templateUrl: 'partials/topBar.html',
+            scope: {
+                corpus: '=',
+                lang: '=',
+                corpusId: '='
+            },
+            link: function($scope, element, attrs) {
+                $scope.$watch('corpus', function(){
+                    if($scope.corpus) {
+                        $scope.subtitle = $sce.trustAsHtml($scope.corpus.subtitle);
+                    }
+                })
+            }
+        };
+
+    }])
+
 })();

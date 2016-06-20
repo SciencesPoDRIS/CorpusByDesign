@@ -1,0 +1,40 @@
+<div ng-class="['first-row', 'row', 'no-gutter']">
+    <div ng-class="['col-md-5', 'title']">
+        <!-- <div ng-class="['pull-right']">
+            <label ng-repeat="availableView in corpus.availableViews" ng-class="['btn', 'btn-default', 'btn-view']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView(availableView);">
+                <md-icon ng-if="availableView == 'grid'">view_module</md-icon>
+                <md-icon ng-if="availableView == 'list'">view_week</md-icon>
+                <md-icon ng-if="availableView == 'graph'">bubble_chart</md-icon>
+                <md-icon ng-if="availableView == 'map'">public</md-icon>
+            </label>
+        </div> -->
+        <h3>
+            <a href="#/{{lang}}/{{corpusId}}">{{corpus.title}}</a>
+        </h3>
+        <div>
+            <span ng-class="['creation-date']">Créé le {{corpus.creation}}</span>
+            <span ng-class="['last-update']">Mis à jour le {{corpus.update}}</span>
+        </div>
+    </div>
+    <div ng-class="['col-md-7']">
+        <div ng-class="['methodology']">
+            <a href="#/{{lang}}/{{corpusId}}/methodology" ng-class="['blockquote']" >
+                <span ng-bind-html="subtitle"></span>
+            </a>
+        </div>
+    </div>
+</div>
+<div ng-class="['tab-row', 'row', 'no-gutter']">
+    <div ng-class="['col-md-12']">
+        <md-tabs md-selected="selectedIndex">
+          <md-tab label="Home"></md-tab>
+          <md-tab ng-repeat="availableView in corpus.availableViews" label="{{
+            availableView == 'grid' ? 'Grid' :
+            availableView == 'list' ? 'List' :
+            availableView == 'graph' ? 'Network' :
+            availableView == 'map' ? 'Map' : 'Unknown View'
+            }}"></md-tab>
+          <md-tab label="Methodology"></md-tab>
+        </md-tabs>
+    </div>
+</div>
