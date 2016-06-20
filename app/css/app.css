@@ -710,7 +710,7 @@ a.md-button.md-primary.md-fab.tile-link:hover {
 }
 
 .tile-footer {
-    height: 54px;
+    height: 64px;
     padding: 0 10px;
 
     color: #333;
@@ -725,8 +725,8 @@ a.md-button.md-primary.md-fab.tile-link:hover {
 
 .tile-footer figcaption {
     position: absolute;
-    left: 6px;
-    top: 18px;
+    left: 10px;
+    top: 24px;
     bottom: 6px;
     right: 52px;
     text-align: left;
