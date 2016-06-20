@@ -81,6 +81,10 @@ body {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+.right-col {
+    border-left: 1px solid #EEE;
+}
+
 
 /* Fix focus */
 
@@ -349,7 +353,7 @@ ul#menu_appli li:last-child a::after {
 
 /* Top bar */
 .top-bar {
-    height: 186px;
+    height: 188px;
     padding-top: 68px;
 }
 
@@ -493,6 +497,47 @@ ul#menu_appli li:last-child a::after {
 
 /* MyFilters part : Facets */
 
+.filters-unfolded {
+    width: 100%;
+    height: 100%;
+}
+
+.filter-categories {
+    background-color: #EEE;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.filter-values {
+    background-color: #FFF;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.filter-category-box {
+    background-color: #EEE;
+    padding: 6px;
+    cursor: pointer;
+    border-bottom: 1px solid #DDD;
+}
+
+.filter-category-box:hover {
+    background-color: #FAFAFA;
+}
+
+.filter-category-label {
+    font-size: 1.4em;
+}
+
+.filter-category-subtitle {
+    opacity: 0.8;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+
 .my-filters {
     background-color: white;
     height: 188px;
@@ -505,7 +550,7 @@ ul#menu_appli li:last-child a::after {
     bottom: 30px;
     min-height: 75px;
     overflow-y: hidden;
-    padding: 5px 10px 5px 5px;
+    /*padding: 5px 10px 5px 5px;*/
     position: absolute;
     top: 40px;
     white-space: nowrap;

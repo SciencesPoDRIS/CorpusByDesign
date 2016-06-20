@@ -36,12 +36,54 @@
                     </div>
                 </div>
             </div> -->
+            <div ng-if="isCollapsed">
+                TODO: Collapsed Info
+            </div>
+            <div ng-if="!isCollapsed" class="filters-unfolded" layout="row">
+                <div flex="40" class="filter-categories" layout="column">
+                    <div
+                        ng-repeat="category in categories"
+                        ng-class="['advanced-search', 'filter-category-box', '{{category.id}}', category.isHighlighted ? 'highlighted' : '']"
+                        ng-if="category.isDiplayed"
+                        ng-model="categories"
+                    >
+                        <div class="filter-category-label">
+                            {{category.label}}
+                            <md-icon class="pull-right">keyboard_arrow_right</md-icon>
+                        </div>
+                        <div>
+                            <md-tooltip md-direction="left">
+                                {{category.tooltip}}
+                            </md-tooltip>
+                            <div class="filter-category-subtitle">{{category.tooltip}}</div>
+                        </div>
+                        <!-- <div ng-class="['checkbox', 'all']">
+                            <md-checkbox
+                                aria-label="Select All"
+                                ng-checked="isAllChecked(category.id);"
+                                md-indeterminate="isIndeterminate(category.id);"
+                                ng-click="selectAll(category.id);"
+                            >
+                                
+                            </md-checkbox>
+                            <md-button class="md-icon-button" aria-label="{{category.label}}">
+                                <md-tooltip md-direction="left">
+                                    {{category.tooltip}}
+                                </md-tooltip>
+                                <md-icon>help</md-icon>
+                            </md-button>
+                        </div> -->
+                    </div>
+                </div>
+                <div flex="60" class="filter-values">
+                    Values
+                </div>
+            </div>
         </div>
     </div>
     <div ng-class="['search-bottom']">
         <div ng-class="['pull-left', 'results-number']">
             <ng-pluralize count="filteredResultsCount" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>
-            <span>{{isCollapsed ? 'COLLAPSED' : 'UNFOLDED'}}</span>
         </div>
         <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters();">
             {{filtersLabel}}
