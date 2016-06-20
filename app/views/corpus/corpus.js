@@ -35,6 +35,14 @@
                 // Load the corpus configurations
                 loadCorpora.getCorpora($scope.corpusId).then(function(data) {
                     $scope.corpora = data;
+
+                    // Consolidate corpus data
+                    var cat
+                    for (cat in $scope.corpora.categories) {
+                        var category = $scope.corpora.categories[cat]
+                        category.valuesPreview = category.values.map(function(d){return d.label}).join(', ')
+                    }
+                    
                     $scope.currentView = (currentView == undefined ? $scope.corpora.defaultView : currentView);
                     
                     // Load the corpus content

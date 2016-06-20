@@ -47,16 +47,14 @@
                         ng-if="category.isDiplayed"
                         ng-model="categories"
                     >
+                        <md-tooltip md-direction="bottom">
+                            {{category.tooltip}}
+                        </md-tooltip>
                         <div class="filter-category-label">
                             {{category.label}}
                             <md-icon class="pull-right">keyboard_arrow_right</md-icon>
                         </div>
-                        <div>
-                            <md-tooltip md-direction="left">
-                                {{category.tooltip}}
-                            </md-tooltip>
-                            <div class="filter-category-subtitle">{{category.tooltip}}</div>
-                        </div>
+                        <div class="filter-category-subtitle">{{category.valuesPreview}}</div>
                         <!-- <div ng-class="['checkbox', 'all']">
                             <md-checkbox
                                 aria-label="Select All"
