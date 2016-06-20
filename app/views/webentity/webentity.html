@@ -1,5 +1,5 @@
 <!-- Header -->
-<div ng-include="'app/partials/header.html'"></div>
+<div ng-include="'partials/header.html'"></div>
 <!-- First row -->
 <div ng-class="['first-row', 'row', 'no-gutter']">
     <div ng-class="['col-md-5', 'title']">
@@ -16,7 +16,7 @@
         </span>
         <span ng-class="['slash']">></span>
         <span>
-            <a href="{{lang}}/{{corpusId}}">{{corpora.title}}</a>
+            <a href="#/{{lang}}/{{corpusId}}">{{corpora.title}}</a>
         </span>
         <div>
             <span ng-class="['creation-date']">Date de création : {{corpora.creation}}</span>
@@ -103,7 +103,7 @@
                 </tr>
             </table>
             <div ng-class="['thumbnail']">
-                <img src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
+                <img src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=1024&height=768&clipRect=0,0,1024,768&format=jpg&quality=0.3"></img>
                 <span ng-class="['italic']">Thumbnail of the targeted website</span>
             </div>
         </div>

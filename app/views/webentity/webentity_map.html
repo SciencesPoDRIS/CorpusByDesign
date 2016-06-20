@@ -1,5 +1,5 @@
 <!-- Header -->
-<div ng-include="'app/partials/header.html'"></div>
+<div ng-include="'partials/header.html'"></div>
 <!-- First row -->
 <div ng-class="['first-row', 'row', 'no-gutter']">
     <div ng-class="['col-md-5', 'title']">
@@ -25,7 +25,7 @@
     </div>
     <div ng-class="['col-md-7']">
         <div ng-class="['methodology']">
-            <a href="{{lang}}/{{corpusId}}/methodology">
+            <a href="#/{{lang}}/{{corpusId}}/methodology">
                 <span ng-class="['title']">Methodology</span>
                 <span ng-class="['subtitle']" ng-bind-html="subtitle"></span>
                 <span> [...]</span>
@@ -38,7 +38,7 @@
     <div ng-class="['col-sm-12', 'col-md-5', 'no-gutter', 'full-height']">
         <!-- Thumbnail -->
         <div ng-class="['thumbnail']">
-            <img src="http://manet.medialab.sciences-po.fr/?url={{webEntity.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
+            <img src="http://manet.medialab.sciences-po.fr/?url={{webEntity.URL}}&width=1024&height=768&clipRect=0,0,1024,768&format=jpg&quality=0.3"></img>
             <span ng-class="['italic']">Thumbnail of the targeted website</span>
         </div>
     </div>
