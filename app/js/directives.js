@@ -8,7 +8,7 @@
     app.directive('myFilters', [function() {
         return {
             restrict: 'E',
-            templateUrl: 'app/partials/myFilters.html',
+            templateUrl: 'partials/myFilters.html',
             scope: {
                 categories: '=',
                 corpusId: '=',
@@ -118,7 +118,7 @@
     app.directive('myGraph', [function() {
         return {
             restrict: 'E',
-            templateUrl: 'app/partials/myGraph.html',
+            templateUrl: 'partials/myGraph.html',
             scope: {
                 corpusId: '=',
                 corpora: '='

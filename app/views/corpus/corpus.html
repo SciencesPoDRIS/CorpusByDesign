@@ -1,5 +1,5 @@
 <!-- Header -->
-<div ng-include="'app/partials/header.html'"></div>
+<div ng-include="'partials/header.html'"></div>
 <!-- First row -->
 <div ng-class="['first-row', 'row', 'no-gutter']">
     <div ng-class="['col-md-5', 'title']">
@@ -36,6 +36,6 @@
 <!-- Second row -->
 <div ng-class="['row', 'no-gutter', 'corpus', 'content']">
     <div ng-class="['full-height', '{{availableView}}']" ng-show="availableView == currentView" ng-repeat="availableView in corpora.availableViews">
-        <div ng-include="'app/partials/' + availableView + '.html'" ng-class="['full-height']"></div>
+        <div ng-include="'partials/' + availableView + '.html'" ng-class="['full-height']"></div>
     </div>
 </div>
