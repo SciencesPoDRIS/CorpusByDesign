@@ -347,10 +347,18 @@ ul#menu_appli li:last-child a::after {
 }
 
 
-/* Content */
+/* Top bar */
+.top-bar {
+    height: 186px;
+    padding-top: 68px;
+}
 
 .first-row {
-    padding-top: 68px;
+    height: 70px;
+}
+
+.tab-row {
+    height: 50px;
 }
 
 .first-row h3 {
@@ -428,6 +436,7 @@ ul#menu_appli li:last-child a::after {
 
 .tab-row {
     border-bottom: 1px solid #EEE;
+    bottom: 0;
 }
 
 /* Graph */

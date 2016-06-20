@@ -9,7 +9,7 @@
     </div>
     <div ng-class="['no-gutter', 'col-md-12', 'facets']">
         <div ng-class="['row', 'no-gutter', 'full-height']">
-            <div ng-repeat="category in categories" ng-class="['col-md-4', 'advanced-search', 'facet', '{{category.id}}', category.isHighlighted ? 'highlighted' : '']" ng-if="category.isDiplayed" ng-model="categories">
+            <!-- <div ng-repeat="category in categories" ng-class="['col-md-4', 'advanced-search', 'facet', '{{category.id}}', category.isHighlighted ? 'highlighted' : '']" ng-if="category.isDiplayed" ng-model="categories">
                 <div ng-class="['checkbox', 'all']">
                     <md-checkbox aria-label="Select All" ng-checked="isAllChecked(category.id);" md-indeterminate="isIndeterminate(category.id);" ng-click="selectAll(category.id);">
                         {{category.label}}
@@ -35,12 +35,13 @@
                         </md-checkbox>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div ng-class="['search-bottom']">
         <div ng-class="['pull-left', 'results-number']">
             <ng-pluralize count="filteredResultsCount" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>
+            <span>{{isCollapsed ? 'COLLAPSED' : 'UNFOLDED'}}</span>
         </div>
         <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters();">
             {{filtersLabel}}

@@ -19,6 +19,7 @@
                 // Uncollapse filters
                 $scope.filtersLabel = 'More filters';
                 $scope.isCollapsed = true;
+                var offset = $('.top-bar').innerHeight() || 200;
                 $scope.moreFilters = function() {
                     $scope.isCollapsed = !$scope.isCollapsed;
                     // Scroll to the top left of filters
@@ -26,7 +27,7 @@
                     $('.facets').scrollLeft(0);
                     if (!$scope.isCollapsed) {
                         // Calculate filters height
-                        $('.my-filters').height(($(window).height() - 138) + 'px');
+                        $('.my-filters').height(($(window).height() - offset) + 'px');
                         // Replace button label
                         $scope.filtersLabel = 'Less filters';
                         // Show vertical scrollbar
