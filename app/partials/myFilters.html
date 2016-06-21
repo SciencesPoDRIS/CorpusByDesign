@@ -22,13 +22,13 @@
                         ng-model="categories"
                         ng-click="setCategory(category.id)"
                     >
-                        <md-tooltip md-direction="bottom">
+                        <md-tooltip md-direction="right">
                             {{category.tooltip}}
                         </md-tooltip>
                         <div class="filter-category-label">
                             <md-icon ng-show="category.isHighlighted">star</md-icon>
                             {{category.label}}
-                            <md-icon class="pull-right">keyboard_arrow_right</md-icon>
+                            <md-icon class="pull-right" ng-show="currentCategoryId == category.id">keyboard_arrow_right</md-icon>
                         </div>
                         <div class="filter-category-subtitle">{{category.valuesPreview}}</div>
                     </div>
@@ -53,7 +53,7 @@
                             ng-model="$parent.value"
                         >
                             <div ng-class="['checkbox']">
-                                <md-tooltip md-direction="bottom">
+                                <md-tooltip md-direction="left">
                                     {{value.label}}
                                 </md-tooltip>
                                 <md-checkbox
