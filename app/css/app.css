@@ -512,6 +512,7 @@ ul#menu_appli li:last-child a::after {
     background-color: #FFF;
     height: 100%;
     overflow-y: auto;
+    padding: 12px;
 }
 
 .filter-category-box {
@@ -526,7 +527,7 @@ ul#menu_appli li:last-child a::after {
 }
 
 .filter-category-box.selected {
-    background-color: #f9f2dc;
+    background-color: #fdedd9;
 }
 
 .filter-category-label {
@@ -540,6 +541,30 @@ ul#menu_appli li:last-child a::after {
     white-space: nowrap;
 }
 
+.filter-values label {
+    font-weight: normal;
+    padding: 0;
+    width: 90%;
+}
+.filter-values md-progress-linear {
+    width: 85%;
+}
+
+.filter-values md-progress-linear .md-container {
+    width: 98%;
+}
+.filter-values .grey md-progress-linear .md-container {
+    background-color: rgba(131, 135, 141, 0.3);
+}
+.filter-values .grey md-progress-linear .md-bar {
+    background-color: rgba(131, 135, 141, 1);
+}
+.filter-values .count-percent {
+    font-size: 10px;
+    line-height: 5px;
+}
+
+
 
 
 .my-filters {
@@ -548,108 +573,6 @@ ul#menu_appli li:last-child a::after {
     position: absolute;
     width: 100%;
     z-index: 21;
-}
-
-.my-filters .facets {
-    bottom: 30px;
-    min-height: 75px;
-    overflow-y: hidden;
-    /*padding: 5px 10px 5px 5px;*/
-    position: absolute;
-    top: 40px;
-    white-space: nowrap;
-    width: 100%;
-}
-
-.my-filters .facets .facet {
-    display: inline-block;
-    float: none;
-    margin: 0 2px 5px 2px;
-    padding: 0 5px 8px 5px;
-    vertical-align: top;
-}
-
-.my-filters .facets .facet.highlighted {
-    background-color: #cecece;
-}
-
-.my-filters .facets label {
-    font-weight: normal;
-    padding: 0;
-    width: 90%;
-}
-
-.my-filters .facets .all > label {
-    font-weight: bold;
-}
-
-.my-filters .facets md-progress-linear {
-    width: 85%;
-}
-
-.my-filters .facets .facet md-progress-linear .md-container {
-    width: 98%;
-}
-
-.my-filters .facets .facet .grey md-progress-linear .md-container {
-    background-color: rgba(131, 135, 141, 0.3);
-}
-
-.my-filters .facets .facet .grey md-progress-linear .md-bar {
-    background-color: rgba(131, 135, 141, 1);
-}
-
-.my-filters .facets .facet .pink md-progress-linear .md-container {
-    background-color: rgba(246, 165, 203, 0.3);
-}
-
-.my-filters .facets .facet .pink md-progress-linear .md-bar {
-    background-color: rgba(246, 165, 203, 1);
-}
-
-.my-filters .facets .facet .yellow md-progress-linear .md-container {
-    background-color: rgba(230, 225, 116, 0.3);
-}
-
-.my-filters .facets .facet .yellow md-progress-linear .md-bar {
-    background-color: rgba(230, 225, 116, 1);
-}
-
-.my-filters .facets .facet .green md-progress-linear .md-container {
-    background-color: rgba(131, 231, 204, 0.3);
-}
-
-.my-filters .facets .facet .green md-progress-linear .md-bar {
-    background-color: rgba(131, 231, 204, 1);
-}
-
-.my-filters .facets .facet .orange md-progress-linear .md-container {
-    background-color: rgba(251, 169, 149, 0.3);
-}
-
-.my-filters .facets .facet .orange md-progress-linear .md-bar {
-    background-color: rgba(251, 169, 149, 1);
-}
-
-.my-filters .facets .facet .brown md-progress-linear .md-container {
-    background-color: rgba(206, 167, 100, 0.3);
-}
-
-.my-filters .facets .facet .brown md-progress-linear .md-bar {
-    background-color: rgba(206, 167, 100, 1);
-}
-
-.my-filters .facets .facet .purple md-progress-linear .md-container {
-    background-color: rgba(190, 175, 215, 0.3);
-}
-
-.my-filters .facets .facet .purple md-progress-linear .md-bar {
-    background-color: rgba(190, 175, 215, 1);
-}
-
-.my-filters .facets .count-percent {
-    font-size: 10px;
-    line-height: 5px;
 }
 
 .my-filters .search-bottom {

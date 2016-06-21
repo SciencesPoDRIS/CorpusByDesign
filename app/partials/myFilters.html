@@ -37,7 +37,7 @@
                 </div>
             </div> -->
             <div ng-if="isCollapsed">
-                TODO: Collapsed Info
+                TODO: collapsed
             </div>
             <div ng-if="!isCollapsed" class="filters-unfolded" layout="row">
                 <div flex="40" class="filter-categories" layout="column">
@@ -57,26 +57,42 @@
                             <md-icon class="pull-right">keyboard_arrow_right</md-icon>
                         </div>
                         <div class="filter-category-subtitle">{{category.valuesPreview}}</div>
-                        <!-- <div ng-class="['checkbox', 'all']">
-                            <md-checkbox
-                                aria-label="Select All"
-                                ng-checked="isAllChecked(category.id);"
-                                md-indeterminate="isIndeterminate(category.id);"
-                                ng-click="selectAll(category.id);"
-                            >
-                                
-                            </md-checkbox>
-                            <md-button class="md-icon-button" aria-label="{{category.label}}">
-                                <md-tooltip md-direction="left">
-                                    {{category.tooltip}}
-                                </md-tooltip>
-                                <md-icon>help</md-icon>
-                            </md-button>
-                        </div> -->
                     </div>
                 </div>
                 <div flex="60" class="filter-values">
-                    Values
+                    <div ng-if="currentCategoryId">
+                        <div ng-class="['checkbox', 'all']">
+                            <md-checkbox
+                                aria-label="Select All"
+                                ng-checked="isAllChecked(currentCategoryId);"
+                                md-indeterminate="isIndeterminate(currentCategoryId);"
+                                ng-click="selectAll(currentCategoryId);"
+                            >
+                                Select All
+                            </md-checkbox>
+                        </div>
+                        <div
+                            ng-repeat="value in categories[currentCategoryId].values"
+                            ng-class="['category-value', 'no-gutter', {'disable' : value.count == 0}]"
+                            ng-model="$parent.value"
+                        >
+                            <div ng-class="['checkbox']">
+                                <md-tooltip md-direction="bottom">
+                                    {{value.label}}
+                                </md-tooltip>
+                                <md-checkbox
+                                    ng-model="value.isSelected"
+                                    ng-change="filter(currentCategoryId, value.id);"
+                                >
+                                    {{value.label}}
+                                    <div ng-class="'{{value.colorClass}}'">
+                                        <span ng-class="['pull-right', 'count-percent']">{{value.count_percent}}%</span>
+                                        <md-progress-linear md-mode="determinate" value="{{value.count_percent}}"></md-progress-linear>
+                                    </div>
+                                </md-checkbox>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

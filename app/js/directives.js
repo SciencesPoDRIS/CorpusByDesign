@@ -43,8 +43,10 @@
                 }
 
                 $scope.currentCategoryId = undefined; // Just a reminder that we use this
+                // $scope.currentCategory = undefined;
                 $scope.setCategory = function(cid) {
                     $scope.currentCategoryId = cid;
+                    // $scope.currentCategory = $scope.categories[cid];
                 }
 
                 $scope.selectAll = function(categoryId) {
