@@ -249,4 +249,43 @@
 
     }])
 
+    app.directive('filterCategoryBadge', [function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'partials/filterCategoryBadge.html',
+            scope: {
+                category: '='
+            },
+            link: function($scope, element, attrs) {
+                $scope.display = false
+                $scope.text = ''
+                $scope.$watch('category', function(){
+                    if($scope.category) {
+                        var selected = $scope.category.values.filter(function(cat){
+                            return cat.isSelected
+                        })
+                        var unselected = $scope.category.values.filter(function(cat){
+                            return !cat.isSelected
+                        })
+
+                        if (unselected.length == 0) {
+                            $scope.display = false
+                            $scope.text = ''
+                        } else if (selected.length == 1) {
+                            $scope.display = true
+                            $scope.text = selected[0].label
+                        } else if (selected.length == 0) {
+                            $scope.display = true
+                            $scope.text = 'Hide everything'
+                        } else {
+                            $scope.display = true
+                            $scope.text = selected.length + '/' + $scope.category.values.length + ' selected'
+                        }
+                    }
+                }, true)
+            }
+        };
+
+    }])
+
 })();

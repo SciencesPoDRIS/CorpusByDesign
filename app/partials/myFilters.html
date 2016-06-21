@@ -10,7 +10,14 @@
     <div ng-class="['no-gutter', 'col-md-12', 'facets', 'full-height']">
         <div ng-class="['row', 'no-gutter', 'full-height']">
             <div ng-if="isCollapsed">
-                TODO: collapsed
+                <div
+                    ng-repeat="category in categories"
+                    ng-if="category.isDiplayed"
+                >
+                    <filter-category-badge
+                        category="category"
+                    ></filter-category-badge>
+                </div>
             </div>
             <div ng-if="!isCollapsed" class="filters-unfolded" layout="row">
                 <div flex="40" class="filter-categories" layout="column">
@@ -31,6 +38,11 @@
                             <md-icon class="pull-right" ng-show="currentCategoryId == category.id">keyboard_arrow_right</md-icon>
                         </div>
                         <div class="filter-category-subtitle">{{category.valuesPreview}}</div>
+                        <div>
+                            <filter-category-badge
+                                category="category"
+                            ></filter-category-badge>
+                        </div>
                     </div>
                 </div>
                 <div flex="60" class="filter-values">

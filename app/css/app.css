@@ -566,9 +566,6 @@ ul#menu_appli li:last-child a::after {
     line-height: 5px;
 }
 
-
-
-
 .my-filters {
     background-color: white;
     height: 188px;
@@ -696,6 +693,38 @@ ul#menu_appli li:last-child a::after {
     display: inline-block;
     vertical-align: top;
     width: 80%;
+}
+
+
+/* Filters badge */
+
+.filter-badge {
+    width: 160px;
+    height: 36px;
+    padding: 3px;
+    border: 2px solid #DDD;
+    border-radius: 2px;
+    background-color: #FFF;
+}
+.filter-badge-title {
+    margin-top: -2px;
+    width: 125px;
+    height: 12px;
+    font-size: 0.72em;
+    opacity: 0.6;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.filter-badge-content {
+    width: 125px;
+    font-size: 1em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.filter-badge-close {
+    width: 35px;
 }
 
 
