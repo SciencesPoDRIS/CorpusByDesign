@@ -5,7 +5,7 @@
 
     var app = angular.module('webcorpus.directives', []);
 
-    app.directive('myFilters', [function() {
+    app.directive('myFilters', ['$timeout', function($timeout) {
         return {
             restrict: 'E',
             templateUrl: 'partials/myFilters.html',
@@ -43,45 +43,45 @@
                 }
 
                 $scope.currentCategoryId = undefined; // Just a reminder that we use this
-                // $scope.currentCategory = undefined;
                 $scope.setCategory = function(cid) {
                     $scope.currentCategoryId = cid;
-                    // $scope.currentCategory = $scope.categories[cid];
                 }
 
                 $scope.selectAll = function(categoryId) {
-                    // Hide links on tiles
-                    $('.grid-list .tile-link').hide();
-                    // If all the checkboxes are checked
-                    if ($scope.isAllChecked(categoryId)) {
-                        // Un Check all the facets of this category
-                        $('.' + categoryId + ' .checkbox.all input').prop('checked', false);
-                        $.each($scope.categories, function(index_01, item_01) {
-                            if (item_01.id == categoryId) {
-                                $.each(item_01.values, function(index_02, item_02) {
-                                    item_02.isSelected = false;
-                                });
-                            }
-                        });
-                    } else {
-                        // Check all the facets of this category
-                        $('.' + categoryId + ' .checkbox.all input').prop('checked', true);
-                        $.each($scope.categories, function(index_01, item_01) {
-                            if (item_01.id == categoryId) {
-                                $.each(item_01.values, function(index_02, item_02) {
-                                    item_02.isSelected = true;
-                                });
-                            }
-                        });
-                    }
-                    switch ($scope.corpusId) {
-                        case 'climate-changes':
-                            $scope.$parent.filter();
-                            break;
-                        case 'amerique-latine':
-                            $scope.$parent.filter2();
-                            break;
-                    }
+                    $timeout(function(){
+                        // Hide links on tiles
+                        $('.grid-list .tile-link').hide();
+                        // If all the checkboxes are checked
+                        if ($scope.isAllChecked(categoryId)) {
+                            // Un Check all the facets of this category
+                            $('.' + categoryId + ' .checkbox.all input').prop('checked', false);
+                            $.each($scope.categories, function(index_01, item_01) {
+                                if (item_01.id == categoryId) {
+                                    $.each(item_01.values, function(index_02, item_02) {
+                                        item_02.isSelected = false;
+                                    });
+                                }
+                            });
+                        } else {
+                            // Check all the facets of this category
+                            $('.' + categoryId + ' .checkbox.all input').prop('checked', true);
+                            $.each($scope.categories, function(index_01, item_01) {
+                                if (item_01.id == categoryId) {
+                                    $.each(item_01.values, function(index_02, item_02) {
+                                        item_02.isSelected = true;
+                                    });
+                                }
+                            });
+                        }
+                        switch ($scope.corpusId) {
+                            case 'climate-changes':
+                                $scope.$parent.filter();
+                                break;
+                            case 'amerique-latine':
+                                $scope.$parent.filter2();
+                                break;
+                        }
+                    }, 0)
                 }
 
                 $scope.isAllChecked = function(categoryId) {
@@ -103,21 +103,23 @@
                 }
 
                 $scope.filter = function(categoryId, value) {
-                    // If all the checkboxes are of this category are selected, force the check of the "all" checkbox
-                    if ($('.' + categoryId + ' .checkbox:not(.all) :checked').length == $('.' + categoryId + ' .checkbox:not(.all)').length) {
-                        $('.' + categoryId + ' .checkbox.all input').prop('checked', true);
-                        // Else, force the uncheck of the "all" checkbox
-                    } else {
-                        $('.' + categoryId + ' .checkbox.all input').prop('checked', false);
-                    }
-                    switch ($scope.corpusId) {
-                        case 'climate-changes':
-                            $scope.$parent.filter(categoryId, value);
-                            break;
-                        case 'amerique-latine':
-                            $scope.$parent.filter2(categoryId, value);
-                            break;
-                    }
+                    $timeout(function(){
+                        // If all the checkboxes are of this category are selected, force the check of the "all" checkbox
+                        if ($('.' + categoryId + ' .checkbox:not(.all) :checked').length == $('.' + categoryId + ' .checkbox:not(.all)').length) {
+                            $('.' + categoryId + ' .checkbox.all input').prop('checked', true);
+                            // Else, force the uncheck of the "all" checkbox
+                        } else {
+                            $('.' + categoryId + ' .checkbox.all input').prop('checked', false);
+                        }
+                        switch ($scope.corpusId) {
+                            case 'climate-changes':
+                                $scope.$parent.filter(categoryId, value);
+                                break;
+                            case 'amerique-latine':
+                                $scope.$parent.filter2(categoryId, value);
+                                break;
+                        }
+                    }, 0);
                 }
             }
         };
