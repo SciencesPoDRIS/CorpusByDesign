@@ -7,35 +7,8 @@
             </span>
         </md-input-container>
     </div>
-    <div ng-class="['no-gutter', 'col-md-12', 'facets']">
+    <div ng-class="['no-gutter', 'col-md-12', 'facets', 'full-height']">
         <div ng-class="['row', 'no-gutter', 'full-height']">
-            <!-- <div ng-repeat="category in categories" ng-class="['col-md-4', 'advanced-search', 'facet', '{{category.id}}', category.isHighlighted ? 'highlighted' : '']" ng-if="category.isDiplayed" ng-model="categories">
-                <div ng-class="['checkbox', 'all']">
-                    <md-checkbox aria-label="Select All" ng-checked="isAllChecked(category.id);" md-indeterminate="isIndeterminate(category.id);" ng-click="selectAll(category.id);">
-                        {{category.label}}
-                    </md-checkbox>
-                    <md-button class="md-icon-button" aria-label="{{category.label}}">
-                        <md-tooltip md-direction="left">
-                            {{category.tooltip}}
-                        </md-tooltip>
-                        <md-icon>help</md-icon>
-                    </md-button>
-                </div>
-                <div ng-repeat="value in category.values" ng-class="['category-value', 'no-gutter', {'disable' : value.count == 0}]" ng-model="$parent.value">
-                    <div ng-class="['checkbox']">
-                        <md-tooltip md-direction="right">
-                            {{value.label}}
-                        </md-tooltip>
-                        <md-checkbox ng-model="value.isSelected" ng-change="filter(category.id, value.id);">
-                            {{value.label}}
-                            <div ng-class="'{{value.colorClass}}'">
-                                <span ng-class="['pull-right', 'count-percent']">{{value.count_percent}}%</span>
-                                <md-progress-linear md-mode="determinate" value="{{value.count_percent}}"></md-progress-linear>
-                            </div>
-                        </md-checkbox>
-                    </div>
-                </div>
-            </div> -->
             <div ng-if="isCollapsed">
                 TODO: collapsed
             </div>
@@ -92,12 +65,15 @@
                                 </md-checkbox>
                             </div>
                         </div>
+                        <br>
+                        <br>
+                        <br>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div ng-class="['search-bottom']">
+    <div ng-class="['no-gutter', 'col-md-12', 'search-bottom']">
         <div ng-class="['pull-left', 'results-number']">
             <ng-pluralize count="filteredResultsCount" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>
         </div>

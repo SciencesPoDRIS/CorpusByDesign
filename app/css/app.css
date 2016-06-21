@@ -581,6 +581,7 @@ ul#menu_appli li:last-child a::after {
     line-height: 30px;
     position: absolute;
     width: 100%;
+    background-color: #EEE;
 }
 
 .my-filters .search-bottom .results-number {
