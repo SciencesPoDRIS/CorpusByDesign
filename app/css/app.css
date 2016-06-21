@@ -512,7 +512,9 @@ ul#menu_appli li:last-child a::after {
     background-color: #FFF;
     height: 100%;
     overflow-y: auto;
-    padding: 12px;
+    padding-left: 24px;
+    padding-right: 6px;
+    padding-bottom: 48px;
 }
 
 .filter-category-box {

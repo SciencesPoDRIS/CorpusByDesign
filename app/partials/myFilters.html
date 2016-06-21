@@ -34,6 +34,7 @@
                 </div>
                 <div flex="60" class="filter-values">
                     <div ng-if="currentCategoryId" class='{{currentCategoryId}}'>
+                        <h3>{{categories[currentCategoryId].label}}</h3>
                         <div ng-class="['checkbox', 'all']">
                             <md-checkbox
                                 aria-label="Select All"
@@ -44,6 +45,7 @@
                                 Select All
                             </md-checkbox>
                         </div>
+                        <br>
                         <div
                             ng-repeat="value in categories[currentCategoryId].values"
                             ng-class="['category-value', 'no-gutter', {'disable' : value.count == 0}]"
@@ -65,9 +67,6 @@
                                 </md-checkbox>
                             </div>
                         </div>
-                        <br>
-                        <br>
-                        <br>
                     </div>
                 </div>
             </div>
