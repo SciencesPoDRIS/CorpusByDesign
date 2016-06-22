@@ -109,7 +109,7 @@
             </div>
         </div>
     </div>
-    <div ng-class="['no-gutter', 'col-md-12', 'search-bottom']">
+    <div ng-class="['no-gutter', 'col-md-12', 'search-bottom']" ng-click="moreFilters()">
         <div class="results-number">
             <ng-pluralize count="filteredResultsCount" when="{'0': 'No result', '1': '1 result', 'other': '{} results'}"></ng-pluralize>
         </div>
