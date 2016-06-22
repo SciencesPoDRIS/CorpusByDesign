@@ -1,27 +1,49 @@
 <div ng-class="['my-filters']">
-    <div ng-class="['col-md-12', 'search-bar']">
+    <!-- <div ng-class="['col-md-12', 'search-bar']">
         <md-input-container md-no-float>
             <md-icon ng-class="['icon-flip-horizontal']">search</md-icon>
             <span>
                 <input ng-model="$parent.$parent.$parent.$parent.queryTerm" type="text" placeholder="Search" ng-class="['full-width']"/>
             </span>
         </md-input-container>
-    </div>
+    </div> -->
     <div ng-class="['no-gutter', 'col-md-12', 'facets', 'full-height']">
         <div ng-class="['row', 'no-gutter', 'full-height']">
-            <div ng-if="isCollapsed">
-                <div
-                    ng-repeat="category in categories"
-                    ng-if="category.isDiplayed"
-                    class="collapsed-filters"
-                >
-                    <filter-category-badge
-                        category="$parent.category"
-                    ></filter-category-badge>
+            <div ng-if="isCollapsed" layout="column">
+                <div layout="row" class="collapsed-filters-search-row">
+                    <div flex>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Search</label>
+                            <!-- <md-icon>search</md-icon> -->
+                            <input ng-model="$parent.$parent.$parent.$parent.$parent.queryTerm">
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row">
+                    <div
+                        ng-repeat="category in categories"
+                        class="collapsed-filters"
+                        ng-if="category.isDiplayed && !isAllChecked(category.id)"
+                       
+                    >
+                        <filter-category-badge
+                            category="$parent.category"
+                        ></filter-category-badge>
+                    </div>
+                    <div>
+                        <md-button class="md-raised md-primary" ng-click="moreFilters()">Show filters</md-button>
+                    </div>
                 </div>
             </div>
             <div ng-if="!isCollapsed" class="filters-unfolded" layout="row">
                 <div flex="40" class="filter-categories" layout="column">
+                    <div class="advanced-search filter-search-box">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Search</label>
+                            <!-- <md-icon>search</md-icon> -->
+                            <input ng-model="$parent.$parent.$parent.$parent.$parent.queryTerm">
+                        </md-input-container>
+                    </div>
                     <div
                         ng-repeat="category in categories"
                         class="advanced-search filter-category-box {{category.id}}"
@@ -39,11 +61,14 @@
                             <md-icon class="pull-right" ng-show="currentCategoryId == category.id">keyboard_arrow_right</md-icon>
                         </div>
                         <div class="filter-category-subtitle">{{category.valuesPreview}}</div>
-                        <div>
+                        <div class="filter-category-badge-container" ng-if="!isAllChecked(category.id)">
                             <filter-category-badge
                                 category="category"
                             ></filter-category-badge>
                         </div>
+                    </div>
+                    <div class="advanced-search filter-validate-box">
+                        <md-button class="md-raised md-primary" ng-click="moreFilters()" flex="100">Hide filters</md-button>
                     </div>
                 </div>
                 <div flex="60" class="filter-values">
@@ -88,11 +113,6 @@
     <div ng-class="['no-gutter', 'col-md-12', 'search-bottom']">
         <div ng-class="['pull-left', 'results-number']">
             <ng-pluralize count="filteredResultsCount" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>
-        </div>
-        <div ng-class="['pull-right', 'more-filters']" ng-click="moreFilters();">
-            {{filtersLabel}}
-            <md-icon ng-show="isCollapsed">keyboard_arrow_down</md-icon>
-            <md-icon ng-show="!isCollapsed">keyboard_arrow_up</md-icon>
         </div>
     </div>
 </div>

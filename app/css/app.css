@@ -56,8 +56,8 @@ md-tooltip .md-content {
 
 body {
     color: #343333;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 1.4em;
+    font-family: 'Roboto', sans-serif;
+    /*font-size: 1.4em;*/
     margin: 0 auto;
     overflow-y: hidden;
     padding: 0;
@@ -265,6 +265,8 @@ ul#menu_appli li:last-child a::after {
 }
 
 .navbar {
+    font-size: 0.8em;
+    font-family: Roboto Condensed, sans-sefir;
     background-color: transparent;
     left: 67px;
     top: 8px;
@@ -522,6 +524,18 @@ ul#menu_appli li:last-child a::after {
     padding-bottom: 48px;
 }
 
+.filter-search-box {
+    background-color: #FFF;
+    padding: 6px;
+    height: 64px;
+    border-right: 1px solid #DDD;
+}
+
+.filter-validate-box {
+    text-align: center;
+    padding-top: 12px;
+}
+
 .filter-category-box {
     background-color: #EEE;
     padding: 6px;
@@ -546,6 +560,10 @@ ul#menu_appli li:last-child a::after {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.filter-category-badge-container {
+    padding-top: 12px;
 }
 
 .filter-values label {
@@ -646,6 +664,15 @@ ul#menu_appli li:last-child a::after {
 }
 
 
+/* Collapsed filters */
+
+.collapsed-filters-search-row {
+    height: 64px;
+    padding: 6px 6px 0px 6px;
+    background-color: #FFF;
+}
+
+
 /* MyFilters part : Checkboxes */
 
 .my-filters .checkbox {
@@ -710,8 +737,9 @@ ul#menu_appli li:last-child a::after {
 .filter-badge {
     width: 160px;
     height: 36px;
-    padding: 2px 2px 1px 4px;
-    border: 2px solid #DDD;
+    padding: 4px 4px 3px 6px;
+    /*border: 1px solid #DDD;*/
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
     border-radius: 2px;
     background-color: #FFF;
 }

@@ -51,4 +51,24 @@
         }
     ]);
 
+    app.filter('filterBy', [
+        function() {
+            return function(input, attr) {
+                if (input === undefined) return []
+                if (input.filter) {
+                    return input.filter(function(d, i) {return d[attr]})
+                } else {
+                    var result = {}
+                    var i
+                    for (i in input) {
+                        if (input[i][attr]) {
+                            result[i] = input[i]
+                        }
+                    }
+                    return result
+                }
+            }
+        }
+    ]);
+
 })();
