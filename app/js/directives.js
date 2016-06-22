@@ -21,7 +21,7 @@
                 $scope.isCollapsed = true;
                 $scope.allChecked = {};
                 $scope.indeterminate = {};
-
+                
                 // Deep watch categories to maintain the general status arrays
                 // Note: inefficient but relevant since it happens rarely and the array is small
                 $scope.$watch('categories', function() {
@@ -126,15 +126,15 @@
             templateUrl: 'partials/myGraph.html',
             scope: {
                 corpusId: '=',
-                corpora: '='
+                corpus: '='
             },
             link: function($scope, element, attrs) {
                 // Init variables
                 var defaultEdgeColor = '#f1f1f1';
-
+                
                 // Load the specific corpus configuration
-                $scope.selectedCategory = $scope.corpora.categories[$scope.corpora.nodesColor].label;
-
+                $scope.selectedCategory = $scope.corpus.categories[$scope.corpus.nodesColor].label;
+                
                 // Center the whole graph
                 $scope.sigmaCenter = function() {
                     var c = $scope.graph.cameras[0]

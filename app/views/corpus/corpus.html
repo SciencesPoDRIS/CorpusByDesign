@@ -2,13 +2,13 @@
 <div ng-include="'partials/header.html'"></div>
 <!-- First row -->
 <top-bar
-    corpus="corpora"
+    corpus="corpus"
     lang="lang"
     corpus-id="corpusId"
 ></top-bar>
 <!-- Second row -->
 <div ng-class="['row', 'no-gutter', 'corpus', 'content']">
-    <div ng-class="['full-height', '{{availableView}}']" ng-if="availableView == currentView" ng-repeat="availableView in corpora.availableViews">
+    <div ng-class="['full-height', '{{availableView}}']" ng-if="availableView == currentView" ng-repeat="availableView in corpus.availableViews">
         <div ng-include="'partials/' + availableView + '.html'" ng-class="['full-height']"></div>
     </div>
 </div>

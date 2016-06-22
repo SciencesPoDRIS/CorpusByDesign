@@ -89,7 +89,7 @@
 
             $scope.countryClicked = function(country) {
                 // Unselect all area checkboxes but the one of the area clicked
-                $.each($scope.corpora.categories.area.values, function(index, item) {
+                $.each($scope.corpus.categories.area.values, function(index, item) {
                     if (item.id != country.id) {
                         item.isSelected = false;
                     } else {
@@ -119,11 +119,11 @@
             }
 
             $scope.getCountryLabel = function(countryId) {
-                return $scope.corpora.categories.area.values.filter(
+                return $scope.corpus.categories.area.values.filter(
                     function(item, index) {
                         return item.id == countryId;
                     }
-                )[0].label;
+                )[0].label || 'missing country label';
             }
 
             // Recalculate the map dimensions when the whole DOM is loaded

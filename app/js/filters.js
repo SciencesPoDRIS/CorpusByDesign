@@ -15,11 +15,11 @@
                     txt = '';
                     $.each(input.split(' ; '), function(index, item) {
                         i = 0;
-                        while ($scope.corpora.categories[facet].values[i].id != item) {
+                        while ($scope.corpus.categories[facet].values[i].id != item) {
                             i++;
                         }
                         txt += (txt == '' ? '' : ', ');
-                        txt += $scope.corpora.categories[facet].values[i].label;
+                        txt += $scope.corpus.categories[facet].values[i].label;
                     });
                     return txt;
                 }

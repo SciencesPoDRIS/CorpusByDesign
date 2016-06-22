@@ -3,8 +3,8 @@
 
     var app = angular.module('webcorpus.corpus', []);
 
-    app.controller('CorpusController', ['$scope', '$routeParams', '$location', 'loadCorpora', 'loadCorpus', 'colors', '$sce', 'utils',
-        function($scope, $routeParams, $location, loadCorpora, loadCorpus, colors, $sce, utils) {
+    app.controller('CorpusController', ['$scope', '$routeParams', '$location', 'loadCorpus', 'loadCorpusData', 'colors', '$sce', 'utils',
+        function($scope, $routeParams, $location, loadCorpus, loadCorpusData, colors, $sce, utils) {
             // Init variables
             var bool_01,
                 bool_02,
@@ -33,21 +33,21 @@
 
             $scope.init = function(currentView) {
                 // Load the corpus configurations
-                loadCorpora.getCorpora($scope.corpusId).then(function(data) {
-                    $scope.corpora = data;
+                loadCorpus.getCorpus($scope.corpusId).then(function(corpus) {
+                    $scope.corpus = corpus;
 
                     // Consolidate corpus data
                     var cat
-                    for (cat in $scope.corpora.categories) {
-                        var category = $scope.corpora.categories[cat]
+                    for (cat in $scope.corpus.categories) {
+                        var category = $scope.corpus.categories[cat]
                         category.valuesPreview = category.values.map(function(d){return d.label}).join(', ')
                     }
                     
-                    $scope.currentView = (currentView == undefined ? $scope.corpora.defaultView : currentView);
+                    $scope.currentView = (currentView == undefined ? $scope.corpus.defaultView : currentView);
                     
                     // Load the corpus content
                     $scope.initResults = [];
-                    loadCorpus.getCorpus($scope.corpusId).then(function(data) {
+                    loadCorpusData.getData($scope.corpusId).then(function(data) {
                         data = data.split('\n');
                         headers = data[0].split('\t');
                         for (i = 1; i < data.length; i++) {
@@ -75,7 +75,7 @@
                 bool_01 = true;
                 $.each(searchCriteria, function(index_01, item_01) {
                     bool_02 = false;
-                    elementCriteriaValues = item[$scope.corpora.categories[index_01].mappedField].split(multiValuesSeparator);
+                    elementCriteriaValues = item[$scope.corpus.categories[index_01].mappedField].split(multiValuesSeparator);
                     $.each(elementCriteriaValues, function(index_02, item_02) {
                         bool_02 = bool_02 || (item_01.indexOf(item_02) >= 0);
                     });
@@ -95,7 +95,7 @@
                 } else {
                     bool_01 = true;
                     var valuesToFilter = ['not_applicable', 'dont_know'];
-                    var queryTermFormatted = accentsTidy($.map($scope.corpora.fullTextSearchFields, function(value, index) {
+                    var queryTermFormatted = accentsTidy($.map($scope.corpus.fullTextSearchFields, function(value, index) {
                         return $.inArray(item[value], valuesToFilter) ? item[value] : '';
                     }).join(' '));
                     console.log(queryTermFormatted);
@@ -113,7 +113,7 @@
                 }
                 // Create JSON object to encapsulate the search criteria
                 searchCriteria = {};
-                $.each($scope.corpora.categories, function(index_01, item_01) {
+                $.each($scope.corpus.categories, function(index_01, item_01) {
                     // Don't put language as a search criteria
                     if ((item_01.values !== undefined) && (index_01 != 'language')) {
                         searchCriteria[index_01] = [];
@@ -137,10 +137,10 @@
                             // Check if the searched term is present into the name of the site or into the actors' type of the site
                         ids.push(item.ID);
                         // Increment categories count, for those who are displayed
-                        $.each($scope.corpora.categories, function(index_02, item_02) {
-                            if ($scope.corpora.categories[index_02].isDiplayed) {
-                                $scope.corpora.categories[index_02].values.filter(function(index) {
-                                    return index.id == item[$scope.corpora.categories[index_02].mappedField];
+                        $.each($scope.corpus.categories, function(index_02, item_02) {
+                            if ($scope.corpus.categories[index_02].isDiplayed) {
+                                $scope.corpus.categories[index_02].values.filter(function(index) {
+                                    return index.id == item[$scope.corpus.categories[index_02].mappedField];
                                 })[0].count++;
                             }
                         });
@@ -150,14 +150,14 @@
                     }
                 });
                 $scope.legend = [];
-                $.each($scope.corpora.categories, function(index, item) {
+                $.each($scope.corpus.categories, function(index, item) {
                     // Order items of a category by count descending order
-                    $scope.corpora.categories[index].values.sort(function(a, b) {
+                    $scope.corpus.categories[index].values.sort(function(a, b) {
                         return b.count - a.count;
                     });
                     // Set colors to nodes and loadBar
-                    if ($scope.corpora.categories[index].id == $scope.corpora.nodesColor) {
-                        $.each($scope.corpora.categories[index].values.slice(0, 6), function(index_02, item_02) {
+                    if ($scope.corpus.categories[index].id == $scope.corpus.nodesColor) {
+                        $.each($scope.corpus.categories[index].values.slice(0, 6), function(index_02, item_02) {
                             item_02.color = colors[index_02].color;
                             item_02.colorClass = colors[index_02].label;
                             // Create the legend object
@@ -165,7 +165,7 @@
                         });
                     }
                     // Order items of a category by alphabetical ascending order
-                    $scope.corpora.categories[index].values.sort(function(a, b) {
+                    $scope.corpus.categories[index].values.sort(function(a, b) {
                         // 'Not applicable' should be the last item
                         if (a.id == 'not_applicable') {
                             return 1;
@@ -207,7 +207,7 @@
                         }
                     });
                     // Calculate the item count in percentil for the progress bar
-                    $.each($scope.corpora.categories[index].values, function(index_02, item_02) {
+                    $.each($scope.corpus.categories[index].values, function(index_02, item_02) {
                         item_02.count_percent = ((parseFloat(item_02.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
                     });
                 });
@@ -218,7 +218,7 @@
             $scope.filter2 = function(category, value) {
                 // Create JSON object to encapsulate the search criteria
                 searchCriteria = {};
-                $.each($scope.corpora.categories, function(index_01, item_01) {
+                $.each($scope.corpus.categories, function(index_01, item_01) {
                     searchCriteria[index_01] = [];
                     $.each(item_01.values, function(index_02, item_02) {
                         // Reset count before filtering
@@ -237,11 +237,11 @@
                     if (isSearchedFullText($scope.queryTermFormatted, item) && isSearchedAmongCriteria(searchCriteria, item)) {
                         ids.push(item.ID);
                         // Increment categories count, for those who are displayed
-                        $.each($scope.corpora.categories, function(index_02, item_02) {
-                            if ($scope.corpora.categories[index_02].isDiplayed) {
-                                elementCriteriaValues = item[$scope.corpora.categories[index_02].mappedField].split(multiValuesSeparator);
+                        $.each($scope.corpus.categories, function(index_02, item_02) {
+                            if ($scope.corpus.categories[index_02].isDiplayed) {
+                                elementCriteriaValues = item[$scope.corpus.categories[index_02].mappedField].split(multiValuesSeparator);
                                 $.each(elementCriteriaValues, function(index_03, item_03) {
-                                    $scope.corpora.categories[index_02].values.filter(function(index) {
+                                    $scope.corpus.categories[index_02].values.filter(function(index) {
                                         return index.id == item_03;
                                     })[0].count++;
                                 });
@@ -252,31 +252,31 @@
                         return false;
                     }
                 });
-                $.each($scope.corpora.categories, function(index, item) {
+                $.each($scope.corpus.categories, function(index, item) {
                     // Check that this item should be displayed
                     if (item.isDiplayed) {
                         // Filter items from facet where the count is null
                         if (firstLoad) {
-                            $scope.corpora.categories[index].values = $.grep($scope.corpora.categories[index].values, function(item_02, index_02) {
+                            $scope.corpus.categories[index].values = $.grep($scope.corpus.categories[index].values, function(item_02, index_02) {
                                 return item_02.count > 0;
                             });
                         }
                         // Calculate the item count in percentil for the progress bar
-                        $.each($scope.corpora.categories[index].values, function(index_02, item_02) {
+                        $.each($scope.corpus.categories[index].values, function(index_02, item_02) {
                             item_02.count_percent = ((parseFloat(item_02.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
                         });
                         // Order items of a category by count descending order
-                        $scope.corpora.categories[index].values.sort(function(a, b) {
+                        $scope.corpus.categories[index].values.sort(function(a, b) {
                             return b.count - a.count;
                         });
                         // Set colors to nodes and loadBar
-                        if ($scope.corpora.categories[index].id == $scope.corpora.nodesColor) {
-                            $.each($scope.corpora.categories[index].values.slice(0, 6), function(index_02, item_02) {
+                        if ($scope.corpus.categories[index].id == $scope.corpus.nodesColor) {
+                            $.each($scope.corpus.categories[index].values.slice(0, 6), function(index_02, item_02) {
                                 item_02.color = colors[index_02].color;
                             });
                         }
                         // Order items of a category by alphabetical ascending order
-                        $scope.corpora.categories[index].values.sort(function(a, b) {
+                        $scope.corpus.categories[index].values.sort(function(a, b) {
                             if (accentsTidy(a.label) < accentsTidy(b.label)) {
                                 return -1;
                             } else if (accentsTidy(a.label) > accentsTidy(b.label)) {
@@ -285,9 +285,9 @@
                         });
                         var t = ['other', 'dont_know', 'not_applicable'];
                         for (i = 0; i < t.length; i++) {
-                            j = $scope.corpora.categories[index].values.map(function(e) {
+                            j = $scope.corpus.categories[index].values.map(function(e) {
                                 return e.id; }).indexOf(t[i]);
-                            $scope.corpora.categories[index].values.push($scope.corpora.categories[index].values.splice(j, 1)[0])
+                            $scope.corpus.categories[index].values.push($scope.corpus.categories[index].values.splice(j, 1)[0])
                         }
                     }
                 });
@@ -297,6 +297,7 @@
 
             // Filter the results to display the current page
             $scope.display = function() {
+
                 $scope.displayedResults = $scope.filteredResults;
                 // Color nodes, according to the configuration file
                 /*
