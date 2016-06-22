@@ -88,15 +88,16 @@
             }
 
             $scope.countryClicked = function(country) {
-                // Unselect all area checkboxes but the one of the area clicked
-                $.each($scope.corpus.categories.area.values, function(index, item) {
-                    if (item.id != country.id) {
-                        item.isSelected = false;
-                    } else {
-                        item.isSelected = true;
-                    }
-                });
-                $scope.filter2();
+                $timeout(function(){
+                    $.each($scope.corpus.categories.area.values, function(index, item) {
+                        if (item.id != country.id) {
+                            item.isSelected = false;
+                        } else {
+                            item.isSelected = true;
+                        }
+                    });
+                    $scope.$apply()
+                }, 0)
             }
 
             $scope.countryHoverIn = function(country) {

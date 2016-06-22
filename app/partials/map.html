@@ -8,14 +8,14 @@
 <div ng-class="['col-md-7', 'no-gutter', 'full-height', 'right-col']">
     <!-- Filters -->
     <div ng-class="['row', 'no-gutter', 'full-height']">
-        <my-filters categories="corpus.categories" corpus-id="corpusId" filtered-results-count="filteredResultsCount" prefix="corpus.prefix" />
+        <my-filters categories="corpus.categories" corpus-id="corpusId" filtered-results-count="filteredResults.length" prefix="corpus.prefix" />
     </div>
     <!-- Tiles -->
     <div ng-class="['row', 'no-gutter', 'full-height', 'tiles']">
         <div ng-class="['full-height']">
             <div ng-class="['row', 'grid-list', 'no-gutter', 'full-height']" flex="">
                 <md-grid-list md-cols-sm="2" md-cols-md="3" md-cols-gt-md="4" md-row-height-gt-md="5:3" md-row-height="5:3" md-gutter="6px" md-gutter-gt-sm="12px">
-                    <md-grid-tile id="{{result.ID}}" ng-repeat="result in displayedResults" md-rowspan="1" md-colspan="1" md-colspan-sm="1" ng-class="['gray-tile']">
+                    <md-grid-tile id="{{result.ID}}" ng-repeat="result in filteredResults" md-rowspan="1" md-colspan="1" md-colspan-sm="1" ng-class="['gray-tile']">
                         <a href="#/{{lang}}/{{corpusId}}/map/{{result.ID}}" target="_blank" ng-class="['fit']">
                             <img ng-class="['grayscale']" src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=1024&height=768&clipRect=0,0,1024,768&format=jpg&quality=0.3"></img>
                             <md-button ng-class="['md-fab', 'md-primary', 'md-mini', 'tile-link']" aria-label="link" ng-href="{{result.URL}}" target="_blank">
