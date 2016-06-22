@@ -335,7 +335,7 @@ ul#menu_appli li:last-child a::after {
     background-size: 25px 25px;
     border: 1px solid #dbdbdb;
     border-radius: 5px;
-    font-family: Helvetica, Arial, sans-shérif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 0.8em;
     padding: 5px 2px 2px 3px;
     width: 228px;
@@ -510,7 +510,7 @@ ul#menu_appli li:last-child a::after {
 }
 
 .filter-categories {
-    background-color: #EEE;
+    background-color: #FAFAFA;
     height: 100%;
     overflow-y: auto;
 }
@@ -525,10 +525,9 @@ ul#menu_appli li:last-child a::after {
 }
 
 .filter-search-box {
-    background-color: #FFF;
+    background-color: #FAFAFA;
     padding: 6px;
     height: 64px;
-    border-right: 1px solid #DDD;
 }
 
 .filter-validate-box {
@@ -537,14 +536,14 @@ ul#menu_appli li:last-child a::after {
 }
 
 .filter-category-box {
-    background-color: #EEE;
+    background-color: #FAFAFA;
     padding: 6px;
     cursor: pointer;
     border-bottom: 1px solid #DDD;
 }
 
 .filter-category-box:hover {
-    background-color: #FAFAFA;
+    background-color: #FFFFFF;
 }
 
 .filter-category-box.selected {
@@ -564,6 +563,7 @@ ul#menu_appli li:last-child a::after {
 
 .filter-category-badge-container {
     padding-top: 12px;
+    padding-bottom: 6px;
 }
 
 .filter-values label {
@@ -589,6 +589,10 @@ ul#menu_appli li:last-child a::after {
     line-height: 5px;
 }
 
+.collapsed-filters-container {
+    background-color: #FAFAFA;
+}
+
 .collapsed-filters {
     padding: 6px;
 }
@@ -603,16 +607,20 @@ ul#menu_appli li:last-child a::after {
 
 .my-filters .search-bottom {
     bottom: 0;
-    height: 30px;
-    line-height: 30px;
+    height: 64px;
+    /*line-height: 30px;*/
     position: absolute;
     width: 100%;
     background-color: #EEE;
+    color: #999;
 }
 
 .my-filters .search-bottom .results-number {
-    font-style: italic;
-    padding-left: 50px;
+    text-align: center;
+    font-family: Roboto Condensed, sans-serif;
+    /* font-weight: 300; */
+    font-size: 36px;
+    padding-top: 6px;
 }
 
 .my-filters .search-bottom .more-filters {
@@ -669,7 +677,10 @@ ul#menu_appli li:last-child a::after {
 .collapsed-filters-search-row {
     height: 64px;
     padding: 6px 6px 0px 6px;
-    background-color: #FFF;
+}
+
+.collapsed-filters-buttons-row {
+    padding-bottom: 12px;
 }
 
 
@@ -772,7 +783,7 @@ ul#menu_appli li:last-child a::after {
 .corpus .tiles {
     height: calc(100% - 240px);
     overflow-y: scroll;
-    padding: 5px;
+    padding: 12px;
     position: absolute;
     top: 188px;
     width: 100%;

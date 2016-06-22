@@ -9,17 +9,16 @@
     </div> -->
     <div ng-class="['no-gutter', 'col-md-12', 'facets', 'full-height']">
         <div ng-class="['row', 'no-gutter', 'full-height']">
-            <div ng-if="isCollapsed" layout="column">
+            <div ng-if="isCollapsed" layout="column" class="collapsed-filters-container">
                 <div layout="row" class="collapsed-filters-search-row">
                     <div flex>
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Search</label>
-                            <!-- <md-icon>search</md-icon> -->
                             <input ng-model="$parent.$parent.$parent.$parent.$parent.queryTerm">
                         </md-input-container>
                     </div>
                 </div>
-                <div layout="row">
+                <div layout="row" class="collapsed-filters-buttons-row">
                     <div
                         ng-repeat="category in categories"
                         class="collapsed-filters"
@@ -111,8 +110,8 @@
         </div>
     </div>
     <div ng-class="['no-gutter', 'col-md-12', 'search-bottom']">
-        <div ng-class="['pull-left', 'results-number']">
-            <ng-pluralize count="filteredResultsCount" when="{'0': 'No result found', '1': '1 result found', 'other': '{} results found'}"></ng-pluralize>
+        <div class="results-number">
+            <ng-pluralize count="filteredResultsCount" when="{'0': 'No result', '1': '1 result', 'other': '{} results'}"></ng-pluralize>
         </div>
     </div>
 </div>
