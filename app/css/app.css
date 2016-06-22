@@ -379,6 +379,11 @@ ul#menu_appli li:last-child a::after {
     padding-left: 20px;
 }
 
+.first-row .methodology {
+    height: 72px;
+    overflow: hidden;
+}
+
 .first-row .methodology .title {
     font-size: 18px;
     padding-right: 10px;
