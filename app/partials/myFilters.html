@@ -13,9 +13,10 @@
                 <div
                     ng-repeat="category in categories"
                     ng-if="category.isDiplayed"
+                    class="collapsed-filters"
                 >
                     <filter-category-badge
-                        category="category"
+                        category="$parent.category"
                     ></filter-category-badge>
                 </div>
             </div>

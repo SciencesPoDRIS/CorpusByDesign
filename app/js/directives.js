@@ -261,11 +261,11 @@
                 $scope.text = ''
                 $scope.$watch('category', function(){
                     if($scope.category) {
-                        var selected = $scope.category.values.filter(function(cat){
-                            return cat.isSelected
+                        var selected = $scope.category.values.filter(function(v){
+                            return v.isSelected
                         })
-                        var unselected = $scope.category.values.filter(function(cat){
-                            return !cat.isSelected
+                        var unselected = $scope.category.values.filter(function(v){
+                            return !v.isSelected
                         })
 
                         if (unselected.length == 0) {
@@ -283,6 +283,12 @@
                         }
                     }
                 }, true)
+
+                $scope.closeBadge = function() {
+                    $scope.category.values.forEach(function(v) {
+                        v.isSelected = true
+                    })
+                }
             }
         };
 

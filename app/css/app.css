@@ -495,7 +495,7 @@ ul#menu_appli li:last-child a::after {
 }
 
 
-/* MyFilters part : Facets */
+/* Filters */
 
 .filters-unfolded {
     width: 100%;
@@ -564,6 +564,10 @@ ul#menu_appli li:last-child a::after {
 .filter-values .count-percent {
     font-size: 10px;
     line-height: 5px;
+}
+
+.collapsed-filters {
+    padding: 6px;
 }
 
 .my-filters {
@@ -701,7 +705,7 @@ ul#menu_appli li:last-child a::after {
 .filter-badge {
     width: 160px;
     height: 36px;
-    padding: 3px;
+    padding: 2px 2px 1px 4px;
     border: 2px solid #DDD;
     border-radius: 2px;
     background-color: #FFF;
@@ -709,7 +713,7 @@ ul#menu_appli li:last-child a::after {
 .filter-badge-title {
     margin-top: -2px;
     width: 125px;
-    height: 12px;
+    height: 14px;
     font-size: 0.72em;
     opacity: 0.6;
     text-overflow: ellipsis;
@@ -718,6 +722,8 @@ ul#menu_appli li:last-child a::after {
 }
 .filter-badge-content {
     width: 125px;
+    margin-top:-2px;
+    height: 18px;
     font-size: 1em;
     text-overflow: ellipsis;
     overflow: hidden;
