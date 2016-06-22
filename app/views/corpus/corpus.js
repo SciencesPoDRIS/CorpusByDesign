@@ -3,8 +3,8 @@
 
     var app = angular.module('webcorpus.corpus', []);
 
-    app.controller('CorpusController', ['$scope', '$routeParams', '$location', 'loadCorpora', 'loadCorpus', 'colors', '$sce',
-        function($scope, $routeParams, $location, loadCorpora, loadCorpus, colors, $sce) {
+    app.controller('CorpusController', ['$scope', '$routeParams', '$location', 'loadCorpora', 'loadCorpus', 'colors', '$sce', 'utils',
+        function($scope, $routeParams, $location, loadCorpora, loadCorpus, colors, $sce, utils) {
             // Init variables
             var bool_01,
                 bool_02,
@@ -86,18 +86,7 @@
 
             // Replace accentuated characters from a string
             var accentsTidy = function(s) {
-                return s.toLowerCase()
-                    .replace(/[àáâãäå]/g, 'a')
-                    .replace(/æ/g, 'ae')
-                    .replace(/ç/g, 'c')
-                    .replace(/[èéêë]/g, 'e')
-                    .replace(/[ìíîï]/g, 'i')
-                    .replace(/ñ/g, 'n')
-                    .replace(/[òóôõö]/g, 'o')
-                    .replace(/œ/g, 'oe')
-                    .replace(/[ùúûü]/g, 'u')
-                    .replace(/[ýÿ]/g, 'y')
-                    .replace(/[^\w\s]/g, '');
+                return utils.removeDiacritics(s).toLowerCase()
             };
 
             var isSearchedFullText = function(query, item) {
