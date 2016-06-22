@@ -90,6 +90,13 @@
                 // Reset limited results
                 resetDisplayCount()
 
+                // Init summary data
+                $.each($scope.corpus.categories, function(catId, category){
+                    category.values.forEach(function(v) {
+                        v.count = 0
+                    });
+                })
+
                 // Filter items by search query
                 if ($scope.queryTerm === undefined || $scope.queryTerm.trim() == '') {
                     // If no query, everyone is valid
@@ -114,9 +121,9 @@
                     var catId;
                     $.each($scope.corpus.categories, function(catId, category){
                         var field = category.mappedField
-                        var values = item[field].split(multiValuesSeparator)
+                        var itemValues = item[field].split(multiValuesSeparator)
                         // Item is valid for this category if one of its values is selected
-                        var validForThisCategory = values.some(function(value) {
+                        var validForThisCategory = itemValues.some(function(value) {
                             // Search the value in the category's list
                             return category.values.some(function(catValue) {
                                 return catValue.id == value && catValue.isSelected;
@@ -129,8 +136,31 @@
                     });
                 });
 
+                // Finalize filtered results
                 $scope.filteredResults = $scope.initResults.filter(function(item){
-                    return item.validForSearch && item.validForMetadataFiltering
+                    var displayItem = item.validForSearch && item.validForMetadataFiltering
+
+                    if (displayItem) {
+                        // Update summary data
+                        $.each($scope.corpus.categories, function(catId, category){
+                            var field = category.mappedField
+                            var itemValues = item[field].split(multiValuesSeparator)
+                            category.values.forEach(function(v) {
+                                if (itemValues.indexOf(v.id) >= 0) {
+                                    v.count++;
+                                }
+                            });
+                        })
+                    }
+
+                    return displayItem;
+                })
+
+                // Finalize summary data
+                $.each($scope.corpus.categories, function(catId, category){
+                    category.values.forEach(function(v) {
+                        v.count_percent = ((parseFloat(v.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
+                    })
                 })
             }
 
