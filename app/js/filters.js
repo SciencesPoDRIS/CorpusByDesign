@@ -41,4 +41,14 @@
         }
     ]);
 
+    app.filter('limitTo', [
+        function() {
+            return function(input, limit) {
+                if (input === undefined) return []
+                if (isNaN(limit)) { limit = Infinity; }
+                return input.filter(function(d, i) {return i<limit})
+            }
+        }
+    ]);
+
 })();

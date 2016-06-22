@@ -31,6 +31,16 @@
                 $scope.init(currentView);
             }
 
+            // Limit results displayed for performance issues
+            var defaultResultsDisplayCount = 48
+            $scope.resultsDisplayCount = defaultResultsDisplayCount;
+            $scope.displayAllResults = function() {
+                $scope.resultsDisplayCount = Infinity
+            }
+            function resetDisplayCount() {
+                $scope.resultsDisplayCount = defaultResultsDisplayCount;
+            }
+
             $scope.init = function(currentView) {
                 // Load the corpus configurations
                 loadCorpus.getCorpus($scope.corpusId).then(function(corpus) {
@@ -76,6 +86,9 @@
                     $scope.filteredResults = []
                     return false;
                 }
+
+                // Reset limited results
+                resetDisplayCount()
 
                 // Filter items by search query
                 if ($scope.queryTerm === undefined || $scope.queryTerm.trim() == '') {
