@@ -19,6 +19,21 @@
                 // Uncollapse filters
                 $scope.filtersLabel = 'More filters';
                 $scope.isCollapsed = true;
+                $scope.allChecked = {};
+                $scope.indeterminate = {};
+
+                // Deep watch categories to maintain the general status arrays
+                // Note: inefficient but relevant since it happens rarely and the array is small
+                $scope.$watch('categories', function() {
+                    $scope.allChecked = {};
+                    $scope.indeterminate = {};
+                    var cid
+                    for(cid in $scope.categories) {
+                        $scope.allChecked[cid] = $scope.isAllChecked(cid)
+                        $scope.indeterminate[cid] = $scope.isIndeterminate(cid)
+                    }
+                }, true)
+
                 var offset = $('.top-bar').innerHeight() || 200;
                 $scope.moreFilters = function() {
                     $scope.isCollapsed = !$scope.isCollapsed;
@@ -47,50 +62,30 @@
                     $scope.currentCategoryId = cid;
                 }
 
-                $scope.selectAll = function(categoryId) {
-                    $timeout(function(){
-                        // Hide links on tiles
-                        $('.grid-list .tile-link').hide();
-                        // If all the checkboxes are checked
+                $scope.toggleSelectAll = function(categoryId) {
+                    if ($scope.categories[categoryId]) {
+                        // Unless everything is already selected, select all
                         if ($scope.isAllChecked(categoryId)) {
-                            // Un Check all the facets of this category
-                            $('.' + categoryId + ' .checkbox.all input').prop('checked', false);
-                            $.each($scope.categories, function(index_01, item_01) {
-                                if (item_01.id == categoryId) {
-                                    $.each(item_01.values, function(index_02, item_02) {
-                                        item_02.isSelected = false;
-                                    });
-                                }
-                            });
+                            $scope.categories[categoryId].values.forEach(function(v){v.isSelected = false})
                         } else {
-                            // Check all the facets of this category
-                            $('.' + categoryId + ' .checkbox.all input').prop('checked', true);
-                            $.each($scope.categories, function(index_01, item_01) {
-                                if (item_01.id == categoryId) {
-                                    $.each(item_01.values, function(index_02, item_02) {
-                                        item_02.isSelected = true;
-                                    });
-                                }
-                            });
+                            $scope.categories[categoryId].values.forEach(function(v){v.isSelected = true})
                         }
-                        switch ($scope.corpusId) {
-                            case 'climate-changes':
-                                $scope.$parent.filter();
-                                break;
-                            case 'amerique-latine':
-                                $scope.$parent.filter2();
-                                break;
-                        }
-                    }, 0)
+                    }
                 }
 
                 $scope.isAllChecked = function(categoryId) {
-                    return $("div." + categoryId + " .checkbox:not('.all')").length == $("div." + categoryId + " .checkbox:not('.all') .md-checked").length;
+                    if (categoryId === undefined) return true;
+                    return !$scope.categories[categoryId].values.some(function(v){ return !v.isSelected})
+                }
+
+                $scope.isAllUnchecked = function(categoryId) {
+                    if (categoryId === undefined) return true;
+                    return !$scope.categories[categoryId].values.some(function(v){ return v.isSelected})
                 }
 
                 $scope.isIndeterminate = function(categoryId) {
-                    return ($("div." + categoryId + " .checkbox:not('.all') .md-checked").length !== 0 &&
-                        $("div." + categoryId + " .checkbox:not('.all')").length !== $("div." + categoryId + " .checkbox:not('.all') .md-checked").length);
+                    if (categoryId === undefined) return false;
+                    return !$scope.isAllChecked(categoryId) && !$scope.isAllUnchecked(categoryId)
                 }
 
                 $scope.exists = function(value) {

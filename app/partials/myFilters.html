@@ -52,16 +52,16 @@
                         <div ng-class="['checkbox', 'all']">
                             <md-checkbox
                                 aria-label="Select All"
-                                ng-checked="isAllChecked(currentCategoryId);"
-                                md-indeterminate="isIndeterminate(currentCategoryId);"
-                                ng-click="selectAll(currentCategoryId);"
+                                ng-checked="allChecked[currentCategoryId]"
+                                md-indeterminate="indeterminate[currentCategoryId]"
+                                ng-click="toggleSelectAll(currentCategoryId);"
                             >
                                 Select All
                             </md-checkbox>
                         </div>
                         <br>
                         <div
-                            ng-repeat="value in categories[currentCategoryId].values"
+                            ng-repeat="value in $parent.categories[currentCategoryId].values"
                             ng-class="['category-value', 'no-gutter', {'disable' : value.count == 0}]"
                             ng-model="$parent.value"
                         >
