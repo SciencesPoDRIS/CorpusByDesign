@@ -580,12 +580,6 @@ ul#menu_appli li:last-child a::after {
 .filter-values md-progress-linear .md-container {
     width: 98%;
 }
-.filter-values .grey md-progress-linear .md-container {
-    background-color: rgba(131, 135, 141, 0.3);
-}
-.filter-values .grey md-progress-linear .md-bar {
-    background-color: rgba(131, 135, 141, 1);
-}
 .filter-values .count-percent {
     font-size: 10px;
     line-height: 5px;
@@ -817,14 +811,9 @@ md-grid-tile a {
 }
 
 a.md-button.md-primary.md-fab.tile-link {
-    background-color: #BBB;
     position: absolute;
     right: 0;
     bottom: 3px;
-}
-
-a.md-button.md-primary.md-fab.tile-link:hover {
-    background-color: #4682b4;
 }
 
 .tile-footer {
