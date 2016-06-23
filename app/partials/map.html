@@ -15,13 +15,12 @@
         <div ng-class="['full-height']">
             <div ng-class="['row', 'grid-list', 'no-gutter', 'full-height']" flex="">
                 <md-grid-list
-                    md-cols-sm="2"
-                    md-cols-md="3"
-                    md-cols-gt-md="4"
-                    md-row-height-gt-md="5:3"
+                    md-cols-sm="1"
+                    md-cols-md="2"
+                    md-cols-gt-md="3"
                     md-row-height="5:3"
+                    md-row-height-sm="6:3"
                     md-gutter="6px"
-                    md-gutter-gt-sm="12px"
                 >
                     <md-grid-tile id="{{result.ID}}"
                         ng-repeat="result in filteredResults|limitTo:resultsDisplayCount"
@@ -43,8 +42,9 @@
                     </md-grid-tile>
                     <md-grid-tile id="{{result.ID}}"
                         md-rowspan="1"
-                        md-colspan="4"
-                        md-colspan-sm="3"
+                        md-colspan="3"
+                        md-colspan-md="2"
+                        md-colspan-sm="1"
                         ng-class="['gray-tile']"
                         ng-show="filteredResults.length > resultsDisplayCount"
                         ng-click="displayAllResults()"

@@ -785,7 +785,7 @@ ul#menu_appli li:last-child a::after {
 .corpus .tiles {
     height: calc(100% - 240px);
     overflow-y: scroll;
-    padding: 12px;
+    padding: 6px;
     position: absolute;
     top: 188px;
     width: 100%;
@@ -828,7 +828,7 @@ a.md-button.md-primary.md-fab.tile-link:hover {
 .tile-footer {
     height: 64px;
     padding: 0 10px;
-
+    font-family: Roboto Condensed, sans-serif;
     color: #333;
 
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eeeeee+0,eeeeee+50&0+0,0.5+20,0.9+50,1+100 */
