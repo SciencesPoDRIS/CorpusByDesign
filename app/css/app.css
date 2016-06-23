@@ -928,11 +928,6 @@ a.md-button.md-primary.md-fab.tile-link:hover {
     fill: #999;
 }
 
-#map #countries path.selected, #map #countries path.hover.selected {
-    fill: #666;
-    cursor: default;
-}
-
 #map pre.prettyprint {
     border: 1px solid #ccc;
     margin-bottom: 0;

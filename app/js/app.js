@@ -19,6 +19,7 @@
     app.controller('mapController', ['$scope', '$routeParams', '$window', '$timeout',
         function($scope, $routeParams, $window, $timeout) {
 
+
             var m_width = $('#map').width(),
                 width = 965,
                 height = 585,
@@ -88,13 +89,11 @@
 
             var countryClicked = function(country) {
                 $timeout(function(){
-                    $('#countries path').removeClass('selected');
                     $.each($scope.corpus.categories.area.values, function(i, value) {
                         if (value.id != country.id) {
                             value.isSelected = false;
                         } else {
                             value.isSelected = true;
-                            $('#' + country.id).addClass('selected');
                         }
                     });
                     $scope.$apply()
