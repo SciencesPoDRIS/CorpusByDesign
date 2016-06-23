@@ -271,7 +271,7 @@
                         // Methology
                         $scope.tabList.push({
                             label: 'Methodology',
-                            active: false,
+                            active: $scope.currentView == 'methodology',
                             onClick: function(){
                                 // Change location, with a small delay to have the tab animation
                                 $timeout(function(){

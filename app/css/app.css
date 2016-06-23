@@ -1025,7 +1025,13 @@ a.md-button.md-primary.md-fab.tile-link:hover {
 /* Methodology Page */
 
 .content.methodology {
-    padding: 15px;
+    margin-top: -190px;
+    padding-top: 190px;
+}
+.content .methodology-content {
+    overflow-y: auto;
+    height: 100%;
+    padding: 12px;
 }
 
 /* Welcome Page */
