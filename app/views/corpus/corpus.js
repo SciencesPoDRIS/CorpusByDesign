@@ -25,12 +25,6 @@
             $scope.corpusId = $routeParams.corpusId;
             $scope.lang = $routeParams.lang;
 
-            // On view change ('grid', 'list', 'graph', 'map')
-            $scope.changeView = function(currentView) {
-                $scope.currentView = currentView;
-                $scope.init(currentView);
-            }
-
             // Limit results displayed for performance issues
             var defaultResultsDisplayCount = 48
             $scope.resultsDisplayCount = defaultResultsDisplayCount;

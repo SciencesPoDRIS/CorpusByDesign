@@ -27,15 +27,13 @@
     </div>
     <div ng-class="['tab-row', 'row', 'no-gutter']">
         <div ng-class="['col-md-12']">
-            <md-tabs md-selected="selectedIndex">
-              <md-tab label="Home"></md-tab>
-              <md-tab ng-repeat="availableView in corpus.availableViews" label="{{
-                availableView == 'grid' ? 'Grid' :
-                availableView == 'list' ? 'List' :
-                availableView == 'graph' ? 'Network' :
-                availableView == 'map' ? 'Map' : 'Unknown View'
-                }}"></md-tab>
-              <md-tab label="Methodology"></md-tab>
+            <md-tabs>
+                <md-tab
+                    ng-repeat="tab in tabList"
+                    label="{{tab.label}}"
+                    md-active="tab.active"
+                    ng-click="tab.onClick()"
+                ></md-tab>
             </md-tabs>
         </div>
     </div>

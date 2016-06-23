@@ -224,20 +224,73 @@
         };
     }]);
 
-    app.directive('topBar', ['$sce', function($sce) {
+    app.directive('topBar', ['$sce', '$timeout', '$location', function($sce, $timeout, $location) {
         return {
             restrict: 'E',
             templateUrl: 'partials/topBar.html',
             scope: {
                 corpus: '=',
                 lang: '=',
-                corpusId: '='
+                corpusId: '=',
+                currentView: '='
             },
             link: function($scope, element, attrs) {
                 $scope.$watch('corpus', function(){
+                    $scope.selectedIndex = 0
+                    $scope.tabList = []
+
+                    // Build menu tabs
+                    $scope.$watch('corpus.availableViews', function(){
+                        $scope.tabList = [];
+
+                        // Home
+                        $scope.tabList.push({
+                            label: 'Home',
+                            active: false,
+                            onClick: function(){
+                                // Change location, with a small delay to have the tab animation
+                                $timeout(function(){
+                                    $location.url($scope.lang)
+                                }, 300)
+                            }
+                        })
+                        // Available views
+                        if ($scope.corpus && $scope.corpus.availableViews) {
+                            $scope.corpus.availableViews.forEach(function(view) {
+                                $scope.tabList.push({
+                                    label: view,
+                                    active: view == $scope.currentView,
+                                    onClick: function(){
+                                        $timeout(function(){
+                                            changeView(view)
+                                        }, 300)
+                                    }
+                                })
+                            })
+                        }
+                        // Methology
+                        $scope.tabList.push({
+                            label: 'Methodology',
+                            active: false,
+                            onClick: function(){
+                                // Change location, with a small delay to have the tab animation
+                                $timeout(function(){
+                                    $location.url($scope.lang+'/'+$scope.corpusId+'/methodology')
+                                }, 300)
+                            }
+                        })
+                    })
+
+                    // Explanation text
                     if($scope.corpus) {
                         $scope.subtitle = $sce.trustAsHtml($scope.corpus.subtitle);
                     }
+                    
+                    // On view change ('grid', 'list', 'graph', 'map')
+                    var changeView = function(view) {
+                        $scope.currentView = view;
+                    }
+
                 })
             }
         };
