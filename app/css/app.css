@@ -607,10 +607,11 @@ ul#menu_appli li:last-child a::after {
     /*line-height: 30px;*/
     position: absolute;
     width: 100%;
-    background-color: #EEE;
-    color: #999;
+/*    background-color: #EEE;
+    color: #999;*/
+    background-color: #78909c;
+    color: #FFF;
     cursor: pointer;
-    border-bottom: 1px solid #DDD;
 }
 
 .my-filters .search-bottom .results-number {
@@ -897,7 +898,6 @@ a.md-button.md-primary.md-fab.tile-link {
 
 #map {
     background-color: white;
-    /*border: 1px solid #ccc;*/
 }
 
 #map .background {
@@ -914,7 +914,7 @@ a.md-button.md-primary.md-fab.tile-link {
 }
 
 #map #countries path.hover {
-    fill: #999;
+    fill: #78909c;
 }
 
 #map pre.prettyprint {

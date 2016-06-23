@@ -1,12 +1,4 @@
 <div ng-class="['my-filters']">
-    <!-- <div ng-class="['col-md-12', 'search-bar']">
-        <md-input-container md-no-float>
-            <md-icon ng-class="['icon-flip-horizontal']">search</md-icon>
-            <span>
-                <input ng-model="$parent.$parent.$parent.$parent.queryTerm" type="text" placeholder="Search" ng-class="['full-width']"/>
-            </span>
-        </md-input-container>
-    </div> -->
     <div ng-class="['no-gutter', 'col-md-12', 'facets', 'full-height']">
         <div ng-class="['row', 'no-gutter', 'full-height']">
             <div ng-if="isCollapsed" layout="column" class="collapsed-filters-container">
@@ -79,6 +71,7 @@
                                 ng-checked="allChecked[currentCategoryId]"
                                 md-indeterminate="indeterminate[currentCategoryId]"
                                 ng-click="toggleSelectAll(currentCategoryId);"
+                                class="md-primary"
                             >
                                 Select All
                             </md-checkbox>
@@ -94,6 +87,7 @@
                                     {{value.label}}
                                 </md-tooltip>
                                 <md-checkbox
+                                    class="md-primary"
                                     ng-model="value.isSelected"
                                 >
                                     {{value.label}}
