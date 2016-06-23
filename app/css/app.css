@@ -373,10 +373,12 @@ ul#menu_appli li:last-child a::after {
 }
 
 .first-row .creation-date {
+    font-family: Roboto Condensed;
     color: #999;
 }
 
 .first-row .last-update {
+    font-family: Roboto Condensed;
     color: #999;
     padding-left: 20px;
 }
