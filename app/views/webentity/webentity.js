@@ -3,8 +3,8 @@
 
     var app = angular.module('webcorpus.webentity', []);
 
-    app.controller('WebEntityCtrl', ['$scope', '$routeParams', '$http', 'loadCorpora', 'loadCorpus', '$sce',
-        function($scope, $routeParams, $http, loadCorpora, loadCorpus, $sce) {
+    app.controller('WebEntityCtrl', ['$scope', '$routeParams', '$http', 'loadCorpus', 'loadCorpusData', '$sce',
+        function($scope, $routeParams, $http, loadCorpus, loadCorpusData, $sce) {
             // Init variables
             var filter,
                 itemFacets,
@@ -20,13 +20,13 @@
             $scope.currentView = 'webentity';
 
             // Load all the corpora descriptions
-            loadCorpora.getCorpora($scope.corpusId).then(function(data) {
+            loadCorpus.getCorpus($scope.corpusId).then(function(data) {
                 $scope.corpora = data;
                 // Load the specific corpus configuration
                 $scope.subtitle = $sce.trustAsHtml($scope.corpora.subtitle);
 
                 // Load corpus
-                loadCorpus.getCorpus($scope.corpusId).then(function(data) {
+                loadCorpusData.getData($scope.corpusId).then(function(data) {
                     data = data.split('\n');
                     itemFacets = data[0].split('\t');
                     $.each(data.slice(1), function(index_01, item_01) {
