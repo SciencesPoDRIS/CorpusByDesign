@@ -23,9 +23,7 @@
                 width = 965,
                 height = 585,
                 country,
-                state,
-                countryDefaultColor = '#cde',
-                countryOverColor = '#123';
+                state
 
             var div = d3.select('body').append('div')
                 .attr('class', 'tooltip country-tooltip')
@@ -62,9 +60,9 @@
                         return d.id;
                     })
                     .attr('d', path)
-                    .on('click', $scope.countryClicked)
-                    .on('mouseenter', $scope.countryHoverIn)
-                    .on('mouseleave', $scope.countryHoverOut);
+                    .on('click', countryClicked)
+                    .on('mouseenter', countryHoverIn)
+                    .on('mouseleave', countryHoverOut);
             });
 
             $scope.zoom = function(xyz) {
@@ -73,6 +71,7 @@
                     .attr('transform', 'translate(' + projection.translate() + ')scale(' + xyz[2] + ')translate(-' + xyz[0] + ',-' + xyz[1] + ')')
                     .selectAll(['#countries'])
                     .style('stroke-width', 1.0 / xyz[2] + 'px')
+                    // .class(function(d){ if(Math.random() >= 0.5) return 'selected' })
                     .selectAll('.city')
                     .attr('d', path.pointRadius(20.0 / xyz[2]));
             }
@@ -87,22 +86,24 @@
                 return [x, y, z];
             }
 
-            $scope.countryClicked = function(country) {
+            var countryClicked = function(country) {
                 $timeout(function(){
-                    $.each($scope.corpus.categories.area.values, function(index, item) {
-                        if (item.id != country.id) {
-                            item.isSelected = false;
+                    $('#countries path').removeClass('selected');
+                    $.each($scope.corpus.categories.area.values, function(i, value) {
+                        if (value.id != country.id) {
+                            value.isSelected = false;
                         } else {
-                            item.isSelected = true;
+                            value.isSelected = true;
+                            $('#' + country.id).addClass('selected');
                         }
                     });
                     $scope.$apply()
                 }, 0)
             }
 
-            $scope.countryHoverIn = function(country) {
+            var countryHoverIn = function(country) {
                 // Change country color
-                $('#' + country.id).attr('fill', countryOverColor);
+                $('#' + country.id).addClass('hover');
                 // Display a tooltip with the country name
                 div.transition().duration(300)
                     .style('opacity', 1)
@@ -111,9 +112,9 @@
                     .style('top', (d3.event.pageY - 30) + 'px');
             }
 
-            $scope.countryHoverOut = function(country) {
+            var countryHoverOut = function(country) {
                 // Restore default country color
-                $('#' + country.id).attr('fill', countryDefaultColor);
+                $('#' + country.id).removeClass('hover');
                 // Hide the tooltip
                 div.transition().duration(300)
                     .style('opacity', 0);

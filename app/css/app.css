@@ -916,15 +916,21 @@ a.md-button.md-primary.md-fab.tile-link:hover {
     pointer-events: all;
 }
 
-#map #countries {
-    fill: #cde;
+#map #countries path {
+    fill: #ddd;
     stroke: white;
     stroke-linejoin: round;
     stroke-linecap: round;
+    cursor: pointer;
 }
 
-#map #countries .active {
-    fill: #89a;
+#map #countries path.hover {
+    fill: #999;
+}
+
+#map #countries path.selected, #map #countries path.hover.selected {
+    fill: #666;
+    cursor: default;
 }
 
 #map pre.prettyprint {
