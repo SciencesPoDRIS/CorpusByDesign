@@ -10,8 +10,18 @@
         function($http) {
             return {
                 getCorpus: function(corpusId) {
+                    if (corpusId === 'undefined') {
+                        console.error('Unknown corpus ID: '+corpusId)
+                        return {}
+                    }
                     return $http.get('../data/corpora.json', { cache: true }).then(function(data) {
-                        return (typeof corpusId === 'undefined') ? data.data.corpora : data.data.corpora[corpusId];
+                        return data.data.corpora[corpusId];
+                    });
+                },
+
+                getCorpora: function() {
+                    return $http.get('../data/corpora.json', { cache: true }).then(function(data) {
+                        return data.data.corpora;
                     });
                 }
             }

@@ -3,12 +3,12 @@
 
     var app = angular.module('webcorpus.welcome', []);
 
-    app.controller('WelcomeController', ['$scope', 'loadCorpora', '$routeParams',
-        function($scope, loadCorpora, $routeParams) {
+    app.controller('WelcomeController', ['$scope', 'loadCorpus', '$routeParams',
+        function($scope, loadCorpus, $routeParams) {
 
             // Load the corpus configurations
-            loadCorpora.getCorpora().then(function(data) {
-                $scope.corpora = data;
+            loadCorpus.getCorpora().then(function(corpora) {
+                $scope.corpora = corpora;
                 // Init routing variables
                 $scope.lang = $routeParams.lang;
             });
