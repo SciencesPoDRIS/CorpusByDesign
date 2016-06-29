@@ -6,11 +6,6 @@
     color: #e6142d;
 }
 
-.no-gutter {
-    margin: 0;
-    padding: 0;
-}
-
 .ellipsed,
 .my-filters md-checkbox .md-label > span {
     display: block;
@@ -51,6 +46,12 @@ md-tooltip .md-content {
     opacity: 1;
 }
 
+.pull-right {
+    float: right;
+}
+.pull-left {
+    float: left;
+}
 
 /* General */
 
@@ -205,6 +206,7 @@ input[type=radio] {
 }
 
 .logo_scpo {
+    padding: 0 15px;
     width: 11%;
 }
 
@@ -290,7 +292,6 @@ ul#menu_appli li:last-child a::after {
     border-radius: 5px;
     font-size: 14px;
     height: 45px !important;
-    margin-top: 4px;
     padding: 3px;
     position: relative;
     width: 585px;
@@ -311,13 +312,13 @@ ul#menu_appli li:last-child a::after {
 #social {
     float: left;
     position: relative;
-    top: 3px;
+    top: 10px;
 }
 
 .desc-appli {
     height: 68px;
     position: fixed;
-    right: 30px;
+    right: 15px;
     top: -5px;
     width: 250px;
 }
@@ -355,7 +356,7 @@ ul#menu_appli li:last-child a::after {
 
 /* Top bar */
 .top-bar {
-    height: 188px;
+    /*height: 188px;*/
     padding-top: 68px;
 }
 

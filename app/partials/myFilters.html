@@ -30,7 +30,6 @@
                     <div class="advanced-search filter-search-box">
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Search</label>
-                            <!-- <md-icon>search</md-icon> -->
                             <input ng-model="$parent.$parent.$parent.$parent.$parent.queryTerm">
                         </md-input-container>
                     </div>
@@ -78,7 +77,7 @@
                         <br>
                         <div
                             ng-repeat="value in $parent.categories[currentCategoryId].values"
-                            ng-class="['category-value', 'no-gutter', {'disable' : value.count == 0}]"
+                            ng-class="['category-value', {'disable' : value.count == 0}]"
                             ng-model="$parent.value"
                         >
                             <div ng-class="['checkbox']">

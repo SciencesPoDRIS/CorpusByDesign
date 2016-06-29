@@ -6,13 +6,13 @@
             </a>
         </div>
         <nav ng-class="['navbar', 'navbar-default', 'no-border']" flex="60" flex-sm="35">
-            <button type="button" ng-class="['navbar-toggle', 'collapsed']" data-toggle="collapse" data-target="#cata_ent" aria-expanded="false">
+            <button type="button" ng-class="['navbar-toggle', 'collapsed']" data-toggle="collapse" data-target="#cata_ent" aria-expanded="false" hide-gt-sm>
                 <span ng-class="['sr-only']">Toggle navigation</span>
                 <span ng-class="['icon-bar']"></span>
                 <span ng-class="['icon-bar']"></span>
                 <span ng-class="['icon-bar']"></span>
             </button>
-            <div id="cata_ent" ng-class="['collapse', 'navbar-collapse']">
+            <div id="cata_ent" ng-class="['collapse', 'navbar-collapse']" hide-sm hide-xs>
                 <ul id="menu_appli" ng-class="['a', 'nav-images', 'menu', 'nav', 'navbar-nav']">
                     <li ng-class="['nav-item-0']">
                         <a id="web-corpus" ng-class="['ext', 'no-border']" title="Web Corpus - New window" ng-href="{{lang}}/{{corpusId}}" target="_self">Web Corpus</a>

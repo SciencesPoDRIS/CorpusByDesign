@@ -12,8 +12,7 @@
         'webcorpus.filters',
         'webcorpus.routes',
         'webcorpus.services',
-        'ngMaterial',
-        'ui.bootstrap'
+        'ngMaterial'
     ]);
 
     app.controller('mapController', ['$scope', '$routeParams', '$window', '$timeout',
