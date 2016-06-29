@@ -19,11 +19,11 @@
             $scope.lang = $routeParams.lang;
             $scope.currentView = 'webentity';
 
-            // Load all the corpora descriptions
+            // Load all the corpus descriptions
             loadCorpus.getCorpus($scope.corpusId).then(function(data) {
-                $scope.corpora = data;
+                $scope.corpus = data;
                 // Load the specific corpus configuration
-                $scope.subtitle = $sce.trustAsHtml($scope.corpora.subtitle);
+                $scope.subtitle = $sce.trustAsHtml($scope.corpus.subtitle);
 
                 // Load corpus
                 loadCorpusData.getData($scope.corpusId).then(function(data) {
@@ -116,7 +116,7 @@
                     var node = $.grep($scope.graph.graph.nodes(), function(item, index) {
                         return item.id == $scope.webEntityId;
                     })[0];
-                    var color = $.grep($scope.corpora.categories.actorsType2.values, function(item, index) {
+                    var color = $.grep($scope.corpus.categories.actorsType2.values, function(item, index) {
                         return item.id == node.attributes.ACTORS_TYPE_2;
                     })[0].color;
                     var ids = [];
@@ -127,9 +127,9 @@
                     });
                     // Color the connected nodes, ie the selected node and its neighbors
                     $scope.graph.graph.nodes().forEach(function(node) {
-                        if ((ids.indexOf(node.id) != -1) && (node.attributes[$scope.corpora.categories[$scope.corpora.nodesColor].mappedField] !== undefined)) {
-                            node.color = $scope.corpora.categories[$scope.corpora.nodesColor].values.filter(function(item) {
-                                return item.id == node.attributes[$scope.corpora.categories[$scope.corpora.nodesColor].mappedField];
+                        if ((ids.indexOf(node.id) != -1) && (node.attributes[$scope.corpus.categories[$scope.corpus.nodesColor].mappedField] !== undefined)) {
+                            node.color = $scope.corpus.categories[$scope.corpus.nodesColor].values.filter(function(item) {
+                                return item.id == node.attributes[$scope.corpus.categories[$scope.corpus.nodesColor].mappedField];
                             })[0].color;
                         }
                     });
