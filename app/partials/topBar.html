@@ -1,8 +1,8 @@
 <div class="top-bar">
-    <div ng-class="['first-row', 'row', 'no-gutter']">
-        <div ng-class="['col-md-5', 'title']">
-            <!-- <div ng-class="['pull-right']">
-                <label ng-repeat="availableView in corpus.availableViews" ng-class="['btn', 'btn-default', 'btn-view']" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView(availableView);">
+    <div class="first-row" layout="row">
+        <div class="title" flex="40">
+            <!-- <div class="pull-right">
+                <label ng-repeat="availableView in corpus.availableViews" class="btn btn-default btn-view" btn-radio="{{availableView}}" ng-model="currentView" ng-click="changeView(availableView);">
                     <md-icon ng-if="availableView == 'grid'">view_module</md-icon>
                     <md-icon ng-if="availableView == 'list'">view_week</md-icon>
                     <md-icon ng-if="availableView == 'graph'">bubble_chart</md-icon>
@@ -13,20 +13,20 @@
                 <a href="#/{{lang}}/{{corpusId}}">{{corpus.title}}</a>
             </h3>
             <div>
-                <span ng-class="['creation-date']">Créé le {{corpus.creation}}</span>
-                <span ng-class="['last-update']">Mis à jour le {{corpus.update}}</span>
+                <span class="creation-date">Créé le {{corpus.creation}}</span>
+                <span class="last-update">Mis à jour le {{corpus.update}}</span>
             </div>
         </div>
-        <div ng-class="['col-md-7']">
-            <div ng-class="['methodology']">
-                <a href="#/{{lang}}/{{corpusId}}/methodology" ng-class="['blockquote']" >
+        <div flex="60">
+            <div class="methodology">
+                <a href="#/{{lang}}/{{corpusId}}/methodology" class="blockquote" >
                     <span ng-bind-html="subtitle"></span>
                 </a>
             </div>
         </div>
     </div>
-    <div ng-class="['tab-row', 'row', 'no-gutter']">
-        <div ng-class="['col-md-12']">
+    <div class="tab-row" layout="row">
+        <div flex>
             <md-tabs>
                 <md-tab
                     ng-repeat="tab in tabList"

@@ -40,68 +40,68 @@
     current-view="currentView"
 ></top-bar>
 <!-- Second row -->
-<div ng-class="['row', 'content', 'full-height', 'webentity', 'no-gutter']">
-    <div ng-class="['col-sm-12', 'col-md-6', 'no-gutter', 'full-height']">
+<div ng-class="['content', 'full-height', 'webentity']" layout="row">
+    <div ng-class="['full-height']" flex="50" flex-sm="100">
         <!-- Graph -->
         <my-graph corpus-id="corpusId" corpora="corpora" />
-        <div ng-class="['row', 'no-gutter', 'abstract']">
+        <div ng-class="['abstract']">
             <div>Abstract</div>
             <div>
                 {{webEntity.ABSTRACT}}
             </div>
         </div>
     </div>
-    <div ng-class="['col-sm-12', 'col-md-6', 'no-gutter', 'full-height']">
+    <div ng-class="['full-height']" flex="50" flex-sm="100">
         <div ng-class="['title']">{{webEntity.FULL_NAME}}</div>
         <div ng-class="['metadata']">
             <table ng-class="['table', 'table-hover']">
                 <tr>
-                    <td ng-class="['name', 'col-md-4']">URL</td>
+                    <td ng-class="['name']" flex="30">URL</td>
                     <td ng-class="['value']"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
                 </tr>
                 <tr>
-                    <td ng-class="['name', 'col-md-4']">Actor's Type</td>
+                    <td ng-class="['name']" flex="30">Actor's Type</td>
                     <td ng-class="['value']">{{webEntity.ACTORS_TYPE_2 | translate:this:'actorsType2'}}</td>
                 </tr>
                 <tr>
-                    <td ng-class="['name', 'col-md-4']">Indegree</td>
+                    <td ng-class="['name']" flex="30">Indegree</td>
                     <td ng-class="['value']">{{webEntity.INDEGREE}}</td>
                 </tr>
                 <tr>
-                    <td ng-class="['name', 'col-md-4']">Country</td>
+                    <td ng-class="['name']" flex="30">Country</td>
                     <td ng-class="['value']">{{webEntity.COUNTRY | translate:this:'country'}}</td>
                 </tr>
                 <tr>
-                    <td ng-class="['name', 'col-md-4']">Anthropogenic Climate Change</td>
+                    <td ng-class="['name']" flex="30">Anthropogenic Climate Change</td>
                     <td ng-class="['value']">{{webEntity.ANTHROPOGENIC_CLIMATE_CHANGE | translate:this:'anthropogenicClimateChange'}}</td>
                 </tr>
                 <tr>
-                    <td ng-class="['name', 'col-md-4']">Mitigation / Adaptation</td>
+                    <td ng-class="['name']" flex="30">Mitigation / Adaptation</td>
                     <td ng-class="['value']">{{webEntity.MITIGATION_ADAPTATION | translate:this:'mitigationAdaptation'}}</td>
                 </tr>
                 <tr>
-                    <td ng-class="['name', 'col-md-4']">Language</td>
+                    <td ng-class="['name']" flex="30">Language</td>
                     <td ng-class="['value']">{{webEntity.LANGUAGE | translate:this:'language'}}</td>
                 </tr>
                 <tr>
-                    <td ng-class="['name', 'col-md-4']">Collection</td>
+                    <td ng-class="['name']" flex="30">Collection</td>
                     <td ng-class="['value']">{{webEntity.COLLECTION | translate:this:'collection'}}</td>
                 </tr>
                 <tr>
-                    <td ng-class="['name', 'col-md-4']">Abstract</td>
+                    <td ng-class="['name']" flex="30">Abstract</td>
                     <td ng-class="['value']">{{webEntity.ABSTRACT}}</td>
                 </tr>
                 <tr ng-class="['neighbors']">
-                    <td ng-class="['name', 'col-md-4']">Neighbors</td>
+                    <td ng-class="['name']" flex="30">Neighbors</td>
                     <td ng-class="['value']">
-                        <ul ng-class="['col-md-11']">
+                        <ul flex="90">
                             <li ng-repeat="node in webEntity.NEIGHBORS" ng-attr-collapse="{{$index >= neighborsQuantity ? 'isCollapsed' : ''}}">
                                 <a title="{{node.attributes.FULL_NAME}} | New window" href="{{node.attributes.URL}}" target="_blank">
                                         {{node.attributes.FULL_NAME}}</a> ({{node.attributes.ACTORS_TYPE_2 | translate:this:'actorsType2'}})
                                 </a>
                             </li>
                         </ul>
-                        <div ng-class="['col-md-1', 'icon']" ng-click="collapse()">
+                        <div ng-class="['icon']" ng-click="collapse()" flex="10">
                             <i class="material-icons" ng-if="!isCollapsed">keyboard_arrow_up</i>
                             <i class="material-icons" ng-if="isCollapsed">keyboard_arrow_down</i>
                         </div>

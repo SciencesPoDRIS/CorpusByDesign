@@ -1,8 +1,8 @@
 <!-- Legend -->
-<div ng-class="['col-md-12', 'no-gutter', 'legend']">
-    <div ng-repeat="item in legend" ng-class="['item', 'pull-left', 'col-md-3']">
-        <div ng-class="['item-color']" style="background-color: {{item.color}};"></div>
-        <span ng-class="['item-label', 'ellipsed']">
+<div class="legend" layout="row">
+    <div ng-repeat="item in legend" class="item" flex="25">
+        <div class="item-color" style="background-color: {{item.color}};"></div>
+        <span class="item-label ellipsed">
             <md-tooltip md-direction="left">
                 {{item.label}}
             </md-tooltip>
@@ -10,7 +10,7 @@
         </span>
     </div>
 </div>
-<div ng-class="['col-md-12', 'no-gutter', 'full-height']">
+<div flex>
     <!-- Graph -->
     <my-graph corpus-id="corpusId" corpora="corpora" />
 </div>

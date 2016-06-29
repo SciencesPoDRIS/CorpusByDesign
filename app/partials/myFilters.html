@@ -1,6 +1,6 @@
 <div ng-class="['my-filters']">
-    <div ng-class="['no-gutter', 'col-md-12', 'facets', 'full-height']">
-        <div ng-class="['row', 'no-gutter', 'full-height']">
+    <div ng-class="['facets']">
+        <div>
             <div ng-if="isCollapsed" layout="column" class="collapsed-filters-container">
                 <div layout="row" class="collapsed-filters-search-row">
                     <div flex>
@@ -15,7 +15,6 @@
                         ng-repeat="category in categories"
                         class="collapsed-filters"
                         ng-if="category.isDiplayed && !isAllChecked(category.id)"
-                       
                     >
                         <filter-category-badge
                             category="$parent.category"
@@ -103,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div ng-class="['no-gutter', 'col-md-12', 'search-bottom']" ng-click="moreFilters()">
+    <div ng-class="['search-bottom']" ng-click="moreFilters()">
         <div class="results-number">
             <ng-pluralize count="filteredResultsCount" when="{'0': 'No result', '1': '1 result', 'other': '{} results'}"></ng-pluralize>
         </div>

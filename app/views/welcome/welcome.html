@@ -1,42 +1,42 @@
 <!-- Header -->
 <div ng-include="'partials/header.html'"></div>
 <!-- First row -->
-<div ng-class="['first-row', 'row', 'no-gutter']">
-    <div ng-class="['col-md-5', 'title']">
+<div ng-class="['first-row']" layout="row">
+    <div ng-class="['title']" flex="40">
         <span>
-            <a href="{{lang}}">Corpus Web</a>
+            <a href="#/{{lang}}">Corpus Web</a>
         </span>
     </div>
 </div>
 <!-- Second row -->
-<div ng-class="['row', 'content', 'welcome', 'no-gutter']">
+<div ng-class="['content', 'welcome']" layout="row">
     <div ng-repeat="(corpusId, corpus) in corpora" ng-if="corpus.isDiplayed" ng-class="['corpus']">
-        <div ng-class="['row', 'no-gutter']">
-            <a href="#/{{lang}}/{{corpusId}}">
-                <div ng-class="['col-md-2']">
+        <a href="#/{{lang}}/{{corpusId}}" layout-fill>
+            <div layout="row">
+                <div flex="15">
                     <img src="../images/{{corpusId}}.png" ng-class="['fit']" />
                 </div>
-                <div ng-class="['col-md-10']">
-                    <div ng-class="['row', 'no-gutter']">
-                        <span ng-class="['value', 'title']">{{corpus.title}}</span>
+                <div flex="85">
+                    <div>
+                        <div ng-class="['value', 'title']">{{corpus.title}}</div>
                     </div>
-                    <div ng-class="['row', 'no-gutter']">
-                        <span ng-class="['col-md-1', 'no-gutter']">Date du corpus</span>
-                        <span ng-class="['value']">{{corpus.creation}}</span>
+                    <div layout="row">
+                        <div flex="10">Date du corpus</div>
+                        <div flex="90" ng-class="['value']">{{corpus.creation}}</div>
                     </div>
-                    <div ng-class="['row', 'no-gutter']">
-                        <span ng-class="['col-md-1', 'no-gutter']">Auteurs</span>
-                        <span ng-class="['value']">{{corpus.authors}}</span>
+                    <div layout="row">
+                        <div flex="10">Auteurs</div>
+                        <div flex="90" ng-class="['value']">{{corpus.authors}}</div>
                     </div>
-                    <div ng-class="['row', 'no-gutter']">
-                        <span ng-class="['value']">{{corpus.purpose}}</span>
+                    <div>
+                        <div ng-class="['value']">{{corpus.purpose}}</div>
                     </div>
                 </div>
-            </a>
-        </div>
-        <div ng-class="['row', 'no-gutter']">
-            <div ng-class="['col-md-12']">
-                <span ng-repeat="tool in corpus.tools" ng-class="['tool']">
+            </div>
+        </a>
+        <div layout="row">
+            <div flex="100">
+                <span ng-repeat="tool in corpus.tools" ng-class="['tool']" layout-margin>
                     <a href="{{tool.url}}" target="_blank">
                         <md-icon>local_offer</md-icon>
                         {{tool.name}}

@@ -1,8 +1,8 @@
 <!-- Left column -->
-<div ng-class="['col-md-5', 'no-gutter', 'full-height']">
+<div flex="40">
     <!-- Presentation -->
-    <div ng-class="['row', 'no-gutter', 'presentation']">
-        <div ng-class="['col-md-6', 'nodes-color']">
+    <div ng-class="['presentation']" layout="row">
+        <div ng-class="['nodes-color']" flex="50">
             <label>Nodes Color</label>
             <md-menu>
                 <md-button ng-click="$mdOpenMenu($event)" ng-class="['no-uppercase']" aria-label="selectedCategory">
@@ -16,11 +16,13 @@
                 </md-menu-content>
             </md-menu>
         </div>
-        <div ng-class="['col-md-6']">{{initResultsCount}} nodes</div>
+        <div flex="50">
+            {{initResultsCount}} nodes
+        </div>
     </div>
     <!-- Legend -->
-    <div ng-class="['row', 'no-gutter', 'legend']">
-        <div ng-repeat="item in legend" ng-class="['item', 'pull-left', 'col-md-3']">
+    <div ng-class="['legend']" layout="row">
+        <div ng-repeat="item in legend" ng-class="['item', 'pull-left']" flex="25">
             <div ng-class="['item-color']" style="background-color: {{item.color}};"></div>
             <span ng-class="['item-label', 'ellipsed']">
                 <md-tooltip md-direction="right">
@@ -34,14 +36,14 @@
     <my-graph corpus-id="corpusId" corpora="corpora" />
 </div>
 <!-- Right column -->
-<div ng-class="['col-md-7', 'no-gutter', 'full-height']">
-    <div ng-class="['row', 'no-gutter', 'full-height']">
+<div flex="60">
+    <div>
         <my-filters categories="corpora.categories" query-term="$parent.$parent.queryTerm" corpus-id="corpusId" filtered-results-count="filteredResultsCount" prefix="corpora.prefix" />
     </div>
     <!-- Tiles -->
-    <div ng-class="['row', 'no-gutter', 'full-height', 'tiles']">
+    <div ng-class="['full-height', 'tiles']">
         <div ng-class="['full-height']">
-            <div ng-class="['row', 'grid-list', 'no-gutter', 'full-height']" flex="">
+            <div ng-class="['grid-list', 'full-height']">
                 <md-grid-list md-cols-sm="2" md-cols-md="4" md-cols-gt-md="5" md-row-height-gt-md="4:3" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="10px">
                     <md-grid-tile id="{{result.ID}}" ng-repeat="result in displayedResults" md-rowspan="1" md-colspan="1" md-colspan-sm="1" ng-class="['gray']">
                         <a href="{{lang}}/{{corpusId}}/{{result.ID}}" target="_blank" ng-class="['fit']">

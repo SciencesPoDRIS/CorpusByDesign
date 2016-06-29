@@ -367,6 +367,10 @@ ul#menu_appli li:last-child a::after {
     height: 50px;
 }
 
+.first-row > div {
+    margin: 0 10px;
+}
+
 .first-row h3 {
     margin-top: 16px;
     margin-bottom: 2px;
@@ -596,17 +600,17 @@ ul#menu_appli li:last-child a::after {
 .my-filters {
     background-color: white;
     height: 188px;
-    position: absolute;
-    width: 100%;
-    z-index: 21;
+    /*position: absolute;*/
+    /*width: 100%;*/
+    /*z-index: 21;*/
 }
 
 .my-filters .search-bottom {
-    bottom: 0;
+    /*bottom: 0;*/
     height: 64px;
     /*line-height: 30px;*/
-    position: absolute;
-    width: 100%;
+    /*position: absolute;*/
+    /*width: 100%;*/
 /*    background-color: #EEE;
     color: #999;*/
     background-color: #78909c;
@@ -783,9 +787,9 @@ ul#menu_appli li:last-child a::after {
     height: calc(100% - 240px);
     overflow-y: scroll;
     padding: 6px;
-    position: absolute;
-    top: 188px;
-    width: 100%;
+    /*position: absolute;*/
+    /*top: 188px;*/
+    /*width: 100%;*/
 }
 
 .grid-list {
