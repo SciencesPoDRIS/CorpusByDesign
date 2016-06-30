@@ -1,11 +1,11 @@
 <!-- Left column -->
 <div flex="40">
     <!-- Presentation -->
-    <div ng-class="['presentation']" layout="row">
-        <div ng-class="['nodes-color']" flex="50">
+    <div class="presentation" layout="row">
+        <div class="nodes-color" flex="50">
             <label>Nodes Color</label>
             <md-menu>
-                <md-button ng-click="$mdOpenMenu($event)" ng-class="['no-uppercase']" aria-label="selectedCategory">
+                <md-button ng-click="$mdOpenMenu($event)" class="no-uppercase" aria-label="selectedCategory">
                     {{selectedCategory}}
                     <md-icon>keyboard_arrow_down</md-icon>
                 </md-button>
@@ -21,10 +21,10 @@
         </div>
     </div>
     <!-- Legend -->
-    <div ng-class="['legend']" layout="row">
-        <div ng-repeat="item in legend" ng-class="['item', 'pull-left']" flex="25">
-            <div ng-class="['item-color']" style="background-color: {{item.color}};"></div>
-            <span ng-class="['item-label', 'ellipsed']">
+    <div class="legend" layout="row">
+        <div ng-repeat="item in legend" class="item pull-left" flex="25">
+            <div class="item-color" style="background-color: {{item.color}};"></div>
+            <span class="item-label ellipsed">
                 <md-tooltip md-direction="right">
                     {{item.label}}
                 </md-tooltip>
@@ -41,19 +41,19 @@
         <my-filters categories="corpora.categories" query-term="$parent.$parent.queryTerm" corpus-id="corpusId" filtered-results-count="filteredResultsCount" prefix="corpora.prefix" />
     </div>
     <!-- Tiles -->
-    <div ng-class="['full-height', 'tiles']">
-        <div ng-class="['full-height']">
-            <div ng-class="['grid-list', 'full-height']">
+    <div class="full-height tiles">
+        <div class="full-height">
+            <div class="grid-list full-height">
                 <md-grid-list md-cols-sm="2" md-cols-md="4" md-cols-gt-md="5" md-row-height-gt-md="4:3" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="10px">
-                    <md-grid-tile id="{{result.ID}}" ng-repeat="result in displayedResults" md-rowspan="1" md-colspan="1" md-colspan-sm="1" ng-class="['gray']">
-                        <a href="{{lang}}/{{corpusId}}/{{result.ID}}" target="_blank" ng-class="['fit']">
-                            <img ng-class="['fit', 'grayscale']" src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
-                            <md-button ng-class="['md-fab', 'md-primary', 'md-mini', 'tile-link']" aria-label="add" ng-href="{{result.URL}}" target="_blank">
+                    <md-grid-tile id="{{result.ID}}" ng-repeat="result in displayedResults" md-rowspan="1" md-colspan="1" md-colspan-sm="1" class="gray">
+                        <a href="{{lang}}/{{corpusId}}/{{result.ID}}" target="_blank" class="fit">
+                            <img class="fit grayscale" src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
+                            <md-button class="md-fab md-primary md-mini tile-link" aria-label="add" ng-href="{{result.URL}}" target="_blank">
                                 <md-icon>link</md-icon>
                             </md-button>
-                            <md-grid-tile-footer ng-class="['tile-footer']">
+                            <md-grid-tile-footer class="tile-footer">
                                 <h3>{{result.FULL_NAME}}</h3>
-                                <p ng-class="['actors-type']">{{result.ACTORS_TYPE | translate:this:'actorsType'}}</p>
+                                <p class="actors-type">{{result.ACTORS_TYPE | translate:this:'actorsType'}}</p>
                             </md-grid-tile-footer>
                         </a>
                     </md-grid-tile>

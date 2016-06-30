@@ -1,42 +1,42 @@
 <!-- Header -->
 <div ng-include="'partials/header.html'"></div>
 <!-- First row -->
-<div ng-class="['first-row']" layout="row">
-    <div ng-class="['title']" flex="40">
+<div class="first-row" layout="row">
+    <div class="title" flex="40">
         <span>
             <a href="#/{{lang}}">Corpus Web</a>
         </span>
     </div>
 </div>
 <!-- Second row -->
-<div ng-class="['content', 'welcome']" layout="row">
-    <div ng-repeat="(corpusId, corpus) in corpora" ng-if="corpus.isDiplayed" ng-class="['corpus']">
+<div class="content welcome" layout="row">
+    <div ng-repeat="(corpusId, corpus) in corpora" ng-if="corpus.isDiplayed" class="corpus">
         <a href="#/{{lang}}/{{corpusId}}" layout-fill>
             <div layout="row">
                 <div flex="15">
-                    <img src="../images/{{corpusId}}.png" ng-class="['fit']" />
+                    <img src="../images/{{corpusId}}.png" class="fit" />
                 </div>
                 <div flex="85">
                     <div>
-                        <div ng-class="['value', 'title']">{{corpus.title}}</div>
+                        <div class="value title">{{corpus.title}}</div>
                     </div>
                     <div layout="row">
                         <div flex="10">Date du corpus</div>
-                        <div flex="90" ng-class="['value']">{{corpus.creation}}</div>
+                        <div flex="90" class="value">{{corpus.creation}}</div>
                     </div>
                     <div layout="row">
                         <div flex="10">Auteurs</div>
-                        <div flex="90" ng-class="['value']">{{corpus.authors}}</div>
+                        <div flex="90" class="value">{{corpus.authors}}</div>
                     </div>
                     <div>
-                        <div ng-class="['value']">{{corpus.purpose}}</div>
+                        <div class="value">{{corpus.purpose}}</div>
                     </div>
                 </div>
             </div>
         </a>
         <div layout="row">
             <div flex="100">
-                <span ng-repeat="tool in corpus.tools" ng-class="['tool']" layout-margin>
+                <span ng-repeat="tool in corpus.tools" class="tool" layout-margin>
                     <a href="{{tool.url}}" target="_blank">
                         <md-icon>local_offer</md-icon>
                         {{tool.name}}

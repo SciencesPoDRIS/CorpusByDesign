@@ -1,21 +1,21 @@
-<div ng-class="['full-height']" flex="100">
+<div class="full-height" flex="100">
     <!-- List -->
-    <div ng-class="['list']">
+    <div class="list">
         <table>
             <tr>
                 <th>Thumbnail</th>
                 <th>Name</th>
                 <th>Actor's Type</th>
             </tr>
-            <tr ng-repeat="result in displayedResults" ng-class="['cell', 'no-border']">
-                <td ng-class="['thumbnail']">
-                    <img ng-class="['fit', 'grayscale']" src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
+            <tr ng-repeat="result in displayedResults" class="cell no-border">
+                <td class="thumbnail">
+                    <img class="fit grayscale" src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
                 </td>
                 <td>
-                    <div ng-class="['full-name', 'ellipsed']">{{result.FULL_NAME}}</div>
+                    <div class="full-name ellipsed">{{result.FULL_NAME}}</div>
                 </td>
                 <td>
-                    <div ng-class="['actors-type', 'ellipsed']">{{result.ACTORS_TYPE | translate:this:'actorsType'}}</div>
+                    <div class="actors-type ellipsed">{{result.ACTORS_TYPE | translate:this:'actorsType'}}</div>
                 </td>
             </tr>
         </table>

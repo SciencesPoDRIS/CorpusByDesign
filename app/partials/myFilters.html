@@ -1,5 +1,5 @@
-<div ng-class="['my-filters']">
-    <div ng-class="['facets']">
+<div class="my-filters">
+    <div class="facets">
         <div>
             <div ng-if="isCollapsed" layout="column" class="collapsed-filters-container">
                 <div layout="row" class="collapsed-filters-search-row">
@@ -63,7 +63,7 @@
                 <div flex="60" class="filter-values">
                     <div ng-if="currentCategoryId" class='{{currentCategoryId}}'>
                         <h3>{{categories[currentCategoryId].label}}</h3>
-                        <div ng-class="['checkbox', 'all']">
+                        <div class="checkbox all">
                             <md-checkbox
                                 aria-label="Select All"
                                 ng-checked="allChecked[currentCategoryId]"
@@ -80,7 +80,7 @@
                             ng-class="['category-value', {'disable' : value.count == 0}]"
                             ng-model="$parent.value"
                         >
-                            <div ng-class="['checkbox']">
+                            <div class="checkbox">
                                 <md-tooltip md-direction="left">
                                     {{value.label}}
                                 </md-tooltip>
@@ -90,7 +90,7 @@
                                 >
                                     {{value.label}}
                                     <div>
-                                        <span ng-class="['pull-right', 'count-percent']">{{value.count_percent}}%</span>
+                                        <span class="pull-right count-percent">{{value.count_percent}}%</span>
                                         <md-progress-linear md-mode="determinate" value="{{value.count_percent}}"></md-progress-linear>
                                     </div>
                                 </md-checkbox>
@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
-    <div ng-class="['search-bottom']" ng-click="moreFilters()">
+    <div class="search-bottom" ng-click="moreFilters()">
         <div class="results-number">
             <ng-pluralize count="filteredResultsCount" when="{'0': 'No result', '1': '1 result', 'other': '{} results'}"></ng-pluralize>
         </div>

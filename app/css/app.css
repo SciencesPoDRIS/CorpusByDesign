@@ -318,7 +318,7 @@ ul#menu_appli li:last-child a::after {
 .desc-appli {
     height: 68px;
     position: fixed;
-    right: 15px;
+    right: 30px;
     top: -5px;
     width: 250px;
 }
@@ -846,7 +846,7 @@ a.md-button.md-primary.md-fab.tile-link {
 }
 
 .tile-footer .actors-type {
-    margin-bottom: 0;
+    margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

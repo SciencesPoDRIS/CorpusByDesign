@@ -8,8 +8,8 @@
     current-view="currentView"
 ></top-bar>
 <!-- Second row -->
-<div ng-class="['corpus', 'content']">
+<div class="corpus content">
     <div ng-class="['full-height', '{{availableView}}']" ng-if="availableView == currentView" ng-repeat="availableView in corpus.availableViews">
-        <div ng-include="'partials/' + availableView + '.html'" ng-class="['full-height']" layout="row"></div>
+        <div ng-include="'partials/' + availableView + '.html'" class="full-height" layout="row"></div>
     </div>
 </div>
