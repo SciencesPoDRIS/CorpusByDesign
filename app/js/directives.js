@@ -17,7 +17,6 @@
             },
             link: function($scope, element, attrs) {
                 // Uncollapse filters
-                $scope.filtersLabel = 'More filters';
                 $scope.isCollapsed = true;
                 $scope.allChecked = {};
                 $scope.indeterminate = {};
@@ -43,15 +42,15 @@
                     if (!$scope.isCollapsed) {
                         // Calculate filters height
                         $('.my-filters').height(($(window).height() - offset) + 'px');
-                        // Replace button label
-                        $scope.filtersLabel = 'Less filters';
+                        $('.facets').height(($('.my-filters').height() - $('.search-bottom').height()) + 'px');
+                        $('.my-filters').addClass('uncollapsed').removeClass('collapsed');
                         // Show vertical scrollbar
                         $('.my-filters .facets').css('overflow-y', 'auto');
                     } else {
                         // Calculate filters height
                         $('.my-filters').height('188px');
-                        // Replace button label
-                        $scope.filtersLabel = 'More filters';
+                        $('.facets').height('auto');
+                        $('.my-filters').addClass('collapsed').removeClass('uncollapsed');
                         // Hide vertical scrollbar
                         $('.my-filters .facets').css('overflow-y', 'hidden');
                     }
