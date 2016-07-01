@@ -3,8 +3,8 @@
 
     var app = angular.module('webcorpus.corpus', []);
 
-    app.controller('CorpusController', ['$scope', '$routeParams', '$location', 'loadCorpus', 'loadCorpusData', 'colors', '$sce', 'utils',
-        function($scope, $routeParams, $location, loadCorpus, loadCorpusData, colors, $sce, utils) {
+    app.controller('CorpusController', ['$scope', '$routeParams', 'loadCorpus', 'loadCorpusData', 'utils',
+        function($scope, $routeParams, loadCorpus, loadCorpusData, utils) {
             // Init variables
             var bool_01,
                 bool_02,
