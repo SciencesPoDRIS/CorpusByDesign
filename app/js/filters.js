@@ -71,4 +71,12 @@
         }
     ]);
 
+    app.filter('renderHtml', ['$sce', 
+        function($sce) {
+            return function (input) {
+                return $sce.trustAsHtml(input);
+            }
+        }
+    ]);
+
 })();

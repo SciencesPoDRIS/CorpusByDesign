@@ -26,7 +26,7 @@
                     </div>
                     <div layout="row">
                         <div flex="10">Auteurs</div>
-                        <div flex="90" class="value">{{corpus.authors}}</div>
+                        <div flex="90" class="value" ng-bind-html="corpus.authors | renderHtml"></div>
                     </div>
                     <div>
                         <div class="value">{{corpus.purpose}}</div>
