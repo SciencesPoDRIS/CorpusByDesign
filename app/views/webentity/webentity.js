@@ -3,8 +3,8 @@
 
     var app = angular.module('webcorpus.webentity', []);
 
-    app.controller('WebEntityCtrl', ['$scope', '$routeParams', '$http', 'loadCorpus', 'loadCorpusData', '$sce',
-        function($scope, $routeParams, $http, loadCorpus, loadCorpusData, $sce) {
+    app.controller('WebEntityCtrl', ['$scope', '$routeParams', 'loadCorpus', 'loadCorpusData', '$sce',
+        function($scope, $routeParams, loadCorpus, loadCorpusData, $sce) {
             // Init variables
             var filter,
                 itemFacets,
