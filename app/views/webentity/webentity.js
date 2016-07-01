@@ -22,8 +22,6 @@
             // Load all the corpus descriptions
             loadCorpus.getCorpus($scope.corpusId).then(function(data) {
                 $scope.corpus = data;
-                // Load the specific corpus configuration
-                $scope.subtitle = $sce.trustAsHtml($scope.corpus.subtitle);
 
                 // Load corpus
                 loadCorpusData.getData($scope.corpusId).then(function(data) {

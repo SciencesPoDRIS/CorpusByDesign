@@ -279,17 +279,10 @@
                             }
                         })
                     })
-
-                    // Explanation text
-                    if($scope.corpus) {
-                        $scope.subtitle = $sce.trustAsHtml($scope.corpus.subtitle);
-                    }
-                    
                     // On view change ('grid', 'list', 'graph', 'map')
                     var changeView = function(view) {
                         $scope.currentView = view;
                     }
-
                 })
             }
         };
