@@ -600,10 +600,6 @@ ul#menu_appli li:last-child a::after {
 
 .my-filters {
     background-color: white;
-    height: 188px;
-    /*position: absolute;*/
-    /*width: 100%;*/
-    /*z-index: 21;*/
 }
 
 .my-filters .search-bottom {
