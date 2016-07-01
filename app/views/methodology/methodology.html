@@ -12,19 +12,19 @@
     <div class="methodology-content">
         <div>
             <h3>Purpose of the corpus</h3>
-            <span ng-bind-html="purpose"></span>
+            <span ng-bind-html="corpus.purpose | renderHtml"></span>
             <h3>Selection</h3>
-            <span ng-bind-html="selection"></span>
+            <span ng-bind-html="corpus.selection | renderHtml"></span>
             <h3>Indexing</h3>
-            <span ng-bind-html="indexing"></span>
+            <span ng-bind-html="corpus.indexing | renderHtml"></span>
             <h3>Creation date</h3>
-            <span ng-bind-html="creation"></span>
+            <span ng-bind-html="corpus.creation | renderHtml"></span>
             <h3>Last update</h3>
-            <span ng-bind-html="update"></span>
+            <span ng-bind-html="corpus.update | renderHtml"></span>
             <h3>Authors</h3>
-            <span ng-bind-html="authors"></span>
+            <span ng-bind-html="corpus.authors | renderHtml"></span>
             <h3>Size</h3>
-            <span ng-bind-html="size"></span>
+            <span ng-bind-html="corpus.size | renderHtml"></span>
             <h3>Dataset</h3>
             <md-button class="md-raised" ng-href="../data/{{corpusId}}.tsv" target="_self">
                 <md-icon>file_download</md-icon>
@@ -32,7 +32,7 @@
             </md-button>
             <br/>
             <br/>
-            <div ng-bind-html="footnote" class="foot-note" ng-if=""></div>
+            <div ng-bind-html="corpus.footnote | renderHtml" class="foot-note" ng-if=""></div>
         </div>
     </div>
 </div>
