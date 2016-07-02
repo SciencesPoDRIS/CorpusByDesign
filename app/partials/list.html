@@ -9,7 +9,7 @@
             </tr>
             <tr ng-repeat="result in displayedResults" class="cell no-border">
                 <td class="thumbnail">
-                    <img class="fit grayscale" src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
+                    <img class="fit grayscale" ng-src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
                 </td>
                 <td>
                     <div class="full-name ellipsed">{{result.FULL_NAME}}</div>
