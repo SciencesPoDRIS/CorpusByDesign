@@ -1000,6 +1000,10 @@ a.md-button.md-primary.md-fab.tile-link {
     text-align: center;
 }
 
+.webentity .thumbnail img {
+    width: 100%;
+}
+
 .webentity .value {
     position: relative;
 }
