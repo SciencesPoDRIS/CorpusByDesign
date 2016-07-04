@@ -1,15 +1,5 @@
 <!-- Legend -->
-<div class="legend" layout="row">
-    <div ng-repeat="item in legend" class="item" flex="25">
-        <div class="item-color" style="background-color: {{item.color}};"></div>
-        <span class="item-label ellipsed">
-            <md-tooltip md-direction="left">
-                {{item.label}}
-            </md-tooltip>
-            {{item.label}}
-        </span>
-    </div>
-</div>
+<my-legend categories="corpus.categories" nodes-color="corpus.nodesColor" />
 <div flex>
     <!-- Graph -->
     <my-graph corpus-id="corpusId" categories="corpus.categories" nodes-color="corpus.nodesColor" />

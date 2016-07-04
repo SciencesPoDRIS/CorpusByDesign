@@ -21,17 +21,7 @@
         </div>
     </div>
     <!-- Legend -->
-    <div class="legend" layout="row">
-        <div ng-repeat="item in legend" class="item pull-left" flex="25">
-            <div class="item-color" style="background-color: {{item.color}};"></div>
-            <span class="item-label ellipsed">
-                <md-tooltip md-direction="right">
-                    {{item.label}}
-                </md-tooltip>
-                {{item.label}}
-            </span>
-        </div>
-    </div>
+    <my-legend categories="corpus.categories" nodes-color="corpus.nodesColor" />
     <!-- Graph -->
     <my-graph corpus-id="corpusId" categories="corpus.categories" nodes-color="corpus.nodesColor" />
 </div>

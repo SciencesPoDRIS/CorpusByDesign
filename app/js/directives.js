@@ -224,6 +224,52 @@
         };
     }]);
 
+    app.directive('myLegend', ['colors', function(colors) {
+        return {
+            restrict: 'E',
+            templateUrl: 'partials/myLegend.html',
+            scope: {
+                categories: '=',
+                nodesColor: '='
+            },
+            link: function($scope, element, attrs) {
+                $scope.legend = [];
+                $.each($scope.categories, function(index, item) {
+                    // Set colors to nodes and loadBar
+                    if ($scope.categories[index].id == $scope.nodesColor) {
+                        $.each($scope.categories[index].values.slice(0, 6), function(index_02, item_02) {
+                            item_02.color = colors[index_02].color;
+                            item_02.colorClass = colors[index_02].label;
+                            // Create the legend object
+                            $scope.legend[index_02] = { 'id': item_02.id, 'label': item_02.label, 'color': item_02.color };
+                        });
+                    }
+                    // Order items of legend by alphabetical ascending order
+                    $scope.legend.sort(function(a, b) {
+                        // 'Not applicable' should be the last item
+                        if (a.id == 'not_applicable') {
+                            return 1;
+                        } else if (b.id == 'not_applicable') {
+                            return -1;
+                            // 'Don't know' should be the before second last item
+                        } else if (a.id == 'dont_know') {
+                            return 1;
+                        } else if (b.id == 'dont_know') {
+                            return -1;
+                        } else if (a.label.toLowerCase() < b.label.toLowerCase()) {
+                            return -1;
+                        } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
+                            return 1;
+                            // Should never happen
+                        } else {
+                            return 0;
+                        }
+                    });
+                });
+            }
+        }
+    }]);
+
     app.directive('topBar', ['$sce', '$timeout', '$location', function($sce, $timeout, $location) {
         return {
             restrict: 'E',
