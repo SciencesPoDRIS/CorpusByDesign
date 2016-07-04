@@ -1,23 +1,25 @@
 <div class="full-height" flex="100">
     <!-- List -->
-    <div class="list">
-        <table>
-            <tr>
-                <th>Thumbnail</th>
-                <th>Name</th>
-                <th>Actor's Type</th>
-            </tr>
-            <tr ng-repeat="result in filteredResults | limitTo:resultsDisplayCount" class="cell no-border">
-                <td class="thumbnail">
-                    <img class="fit grayscale" ng-src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
-                </td>
-                <td>
-                    <div class="full-name ellipsed">{{result.FULL_NAME}}</div>
-                </td>
-                <td>
-                    <div class="actors-type ellipsed">{{result.ACTORS_TYPE | translate:this:'actorsType'}}</div>
-                </td>
-            </tr>
-        </table>
+    <div class="list" layout="row">
+        <div flex="30">
+            Thumbnail
+        </div>
+        <div flex="35">
+            Name
+        </div>
+        <div flex="35">
+            Actor's Type
+        </div>
+    </div>
+    <div ng-repeat="result in filteredResults | limitTo:resultsDisplayCount" layout="row">
+        <div flex="30" class="thumbnail" layout-margin>
+            <img class="fit grayscale" ng-src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=500&clipRect=0,0,1024,768&quality=0.3"></img>
+        </div>
+        <div flex="35" layout-margin>
+            <div class="full-name ellipsed">{{result.FULL_NAME}}</div>
+        </div>
+        <div flex="35" layout-margin>
+            <div class="actors-type ellipsed">{{result.ACTORS_TYPE | translate:this:'actorsType'}}</div>
+        </div>
     </div>
 </div>
