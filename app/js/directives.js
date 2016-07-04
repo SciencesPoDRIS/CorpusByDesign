@@ -297,7 +297,7 @@
                                 // Change location, with a small delay to have the tab animation
                                 $timeout(function(){
                                     $location.url($scope.lang)
-                                }, 300)
+                                }, 300);
                             }
                         })
                         // Available views

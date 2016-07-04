@@ -461,6 +461,7 @@ ul#menu_appli li:last-child a::after {
 
 #graph {
     height: 100%;
+    position: absolute;
     width: 100%;
 }
 
@@ -962,12 +963,9 @@ a.md-button.md-primary.md-fab.tile-link {
     border-color: #d3d3d3;
     border-style: solid;
     border-width: 0 1px 1px 1px;
-    bottom: 0;
-    left: 0;
-    padding: 5px;
-    position: absolute;
-    right: 0;
-    top: 113px;
+    height: calc(100% - 81px);
+    position: relative;
+    width: 100%;
 }
 
 
@@ -1021,10 +1019,10 @@ a.md-button.md-primary.md-fab.tile-link {
 
 /* Methodology Page */
 
-.content.methodology {
+/*.content.methodology {
     margin-top: -190px;
     padding-top: 190px;
-}
+}*/
 .content .methodology-content {
     overflow-y: auto;
     height: 100%;
