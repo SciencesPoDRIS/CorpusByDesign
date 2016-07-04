@@ -125,14 +125,15 @@
             templateUrl: 'partials/myGraph.html',
             scope: {
                 corpusId: '=',
-                corpus: '='
+                categories: '=',
+                nodesColor: '='
             },
             link: function($scope, element, attrs) {
                 // Init variables
                 var defaultEdgeColor = '#f1f1f1';
                 
                 // Load the specific corpus configuration
-                $scope.selectedCategory = $scope.corpus.categories[$scope.corpus.nodesColor].label;
+                $scope.selectedCategory = $scope.categories[$scope.nodesColor].label;
                 
                 // Center the whole graph
                 $scope.sigmaCenter = function() {
