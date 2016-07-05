@@ -803,9 +803,6 @@ ul#menu_appli li:last-child a::after {
     height: calc(100% - 240px);
     overflow-y: scroll;
     padding: 6px;
-    /*position: absolute;*/
-    /*top: 188px;*/
-    /*width: 100%;*/
 }
 
 .grid-list {
@@ -975,7 +972,7 @@ a.md-button.md-primary.md-fab.tile-link {
     margin-bottom: 0;
 }
 
-.corpus .graph {
+.graph {
     border-color: #d3d3d3;
     border-style: solid;
     border-width: 0 1px 1px 1px;
@@ -988,15 +985,15 @@ a.md-button.md-primary.md-fab.tile-link {
 
 /* Webentity Page */
 
+.webentity {
+    height: 100%;
+    overflow-y: scroll;
+}
+
 .webentity .title {
     font-size: 25px;
     line-height: 35px;
     text-align: center;
-}
-
-.webentity .graph {
-    height: 500px;
-    padding: 5px;
 }
 
 .webentity .abstract {
@@ -1007,26 +1004,36 @@ a.md-button.md-primary.md-fab.tile-link {
     padding: 5px;
 }
 
-.webentity .metadata .name {
+.webentity .metadata .table {
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.webentity .metadata .table .name {
+    border-top: 1px solid #ddd;
     text-align: right;
+    width: 30%;
+}
+
+.webentity .metadata .table .value {
+    border-top: 1px solid #ddd;
+    padding-left: 5px;
+    position: relative;
+}
+
+.webentity .metadata .table .value .icon {
+    bottom: 0;
+    position: absolute;
+    right: 5px;
 }
 
 .webentity .thumbnail {
+    padding: 10px;
     text-align: center;
 }
 
 .webentity .thumbnail img {
     width: 100%;
-}
-
-.webentity .value {
-    position: relative;
-}
-
-.webentity .value .icon {
-    bottom: 0;
-    position: absolute;
-    right: 5px;
 }
 
 .webentity .neighbors li.collapse.in {
@@ -1036,10 +1043,6 @@ a.md-button.md-primary.md-fab.tile-link {
 
 /* Methodology Page */
 
-/*.content.methodology {
-    margin-top: -190px;
-    padding-top: 190px;
-}*/
 .content .methodology-content {
     overflow-y: auto;
     height: 100%;

@@ -8,8 +8,8 @@
     current-view="currentView"
 ></top-bar>
 <!-- Second row -->
-<div class="content full-height webentity" layout="row">
-    <div class="full-height" flex="50" flex-sm="100">
+<div class="content webentity" layout="row">
+    <div flex="40" flex-sm="100">
         <!-- Graph -->
         <my-graph corpus-id="corpusId" categories="corpus.categories" lang="lang" nodes-color="corpus.nodesColor" />
         <div class="abstract">
@@ -19,10 +19,10 @@
             </div>
         </div>
     </div>
-    <div class="full-height" flex="50" flex-sm="100">
+    <div flex="60" flex-sm="100">
         <div class="title">{{webEntity.FULL_NAME}}</div>
         <div class="metadata">
-            <table class="table table-hover">
+            <table class="table">
                 <tr>
                     <td class="name" flex="30">URL</td>
                     <td class="value"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
@@ -77,7 +77,7 @@
                 </tr>
             </table>
             <div class="thumbnail">
-                <img ng-src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=1024&height=768&clipRect=0,0,1024,768&format=jpg&quality=0.3"></img>
+                <img ng-src="http://manet.medialab.sciences-po.fr/?url={{webEntity.URL}}&width=1024&height=768&clipRect=0,0,1024,768&format=jpg&quality=0.3"></img>
                 <span class="italic">Thumbnail of the targeted website</span>
             </div>
         </div>
