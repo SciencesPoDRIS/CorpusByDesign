@@ -119,13 +119,14 @@
         };
     }]);
 
-    app.directive('myGraph', [function() {
+    app.directive('myGraph', ['$timeout', '$window', function($timeout, $window) {
         return {
             restrict: 'E',
             templateUrl: 'partials/myGraph.html',
             scope: {
                 corpusId: '=',
                 categories: '=',
+                lang: '=',
                 nodesColor: '='
             },
             link: function($scope, element, attrs) {
@@ -212,10 +213,11 @@
                             }
                             $scope.graph.refresh();
                         });
-                        // On node click, open the webentity page
+                        // On node click, open the webentity page in a new tab
                         $scope.graph.bind('clickNode', function(n) {
-                            $location.path($scope.lang + '/' + $scope.corpusId + '/' + n.data.node.id);
-                            $scope.$apply();
+                            $timeout(function(){
+                                $window.open('#/' + $scope.lang + '/' + $scope.corpusId + '/' + n.data.node.id);
+                            }, 300);
                         });
                     }
                 );
