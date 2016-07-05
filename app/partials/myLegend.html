@@ -1,11 +1,13 @@
-<div class="legend" layout="row">
-    <div ng-repeat="item in legend" class="item pull-left" flex="25">
-        <div class="item-color" style="background-color: {{item.color}};"></div>
-        <span class="item-label ellipsed">
-            <md-tooltip md-direction="right">
+<div class="legend" layout="column">
+    <div ng-repeat="item in legend" ng-if="$index % 4 == 0" layout="row" class="item-group">
+        <div ng-repeat="i in [$index, $index + 1, $index + 2, $index + 3]" class="item" ng-init="item = legend[i]" flex="25">
+            <div class="item-color" style="background-color: {{item.color}};"></div>
+            <span class="item-label ellipsed">
+                <md-tooltip md-direction="right">
+                    {{item.label}}
+                </md-tooltip>
                 {{item.label}}
-            </md-tooltip>
-            {{item.label}}
-        </span>
+            </span>
+        </div>
     </div>
 </div>
