@@ -474,8 +474,26 @@ ul#menu_appli li:last-child a::after {
     top: 12px;
 }
 
-.sigma-tools .btn-link {
+.sigma-tools .btn-group {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.sigma-tools .btn-group .btn {
     background-color: white;
+    background-color: white;
+    display: block;
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-color: transparent;
+    border-width: 1px;
+    padding: 1px 5px;
 }
 
 .sigma-tools md-icon {
