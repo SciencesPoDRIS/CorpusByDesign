@@ -127,16 +127,12 @@
                 corpusId: '=',
                 categories: '=',
                 lang: '=',
-                nodesColor: '='
+                nodesColor: '=',
+                legend: '=?'
             },
             link: function($scope, element, attrs) {
                 // Init variables
                 var defaultEdgeColor = '#f1f1f1';
-
-                // $scope.$watch('categories', function() {
-                    // Load the specific corpus configuration
-                    // $scope.selectedCategory = $scope.categories[$scope.nodesColor].label;
-                // });
 
                 // Center the whole graph
                 $scope.sigmaCenter = function() {
@@ -164,18 +160,19 @@
                     });
                 }
 
-                // Change nodes color on the graph and the filters parts
-                $scope.changeNodesColor = function(e) {
-                    nodesColor = e.currentTarget.id;
-                    $scope.selectedCategory = $scope.categories[nodesColor].label;
-                    switch ($scope.corpusId) {
-                        case 'climate-changes':
-                            $scope.filter();
-                            break;
-                        case 'amerique-latine':
-                            $scope.filter2();
-                            break;
-                    }
+                // Set node color according to the legend
+                $scope.changeNodesColor = function() {
+                    var mappedField = $scope.categories[$scope.nodesColor].mappedField;
+                    $.each($scope.graph.graph.nodes(), function(index, item) {
+                        var mappedLegend = $.grep($scope.legend, function(item_02, index_02) {
+                            return item_02.id == item.attributes[mappedField];
+                        });
+                        // Node is in legend
+                        if(mappedLegend.length == 1) {
+                            item.color = mappedLegend[0].color
+                        }
+                    });
+                    $scope.graph.refresh();
                 }
 
                 // Load the graph
@@ -190,6 +187,9 @@
                     },
                     function(s) {
                         $scope.graph = s;
+
+                        $scope.changeNodesColor();
+                        
                         $scope.graph.bind('overNode outNode', function(n) {
                             // On node hover, color all the connected edges in the node color
                             if (n.type == 'overNode') {

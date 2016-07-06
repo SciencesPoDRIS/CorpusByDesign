@@ -67,7 +67,7 @@
                     });
 
                     // Generate the legend
-                    $scope.legend = get.legend($scope.corpus.categories, $scope.corpus.nodesColor)
+                    $scope.legend = get.legend($scope.corpus.categories, $scope.corpus.nodesColor);
                 });
             }
 
