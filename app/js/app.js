@@ -95,8 +95,7 @@
                             value.isSelected = true;
                         }
                     });
-                    $scope.$apply()
-                }, 0)
+                }, 0);
             }
 
             var countryHoverIn = function(country) {
