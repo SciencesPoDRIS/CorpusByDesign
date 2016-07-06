@@ -132,10 +132,12 @@
             link: function($scope, element, attrs) {
                 // Init variables
                 var defaultEdgeColor = '#f1f1f1';
-                
-                // Load the specific corpus configuration
-                $scope.selectedCategory = $scope.categories[$scope.nodesColor].label;
-                
+
+                // $scope.$watch('categories', function() {
+                    // Load the specific corpus configuration
+                    // $scope.selectedCategory = $scope.categories[$scope.nodesColor].label;
+                // });
+
                 // Center the whole graph
                 $scope.sigmaCenter = function() {
                     var c = $scope.graph.cameras[0]
@@ -143,7 +145,7 @@
                         ratio: 1,
                         x: 0,
                         y: 0
-                    })
+                    });
                 }
 
                 // Zoom on the graph
@@ -151,7 +153,7 @@
                     var c = $scope.graph.cameras[0]
                     c.goTo({
                         ratio: c.ratio / c.settings('zoomingRatio')
-                    })
+                    });
                 }
 
                 // Unzoom on the graph
@@ -159,7 +161,7 @@
                     var c = $scope.graph.cameras[0]
                     c.goTo({
                         ratio: c.ratio * c.settings('zoomingRatio')
-                    })
+                    });
                 }
 
                 // Change nodes color on the graph and the filters parts
@@ -221,53 +223,18 @@
                         });
                     }
                 );
-
             }
         };
     }]);
 
-    app.directive('myLegend', ['colors', function(colors) {
+    app.directive('myLegend', ['get', function(get) {
         return {
             restrict: 'E',
             templateUrl: 'partials/myLegend.html',
             scope: {
-                categories: '=',
-                nodesColor: '='
+                legend: '=',
             },
             link: function($scope, element, attrs) {
-                $scope.legend = [];
-                $.each($scope.categories, function(index, item) {
-                    // Set colors to nodes and loadBar
-                    if ($scope.categories[index].id == $scope.nodesColor) {
-                        $.each($scope.categories[index].values.slice(0, 6), function(index_02, item_02) {
-                            item_02.color = colors[index_02].color;
-                            item_02.colorClass = colors[index_02].label;
-                            // Create the legend object
-                            $scope.legend[index_02] = { 'id': item_02.id, 'label': item_02.label, 'color': item_02.color };
-                        });
-                    }
-                    // Order items of legend by alphabetical ascending order
-                    $scope.legend.sort(function(a, b) {
-                        // 'Not applicable' should be the last item
-                        if (a.id == 'not_applicable') {
-                            return 1;
-                        } else if (b.id == 'not_applicable') {
-                            return -1;
-                            // 'Don't know' should be the before second last item
-                        } else if (a.id == 'dont_know') {
-                            return 1;
-                        } else if (b.id == 'dont_know') {
-                            return -1;
-                        } else if (a.label.toLowerCase() < b.label.toLowerCase()) {
-                            return -1;
-                        } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
-                            return 1;
-                            // Should never happen
-                        } else {
-                            return 0;
-                        }
-                    });
-                });
             }
         }
     }]);
@@ -284,8 +251,8 @@
             },
             link: function($scope, element, attrs) {
                 $scope.$watch('corpus', function(){
-                    $scope.selectedIndex = 0
-                    $scope.tabList = []
+                    $scope.selectedIndex = 0;
+                    $scope.tabList = [];
 
                     // Build menu tabs
                     $scope.$watch('corpus.availableViews', function(){
@@ -332,11 +299,10 @@
                     var changeView = function(view) {
                         $scope.currentView = view;
                     }
-                })
+                });
             }
         };
-
-    }])
+    }]);
 
     app.directive('filterCategoryBadge', [function() {
         return {

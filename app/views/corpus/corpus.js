@@ -3,8 +3,8 @@
 
     var app = angular.module('webcorpus.corpus', []);
 
-    app.controller('CorpusController', ['$scope', '$routeParams', 'loadCorpus', 'loadCorpusData', 'utils',
-        function($scope, $routeParams, loadCorpus, loadCorpusData, utils) {
+    app.controller('CorpusController', ['$scope', '$routeParams', 'loadCorpus', 'loadCorpusData', 'get', 'utils',
+        function($scope, $routeParams, loadCorpus, loadCorpusData, get, utils) {
             // Init variables
             var bool_01,
                 bool_02,
@@ -63,33 +63,36 @@
                             $scope.initResults.push(obj);
                         }
                         $scope.initResultsCount = $scope.initResults.length;
-                        updateFiltering()
+                        updateFiltering();
                     });
+
+                    // Generate the legend
+                    $scope.legend = get.legend($scope.corpus.categories, $scope.corpus.nodesColor)
                 });
             }
 
             // Deep watch corpus categories to update filtering
-            $scope.$watch('corpus.categories', updateFiltering, true)
+            $scope.$watch('corpus.categories', updateFiltering, true);
 
             // Watch search field to update filtering
-            $scope.$watch('queryTerm', updateFiltering)
+            $scope.$watch('queryTerm', updateFiltering);
 
             function updateFiltering() {
                 // If no initResults, then no filteredResults! Happens during loading.
                 if ($scope.initResults === undefined) {
-                    $scope.filteredResults = []
+                    $scope.filteredResults = [];
                     return false;
                 }
 
                 // Reset limited results
-                resetDisplayCount()
+                resetDisplayCount();
 
                 // Init summary data
                 $.each($scope.corpus.categories, function(catId, category){
                     category.values.forEach(function(v) {
-                        v.count = 0
+                        v.count = 0;
                     });
-                })
+                });
 
                 // Filter items by search query
                 if ($scope.queryTerm === undefined || $scope.queryTerm.trim() == '') {
@@ -100,16 +103,16 @@
                     $scope.initResults.forEach(function(item) {
                         // Check if the searched term is present into the name of the site or into the actors' type of the site
                         if (isSearchedFullText($scope.queryTermFormatted, item) && isSearchedAmongCriteria(searchCriteria, item)) {
-                            item.validForSearch = true
+                            item.validForSearch = true;
                         } else {
-                            item.validForSearch = false
+                            item.validForSearch = false;
                         }
                     });
                 }
 
                 // Filter items by selected categories
                 $scope.initResults.forEach(function(item) {
-                    item.validForMetadataFiltering = true
+                    item.validForMetadataFiltering = true;
                 })
                 $scope.initResults.forEach(function(item) {
                     var catId;
@@ -125,7 +128,7 @@
                         })
                         // If item is invalid for one category, hide it
                         if (!validForThisCategory) {
-                            item.validForMetadataFiltering = false
+                            item.validForMetadataFiltering = false;
                         }
                     });
                 });
@@ -144,7 +147,7 @@
                                     v.count++;
                                 }
                             });
-                        })
+                        });
                     }
 
                     return displayItem;
@@ -155,7 +158,7 @@
                     category.values.forEach(function(v) {
                         v.count_percent = ((parseFloat(v.count) / parseFloat($scope.initResults.length)) * 100).toFixed(2);
                     })
-                })
+                });
             }
 
             /* *

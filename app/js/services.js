@@ -41,6 +41,52 @@
         }
     ]);
 
+    // Factory to generate the legend from the categories
+    app.factory('get', ['colors',
+        function(colors) {
+            return {
+                legend: function(categories, nodesColor) {
+                    var legend = [];
+                    var legendSize = 6;
+                    $.each(categories, function(index, item) {
+                        // Fill the legend object with the 6 elements the most representated
+                        // And set the color to this element
+                        if (categories[index].id == nodesColor) {
+                            $.each(categories[index].values.slice(0, legendSize), function(index_02, item_02) {
+                                item_02.color = colors[index_02].color;
+                                item_02.colorClass = colors[index_02].label;
+                                // Create the legend object
+                                legend[index_02] = { 'id': item_02.id, 'label': item_02.label, 'color': item_02.color };
+                            });
+                        }
+                        // Order items of legend by alphabetical ascending order
+                        // 'Don't know' will be the before second last item
+                        // 'Not applicable' will be the last item
+                        legend.sort(function(a, b) {
+                            if (a.id == 'not_applicable') {
+                                return 1;
+                            } else if (b.id == 'not_applicable') {
+                                return -1;
+                            } else if (a.id == 'dont_know') {
+                                return 1;
+                            } else if (b.id == 'dont_know') {
+                                return -1;
+                            } else if (a.label.toLowerCase() < b.label.toLowerCase()) {
+                                return -1;
+                            } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
+                                return 1;
+                                // Should never happen
+                            } else {
+                                return 0;
+                            }
+                        });
+                    });
+                    return legend;
+                }
+            }
+        }
+    ]);
+
     // Utils functions
     app.factory('utils', [
         function() {
@@ -152,6 +198,5 @@
             }
         }
     ]);
-    
 
 })();
