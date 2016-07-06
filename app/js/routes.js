@@ -7,11 +7,6 @@
 
     app.config(['$routeProvider', '$locationProvider', 
         function($routeProvider, $locationProvider) {
-            // $locationProvider.html5Mode({
-            //     enabled: true,
-            //     requireBase: false
-            // });
-
             $routeProvider.
             // Welcome page
             when('/:lang', {
@@ -23,10 +18,15 @@
                 templateUrl: 'views/corpus/corpus.html',
                 controller: 'CorpusController'
             }).
-            // Methodoloy page of a corpus
+            // Methodology page of a corpus
             when('/:lang/:corpusId/methodology', {
                 templateUrl: 'views/methodology/methodology.html',
                 controller: 'MethodologyController'
+            }).
+            // List view of a corpus
+            when('/:lang/:corpusId/view/:viewName', {
+                templateUrl: 'views/corpus/corpus.html',
+                controller: 'CorpusController'
             }).
             // Web entity description page of a corpus
             when('/:lang/:corpusId/:webEntityId', {

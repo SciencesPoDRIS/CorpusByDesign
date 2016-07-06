@@ -17,7 +17,6 @@
             $scope.corpusId = $routeParams.corpusId;
             $scope.webEntityId = $routeParams.webEntityId;
             $scope.lang = $routeParams.lang;
-            $scope.currentView = 'webentity';
 
             // Load all the corpus descriptions
             loadCorpus.getCorpus($scope.corpusId).then(function(data) {

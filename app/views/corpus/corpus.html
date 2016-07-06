@@ -5,11 +5,10 @@
     corpus="corpus"
     lang="lang"
     corpus-id="corpusId"
-    current-view="currentView"
 ></top-bar>
 <!-- Second row -->
 <div class="corpus content">
-    <div ng-class="['full-height', '{{availableView}}']" ng-if="availableView == currentView" ng-repeat="availableView in corpus.availableViews">
+    <div ng-class="['full-height', '{{availableView}}']" ng-if="availableView == view" ng-repeat="availableView in corpus.availableViews">
         <div ng-include="'partials/' + availableView + '.html'" class="full-height" layout="row"></div>
     </div>
 </div>

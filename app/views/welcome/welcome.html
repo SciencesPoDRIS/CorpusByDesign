@@ -11,7 +11,7 @@
 <!-- Second row -->
 <div class="content welcome" layout="row">
     <div ng-repeat="(corpusId, corpus) in corpora" ng-if="corpus.isDiplayed" class="corpus">
-        <a href="#/{{lang}}/{{corpusId}}" layout-fill>
+        <a href="#/{{lang}}/{{corpusId}}/view/{{corpus.defaultView}}" layout-fill>
             <div layout="row">
                 <div flex="15">
                     <img ng-src="../images/{{corpusId}}.png" class="fit" />

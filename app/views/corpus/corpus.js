@@ -24,6 +24,7 @@
             // Init routing variables
             $scope.corpusId = $routeParams.corpusId;
             $scope.lang = $routeParams.lang;
+            $scope.view = $routeParams.viewName;
 
             // Limit results displayed for performance issues
             var defaultResultsDisplayCount = 48
@@ -35,7 +36,7 @@
                 $scope.resultsDisplayCount = defaultResultsDisplayCount;
             }
 
-            $scope.init = function(currentView) {
+            $scope.init = function() {
                 // Load the corpus configurations
                 loadCorpus.getCorpus($scope.corpusId).then(function(corpus) {
                     $scope.corpus = corpus;
@@ -46,9 +47,7 @@
                         var category = $scope.corpus.categories[cat]
                         category.valuesPreview = category.values.map(function(d){return d.label}).join(', ')
                     }
-                    
-                    $scope.currentView = (currentView == undefined ? $scope.corpus.defaultView : currentView);
-                    
+
                     // Load the corpus content
                     $scope.initResults = [];
                     loadCorpusData.getData($scope.corpusId).then(function(data) {

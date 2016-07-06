@@ -239,15 +239,14 @@
         }
     }]);
 
-    app.directive('topBar', ['$sce', '$timeout', '$location', function($sce, $timeout, $location) {
+    app.directive('topBar', ['$sce', '$timeout', '$location', '$routeParams', '$route', function($sce, $timeout, $location, $routeParams, $route) {
         return {
             restrict: 'E',
             templateUrl: 'partials/topBar.html',
             scope: {
                 corpus: '=',
                 lang: '=',
-                corpusId: '=',
-                currentView: '='
+                corpusId: '='
             },
             link: function($scope, element, attrs) {
                 $scope.$watch('corpus', function(){
@@ -265,7 +264,7 @@
                             onClick: function(){
                                 // Change location, with a small delay to have the tab animation
                                 $timeout(function(){
-                                    $location.url($scope.lang)
+                                    $location.url($scope.lang);
                                 }, 300);
                             }
                         })
@@ -274,31 +273,27 @@
                             $scope.corpus.availableViews.forEach(function(view) {
                                 $scope.tabList.push({
                                     label: view,
-                                    active: view == $scope.currentView,
-                                    onClick: function(){
-                                        $timeout(function(){
-                                            changeView(view)
-                                        }, 300)
+                                    active: view == $routeParams.viewName,
+                                    onClick: function() {
+                                        $timeout(function() {
+                                            $location.url($scope.lang + '/' + $scope.corpusId + '/view/' + view);
+                                        }, 300);
                                     }
                                 })
                             })
                         }
-                        // Methology
+                        // Methodology
                         $scope.tabList.push({
                             label: 'Methodology',
-                            active: $scope.currentView == 'methodology',
-                            onClick: function(){
+                            active: $location.path().split('/').pop() == 'methodology',
+                            onClick: function() {
                                 // Change location, with a small delay to have the tab animation
                                 $timeout(function(){
-                                    $location.url($scope.lang+'/'+$scope.corpusId+'/methodology')
-                                }, 300)
+                                    $location.url($scope.lang + '/' + $scope.corpusId + '/methodology');
+                                }, 300);
                             }
                         })
-                    })
-                    // On view change ('grid', 'list', 'graph', 'map')
-                    var changeView = function(view) {
-                        $scope.currentView = view;
-                    }
+                    });
                 });
             }
         };
