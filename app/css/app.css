@@ -577,23 +577,41 @@ ul#menu_appli li:last-child a::after {
     width: 98%;
 }
 
+.filter-values md-progress-linear.pink .md-container {
+    background-color: rgba(246, 165, 203, 0.3);
+}
 .filter-values md-progress-linear.pink .md-bar {
-    background-color: #F6A5CB;
+    background-color: rgba(246, 165, 203, 1);
+}
+.filter-values md-progress-linear.yellow .md-container {
+    background-color: rgba(230, 225, 116, 0.3);
 }
 .filter-values md-progress-linear.yellow .md-bar {
-    background-color: #E6E174;
+    background-color: rgba(230, 225, 116, 1);
+}
+.filter-values md-progress-linear.green .md-container {
+    background-color: rgba(131, 231, 204, 0.3);
 }
 .filter-values md-progress-linear.green .md-bar {
-    background-color: #83E7CC;
+    background-color: rgba(131, 231, 204, 1);
+}
+.filter-values md-progress-linear.orange .md-container {
+    background-color: rgba(251, 169, 149, 0.3);
 }
 .filter-values md-progress-linear.orange .md-bar {
-    background-color: #FBA995;
+    background-color: rgba(251, 169, 149, 1);
+}
+.filter-values md-progress-linear.brown .md-container {
+    background-color: rgba(206, 167, 100, 0.3);
 }
 .filter-values md-progress-linear.brown .md-bar {
-    background-color: #CEA764;
+    background-color: rgba(206, 167, 100, 1);
+}
+.filter-values md-progress-linear.purple .md-container {
+    background-color: rgba(190, 175, 215, 0.3);
 }
 .filter-values md-progress-linear.purple .md-bar {
-    background-color: #BEAFD7;
+    background-color: rgba(190, 175, 215, 1);
 }
 
 .filter-values .count-percent {
