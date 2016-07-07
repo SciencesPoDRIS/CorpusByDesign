@@ -1,14 +1,16 @@
 <!-- Header -->
 <div ng-include="'partials/header.html'"></div>
-<!-- First row -->
-<top-bar
-    corpus="corpus"
-    lang="lang"
-    corpus-id="corpusId"
-></top-bar>
-<!-- Second row -->
-<div class="corpus content">
-    <div ng-class="['full-height', '{{availableView}}']" ng-if="availableView == view" ng-repeat="availableView in corpus.availableViews">
-        <div ng-include="'partials/' + availableView + '.html'" class="full-height" layout="row"></div>
+<div flex layout="column">
+    <!-- First row -->
+    <top-bar
+        corpus="corpus"
+        lang="lang"
+        corpus-id="corpusId"
+    ></top-bar>
+    <!-- Second row -->
+    <div class="corpus content" flex>
+        <div ng-class="['{{availableView}}']" ng-if="availableView == view" ng-repeat="availableView in corpus.availableViews" layout-fill>
+            <div ng-include="'partials/' + availableView + '.html'" layout="row" layout-fill></div>
+        </div>
     </div>
 </div>

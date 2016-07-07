@@ -33,7 +33,7 @@
                     }
                 }, true)
 
-                var offset = $('.top-bar').innerHeight() || 200;
+                var offset = ($('.top-bar').innerHeight() + $('#header-inmedia_1').innerHeight()) || 200;
                 $scope.moreFilters = function() {
                     $scope.isCollapsed = !$scope.isCollapsed;
                     // Scroll to the top left of filters
@@ -239,7 +239,7 @@
         }
     }]);
 
-    app.directive('topBar', ['$sce', '$timeout', '$location', '$routeParams', '$route', function($sce, $timeout, $location, $routeParams, $route) {
+    app.directive('topBar', ['$timeout', '$location', '$routeParams', function($timeout, $location, $routeParams) {
         return {
             restrict: 'E',
             templateUrl: 'partials/topBar.html',

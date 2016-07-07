@@ -1,70 +1,72 @@
 <!-- Header -->
 <div ng-include="'partials/header.html'"></div>
-<!-- First row -->
-<top-bar
-    corpus="corpus"
-    lang="lang"
-    corpus-id="corpusId"
-></top-bar>
-<!-- Second row -->
-<div class="content webentity" layout="row">
-    <div class="full-height" flex="50" flex-sm="100">
-        <!-- Thumbnail -->
-        <div class="thumbnail">
-            <img ng-src="http://manet.medialab.sciences-po.fr/?url={{webEntity.URL}}&width=1024&height=768&clipRect=0,0,1024,768&format=jpg&quality=0.3"></img>
-            <span class="italic">Thumbnail of the targeted website</span>
+<div flex layout="column">
+    <!-- First row -->
+    <top-bar
+        corpus="corpus"
+        lang="lang"
+        corpus-id="corpusId"
+    ></top-bar>
+    <!-- Second row -->
+    <div class="content webentity" layout="row" flex>
+        <div flex="50" flex-sm="100">
+            <!-- Thumbnail -->
+            <div class="thumbnail">
+                <img ng-src="http://manet.medialab.sciences-po.fr/?url={{webEntity.URL}}&width=1024&height=768&clipRect=0,0,1024,768&format=jpg&quality=0.3"></img>
+                <span class="italic">Thumbnail of the targeted website</span>
+            </div>
+        </div>
+        <div flex="50" flex-sm="100">
+            <div class="title">{{webEntity.FULL_NAME}}</div>
+            <div class="metadata">
+                <table class="table table-hover">
+                    <tr ng-show="isShowable('URL');">
+                        <td class="name" flex="30">URL</td>
+                        <td class="value"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
+                    </tr>
+                    <tr ng-show="webEntity.CORPUS == 'perou'">
+                        <td class="name" flex="30">Corpus</td>
+                        <td class="value">Site d'intérêt pour la campagne électorale et les élections générales 2016 au Pérou</td>
+                    </tr>
+                    <tr ng-show="isShowable('CANDIDATE_NAME');">
+                        <td class="name" flex="30">Nom du candidat (en usage)</td>
+                        <td class="value">{{webEntity.CANDIDATE_NAME | translate:this:'candidate_name'}}</td>
+                    </tr>
+                    <tr ng-show="isShowable('CANDIDATE_FORENAME');">
+                        <td class="name" flex="30">Nom du candidat (officiel)</td>
+                        <td class="value">{{webEntity.CANDIDATE_NAME | translate:this:'candidate_name2'}}</td>
+                    </tr>
+                    <tr ng-show="isShowable('POLITICAL_PARTY');">
+                        <td class="name" flex="30">Parti politique</td>
+                        <td class="value">{{webEntity.POLITICAL_PARTY | translate:this:'political_party'}}</td>
+                    </tr>
+                    <tr ng-show="isShowable('SOURCE');">
+                        <td class="name" flex="30">Type(s) de source</td>
+                        <td class="value">{{webEntity.SOURCE | translate:this:'source'}}</td>
+                    </tr>
+                    <tr ng-show="isShowable('ACTORS_TYPE');">
+                        <td class="name" flex="30">Type(s) d'acteur</td>
+                        <td class="value">{{webEntity.ACTORS_TYPE | translate:this:'actorsType'}}</td>
+                    </tr>
+                    <tr ng-show="isShowable('LANGUAGE');">
+                        <td class="name" flex="30">Langue(s) du site</td>
+                        <td class="value">{{webEntity.LANGUAGE | translate:this:'language'}}</td>
+                    </tr>
+                    <tr ng-show="isShowable('AREA');">
+                        <td class="name" flex="30">Zone(s) géographique(s) concernée(s)</td>
+                        <td class="value">{{webEntity.AREA | translate:this:'area'}}</td>
+                    </tr>
+                    <tr ng-show="isShowable('ABSTRACT_FR');">
+                        <td class="name" flex="30">Résumé</td>
+                        <td class="value">{{webEntity.ABSTRACT_FR}}</td>
+                    </tr>
+                    <tr ng-show="isShowable('ABSTRACT_FR');">
+                        <td class="name" flex="30">Resumen</td>
+                        <td class="value">{{webEntity.ABSTRACT_ES}}</td>
+                    </tr>
+                </table>
+                <div>Attention : certains sites peuvent être inaccessibles certains jours. Ne pas hésiter à les consulter à un autre moment.</div>
+            </div>
         </div>
     </div>
-    <div class="full-height" flex="50" flex-sm="100">
-        <div class="title">{{webEntity.FULL_NAME}}</div>
-        <div class="metadata">
-            <table class="table table-hover">
-                <tr ng-show="isShowable('URL');">
-                    <td class="name" flex="30">URL</td>
-                    <td class="value"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
-                </tr>
-                <tr ng-show="webEntity.CORPUS == 'perou'">
-                    <td class="name" flex="30">Corpus</td>
-                    <td class="value">Site d'intérêt pour la campagne électorale et les élections générales 2016 au Pérou</td>
-                </tr>
-                <tr ng-show="isShowable('CANDIDATE_NAME');">
-                    <td class="name" flex="30">Nom du candidat (en usage)</td>
-                    <td class="value">{{webEntity.CANDIDATE_NAME | translate:this:'candidate_name'}}</td>
-                </tr>
-                <tr ng-show="isShowable('CANDIDATE_FORENAME');">
-                    <td class="name" flex="30">Nom du candidat (officiel)</td>
-                    <td class="value">{{webEntity.CANDIDATE_NAME | translate:this:'candidate_name2'}}</td>
-                </tr>
-                <tr ng-show="isShowable('POLITICAL_PARTY');">
-                    <td class="name" flex="30">Parti politique</td>
-                    <td class="value">{{webEntity.POLITICAL_PARTY | translate:this:'political_party'}}</td>
-                </tr>
-                <tr ng-show="isShowable('SOURCE');">
-                    <td class="name" flex="30">Type(s) de source</td>
-                    <td class="value">{{webEntity.SOURCE | translate:this:'source'}}</td>
-                </tr>
-                <tr ng-show="isShowable('ACTORS_TYPE');">
-                    <td class="name" flex="30">Type(s) d'acteur</td>
-                    <td class="value">{{webEntity.ACTORS_TYPE | translate:this:'actorsType'}}</td>
-                </tr>
-                <tr ng-show="isShowable('LANGUAGE');">
-                    <td class="name" flex="30">Langue(s) du site</td>
-                    <td class="value">{{webEntity.LANGUAGE | translate:this:'language'}}</td>
-                </tr>
-                <tr ng-show="isShowable('AREA');">
-                    <td class="name" flex="30">Zone(s) géographique(s) concernée(s)</td>
-                    <td class="value">{{webEntity.AREA | translate:this:'area'}}</td>
-                </tr>
-                <tr ng-show="isShowable('ABSTRACT_FR');">
-                    <td class="name" flex="30">Résumé</td>
-                    <td class="value">{{webEntity.ABSTRACT_FR}}</td>
-                </tr>
-                <tr ng-show="isShowable('ABSTRACT_FR');">
-                    <td class="name" flex="30">Resumen</td>
-                    <td class="value">{{webEntity.ABSTRACT_ES}}</td>
-                </tr>
-            </table>
-            <div>Attention : certains sites peuvent être inaccessibles certains jours. Ne pas hésiter à les consulter à un autre moment.</div>
-        </div>
-    </div>
-    </d
+</div>

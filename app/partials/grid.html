@@ -1,5 +1,5 @@
 <!-- Left column -->
-<div flex="40">
+<div flex="40" layout="column">
     <!-- Presentation -->
     <div class="presentation" layout="row">
         <div class="nodes-color" flex="50">
@@ -23,10 +23,16 @@
     <!-- Legend -->
     <my-legend legend="legend" />
     <!-- Graph -->
-    <my-graph corpus-id="corpusId" categories="corpus.categories" lang="lang" nodes-color="corpus.nodesColor" legend="legend" />
+    <my-graph
+        corpus-id="corpusId"
+        categories="corpus.categories"
+        lang="lang"
+        nodes-color="corpus.nodesColor"
+        legend="legend"
+        flex />
 </div>
 <!-- Right column -->
-<div flex="60">
+<div flex="60" layout="column">
     <div>
         <my-filters
             categories="corpus.categories"
@@ -36,8 +42,8 @@
         />
     </div>
     <!-- Tiles -->
-    <div class="tiles">
-        <div>
+    <div class="tiles" flex>
+        <div layout-fill>
             <div class="grid-list" flex="">
                 <md-grid-list
                     md-cols-sm="1"

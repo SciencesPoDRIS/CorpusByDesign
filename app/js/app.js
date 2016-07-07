@@ -18,7 +18,6 @@
     app.controller('mapController', ['$scope', '$routeParams', '$window', '$timeout',
         function($scope, $routeParams, $window, $timeout) {
 
-
             var m_width = $('#map').width(),
                 width = 965,
                 height = 585,
@@ -38,8 +37,7 @@
 
             var svg = d3.select('#map').append('svg')
                 .attr('preserveAspectRatio', 'xMidYMid meet')
-                .attr('viewBox', '0 0 ' + width + ' ' + height)
-                .attr('class', 'full-height');
+                .attr('viewBox', '0 0 ' + m_width + ' ' + height);
 
             svg.append('rect')
                 .attr('class', 'background')
@@ -71,7 +69,6 @@
                     .attr('transform', 'translate(' + projection.translate() + ')scale(' + xyz[2] + ')translate(-' + xyz[0] + ',-' + xyz[1] + ')')
                     .selectAll(['#countries'])
                     .style('stroke-width', 1.0 / xyz[2] + 'px')
-                    // .class(function(d){ if(Math.random() >= 0.5) return 'selected' })
                     .selectAll('.city')
                     .attr('d', path.pointRadius(20.0 / xyz[2]));
             }
@@ -135,7 +132,7 @@
             $(window).resize(function() {
                 svg.attr('width', $('#map').width());
                 svg.attr('height', $('#map').height());
-                d3.select('g').attr('transform', 'scale(3.6) translate(-300, -300)');
+                d3.select('g').attr('transform', 'scale(3.0) translate(-300, -300)');
             });
         }
     ]);

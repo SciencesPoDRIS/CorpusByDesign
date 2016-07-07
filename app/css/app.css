@@ -14,10 +14,6 @@
     white-space: nowrap;
 }
 
-.full-height {
-    height: 100%;
-}
-
 .separator {
     display: inline-block;
     height: 5px;
@@ -177,11 +173,7 @@ input[type=radio] {
 #header-inmedia_1 {
     background-color: white;
     height: 68px;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+    margin-bottom: 3px;
 }
 
 @media (max-width: 767px) {
@@ -193,7 +185,6 @@ input[type=radio] {
 
 #logo-tools {
     border-bottom: 3px solid #e6142d;
-    height: 95%;
     margin: 0;
     position: absolute;
     width: 100%;
@@ -355,10 +346,6 @@ ul#menu_appli li:last-child a::after {
 
 
 /* Top bar */
-.top-bar {
-    /*height: 188px;*/
-    padding-top: 68px;
-}
 
 .first-row {
     height: 70px;
@@ -378,13 +365,13 @@ ul#menu_appli li:last-child a::after {
 }
 
 .first-row .creation-date {
-    font-family: Roboto Condensed;
     color: #999;
+    font-family: Roboto Condensed;
 }
 
 .first-row .last-update {
-    font-family: Roboto Condensed;
     color: #999;
+    font-family: Roboto Condensed;
     padding-left: 20px;
 }
 
@@ -403,28 +390,23 @@ ul#menu_appli li:last-child a::after {
 }
 
 .first-row .blockquote {
-    display:block;
     background: #fff;
-    padding: 15px 20px 15px 45px;
-    position: relative;
-
-    /*Font*/
-    /*font-family: Georgia, serif;*/
+    color: #999;
+    display:block;
     font-size: 16px;
     line-height: 1.2;
-    color: #999;
+    padding: 15px 20px 15px 45px;
+    position: relative;
     text-align: justify;
 }
 
 .first-row .blockquote::before {
     content: "\201C"; /*Unicode for Left Double Quote*/
-
     /*Font*/
     font-family: Georgia, serif;
     font-size: 60px;
     font-weight: bold;
     color: #CCC;
-
     /*Positioning*/
     position: absolute;
     left: 10px;
@@ -432,24 +414,24 @@ ul#menu_appli li:last-child a::after {
 }
 
 .first-row .blockquote::after{
-  /*Reset to make sure*/
-  content: "";
+    /*Reset to make sure*/
+    content: "";
 }
 
 .first-row .blockquote a{
-  text-decoration: none;
-  background: #eee;
-  cursor: pointer;
-  padding: 0 3px;
-  color: #c76c0c;
+    text-decoration: none;
+    background: #eee;
+    cursor: pointer;
+    padding: 0 3px;
+    color: #c76c0c;
 }
 
 .first-row .blockquote a:hover{
- color: #666;
+    color: #666;
 }
 
 .first-row .blockquote em{
-  font-style: italic;
+    font-style: italic;
 }
 
 .tab-row {
@@ -458,12 +440,6 @@ ul#menu_appli li:last-child a::after {
 }
 
 /* Graph */
-
-#graph {
-    height: 100%;
-    position: absolute;
-    width: 100%;
-}
 
 .sigma-tools {
     -webkit-box-shadow: 0px 1px 5px rgba(50, 20, 0, 0.20);
@@ -622,16 +598,10 @@ ul#menu_appli li:last-child a::after {
 }
 
 .my-filters .search-bottom {
-    /*bottom: 0;*/
-    height: 64px;
-    /*line-height: 30px;*/
-    /*position: absolute;*/
-    /*width: 100%;*/
-/*    background-color: #EEE;
-    color: #999;*/
     background-color: #78909c;
     color: #FFF;
     cursor: pointer;
+    height: 64px;
 }
 
 .my-filters .search-bottom .results-number {
@@ -800,7 +770,6 @@ ul#menu_appli li:last-child a::after {
 /* Tiles */
 
 .corpus .tiles {
-    height: calc(100% - 240px);
     overflow-y: scroll;
     padding: 6px;
 }
@@ -824,10 +793,6 @@ md-grid-tile figure {
     overflow: hidden;
 }
 
-md-grid-tile a {
-    /*border: 1px solid #b6b6b6;*/
-}
-
 a.md-button.md-primary.md-fab.tile-link {
     position: absolute;
     right: 0;
@@ -839,13 +804,11 @@ a.md-button.md-primary.md-fab.tile-link {
     padding: 0 10px;
     font-family: Roboto Condensed, sans-serif;
     color: #333;
-
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eeeeee+0,eeeeee+50&0+0,0.5+20,0.9+50,1+100 */
     background: -moz-linear-gradient(top, rgba(238,238,238,0) 0%, rgba(238,238,238,0.5) 20%, rgba(238,238,238,0.85) 40%, rgba(238,238,238,1) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, rgba(238,238,238,0) 0%,rgba(238,238,238,0.5) 20%,rgba(238,238,238,0.85) 40%,rgba(238,238,238,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, rgba(238,238,238,0) 0%,rgba(238,238,238,0.5) 20%,rgba(238,238,238,0.85) 40%,rgba(238,238,238,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
-
 }
 
 .tile-footer figcaption {
@@ -953,10 +916,6 @@ a.md-button.md-primary.md-fab.tile-link {
 
 /* Corpus Page */
 
-.corpus {
-    height: calc(100% - 138px);
-}
-
 .presentation {
     height: 50px;
     line-height: 50px;
@@ -976,7 +935,6 @@ a.md-button.md-primary.md-fab.tile-link {
     border-color: #d3d3d3;
     border-style: solid;
     border-width: 0 1px 1px 1px;
-    height: calc(100% - 81px);
     margin: 0 -2px;
     position: relative;
     width: 100%;
@@ -986,7 +944,6 @@ a.md-button.md-primary.md-fab.tile-link {
 /* Webentity Page */
 
 .webentity {
-    height: 100%;
     overflow-y: scroll;
 }
 
@@ -1043,9 +1000,8 @@ a.md-button.md-primary.md-fab.tile-link {
 
 /* Methodology Page */
 
-.content .methodology-content {
+.methodology-content {
     overflow-y: auto;
-    height: 100%;
     padding: 12px;
 }
 

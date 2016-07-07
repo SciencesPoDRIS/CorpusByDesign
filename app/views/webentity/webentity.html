@@ -1,86 +1,88 @@
 <!-- Header -->
 <div ng-include="'partials/header.html'"></div>
-<!-- First row -->
-<top-bar
-    corpus="corpus"
-    lang="lang"
-    corpus-id="corpusId"
-></top-bar>
-<!-- Second row -->
-<div class="content webentity" layout="row">
-    <div flex="40" flex-sm="100">
-        <!-- Graph -->
-        <my-graph corpus-id="corpusId" categories="corpus.categories" lang="lang" nodes-color="corpus.nodesColor" />
-        <div class="abstract">
-            <div>Abstract</div>
-            <div>
-                {{webEntity.ABSTRACT}}
+<div flex layout="column">
+    <!-- First row -->
+    <top-bar
+        corpus="corpus"
+        lang="lang"
+        corpus-id="corpusId"
+    ></top-bar>
+    <!-- Second row -->
+    <div class="content webentity" layout="row" flex>
+        <div flex="40" flex-sm="100">
+            <!-- Graph -->
+            <my-graph corpus-id="corpusId" categories="corpus.categories" lang="lang" nodes-color="corpus.nodesColor" />
+            <div class="abstract">
+                <div>Abstract</div>
+                <div>
+                    {{webEntity.ABSTRACT}}
+                </div>
+            </div>
+        </div>
+        <div flex="60" flex-sm="100">
+            <div class="title">{{webEntity.FULL_NAME}}</div>
+            <div class="metadata">
+                <table class="table">
+                    <tr>
+                        <td class="name" flex="30">URL</td>
+                        <td class="value">
+                            <a title="{{webEntity.FULL_NAME}} | New window" ng-href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name" flex="30">Actor's Type</td>
+                        <td class="value">{{webEntity.ACTORS_TYPE_2 | translate:this:'actorsType2'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="name" flex="30">Indegree</td>
+                        <td class="value">{{webEntity.INDEGREE}}</td>
+                    </tr>
+                    <tr>
+                        <td class="name" flex="30">Country</td>
+                        <td class="value">{{webEntity.COUNTRY | translate:this:'country'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="name" flex="30">Anthropogenic Climate Change</td>
+                        <td class="value">{{webEntity.ANTHROPOGENIC_CLIMATE_CHANGE | translate:this:'anthropogenicClimateChange'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="name" flex="30">Mitigation / Adaptation</td>
+                        <td class="value">{{webEntity.MITIGATION_ADAPTATION | translate:this:'mitigationAdaptation'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="name" flex="30">Language</td>
+                        <td class="value">{{webEntity.LANGUAGE | translate:this:'language'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="name" flex="30">Collection</td>
+                        <td class="value">{{webEntity.COLLECTION | translate:this:'collection'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="name" flex="30">Abstract</td>
+                        <td class="value">{{webEntity.ABSTRACT}}</td>
+                    </tr>
+                    <tr class="neighbors">
+                        <td class="name" flex="30">Neighbors</td>
+                        <td class="value">
+                            <ul flex="90">
+                                <li ng-repeat="node in webEntity.NEIGHBORS" ng-attr-collapse="{{$index >= neighborsQuantity ? 'isCollapsed' : ''}}">
+                                    <a title="{{node.attributes.FULL_NAME}} | New window" href="{{node.attributes.URL}}" target="_blank">
+                                            {{node.attributes.FULL_NAME}}</a> ({{node.attributes.ACTORS_TYPE_2 | translate:this:'actorsType2'}})
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="icon" ng-click="collapse()" flex="10">
+                                <i class="material-icons" ng-if="!isCollapsed">keyboard_arrow_up</i>
+                                <i class="material-icons" ng-if="isCollapsed">keyboard_arrow_down</i>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="thumbnail">
+                    <img ng-src="http://manet.medialab.sciences-po.fr/?url={{webEntity.URL}}&width=1024&height=768&clipRect=0,0,1024,768&format=jpg&quality=0.3"></img>
+                    <span class="italic">Thumbnail of the targeted website</span>
+                </div>
             </div>
         </div>
     </div>
-    <div flex="60" flex-sm="100">
-        <div class="title">{{webEntity.FULL_NAME}}</div>
-        <div class="metadata">
-            <table class="table">
-                <tr>
-                    <td class="name" flex="30">URL</td>
-                    <td class="value">
-                        <a title="{{webEntity.FULL_NAME}} | New window" ng-href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="name" flex="30">Actor's Type</td>
-                    <td class="value">{{webEntity.ACTORS_TYPE_2 | translate:this:'actorsType2'}}</td>
-                </tr>
-                <tr>
-                    <td class="name" flex="30">Indegree</td>
-                    <td class="value">{{webEntity.INDEGREE}}</td>
-                </tr>
-                <tr>
-                    <td class="name" flex="30">Country</td>
-                    <td class="value">{{webEntity.COUNTRY | translate:this:'country'}}</td>
-                </tr>
-                <tr>
-                    <td class="name" flex="30">Anthropogenic Climate Change</td>
-                    <td class="value">{{webEntity.ANTHROPOGENIC_CLIMATE_CHANGE | translate:this:'anthropogenicClimateChange'}}</td>
-                </tr>
-                <tr>
-                    <td class="name" flex="30">Mitigation / Adaptation</td>
-                    <td class="value">{{webEntity.MITIGATION_ADAPTATION | translate:this:'mitigationAdaptation'}}</td>
-                </tr>
-                <tr>
-                    <td class="name" flex="30">Language</td>
-                    <td class="value">{{webEntity.LANGUAGE | translate:this:'language'}}</td>
-                </tr>
-                <tr>
-                    <td class="name" flex="30">Collection</td>
-                    <td class="value">{{webEntity.COLLECTION | translate:this:'collection'}}</td>
-                </tr>
-                <tr>
-                    <td class="name" flex="30">Abstract</td>
-                    <td class="value">{{webEntity.ABSTRACT}}</td>
-                </tr>
-                <tr class="neighbors">
-                    <td class="name" flex="30">Neighbors</td>
-                    <td class="value">
-                        <ul flex="90">
-                            <li ng-repeat="node in webEntity.NEIGHBORS" ng-attr-collapse="{{$index >= neighborsQuantity ? 'isCollapsed' : ''}}">
-                                <a title="{{node.attributes.FULL_NAME}} | New window" href="{{node.attributes.URL}}" target="_blank">
-                                        {{node.attributes.FULL_NAME}}</a> ({{node.attributes.ACTORS_TYPE_2 | translate:this:'actorsType2'}})
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="icon" ng-click="collapse()" flex="10">
-                            <i class="material-icons" ng-if="!isCollapsed">keyboard_arrow_up</i>
-                            <i class="material-icons" ng-if="isCollapsed">keyboard_arrow_down</i>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <div class="thumbnail">
-                <img ng-src="http://manet.medialab.sciences-po.fr/?url={{webEntity.URL}}&width=1024&height=768&clipRect=0,0,1024,768&format=jpg&quality=0.3"></img>
-                <span class="italic">Thumbnail of the targeted website</span>
-            </div>
-        </div>
-    </div>
-</div
+</div>
