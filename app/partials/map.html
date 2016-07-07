@@ -5,7 +5,7 @@
     </div>
 </div>
 <!-- Right column -->
-<div flex="60">
+<div flex="60" layout="column">
     <!-- Filters -->
     <div>
         <my-filters
@@ -16,8 +16,8 @@
         />
     </div>
     <!-- Tiles -->
-    <div class="tiles">
-        <div>
+    <div class="tiles" flex>
+        <div layout-fill>
             <div class="grid-list" flex="">
                 <md-grid-list
                     md-cols-sm="1"
