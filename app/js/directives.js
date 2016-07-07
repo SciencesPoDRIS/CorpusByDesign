@@ -13,14 +13,15 @@
                 categories: '=',
                 corpusId: '=',
                 filteredResultsCount: '=',
-                prefix: '='
+                prefix: '=',
+                legend: '=?'
             },
             link: function($scope, element, attrs) {
                 // Uncollapse filters
                 $scope.isCollapsed = true;
                 $scope.allChecked = {};
                 $scope.indeterminate = {};
-                
+
                 // Deep watch categories to maintain the general status arrays
                 // Note: inefficient but relevant since it happens rarely and the array is small
                 $scope.$watch('categories', function() {
@@ -115,6 +116,19 @@
                         }
                     }, 0);
                 }
+
+                if('legend' in $scope) {
+                    $.each($scope.categories, function(index, item) {
+                        $.each(item.values, function(index_02, item_02) {
+                            var mappedLegend = $.grep($scope.legend, function(item_03, index_03) {
+                                return item_03.id == item_02.id;
+                            });
+                            if(mappedLegend.length > 0) {
+                                item_02.colorClass = mappedLegend[0].colorClass;
+                            }
+                        });
+                    });
+                }
             }
         };
     }]);
@@ -169,7 +183,7 @@
                         });
                         // Node is in legend
                         if(mappedLegend.length == 1) {
-                            item.color = mappedLegend[0].color
+                            item.color = mappedLegend[0].color;
                         }
                     });
                     $scope.graph.refresh();
@@ -332,7 +346,7 @@
                             $scope.text = selected.length + '/' + $scope.category.values.length + ' selected'
                         }
                     }
-                }, true)
+                }, true);
 
                 $scope.closeBadge = function() {
                     $scope.category.values.forEach(function(v) {

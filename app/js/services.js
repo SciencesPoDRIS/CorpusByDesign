@@ -56,7 +56,7 @@
                                 item_02.color = colors[index_02].color;
                                 item_02.colorClass = colors[index_02].label;
                                 // Create the legend object
-                                legend[index_02] = { 'id': item_02.id, 'label': item_02.label, 'color': item_02.color };
+                                legend[index_02] = { 'id': item_02.id, 'label': item_02.label, 'color': item_02.color, 'colorClass': item_02.colorClass };
                             });
                         }
                         // Order items of legend by alphabetical ascending order

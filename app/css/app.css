@@ -568,6 +568,7 @@ ul#menu_appli li:last-child a::after {
     padding: 0;
     width: 90%;
 }
+
 .filter-values md-progress-linear {
     width: 85%;
 }
@@ -575,6 +576,26 @@ ul#menu_appli li:last-child a::after {
 .filter-values md-progress-linear .md-container {
     width: 98%;
 }
+
+.filter-values md-progress-linear.pink .md-bar {
+    background-color: #F6A5CB;
+}
+.filter-values md-progress-linear.yellow .md-bar {
+    background-color: #E6E174;
+}
+.filter-values md-progress-linear.green .md-bar {
+    background-color: #83E7CC;
+}
+.filter-values md-progress-linear.orange .md-bar {
+    background-color: #FBA995;
+}
+.filter-values md-progress-linear.brown .md-bar {
+    background-color: #CEA764;
+}
+.filter-values md-progress-linear.purple .md-bar {
+    background-color: #BEAFD7;
+}
+
 .filter-values .count-percent {
     font-size: 10px;
     line-height: 5px;
