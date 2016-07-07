@@ -627,40 +627,6 @@ ul#menu_appli li:last-child a::after {
     padding: 2px 0 2px 15px;
 }
 
-.my-filters .search-bar {
-    height: 40px;
-    line-height: 25px;
-    padding-bottom: 15px;
-}
-
-@media (max-width: 767px) {
-    .my-filters .search-bar {
-        margin: 0;
-    }
-}
-
-.my-filters .search-bar input.full-width {
-    display: inline;
-    width: 95%;
-}
-
-.my-filters .search-bar md-input-container {
-    display: inline;
-    padding: 0 0 0 2px;
-    text-align: center;
-}
-
-.my-filters .search-bar md-input-container:not(.md-input-invalid).md-input-focused .md-input,
-.my-filters .search-bar md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input {
-    border-bottom: 2px solid #e6142d;
-    padding-bottom: 1px;
-}
-.my-filters .search-bar md-input-container:not(.md-input-invalid).md-input-focused md-icon,
-.my-filters .search-bar md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused md-icon {
-    color: rgba(0,0,0,0.87);
-}
-
-
 /* Collapsed filters */
 
 .collapsed-filters-search-row {
