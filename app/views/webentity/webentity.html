@@ -11,7 +11,13 @@
     <div class="content webentity" layout="row" flex>
         <div flex="40" flex-sm="100">
             <!-- Graph -->
-            <my-graph corpus-id="corpusId" categories="corpus.categories" lang="lang" nodes-color="corpus.nodesColor" />
+            <my-graph
+                corpus-id="corpusId"
+                categories="corpus.categories"
+                lang="lang"
+                nodes-color="corpus.nodesColor"
+                webentity="webEntity"
+            />
             <div class="abstract">
                 <div>Abstract</div>
                 <div>
@@ -19,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div flex="60" flex-sm="100">
+        <div flex="60" flex-sm="100" class="lalilou">
             <div class="title">{{webEntity.FULL_NAME}}</div>
             <div class="metadata">
                 <table class="table">
@@ -57,17 +63,13 @@
                         <td class="name" flex="30">Collection</td>
                         <td class="value">{{webEntity.COLLECTION | translate:this:'collection'}}</td>
                     </tr>
-                    <tr>
-                        <td class="name" flex="30">Abstract</td>
-                        <td class="value">{{webEntity.ABSTRACT}}</td>
-                    </tr>
                     <tr class="neighbors">
                         <td class="name" flex="30">Neighbors</td>
                         <td class="value">
                             <ul flex="90">
-                                <li ng-repeat="node in webEntity.NEIGHBORS" ng-attr-collapse="{{$index >= neighborsQuantity ? 'isCollapsed' : ''}}">
+                                <li ng-repeat="node in webEntity.neighbours" ng-if="$index < neighborsQuantity">
                                     <a title="{{node.attributes.FULL_NAME}} | New window" href="{{node.attributes.URL}}" target="_blank">
-                                            {{node.attributes.FULL_NAME}}</a> ({{node.attributes.ACTORS_TYPE_2 | translate:this:'actorsType2'}})
+                                        {{node.attributes.FULL_NAME}} ({{node.attributes.ACTORS_TYPE_2 | translate:this:'actorsType2'}})
                                     </a>
                                 </li>
                             </ul>

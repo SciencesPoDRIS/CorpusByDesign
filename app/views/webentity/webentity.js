@@ -12,7 +12,7 @@
 
             // Init scope variables
             $scope.isCollapsed = true;
-            // Quantity of neighbors nodes displayed by default
+            // Quantity of neighbors nodes to display by default
             $scope.neighborsQuantity = 5;
             $scope.corpusId = $routeParams.corpusId;
             $scope.webEntityId = $routeParams.webEntityId;
@@ -40,14 +40,12 @@
 
             // Collapse or uncollapse neighbors
             $scope.collapse = function() {
-                $scope.isCollapsed = !$scope.isCollapsed;
                 if ($scope.isCollapsed) {
                     $scope.neighborsQuantity = 500;
                 } else {
                     $scope.neighborsQuantity = 5;
-                    // Scroll to the neighbors part
-                    $(window).scrollTop($('.neighbors').offset().top - 70);
                 }
+                $scope.isCollapsed = !$scope.isCollapsed;
             }
 
             // Return true if this field should be shown for this item, otherwise return false

@@ -142,7 +142,8 @@
                 categories: '=',
                 lang: '=',
                 nodesColor: '=',
-                legend: '=?'
+                legend: '=?',
+                webentity: '=?'
             },
             link: function($scope, element, attrs) {
                 // Init variables
@@ -174,21 +175,6 @@
                     });
                 }
 
-                // Set node color according to the legend
-                $scope.changeNodesColor = function() {
-                    var mappedField = $scope.categories[$scope.nodesColor].mappedField;
-                    $.each($scope.graph.graph.nodes(), function(index, item) {
-                        var mappedLegend = $.grep($scope.legend, function(item_02, index_02) {
-                            return item_02.id == item.attributes[mappedField];
-                        });
-                        // Node is in legend
-                        if(mappedLegend.length == 1) {
-                            item.color = mappedLegend[0].color;
-                        }
-                    });
-                    $scope.graph.refresh();
-                }
-
                 // Load the graph
                 sigma.parsers.gexf(
                     '../data/' + $scope.corpusId + '.gexf', {
@@ -202,33 +188,90 @@
                     function(s) {
                         $scope.graph = s;
 
-                        $scope.changeNodesColor();
-                        
-                        $scope.graph.bind('overNode outNode', function(n) {
-                            // On node hover, color all the connected edges in the node color
-                            if (n.type == 'overNode') {
-                                // Get the connected edges
-                                $scope.graph.graph.edges().forEach(function(e, i) {
-                                    if (e.source == n.data.node.id || e.target == n.data.node.id) {
-                                        e.color = n.data.node.color;
-                                        // Remove edge from edges array
-                                        $scope.graph.graph.dropEdge(e.id);
-                                        // Add edge as last element of edges array (to render it at the top of other edges)
-                                        $scope.graph.graph.addEdge(e);
+                        if('webentity' in $scope) {
+                            // Set red as node color
+                            $.each($scope.graph.graph.nodes(), function(index, item) {
+                                if(item.id == $scope.webentity.ID) {
+                                    item.color = '#ff0000';
+                                }
+                            });
+                            // Set red light as edges color
+                            $.each($scope.graph.graph.edges(), function(index, item) {
+                                if(item.source == $scope.webentity.ID || item.target == $scope.webentity.ID) {
+                                    item.color = '#f58787';
+                                    // Remove edge from edges array
+                                    $scope.graph.graph.dropEdge(item.id);
+                                    // Add edge as last element of edges array (to render it at the top of other edges)
+                                    $scope.graph.graph.addEdge(item);
+                                }
+                            });
+                            // Add a method to the graph model that returns an object with every neighbors of a node inside
+                            if (!sigma.classes.graph.hasMethod('neighbors')) {
+                                sigma.classes.graph.addMethod('neighbors', function(nodeId) {
+                                    var k,
+                                        neighbors = [],
+                                        index = this.allNeighborsIndex[nodeId] || {};
+                                    for (k in index) {
+                                        neighbors.push(this.nodesIndex[k])
                                     }
+                                    return neighbors;
                                 });
-                                // Simulate mouse hover effect on the tiles
-                                $('#' + n.data.node.id + ' img').addClass('hover');
-                                // On node out, reset all edges color to the default one
-                            } else if (n.type == 'outNode') {
-                                $scope.graph.graph.edges().forEach(function(e) {
-                                    e.color = defaultEdgeColor;
-                                });
-                                // Simulate mouse out effect on the tiles
-                                $('#' + n.data.node.id + ' img').removeClass('hover');
-                            }
+                            };
+                            // Get all the neighbors of a node
+                            var neighbors = $scope.graph.graph.neighbors($scope.webentity.ID);
+                            var neighborsIds = $.map(neighbors, function(item) { return item.id; });
+                            // Set red light as color of the neighbors nodes
+                            $.each($scope.graph.graph.nodes(), function(index, item) {
+                                if(neighborsIds.indexOf(item.id) >= 0) {
+                                    item.color = '#f58787';
+                                }
+                            });
+                            $scope.$watch('webentity', function() {
+                                $scope.webentity.neighbours = neighbors;
+                            });
                             $scope.graph.refresh();
-                        });
+                        }
+
+                        if('legend' in $scope) {
+                            // Set node color according to the legend
+                            var mappedField = $scope.categories[$scope.nodesColor].mappedField;
+                            $.each($scope.graph.graph.nodes(), function(index, item) {
+                                var mappedLegend = $.grep($scope.legend, function(item_02, index_02) {
+                                    return item_02.id == item.attributes[mappedField];
+                                });
+                                // Node is in legend
+                                if(mappedLegend.length == 1) {
+                                    item.color = mappedLegend[0].color;
+                                }
+                            });
+                            $scope.graph.bind('overNode outNode', function(n) {
+                                // On node hover, color all the connected edges in the node color
+                                if (n.type == 'overNode') {
+                                    // Get the connected edges
+                                    $scope.graph.graph.edges().forEach(function(e, i) {
+                                        if (e.source == n.data.node.id || e.target == n.data.node.id) {
+                                            e.color = n.data.node.color;
+                                            // Remove edge from edges array
+                                            $scope.graph.graph.dropEdge(e.id);
+                                            // Add edge as last element of edges array (to render it at the top of other edges)
+                                            $scope.graph.graph.addEdge(e);
+                                        }
+                                    });
+                                    // Simulate mouse hover effect on the tiles
+                                    $('#' + n.data.node.id + ' img').addClass('hover');
+                                // On node out, reset all edges color to the default one
+                                } else if (n.type == 'outNode') {
+                                    $scope.graph.graph.edges().forEach(function(e) {
+                                        e.color = defaultEdgeColor;
+                                    });
+                                    // Simulate mouse out effect on the tiles
+                                    $('#' + n.data.node.id + ' img').removeClass('hover');
+                                }
+                                $scope.graph.refresh();
+                            });
+                            $scope.graph.refresh();
+                        }
+
                         // On node click, open the webentity page in a new tab
                         $scope.graph.bind('clickNode', function(n) {
                             $timeout(function(){
