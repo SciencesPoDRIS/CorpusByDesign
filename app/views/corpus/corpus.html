@@ -10,7 +10,7 @@
     <!-- Second row -->
     <div class="corpus content" flex>
         <div ng-class="['{{availableView}}']" ng-if="availableView == view" ng-repeat="availableView in corpus.availableViews" layout-fill>
-            <div ng-include="'partials/' + availableView + '.html'" layout="row" layout-fill></div>
+            <div ng-include="'partials/' + availableView + '.html'" layout-fill></div>
         </div>
     </div>
 </div>
