@@ -52,6 +52,10 @@
                         // Fill the legend object with the 6 elements the most representated
                         // And set the color to this element
                         if (categories[index].id == nodesColor) {
+                            // First sort categories by count
+                            categories[index].values.sort(function(a, b) {
+                                return b.count - a.count;
+                            });
                             $.each(categories[index].values.slice(0, legendSize), function(index_02, item_02) {
                                 item_02.color = colors[index_02].color;
                                 item_02.colorClass = colors[index_02].label;

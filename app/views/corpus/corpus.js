@@ -63,13 +63,13 @@
                         }
                         $scope.initResultsCount = $scope.initResults.length;
                         updateFiltering();
+                        // Check that this corpus has nodesColor (ie. it has a graph part)
+                        if('nodesColor' in $scope.corpus) {
+                            // Generate the legend
+                            $scope.legend = get.legend($scope.corpus.categories, $scope.corpus.nodesColor);
+                        }
                     });
 
-                    // Check that this corpus has nodesColor (ie. it has a graph part)
-                    if('nodesColor' in $scope.corpus) {
-                        // Generate the legend
-                        $scope.legend = get.legend($scope.corpus.categories, $scope.corpus.nodesColor);
-                    }
                 });
             }
 
