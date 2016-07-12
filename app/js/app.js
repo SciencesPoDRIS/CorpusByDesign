@@ -37,7 +37,7 @@
 
             var svg = d3.select('#map').append('svg')
                 .attr('preserveAspectRatio', 'xMidYMid meet')
-                .attr('viewBox', '0 0 ' + m_width + ' ' + height);
+                .attr('viewBox', '0 0 ' + width + ' ' + height);
 
             svg.append('rect')
                 .attr('class', 'background')
@@ -132,7 +132,7 @@
             $(window).resize(function() {
                 svg.attr('width', $('#map').width());
                 svg.attr('height', $('#map').height());
-                d3.select('g').attr('transform', 'scale(3.0) translate(-300, -300)');
+                d3.select('g').attr('transform', 'scale(3.6) translate(-300, -300)');
             });
         }
     ]);
