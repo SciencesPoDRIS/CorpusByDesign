@@ -36,6 +36,11 @@
                 $scope.resultsDisplayCount = defaultResultsDisplayCount;
             }
 
+            // Regenerate the legend
+            $scope.onNodesColor = function() {
+                $scope.legend = get.legend($scope.corpus.categories, $scope.corpus.nodesColor);
+            }
+
             $scope.init = function() {
                 // Load the corpus configurations
                 loadCorpus.getCorpus($scope.corpusId).then(function(corpus) {

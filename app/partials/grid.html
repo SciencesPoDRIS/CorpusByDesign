@@ -3,21 +3,15 @@
     <div flex="40" layout="column">
         <!-- Presentation -->
         <div class="presentation" layout="row">
-            <div class="nodes-color" flex="50">
+            <md-input-container flex="50">
                 <label>Nodes Color</label>
-                <md-menu>
-                    <md-button ng-click="$mdOpenMenu($event)" class="no-uppercase" aria-label="selectedCategory">
-                        {{selectedCategory}}
-                        <md-icon>keyboard_arrow_down</md-icon>
-                    </md-button>
-                    <md-menu-content>
-                        <md-menu-item ng-repeat="category in categories | displayedCategories:corpus.categories">
-                            <md-button id="{{category.id}}" ng-click="changeNodesColor($event)">{{category.label}}</md-button>
-                        </md-menu-item>
-                    </md-menu-content>
-                </md-menu>
-            </div>
-            <div flex="50">
+                <md-select ng-model="corpus.nodesColor" ng-change="onNodesColor()">
+                    <md-option ng-repeat="category in categories | displayedCategories:corpus.categories" value="{{category.id}}">
+                        {{category.label}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <div flex="50" class="nodes-count">
                 {{initResultsCount}} nodes
             </div>
         </div>
@@ -56,7 +50,7 @@
                         md-gutter="6px"
                     >
                         <md-grid-tile id="{{result.ID}}"
-                            ng-repeat="result in filteredResults|limitTo:resultsDisplayCount"
+                            ng-repeat="result in filteredResults | limitTo:resultsDisplayCount"
                             md-rowspan="1"
                             md-colspan="1"
                             md-colspan-sm="1"
