@@ -57,7 +57,8 @@
                     $scope.initResults = [];
                     loadCorpusData.getData($scope.corpusId).then(function(data) {
                         data = data.split('\n');
-                        headers = data[0].split('\t');
+                        // Remove end of line
+                        headers = data[0].replace(/(\r\n|\n|\r)/gm, '').split('\t');
                         for (i = 1; i < data.length; i++) {
                             obj = {};
                             currentLine = data[i].split('\t');
@@ -123,16 +124,16 @@
                 })
                 $scope.initResults.forEach(function(item) {
                     var catId;
-                    $.each($scope.corpus.categories, function(catId, category){
-                        var field = category.mappedField
-                        var itemValues = item[field].split(multiValuesSeparator)
+                    $.each($scope.corpus.categories, function(catId, category) {
+                        var field = category.mappedField;
+                        var itemValues = item[field].split(multiValuesSeparator);
                         // Item is valid for this category if one of its values is selected
                         var validForThisCategory = itemValues.some(function(value) {
                             // Search the value in the category's list
                             return category.values.some(function(catValue) {
                                 return catValue.id == value && catValue.isSelected;
-                            })
-                        })
+                            });
+                        });
                         // If item is invalid for one category, hide it
                         if (!validForThisCategory) {
                             item.validForMetadataFiltering = false;
@@ -142,7 +143,7 @@
 
                 // Finalize filtered results
                 $scope.filteredResults = $scope.initResults.filter(function(item){
-                    var displayItem = item.validForSearch && item.validForMetadataFiltering
+                    var displayItem = item.validForSearch && item.validForMetadataFiltering;
 
                     if (displayItem) {
                         // Update summary data
@@ -158,7 +159,7 @@
                     }
 
                     return displayItem;
-                })
+                });
 
                 // Finalize summary data (percents)
                 $.each($scope.corpus.categories, function(catId, category){
