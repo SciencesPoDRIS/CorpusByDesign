@@ -526,6 +526,10 @@ ul#menu_appli li:last-child a::after {
     height: 64px;
 }
 
+.filter-switcher {
+    padding: 6px;
+}
+
 .filter-validate-box {
     text-align: center;
     padding-top: 12px;

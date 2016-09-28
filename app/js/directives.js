@@ -21,6 +21,7 @@
                 $scope.isCollapsed = true;
                 $scope.allChecked = {};
                 $scope.indeterminate = {};
+                $scope.selectPeru = false;
 
                 // Deep watch categories to maintain the general status arrays
                 // Note: inefficient but relevant since it happens rarely and the array is small
@@ -66,26 +67,28 @@
                     if ($scope.categories[categoryId]) {
                         // Unless everything is already selected, select all
                         if ($scope.isAllChecked(categoryId)) {
-                            $scope.categories[categoryId].values.forEach(function(v){v.isSelected = false})
+                            $scope.categories[categoryId].values.forEach(function(v){v.isSelected = false});
                         } else {
-                            $scope.categories[categoryId].values.forEach(function(v){v.isSelected = true})
+                            $scope.categories[categoryId].values.forEach(function(v){v.isSelected = true});
                         }
                     }
                 }
 
                 $scope.isAllChecked = function(categoryId) {
                     if (categoryId === undefined) return true;
-                    return !$scope.categories[categoryId].values.some(function(v){ return !v.isSelected})
+                    return !$scope.categories[categoryId].values.some(function(v){ return !v.isSelected});
                 }
 
                 $scope.isAllUnchecked = function(categoryId) {
                     if (categoryId === undefined) return true;
-                    return !$scope.categories[categoryId].values.some(function(v){ return v.isSelected})
+                    return !$scope.categories[categoryId].values.some(function(v){ return v.isSelected});
                 }
 
                 $scope.isIndeterminate = function(categoryId) {
-                    if (categoryId === undefined) return false;
-                    return !$scope.isAllChecked(categoryId) && !$scope.isAllUnchecked(categoryId)
+                    if (categoryId === undefined) {
+                        return false;
+                    }
+                    return !$scope.isAllChecked(categoryId) && !$scope.isAllUnchecked(categoryId);
                 }
 
                 $scope.exists = function(value) {
@@ -102,7 +105,7 @@
                         // If all the checkboxes are of this category are selected, force the check of the "all" checkbox
                         if ($('.' + categoryId + ' .checkbox:not(.all) :checked').length == $('.' + categoryId + ' .checkbox:not(.all)').length) {
                             $('.' + categoryId + ' .checkbox.all input').prop('checked', true);
-                            // Else, force the uncheck of the "all" checkbox
+                        // Else, force the uncheck of the "all" checkbox
                         } else {
                             $('.' + categoryId + ' .checkbox.all input').prop('checked', false);
                         }
@@ -115,6 +118,18 @@
                                 break;
                         }
                     }, 0);
+                }
+
+                $scope.switchPeru = function(selectPeru) {
+                    // Deselect all countries but Peru
+                    $scope.categories.area.values.forEach(function(v) {
+                        if(v.id == 'perou') {
+                            v.isSelected = true;
+                        } else {
+                            v.isSelected = false;
+                        }
+                        
+                    });
                 }
 
                 if('legend' in $scope) {
