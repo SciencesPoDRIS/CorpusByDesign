@@ -33,6 +33,21 @@
                         $scope.allChecked[cid] = $scope.isAllChecked(cid);
                         $scope.indeterminate[cid] = $scope.isIndeterminate(cid);
                     }
+                    // Get aray of selected values for the 'area' category
+                    var selected = $scope.categories.area.values.filter(function(v) {
+                        return v.isSelected;
+                    });
+                    // If switcher is ON and that I deselect Perou, deselect the switcher and select all countries
+                    if($scope.selectPeru && selected.length == 0) {
+                        $scope.selectPeru = false;
+                        $scope.switchPeru();
+                    // If switcher is ON and that I select 2 or more countries, deselect switcher
+                    } else if ($scope.selectPeru && selected.length > 1) {
+                        $scope.selectPeru = false;
+                    // If switcher is OFF and that I select only one country that is 'Peru', select switcher
+                    } else if (!$scope.selectPeru && selected.length == 1 && selected[0].id == 'perou') {
+                        $scope.selectPeru = true;
+                    }
                 }, true);
 
                 var offset = ($('.top-bar').innerHeight() + $('#header-inmedia_1').innerHeight()) || 200;
@@ -140,19 +155,6 @@
                         $scope.categories.area.values.forEach(function(v) {
                             v.isSelected = true;
                         });
-                    }
-                }
-
-                $scope.changeCategoriesValue = function(value, currentCategoryId) {
-                    // If switcher is ON and that I deselect Perou, select all countries and deselect switcher
-                    if($scope.selectPeru && currentCategoryId == 'area') {
-                        if(value.id == 'perou' && value.isSelected == false) {
-                            $scope.selectPeru = false;
-                            $scope.switchPeru();
-                        // If switcher is ON and that I select another country in addition to Peru, deselect switcher
-                        } else if(value.id != 'perou') {
-                            $scope.selectPeru = false;
-                        }
                     }
                 }
 
@@ -441,13 +443,6 @@
                 }, true);
 
                 $scope.closeBadge = function() {
-                    var selected = $scope.category.values.filter(function(v) {
-                        return v.isSelected;
-                    });
-                    // If category is 'area' and only Peru was selected, deselect the switcher
-                    if($scope.category.id == 'area' && selected.length == 1 && selected[0].id == 'perou') {
-                        $scope.$parent.$parent.$parent.$parent.$parent.selectPeru = false;
-                    }
                     // Select all values of this category
                     $scope.category.values.forEach(function(v) {
                         v.isSelected = true
