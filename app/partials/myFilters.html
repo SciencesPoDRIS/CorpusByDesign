@@ -35,7 +35,13 @@
                     </div>
                     <!-- Add a switcher only for 'amerique-latine' corpus -->
                     <div class="filter-switcher">
-                        <md-switch md-no-ink ng-model="selectPeru" aria-label="Pérou 2016" ng-change="switchPeru(selectPeru)" ng-if="corpusId == 'amerique-latine'">
+                        <md-switch
+                            class="md-primary"
+                            md-no-ink aria-label="Pérou 2016"
+                            ng-model="$parent.$parent.selectPeru"
+                            ng-change="switchPeru(selectPeru)"
+                            ng-if="corpusId == 'amerique-latine'"
+                        >
                             Pérou 2016
                         </md-switch>
                     </div>
@@ -93,6 +99,7 @@
                                 <md-checkbox
                                     class="md-primary"
                                     ng-model="value.isSelected"
+                                    ng-change="changeCategoriesValue(value, currentCategoryId)"
                                 >
                                     {{value.label}}
                                     <div>

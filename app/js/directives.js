@@ -28,12 +28,12 @@
                 $scope.$watch('categories', function() {
                     $scope.allChecked = {};
                     $scope.indeterminate = {};
-                    var cid
-                    for(cid in $scope.categories) {
-                        $scope.allChecked[cid] = $scope.isAllChecked(cid)
-                        $scope.indeterminate[cid] = $scope.isIndeterminate(cid)
+                    var cid;
+                    for (cid in $scope.categories) {
+                        $scope.allChecked[cid] = $scope.isAllChecked(cid);
+                        $scope.indeterminate[cid] = $scope.isIndeterminate(cid);
                     }
-                }, true)
+                }, true);
 
                 var offset = ($('.top-bar').innerHeight() + $('#header-inmedia_1').innerHeight()) || 200;
                 $scope.moreFilters = function() {
@@ -67,21 +67,25 @@
                     if ($scope.categories[categoryId]) {
                         // Unless everything is already selected, select all
                         if ($scope.isAllChecked(categoryId)) {
-                            $scope.categories[categoryId].values.forEach(function(v){v.isSelected = false});
+                            $scope.categories[categoryId].values.forEach(function(v) { v.isSelected = false });
                         } else {
-                            $scope.categories[categoryId].values.forEach(function(v){v.isSelected = true});
+                            $scope.categories[categoryId].values.forEach(function(v) { v.isSelected = true });
                         }
                     }
                 }
 
                 $scope.isAllChecked = function(categoryId) {
                     if (categoryId === undefined) return true;
-                    return !$scope.categories[categoryId].values.some(function(v){ return !v.isSelected});
+                    return !$scope.categories[categoryId].values.some(function(v) {
+                        return !v.isSelected
+                    });
                 }
 
                 $scope.isAllUnchecked = function(categoryId) {
                     if (categoryId === undefined) return true;
-                    return !$scope.categories[categoryId].values.some(function(v){ return v.isSelected});
+                    return !$scope.categories[categoryId].values.some(function(v) {
+                        return v.isSelected
+                    });
                 }
 
                 $scope.isIndeterminate = function(categoryId) {
@@ -101,11 +105,11 @@
                 }
 
                 $scope.filter = function(categoryId, value) {
-                    $timeout(function(){
+                    $timeout(function() {
                         // If all the checkboxes are of this category are selected, force the check of the "all" checkbox
                         if ($('.' + categoryId + ' .checkbox:not(.all) :checked').length == $('.' + categoryId + ' .checkbox:not(.all)').length) {
                             $('.' + categoryId + ' .checkbox.all input').prop('checked', true);
-                        // Else, force the uncheck of the "all" checkbox
+                            // Else, force the uncheck of the "all" checkbox
                         } else {
                             $('.' + categoryId + ' .checkbox.all input').prop('checked', false);
                         }
@@ -121,24 +125,44 @@
                 }
 
                 $scope.switchPeru = function(selectPeru) {
-                    // Deselect all countries but Peru
-                    $scope.categories.area.values.forEach(function(v) {
-                        if(v.id == 'perou') {
+                    // If the switcher is selected
+                    if (selectPeru) {
+                        // Deselect all countries but Peru
+                        $scope.categories.area.values.forEach(function(v) {
+                            if (v.id == 'perou') {
+                                v.isSelected = true;
+                            } else {
+                                v.isSelected = false;
+                            }
+                        });
+                    // If the switcher is deselected
+                    } else {
+                        $scope.categories.area.values.forEach(function(v) {
                             v.isSelected = true;
-                        } else {
-                            v.isSelected = false;
-                        }
-                        
-                    });
+                        });
+                    }
                 }
 
-                if('legend' in $scope) {
+                $scope.changeCategoriesValue = function(value, currentCategoryId) {
+                    // If switcher is ON and that I deselect Perou, select all countries and deselect switcher
+                    if($scope.selectPeru && currentCategoryId == 'area') {
+                        if(value.id == 'perou' && value.isSelected == false) {
+                            $scope.selectPeru = false;
+                            $scope.switchPeru();
+                        // If switcher is ON and that I select another country in addition to Peru, deselect switcher
+                        } else if(value.id != 'perou') {
+                            $scope.selectPeru = false;
+                        }
+                    }
+                }
+
+                if ('legend' in $scope) {
                     $.each($scope.categories, function(index, item) {
                         $.each(item.values, function(index_02, item_02) {
                             var mappedLegend = $.grep($scope.legend, function(item_03, index_03) {
                                 return item_03.id == item_02.id;
                             });
-                            if(mappedLegend.length > 0) {
+                            if (mappedLegend.length > 0) {
                                 item_02.colorClass = mappedLegend[0].colorClass;
                             }
                         });
@@ -203,16 +227,16 @@
                     function(s) {
                         $scope.graph = s;
 
-                        if('webentity' in $scope) {
+                        if ('webentity' in $scope) {
                             // Set red as node color
                             $.each($scope.graph.graph.nodes(), function(index, item) {
-                                if(item.id == $scope.webentity.ID) {
+                                if (item.id == $scope.webentity.ID) {
                                     item.color = '#ff0000';
                                 }
                             });
                             // Set red light as edges color
                             $.each($scope.graph.graph.edges(), function(index, item) {
-                                if(item.source == $scope.webentity.ID || item.target == $scope.webentity.ID) {
+                                if (item.source == $scope.webentity.ID || item.target == $scope.webentity.ID) {
                                     item.color = '#f58787';
                                     // Remove edge from edges array
                                     $scope.graph.graph.dropEdge(item.id);
@@ -234,10 +258,11 @@
                             };
                             // Get all the neighbors of a node
                             var neighbors = $scope.graph.graph.neighbors($scope.webentity.ID);
-                            var neighborsIds = $.map(neighbors, function(item) { return item.id; });
+                            var neighborsIds = $.map(neighbors, function(item) {
+                                return item.id; });
                             // Set red light as color of the neighbors nodes
                             $.each($scope.graph.graph.nodes(), function(index, item) {
-                                if(neighborsIds.indexOf(item.id) >= 0) {
+                                if (neighborsIds.indexOf(item.id) >= 0) {
                                     item.color = '#f58787';
                                 }
                             });
@@ -247,7 +272,7 @@
                             $scope.graph.refresh();
                         }
 
-                        if('legend' in $scope) {
+                        if ('legend' in $scope) {
                             $scope.$watch('legend', function() {
                                 // Set node color according to the legend
                                 var mappedField = $scope.categories[$scope.nodesColor].mappedField;
@@ -256,7 +281,7 @@
                                         return item_02.id == item.attributes[mappedField];
                                     });
                                     // Node is in legend
-                                    if(mappedLegend.length == 1) {
+                                    if (mappedLegend.length == 1) {
                                         item.color = mappedLegend[0].color;
                                     }
                                 });
@@ -276,7 +301,7 @@
                                             });
                                             // Simulate mouse hover effect on the tiles
                                             $('#' + n.data.node.id + ' img').addClass('hover');
-                                        // On node out, reset all edges color to the default one
+                                            // On node out, reset all edges color to the default one
                                         } else if (n.type == 'outNode') {
                                             $scope.graph.graph.edges().forEach(function(e) {
                                                 e.color = defaultEdgeColor;
@@ -293,7 +318,7 @@
 
                         // On node click, open the webentity page in a new tab
                         $scope.graph.bind('clickNode', function(n) {
-                            $timeout(function(){
+                            $timeout(function() {
                                 $window.open('#/' + $scope.lang + '/' + $scope.corpusId + '/' + n.data.node.id);
                             }, 300);
                         });
@@ -316,8 +341,7 @@
             scope: {
                 legend: '=',
             },
-            link: function($scope, element, attrs) {
-            }
+            link: function($scope, element, attrs) {}
         }
     }]);
 
@@ -331,26 +355,26 @@
                 corpusId: '='
             },
             link: function($scope, element, attrs) {
-                $scope.$watch('corpus', function(){
+                $scope.$watch('corpus', function() {
                     $scope.selectedIndex = 0;
                     $scope.tabList = [];
 
                     // Build menu tabs
-                    $scope.$watch('corpus.availableViews', function(){
+                    $scope.$watch('corpus.availableViews', function() {
                         $scope.tabList = [];
 
                         // Home
                         $scope.tabList.push({
-                            label: 'Home',
-                            active: false,
-                            onClick: function(){
-                                // Change location, with a small delay to have the tab animation
-                                $timeout(function(){
-                                    $location.url($scope.lang);
-                                }, 300);
-                            }
-                        })
-                        // Available views
+                                label: 'Home',
+                                active: false,
+                                onClick: function() {
+                                    // Change location, with a small delay to have the tab animation
+                                    $timeout(function() {
+                                        $location.url($scope.lang);
+                                    }, 300);
+                                }
+                            })
+                            // Available views
                         if ($scope.corpus && $scope.corpus.availableViews) {
                             $scope.corpus.availableViews.forEach(function(view) {
                                 $scope.tabList.push({
@@ -370,7 +394,7 @@
                             active: $location.path().split('/').pop() == 'methodology',
                             onClick: function() {
                                 // Change location, with a small delay to have the tab animation
-                                $timeout(function(){
+                                $timeout(function() {
                                     $location.url($scope.lang + '/' + $scope.corpusId + '/methodology');
                                 }, 300);
                             }
@@ -391,35 +415,43 @@
             link: function($scope, element, attrs) {
                 $scope.display = false
                 $scope.text = ''
-                $scope.$watch('category', function(){
-                    if($scope.category) {
-                        var selected = $scope.category.values.filter(function(v){
-                            return v.isSelected
-                        })
-                        var unselected = $scope.category.values.filter(function(v){
-                            return !v.isSelected
-                        })
+                $scope.$watch('category', function() {
+                    if ($scope.category) {
+                        var selected = $scope.category.values.filter(function(v) {
+                            return v.isSelected;
+                        });
+                        var unselected = $scope.category.values.filter(function(v) {
+                            return !v.isSelected;
+                        });
 
                         if (unselected.length == 0) {
-                            $scope.display = false
-                            $scope.text = ''
+                            $scope.display = false;
+                            $scope.text = '';
                         } else if (selected.length == 1) {
-                            $scope.display = true
-                            $scope.text = selected[0].label
+                            $scope.display = true;
+                            $scope.text = selected[0].label;
                         } else if (selected.length == 0) {
-                            $scope.display = true
-                            $scope.text = 'Hide everything'
+                            $scope.display = true;
+                            $scope.text = 'Hide everything';
                         } else {
-                            $scope.display = true
-                            $scope.text = selected.length + '/' + $scope.category.values.length + ' selected'
+                            $scope.display = true;
+                            $scope.text = selected.length + '/' + $scope.category.values.length + ' selected';
                         }
                     }
                 }, true);
 
                 $scope.closeBadge = function() {
+                    var selected = $scope.category.values.filter(function(v) {
+                        return v.isSelected;
+                    });
+                    // If category is 'area' and only Peru was selected, deselect the switcher
+                    if($scope.category.id == 'area' && selected.length == 1 && selected[0].id == 'perou') {
+                        $scope.$parent.$parent.$parent.$parent.$parent.selectPeru = false;
+                    }
+                    // Select all values of this category
                     $scope.category.values.forEach(function(v) {
                         v.isSelected = true
-                    })
+                    });
                 }
             }
         };

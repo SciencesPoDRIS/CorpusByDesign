@@ -527,7 +527,7 @@ ul#menu_appli li:last-child a::after {
 }
 
 .filter-switcher {
-    padding: 6px;
+    padding: 0 10px;
 }
 
 .filter-validate-box {
