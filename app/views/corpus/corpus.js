@@ -126,25 +126,27 @@
                     var catId;
                     $.each($scope.corpus.categories, function(catId, category) {
                         var field = category.mappedField;
-                        var itemValues = item[field].split(multiValuesSeparator);
-                        // Item is valid for this category if one of its values is selected
-                        var validForThisCategory = itemValues.some(function(value) {
-                            // Search the value in the category's list
-                            return category.values.some(function(catValue) {
-                                return catValue.id == value && catValue.isSelected;
+                        // Avoid the language field
+                        if(field != 'LANGUAGE') {
+                            var itemValues = item[field].split(multiValuesSeparator);
+                            // Item is valid for this category if one of its values is selected
+                            var validForThisCategory = itemValues.some(function(value) {
+                                // Search the value in the category's list
+                                return category.values.some(function(catValue) {
+                                    return catValue.id == value && catValue.isSelected;
+                                });
                             });
-                        });
-                        // If item is invalid for one category, hide it
-                        if (!validForThisCategory) {
-                            item.validForMetadataFiltering = false;
+                            // If item is invalid for one category, hide it
+                            if (!validForThisCategory) {
+                                item.validForMetadataFiltering = false;
+                            }
                         }
                     });
                 });
 
                 // Finalize filtered results
-                $scope.filteredResults = $scope.initResults.filter(function(item){
+                $scope.filteredResults = $scope.initResults.filter(function(item) {
                     var displayItem = item.validForSearch && item.validForMetadataFiltering;
-
                     if (displayItem) {
                         // Update summary data
                         $.each($scope.corpus.categories, function(catId, category){
@@ -157,7 +159,6 @@
                             });
                         });
                     }
-
                     return displayItem;
                 });
 
