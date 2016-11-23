@@ -12,6 +12,7 @@
             scope: {
                 categories: '=',
                 corpusId: '=',
+                initResultsCount: '=',
                 filteredResultsCount: '=',
                 prefix: '=',
                 legend: '=?'
