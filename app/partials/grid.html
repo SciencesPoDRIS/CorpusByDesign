@@ -3,56 +3,36 @@
     <div flex="40" layout="column">
         <!-- Presentation -->
         <div class="presentation" layout="row">
-            <md-input-container flex="50">
-                <label>Nodes Color</label>
-                <md-select ng-model="corpus.nodesColor" ng-change="onNodesColor()">
-                    <md-option ng-repeat="category in categories | displayedCategories:corpus.categories" value="{{category.id}}">
-                        {{category.label}}
-                    </md-option>
-                </md-select>
-            </md-input-container>
+            <div flex="50" layout="row">
+                <md-tooltip md-direction="right">
+                    One node stands for one website
+                </md-tooltip>
+                <md-input-container flex="100">
+                    <label>Nodes Color</label>
+                    <md-select ng-model="corpus.nodesColor" ng-change="onNodesColor()">
+                        <md-option ng-repeat="category in categories | displayedCategories:corpus.categories" value="{{category.id}}">
+                            {{category.label}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
         </div>
         <!-- Legend -->
         <my-legend legend="legend" />
         <!-- Graph -->
-        <my-graph
-            corpus-id="corpusId"
-            categories="corpus.categories"
-            lang="lang"
-            nodes-color="corpus.nodesColor"
-            legend="legend"
-            flex />
+        <my-graph corpus-id="corpusId" categories="corpus.categories" lang="lang" nodes-color="corpus.nodesColor" legend="legend" flex />
     </div>
     <!-- Right column -->
     <div flex="60" layout="column">
         <div>
-            <my-filters
-                categories="corpus.categories"
-                corpus-id="corpusId"
-                filtered-results-count="filteredResults.length"
-                prefix="corpus.prefix"
-                legend="legend"
-            />
+            <my-filters categories="corpus.categories" corpus-id="corpusId" filtered-results-count="filteredResults.length" prefix="corpus.prefix" legend="legend" />
         </div>
         <!-- Tiles -->
         <div class="tiles" flex>
             <div layout-fill>
                 <div class="grid-list" flex="">
-                    <md-grid-list
-                        md-cols-sm="1"
-                        md-cols-md="2"
-                        md-cols-gt-md="3"
-                        md-row-height-gt-md="5:3"
-                        md-row-height="6:3"
-                        md-gutter="6px"
-                    >
-                        <md-grid-tile id="{{result.ID}}"
-                            ng-repeat="result in filteredResults | limitTo:resultsDisplayCount"
-                            md-rowspan="1"
-                            md-colspan="1"
-                            md-colspan-sm="1"
-                            class="gray-tile"
-                        >
+                    <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="3" md-row-height-gt-md="5:3" md-row-height="6:3" md-gutter="6px">
+                        <md-grid-tile id="{{result.ID}}" ng-repeat="result in filteredResults | limitTo:resultsDisplayCount" md-rowspan="1" md-colspan="1" md-colspan-sm="1" class="gray-tile">
                             <a href="#/{{lang}}/{{corpusId}}/{{result.ID}}" target="_blank" layout-fill>
                                 <img class="grayscale" ng-src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=1024&height=768&clipRect=0,0,1024,768&format=jpg&quality=0.3"></img>
                                 <md-button class="md-fab md-primary md-mini tile-link" aria-label="link" ng-href="{{result.URL}}" target="_blank">
@@ -64,15 +44,7 @@
                                 </md-grid-tile-footer>
                             </a>
                         </md-grid-tile>
-                        <md-grid-tile id="{{result.ID}}"
-                            md-rowspan="1"
-                            md-colspan="3"
-                            md-colspan-md="2"
-                            md-colspan-sm="1"
-                            class="gray-tile"
-                            ng-show="filteredResults.length > resultsDisplayCount"
-                            ng-click="displayAllResults()"
-                        >
+                        <md-grid-tile id="{{result.ID}}" md-rowspan="1" md-colspan="3" md-colspan-md="2" md-colspan-sm="1" class="gray-tile" ng-show="filteredResults.length > resultsDisplayCount" ng-click="displayAllResults()">
                             <h3>Show all results ({{filteredResults.length - resultsDisplayCount}} more)</h3>
                         </md-grid-tile>
                     </md-grid-list>
