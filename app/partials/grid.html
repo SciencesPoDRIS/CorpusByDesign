@@ -20,7 +20,7 @@
         <!-- Legend -->
         <my-legend legend="legend" />
         <!-- Graph -->
-        <my-graph corpus-id="corpusId" filtered-results="filteredResults" categories="corpus.categories" lang="lang" nodes-color="corpus.nodesColor" legend="legend" flex />
+        <my-graph corpus-id="corpusId" categories="corpus.categories" lang="lang" nodes-color="corpus.nodesColor" legend="legend" filtered-results="filteredResults" highlighted-node="highlightedNode" flex />
     </div>
     <!-- Right column -->
     <div flex="60" layout="column">
@@ -32,7 +32,7 @@
             <div layout-fill>
                 <div class="grid-list" flex="">
                     <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="3" md-row-height-gt-md="5:3" md-row-height="6:3" md-gutter="6px">
-                        <md-grid-tile id="{{result.ID}}" ng-repeat="result in filteredResults | limitTo:resultsDisplayCount" md-rowspan="1" md-colspan="1" md-colspan-sm="1" class="gray-tile">
+                        <md-grid-tile id="{{result.ID}}" ng-repeat="result in filteredResults | limitTo:resultsDisplayCount" md-rowspan="1" md-colspan="1" md-colspan-sm="1" class="gray-tile" ng-mouseover="onMouseOverTile($event);" ng-mouseleave="onMouseLeaveTile($event);">
                             <a href="#/{{lang}}/{{corpusId}}/{{result.ID}}" target="_blank" layout-fill>
                                 <img class="grayscale" ng-src="http://manet.medialab.sciences-po.fr/?url={{result.URL}}&width=1024&height=768&clipRect=0,0,1024,768&format=jpg&quality=0.3"></img>
                                 <md-button class="md-fab md-primary md-mini tile-link" aria-label="link" ng-href="{{result.URL}}" target="_blank">

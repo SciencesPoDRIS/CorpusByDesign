@@ -41,6 +41,16 @@
                 $scope.legend = get.legend($scope.corpus.categories, $scope.corpus.nodesColor);
             }
 
+            $scope.highlightedNode = null;
+            // When the mouse enter a tile, color the node on the graph part
+            $scope.onMouseOverTile = function(e) {
+                $scope.highlightedNode = e.currentTarget.id;
+            }
+            // When the mouse leave a tile, reset the nodes color on the graph part
+            $scope.onMouseLeaveTile = function(e) {
+                $scope.highlightedNode = null;
+            }
+
             $scope.init = function() {
                 // Load the corpus configurations
                 loadCorpus.getCorpus($scope.corpusId).then(function(corpus) {
