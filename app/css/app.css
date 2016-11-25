@@ -860,7 +860,8 @@ a.md-button.md-primary.md-fab.tile-link {
     filter: grayscale(95%) opacity(30%);
 }
 
-.gray-tile:hover .grayscale {
+.gray-tile:hover .grayscale,
+.gray-tile.hover .grayscale {
     /* for Webkit browsere, Chrome 19+, Safari 6+ ... */
     -webkit-filter: grayscale(20%) opacity(70%);
     /* this is for IE6, Firefox 3.5+, Firefox mobile */

@@ -341,11 +341,11 @@
                             $scope.graph.refresh();
                         }
 
+                        // If the loaded page is the one with the full corpus
                         if ('legend' in $scope) {
                             setNodesColor();
                         }
 
-                        // If the loaded page is the one with the full corpus
                         if ('legend' in $scope) {
                             $scope.$watch('legend', setNodesColor);
                         }
@@ -373,14 +373,14 @@
                                         }
                                     });
                                     // Simulate mouse hover effect on the tiles
-                                    $('#' + n.data.node.id + ' img').addClass('hover');
+                                    $('#' + n.data.node.id).addClass('hover');
                                     // On node out, reset all edges color to the default one
                                 } else if (n.type == 'outNode') {
                                     $scope.graph.graph.edges().forEach(function(e) {
                                         e.color = defaultEdgeColor;
                                     });
                                     // Simulate mouse out effect on the tiles
-                                    $('#' + n.data.node.id + ' img').removeClass('hover');
+                                    $('#' + n.data.node.id).removeClass('hover');
                                 }
                                 $scope.graph.refresh();
                             }, 300);
