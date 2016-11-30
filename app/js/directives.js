@@ -175,7 +175,7 @@
         };
     }]);
 
-    app.directive('myGraph', ['$timeout', '$window', function($timeout, $window) {
+    app.directive('myGraph', ['$timeout', '$window', 'utils', function($timeout, $window, utils) {
         return {
             restrict: 'E',
             templateUrl: 'partials/myGraph.html',
@@ -217,14 +217,14 @@
                                 item.color = mappedLegend[0].color;
                                 // Else color the node in light grey
                             } else {
-                                item.color = '#ccc'
+                                item.color = '#CCCCCC'
                             }
                         });
                         // Color the edges connected to the hover node
                         $scope.graph.graph.edges().forEach(function(e, i) {
                             if (e.source == $scope.highlightedNode || e.target == $scope.highlightedNode) {
-                                e.color = mappedLegend[0].color;
-                                // Remove edge from edges array
+                                e.color = utils.colorLuminance(mappedLegend[0].color, 0.15)
+                                    // Remove edge from edges array
                                 $scope.graph.graph.dropEdge(e.id);
                                 // Add edge as last element of edges array (to render it at the top of other edges)
                                 $scope.graph.graph.addEdge(e);
@@ -242,10 +242,11 @@
                                 });
                                 if (mappedLegend.length == 1) {
                                     item.color = mappedLegend[0].color;
+                                    // Else color the node in light grey
+                                } else {
+                                    item.color = '#CCCCCC'
                                 }
-                                // Else color the node in light grey
-                            } else {
-                                item.color = '#ccc'
+
                             }
                         });
                         $scope.graph.graph.edges().forEach(function(e, i) {
@@ -365,7 +366,7 @@
                                     // Get the connected edges
                                     $scope.graph.graph.edges().forEach(function(e, i) {
                                         if (e.source == n.data.node.id || e.target == n.data.node.id) {
-                                            e.color = n.data.node.color;
+                                            e.color = utils.colorLuminance(n.data.node.color, 0.15);
                                             // Remove edge from edges array
                                             $scope.graph.graph.dropEdge(e.id);
                                             // Add edge as last element of edges array (to render it at the top of other edges)
