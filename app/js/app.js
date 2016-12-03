@@ -8,6 +8,7 @@
         'webcorpus.methodology',
         'webcorpus.webentity',
         'webcorpus.welcome',
+        'webcorpus.legalnotice',
         'webcorpus.directives',
         'webcorpus.filters',
         'webcorpus.routes',
@@ -132,7 +133,8 @@
             $(window).resize(function() {
                 svg.attr('width', $('#map').width());
                 svg.attr('height', $('#map').height());
-                d3.select('g').attr('transform', 'scale(3.6) translate(-300, -300)');
+                // d3.select('g').attr('transform', 'scale(3.6) translate(-300, -300)');
+                d3.select('g').attr('transform', 'scale(2.4) translate(-200, -255)')
             });
         }
     ]);

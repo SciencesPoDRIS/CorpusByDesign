@@ -1007,10 +1007,16 @@ a.md-button.md-primary.md-fab.tile-link {
 
 
 /* Methodology Page */
+/* Legal notice Page */
 
-.methodology-content {
+.methodology-content,
+.legalnotice-content {
     overflow-y: auto;
     padding: 12px;
+}
+
+.legalnotice-content a:link {
+    text-decoration: underline;
 }
 
 /* Welcome Page */

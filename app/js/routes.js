@@ -19,6 +19,11 @@
                 controller: 'CorpusController'
             }).
             // Methodology page of a corpus
+            when('/:lang/:corpusId/legalnotice', {
+                templateUrl: 'views/legalnotice/legalnotice.html',
+                controller: 'LegalNoticeController'
+            }).
+            // Legal notice page of a corpus
             when('/:lang/:corpusId/methodology', {
                 templateUrl: 'views/methodology/methodology.html',
                 controller: 'MethodologyController'

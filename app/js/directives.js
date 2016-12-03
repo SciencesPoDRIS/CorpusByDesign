@@ -469,7 +469,18 @@
                                     $location.url($scope.lang + '/' + $scope.corpusId + '/methodology');
                                 }, 300);
                             }
-                        })
+                        });
+                        // Legal Notice
+                        $scope.tabList.push({
+                            label: 'Legal notice',
+                            active: $location.path().split('/').pop() == 'legalnotice',
+                            onClick: function() {
+                                // Change location, with a small delay to have the tab animation
+                                $timeout(function() {
+                                    $location.url($scope.lang + '/' + $scope.corpusId + '/legalnotice');
+                                }, 300);
+                            }
+                        });
                     });
                 });
             }
