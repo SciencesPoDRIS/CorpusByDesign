@@ -25,10 +25,7 @@
             <h3>Size</h3>
             <span ng-bind-html="corpus.size | renderHtml"></span>
             <h3>Dataset</h3>
-            <md-button class="md-raised" ng-href="../data/{{corpusId}}.tsv" target="_self">
-                <md-icon>file_download</md-icon>
-                Download dataset
-            </md-button>
+            <span ng-bind-html="corpus.download | renderHtml"></span>
             <br/>
             <br/>
             <div ng-bind-html="corpus.footnote | renderHtml" class="foot-note" ng-if=""></div>

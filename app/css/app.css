@@ -1015,6 +1015,7 @@ a.md-button.md-primary.md-fab.tile-link {
     padding: 12px;
 }
 
+.methodology-content a:link,
 .legalnotice-content a:link {
     text-decoration: underline;
 }
