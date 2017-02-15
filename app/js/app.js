@@ -48,7 +48,7 @@
 
             var g = svg.append('g');
 
-            d3.json('../data/' + $scope.corpusId + '.topo.json', function(error, us) {
+            d3.json('data/' + $scope.corpusId + '.topo.json', function(error, us) {
                 g.append('g')
                     .attr('id', 'countries')
                     .selectAll('path')

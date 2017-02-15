@@ -284,7 +284,7 @@
 
                 // Load the graph
                 sigma.parsers.gexf(
-                    '../data/' + $scope.corpusId + '.gexf', {
+                    'data/' + $scope.corpusId + '.gexf', {
                         container: 'graph',
                         settings: {
                             defaultEdgeColor: defaultEdgeColor,

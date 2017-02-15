@@ -14,13 +14,13 @@
                         console.error('Unknown corpus ID: ' + corpusId)
                         return {}
                     }
-                    return $http.get('../data/corpora.json', { cache: true }).then(function(data) {
+                    return $http.get('data/corpora.json', { cache: true }).then(function(data) {
                         return data.data.corpora[corpusId];
                     });
                 },
 
                 getCorpora: function() {
-                    return $http.get('../data/corpora.json', { cache: true }).then(function(data) {
+                    return $http.get('data/corpora.json', { cache: true }).then(function(data) {
                         return data.data.corpora;
                     });
                 }
@@ -33,7 +33,7 @@
         function($http) {
             return {
                 getData: function(corpusId) {
-                    return $http.get('../data/' + corpusId + '.tsv', { cache: true }).then(function(data) {
+                    return $http.get('data/' + corpusId + '.tsv', { cache: true }).then(function(data) {
                         return data.data;
                     });
                 }
