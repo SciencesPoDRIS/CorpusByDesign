@@ -16,7 +16,7 @@ node_modules
 #
 # Conf files
 #
-app/conf/conf.js
+conf/conf.js
 
 #
 # Images folder
