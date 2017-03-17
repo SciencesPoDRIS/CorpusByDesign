@@ -122,7 +122,7 @@
 
                 $scope.filter = function(categoryId, value) {
                     $timeout(function() {
-                        // If all the checkboxes are of this category are selected, force the check of the "all" checkbox
+                        // If all the checkboxes of this category are selected, force the check of the "all" checkbox
                         if ($('.' + categoryId + ' .checkbox:not(.all) :checked').length == $('.' + categoryId + ' .checkbox:not(.all)').length) {
                             $('.' + categoryId + ' .checkbox.all input').prop('checked', true);
                             // Else, force the uncheck of the "all" checkbox
