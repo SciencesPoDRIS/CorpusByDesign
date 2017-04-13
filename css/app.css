@@ -1028,6 +1028,11 @@ a.md-button.md-primary.md-fab.tile-link {
     overflow-y: auto;
 }
 
+
+.content.welcome img.layout-fill {
+    object-fit: contain;
+}
+
 .content.welcome .corpus:not(:first-child) {
     padding-top: 25px;
 }
