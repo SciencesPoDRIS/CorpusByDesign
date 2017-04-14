@@ -974,6 +974,7 @@ a.md-button.md-primary.md-fab.tile-link {
 .webentity .metadata .table {
     font-size: 15px;
     line-height: 20px;
+    width: 100%;
 }
 
 .webentity .metadata .table .name {
