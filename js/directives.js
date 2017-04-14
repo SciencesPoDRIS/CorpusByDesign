@@ -35,9 +35,14 @@
                         $scope.indeterminate[cid] = $scope.isIndeterminate(cid);
                     }
                     // Get aray of selected values for the 'area' category
-                    var selected = $scope.categories.area.values.filter(function(v) {
-                        return v.isSelected;
-                    });
+                    if($scope.categories.area) {
+                        var selected = $scope.categories.area.values.filter(function(v) {
+                            return v.isSelected;
+                        });
+                    } else {
+                        var selected = [];
+                    }
+                    
                     // If switcher is ON and that I deselect Perou, deselect the switcher and select all countries
                     if ($scope.selectPeru && selected.length == 0) {
                         $scope.selectPeru = false;
