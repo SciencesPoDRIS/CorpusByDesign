@@ -8,22 +8,53 @@
     app.filter('translate', [
         function() {
             return function(input, $scope, facet) {
+                $.each($scope.corpus.categories, function(index, item) {
+                    if(facet == item['mappedField']) {
+                        facet = item['id'];
+                    }
+                });
                 var txt, i;
                 if (input === undefined) {
                     return '';
                 } else {
                     txt = '';
-                    $.each(input.split(' ; '), function(index, item) {
-                        i = 0;
-                        while ($scope.corpus.categories[facet].values[i].id != item) {
-                            i++;
-                        }
-                        txt += (txt == '' ? '' : ', ');
-                        txt += $scope.corpus.categories[facet].values[i].label;
-                    });
-                    return txt;
+                    if(Object.keys($scope.corpus.categories).includes(facet)) {
+                        $.each(input.split(' ; '), function(index, item) {
+                            i = 0;
+                            // console.log(item);
+                            // console.log($scope.corpus.categories[facet].values.length);
+                            while (i < $scope.corpus.categories[facet].values.length && $scope.corpus.categories[facet].values[i].id != item) {
+                                i++;
+                            }
+                            if(i == $scope.corpus.categories[facet].values.length) {
+                                console.log('in if');
+                                txt = input
+                            } else {
+                                txt += (txt == '' ? '' : ', ');
+                                txt += $scope.corpus.categories[facet].values[i].label;
+                            }
+                        });
+                        return txt;
+                    } else {
+                        return input;
+                    }
                 }
             };
+        }
+    ]);
+
+    app.filter('getCategorieName', [
+        function() {
+            return function(input, $scope) {
+                var tmp = '';
+                angular.forEach($scope.corpus.categories, function(value, key) {
+                    if(value.mappedField == input) {
+                        tmp =  value.label;
+                    }
+                });
+                // return tmp;
+                return (tmp == '' ? input : tmp);
+            }
         }
     ]);
 

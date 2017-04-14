@@ -35,11 +35,11 @@
                             <a title="{{webEntity.FULL_NAME}} | New window" ng-href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="name" flex="30">Actor's Type</td>
-                        <td class="value">{{webEntity.ACTORS_TYPE_2 | translate:this:'actorsType2'}}</td>
+                    <tr ng-repeat="column in corpus.displayedColumns">
+                        <td class="name" flex="30">{{column | getCategorieName:this:column}}</td>
+                        <td class="value">{{webEntity[column] | translate:this:column}}</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td class="name" flex="30">Indegree</td>
                         <td class="value">{{webEntity.INDEGREE}}</td>
                     </tr>
@@ -62,7 +62,7 @@
                     <tr>
                         <td class="name" flex="30">Collection</td>
                         <td class="value">{{webEntity.COLLECTION | translate:this:'collection'}}</td>
-                    </tr>
+                    </tr> -->
                     <tr class="neighbors">
                         <td class="name" flex="30">Neighbors</td>
                         <td class="value">
