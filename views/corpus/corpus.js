@@ -59,8 +59,8 @@
                     // Consolidate corpus data
                     var cat
                     for (cat in $scope.corpus.categories) {
-                        var category = $scope.corpus.categories[cat]
-                        category.valuesPreview = category.values.map(function(d){return d.label}).join(', ')
+                        var category = $scope.corpus.categories[cat];
+                        category.valuesPreview = category.values.map(function(d){return d.label}).join(', ');
                     }
 
                     // Load the corpus content
