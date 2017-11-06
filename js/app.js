@@ -13,7 +13,8 @@
         'webcorpus.filters',
         'webcorpus.routes',
         'webcorpus.services',
-        'ngMaterial'
+        'ngMaterial',
+        'pascalprecht.translate'
     ]);
 
     app.controller('mapController', ['$scope', '$routeParams', '$window', '$timeout',
@@ -136,6 +137,24 @@
                 // d3.select('g').attr('transform', 'scale(3.6) translate(-300, -300)');
                 d3.select('g').attr('transform', 'scale(2.4) translate(-200, -255)')
             });
+        }
+    ]);
+
+    /* i18n */
+    app.config(['$translateProvider',
+        function($translateProvider) {
+            // Enable localStorage to save on bandwidth and loading costs
+            // $translateProvider.useLocalStorage();
+            // Add internationalization by downloading static files
+            $translateProvider.useStaticFilesLoader({
+                prefix: 'languages/',
+                suffix: '.json'
+            });
+            // Default language is french
+            $translateProvider
+                .preferredLanguage('fr')
+                .fallbackLanguage('fr')
+                .useSanitizeValueStrategy(null);
         }
     ]);
 
