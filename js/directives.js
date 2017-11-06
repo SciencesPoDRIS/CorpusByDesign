@@ -237,7 +237,7 @@
                                 e.color = defaultEdgeColor;
                             }
                         });
-                        // If there is currently a search
+                    // If there is currently a search
                     } else if ('filteredResults' in $scope) {
                         $.each($scope.graph.graph.nodes(), function(index, item) {
                             // If this node is in the results of the search, color it
@@ -302,22 +302,6 @@
 
                         // If the loaded page is the detail page of a website
                         if ('webentity' in $scope) {
-                            // Set red as node color
-                            $.each($scope.graph.graph.nodes(), function(index, item) {
-                                if (item.id == $scope.webentity.ID) {
-                                    item.color = '#ff0000';
-                                }
-                            });
-                            // Set red light as edges color
-                            $.each($scope.graph.graph.edges(), function(index, item) {
-                                if (item.source == $scope.webentity.ID || item.target == $scope.webentity.ID) {
-                                    item.color = '#f58787';
-                                    // Remove edge from edges array
-                                    $scope.graph.graph.dropEdge(item.id);
-                                    // Add edge as last element of edges array (to render it at the top of other edges)
-                                    $scope.graph.graph.addEdge(item);
-                                }
-                            });
                             // Add a method to the graph model that returns an object with every neighbors of a node inside
                             if (!sigma.classes.graph.hasMethod('neighbors')) {
                                 sigma.classes.graph.addMethod('neighbors', function(nodeId) {
@@ -335,10 +319,27 @@
                             var neighborsIds = $.map(neighbors, function(item) {
                                 return item.id;
                             });
-                            // Set red light as color of the neighbors nodes
+                            // Set the color of the selected node to red
+                            // Set the color of the neighbors nodes to red light
+                            // Set the color of all the others nodes to grey light
                             $.each($scope.graph.graph.nodes(), function(index, item) {
-                                if (neighborsIds.indexOf(item.id) >= 0) {
-                                    item.color = '#f58787';
+                                if (item.id == $scope.webentity.ID) {
+                                    item.color = '#FF0000';
+                                }
+                                else if (neighborsIds.indexOf(item.id) >= 0) {
+                                    item.color = '#F58787';
+                                } else {
+                                    item.color = '#CCCCCC';
+                                }
+                            });
+                            // Set red light as edges color
+                            $.each($scope.graph.graph.edges(), function(index, item) {
+                                if (item.source == $scope.webentity.ID || item.target == $scope.webentity.ID) {
+                                    item.color = '#F58787';
+                                    // Remove edge from edges array
+                                    $scope.graph.graph.dropEdge(item.id);
+                                    // Add edge as last element of edges array (to render it at the top of other edges)
+                                    $scope.graph.graph.addEdge(item);
                                 }
                             });
                             $scope.$watch('webentity', function() {
