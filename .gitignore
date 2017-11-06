@@ -9,7 +9,12 @@
 data
 
 #
-# Node dependency directory
+# Bower components directory
+#
+bower_components
+
+#
+# Node modules directory
 #
 node_modules
 
