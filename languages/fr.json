@@ -1,2 +1,18 @@
 {
+	"URL" : "URL",
+    "NAME" : "Nom",
+    "ACTORS_TYPE" : "Type d'acteur",
+    "CANDIDATE_SUPPORTS" : "Candidat soutenu au 1er tour",
+    "CANDIDATE_SUPPORTS_2" : "Candidat soutenu au 2nd tour",
+    "ANTHROPOGENIC_CLIMATE_CHANGE" : "Changement climatique anthropique",
+    "MITIGATION_ADAPTATION" : "Atténuation Adaptation",
+    "COLLECTION" : "Collection",
+    "THEMATIC_DELEGATION" : "Délégation thématique",
+    "INDUSTRIAL_DELEGATION" : "Délégation industrielle",
+    "LANGUAGE" : "Language",
+    "COUNTRY" : "Pays",
+    "AREA" : "Région",
+    "SOURCE" : "Type de source",
+    "CANDIDATE_NAME" : "Nom du candidat",
+    "POLITICAL_PARTY" : "Parti politique"
 }

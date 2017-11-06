@@ -36,40 +36,16 @@
                         </td>
                     </tr>
                     <tr ng-repeat="column in corpus.displayedColumns">
-                        <td class="name" flex="30">{{column | getCategorieName:this:column}}</td>
-                        <td class="value">{{webEntity[column] | translate:this:column}}</td>
+                        <td class="name" flex="30">{{column | translate}}</td>
+                        <td class="value">{{webEntity[column] | translate2:this:column}}</td>
                     </tr>
-                    <!-- <tr>
-                        <td class="name" flex="30">Indegree</td>
-                        <td class="value">{{webEntity.INDEGREE}}</td>
-                    </tr>
-                    <tr>
-                        <td class="name" flex="30">Country</td>
-                        <td class="value">{{webEntity.COUNTRY | translate:this:'country'}}</td>
-                    </tr>
-                    <tr>
-                        <td class="name" flex="30">Anthropogenic Climate Change</td>
-                        <td class="value">{{webEntity.ANTHROPOGENIC_CLIMATE_CHANGE | translate:this:'anthropogenicClimateChange'}}</td>
-                    </tr>
-                    <tr>
-                        <td class="name" flex="30">Mitigation / Adaptation</td>
-                        <td class="value">{{webEntity.MITIGATION_ADAPTATION | translate:this:'mitigationAdaptation'}}</td>
-                    </tr>
-                    <tr>
-                        <td class="name" flex="30">Language</td>
-                        <td class="value">{{webEntity.LANGUAGE | translate:this:'language'}}</td>
-                    </tr>
-                    <tr>
-                        <td class="name" flex="30">Collection</td>
-                        <td class="value">{{webEntity.COLLECTION | translate:this:'collection'}}</td>
-                    </tr> -->
                     <tr class="neighbors">
                         <td class="name" flex="30">Neighbors</td>
                         <td class="value">
                             <ul flex="90">
                                 <li ng-repeat="node in webEntity.neighbours" ng-if="$index < neighborsQuantity">
                                     <a title="{{node.attributes.FULL_NAME}}{{node.attributes.NAME || node.attributes.name}} | New window" href="{{node.attributes.URL || node.attributes.url}}" target="_blank">
-                                        {{node.attributes.FULL_NAME}}{{node.attributes.NAME || node.attributes.name}} ({{node.attributes.ACTORS_TYPE_2 | translate:this:'actorsType2'}}{{node.attributes.ACTORS_TYPE | translate:this:'actorsType'}})
+                                        {{node.attributes.FULL_NAME}}{{node.attributes.NAME || node.attributes.name}} ({{node.attributes.ACTORS_TYPE_2 | translate2:this:'actorsType2'}}{{node.attributes.ACTORS_TYPE | translate2:this:'actorsType'}})
                                     </a>
                                 </li>
                             </ul>

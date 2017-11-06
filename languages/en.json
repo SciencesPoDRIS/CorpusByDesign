@@ -1,2 +1,18 @@
 {
+	"URL" : "URL",
+    "NAME" : "Name",
+    "ACTORS_TYPE" : "Actor's Type",
+    "CANDIDATE_SUPPORTS" : "Candidate supported for the first round",
+    "CANDIDATE_SUPPORTS_2" : "Candidate supported for the second round",
+    "ANTHROPOGENIC_CLIMATE_CHANGE" : "Anthropogenic Climate Change",
+    "MITIGATION_ADAPTATION" : "Mitigation Adaptation",
+    "COLLECTION" : "Collection",
+    "THEMATIC_DELEGATION" : "Thematic Delegation",
+    "INDUSTRIAL_DELEGATION" : "Industrial Delegation",
+    "LANGUAGE" : "Language",
+    "COUNTRY" : "Country",
+    "AREA" : "Area",
+    "SOURCE" : "Source type",
+    "CANDIDATE_NAME" : "Candidate name",
+    "POLITICAL_PARTY" : "Political party"
 }

@@ -5,7 +5,7 @@
 
     var app = angular.module('webcorpus.filters', []);
 
-    app.filter('translate', [
+    app.filter('translate2', [
         function() {
             return function(input, $scope, facet) {
                 $.each($scope.corpus.categories, function(index, item) {
@@ -40,21 +40,6 @@
                     }
                 }
             };
-        }
-    ]);
-
-    app.filter('getCategorieName', [
-        function() {
-            return function(input, $scope) {
-                var tmp = '';
-                angular.forEach($scope.corpus.categories, function(value, key) {
-                    if(value.mappedField == input) {
-                        tmp =  value.label;
-                    }
-                });
-                // return tmp;
-                return (tmp == '' ? input : tmp);
-            }
         }
     ]);
 
