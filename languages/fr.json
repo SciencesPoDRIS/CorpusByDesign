@@ -1,7 +1,8 @@
 {
 	"URL" : "URL",
     "NAME" : "Nom",
-    "ACTORS_TYPE" : "Type d'acteur",
+    "ACTORS_TYPE" : "Type d'acteurs",
+    "ACTORS_TYPE_2" : "Type d'acteurs",
     "CANDIDATE_SUPPORTS" : "Candidat soutenu au 1er tour",
     "CANDIDATE_SUPPORTS_2" : "Candidat soutenu au 2nd tour",
     "ANTHROPOGENIC_CLIMATE_CHANGE" : "Changement climatique anthropique",
@@ -14,5 +15,6 @@
     "AREA" : "Région",
     "SOURCE" : "Type de source",
     "CANDIDATE_NAME" : "Nom du candidat",
-    "POLITICAL_PARTY" : "Parti politique"
+    "POLITICAL_PARTY" : "Parti politique",
+    "INDEGREE" : "Indegree"
 }

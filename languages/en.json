@@ -1,7 +1,8 @@
 {
 	"URL" : "URL",
     "NAME" : "Name",
-    "ACTORS_TYPE" : "Actor's Type",
+    "ACTORS_TYPE" : "Actors' Type",
+    "ACTORS_TYPE_2" : "Actors' Type",
     "CANDIDATE_SUPPORTS" : "Candidate supported for the first round",
     "CANDIDATE_SUPPORTS_2" : "Candidate supported for the second round",
     "ANTHROPOGENIC_CLIMATE_CHANGE" : "Anthropogenic Climate Change",
@@ -14,5 +15,6 @@
     "AREA" : "Area",
     "SOURCE" : "Source type",
     "CANDIDATE_NAME" : "Candidate name",
-    "POLITICAL_PARTY" : "Political party"
+    "POLITICAL_PARTY" : "Political party",
+    "INDEGREE" : "Indegree"
 }
