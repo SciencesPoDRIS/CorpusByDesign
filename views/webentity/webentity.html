@@ -25,14 +25,14 @@
                 </div>
             </div>
         </div>
-        <div flex="60" flex-sm="100" class="lalilou">
-            <div class="title">{{webEntity.FULL_NAME}}</div>
+        <div flex="60" flex-sm="100">
+            <div class="title">{{webEntity.NAME}}</div>
             <div class="metadata">
                 <table class="table">
                     <tr>
                         <td class="name" flex="30">URL</td>
                         <td class="value">
-                            <a title="{{webEntity.FULL_NAME}} | New window" ng-href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a>
+                            <a title="{{webEntity.NAME}} | New window" ng-href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a>
                         </td>
                     </tr>
                     <tr ng-repeat="column in corpus.displayedColumns">
@@ -44,8 +44,8 @@
                         <td class="value">
                             <ul flex="90">
                                 <li ng-repeat="node in webEntity.neighbours" ng-if="$index < neighborsQuantity">
-                                    <a title="{{node.attributes.FULL_NAME}}{{node.attributes.NAME || node.attributes.name}} | New window" href="{{node.attributes.URL || node.attributes.url}}" target="_blank">
-                                        {{node.attributes.FULL_NAME}}{{node.attributes.NAME || node.attributes.name}} ({{node.attributes.ACTORS_TYPE_2 | translate2:this:'actorsType2'}}{{node.attributes.ACTORS_TYPE | translate2:this:'actorsType'}})
+                                    <a title="{{node.attributes.NAME}} | New window" href="{{node.attributes.URL || node.attributes.url}}" target="_blank">
+                                        {{node.attributes.NAME}} ({{node.attributes.ACTORS_TYPE_2 | translate2:this:'actorsType2'}}{{node.attributes.ACTORS_TYPE | translate2:this:'actorsType'}})
                                     </a>
                                 </li>
                             </ul>

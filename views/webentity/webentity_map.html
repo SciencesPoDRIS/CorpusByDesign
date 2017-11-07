@@ -17,12 +17,12 @@
             </div>
         </div>
         <div flex="50" flex-sm="100">
-            <div class="title">{{webEntity.FULL_NAME}}</div>
+            <div class="title">{{webEntity.NAME}}</div>
             <div class="metadata">
                 <table class="table table-hover">
                     <tr ng-show="isShowable('URL');">
                         <td class="name" flex="30">URL</td>
-                        <td class="value"><a title="{{webEntity.FULL_NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
+                        <td class="value"><a title="{{webEntity.NAME}} | New window" href="{{webEntity.URL}}" target="_blank">{{webEntity.URL}}</a></td>
                     </tr>
                     <tr ng-show="webEntity.CORPUS == 'perou'">
                         <td class="name" flex="30">Corpus</td>
