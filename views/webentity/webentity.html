@@ -44,8 +44,8 @@
                         <td class="value">
                             <ul flex="90">
                                 <li ng-repeat="node in webEntity.neighbours" ng-if="$index < neighborsQuantity">
-                                    <a title="{{node.attributes.NAME}} | New window" href="{{node.attributes.URL || node.attributes.url}}" target="_blank">
-                                        {{node.attributes.NAME}} ({{node.attributes.ACTORS_TYPE_2 | translate2:this:'actorsType2'}}{{node.attributes.ACTORS_TYPE | translate2:this:'actorsType'}})
+                                    <a title="{{node.attributes.NAME || node.attributes.name}} | New window" href="{{node.attributes.URL || node.attributes.url}}" target="_blank">
+                                        {{node.attributes.NAME || node.attributes.name}} ({{node.attributes.ACTORS_TYPE_2 | translate2:this:'actorsType2'}}{{node.attributes.ACTORS_TYPE | translate2:this:'actorsType'}})
                                     </a>
                                 </li>
                             </ul>
