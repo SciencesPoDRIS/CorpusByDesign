@@ -177,4 +177,8 @@
             ga('send', 'pageview', { 'page': $location.path() });
         });
     });
+
+    app.config(['$locationProvider', function($locationProvider) {
+        $locationProvider.hashPrefix('');
+    }]);
 })();
