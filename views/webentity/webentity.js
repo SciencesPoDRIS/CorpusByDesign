@@ -24,15 +24,10 @@
 
                 // Load corpus
                 loadCorpusData.getData($scope.corpusId).then(function(data) {
-                    data = data.split('\n');
-                    itemFacets = data[0].split('\t');
-                    $.each(data.slice(1), function(index_01, item_01) {
-                        item_01 = item_01.split('\t');
-                        if (item_01[0] == $scope.webEntityId) {
-                            $scope.webEntity = {};
-                            $.each(itemFacets, function(index_02, item_02) {
-                                $scope.webEntity[item_02] = item_01[index_02];
-                            });
+                    itemFacets = Object.keys(data.data[0]);
+                    $.each(data.data, function(index, item) {
+                        if(item['ID'] == $scope.webEntityId) {
+                            $scope.webEntity = item;
                         }
                     });
                 });

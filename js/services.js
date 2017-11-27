@@ -28,13 +28,19 @@
         }
     ]);
 
-    // Factory to load the tsv corpus data
+    // Factory to load the csv corpus data
     app.factory('loadCorpusData', ['$http',
         function($http) {
             return {
                 getData: function(corpusId) {
-                    return $http.get('data/' + corpusId + '.tsv', { cache: true }).then(function(data) {
-                        return data.data;
+                    var url = 'data/' + corpusId + '.csv';
+                    return $http.get(url).then(function(data) {
+                        return Papa.parse(data.data, {
+                            header: true,
+                            complete: function(results) {
+                                return results.data;
+                            }
+                        });
                     });
                 }
             }

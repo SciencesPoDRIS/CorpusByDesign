@@ -66,17 +66,7 @@
                     // Load the corpus content
                     $scope.initResults = [];
                     loadCorpusData.getData($scope.corpusId).then(function(data) {
-                        data = data.split('\n');
-                        // Remove end of line
-                        headers = data[0].replace(/(\r\n|\n|\r)/gm, '').split('\t');
-                        for (i = 1; i < data.length; i++) {
-                            obj = {};
-                            currentLine = data[i].split('\t');
-                            for (j = 0; j < headers.length; j++) {
-                                obj[headers[j]] = currentLine[j];
-                            }
-                            $scope.initResults.push(obj);
-                        }
+                        $scope.initResults = data.data;
                         $scope.initResultsCount = $scope.initResults.length;
                         updateFiltering();
                         // Check that this corpus has nodesColor (ie. it has a graph part)
