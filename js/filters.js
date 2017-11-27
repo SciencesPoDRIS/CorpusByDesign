@@ -21,8 +21,6 @@
                     if(Object.keys($scope.corpus.categories).includes(facet)) {
                         $.each(input.split(' ; '), function(index, item) {
                             i = 0;
-                            // console.log(item);
-                            // console.log($scope.corpus.categories[facet].values.length);
                             while (i < $scope.corpus.categories[facet].values.length && $scope.corpus.categories[facet].values[i].id != item) {
                                 i++;
                             }
