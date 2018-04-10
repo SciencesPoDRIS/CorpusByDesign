@@ -164,7 +164,7 @@
                     }
                 }
 
-                if ('legend' in $scope) {
+                if ('legend' in $scope && typeof $scope.legend !== "undefined") {
                     $.each($scope.categories, function(index, item) {
                         $.each(item.values, function(index_02, item_02) {
                             var mappedLegend = $.grep($scope.legend, function(item_03, index_03) {
