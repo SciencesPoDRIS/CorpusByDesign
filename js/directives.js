@@ -22,7 +22,6 @@
                 $scope.isCollapsed = true;
                 $scope.allChecked = {};
                 $scope.indeterminate = {};
-                $scope.selectPeru = false;
 
                 // Deep watch categories to maintain the general status arrays
                 // Note: inefficient but relevant since it happens rarely and the array is small
@@ -41,18 +40,6 @@
                         });
                     } else {
                         var selected = [];
-                    }
-                    
-                    // If switcher is ON and that I deselect Perou, deselect the switcher and select all countries
-                    if ($scope.selectPeru && selected.length == 0) {
-                        $scope.selectPeru = false;
-                        $scope.switchPeru();
-                        // If switcher is ON and that I select 2 or more countries, deselect switcher
-                    } else if ($scope.selectPeru && selected.length > 1) {
-                        $scope.selectPeru = false;
-                        // If switcher is OFF and that I select only one country that is 'Peru', select switcher
-                    } else if (!$scope.selectPeru && selected.length == 1 && selected[0].id == 'perou') {
-                        $scope.selectPeru = true;
                     }
                 }, true);
 
@@ -143,25 +130,6 @@
                                 break;
                         }
                     }, 0);
-                }
-
-                $scope.switchPeru = function(selectPeru) {
-                    // If the switcher is selected
-                    if (selectPeru) {
-                        // Deselect all countries but Peru
-                        $scope.categories.area.values.forEach(function(v) {
-                            if (v.id == 'perou') {
-                                v.isSelected = true;
-                            } else {
-                                v.isSelected = false;
-                            }
-                        });
-                        // If the switcher is deselected
-                    } else {
-                        $scope.categories.area.values.forEach(function(v) {
-                            v.isSelected = true;
-                        });
-                    }
                 }
 
                 if ('legend' in $scope && typeof $scope.legend !== "undefined") {

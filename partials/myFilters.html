@@ -33,18 +33,6 @@
                             <input ng-model="$parent.$parent.$parent.$parent.$parent.queryTerm">
                         </md-input-container>
                     </div>
-                    <!-- Add a switcher only for 'amerique-latine' corpus -->
-                    <div class="filter-switcher">
-                        <md-switch
-                            class="md-primary"
-                            md-no-ink aria-label="Pérou 2016"
-                            ng-model="$parent.$parent.selectPeru"
-                            ng-change="switchPeru(selectPeru)"
-                            ng-if="corpusId == 'amerique-latine'"
-                        >
-                            Pérou 2016
-                        </md-switch>
-                    </div>
                     <div
                         ng-repeat="category in categories"
                         class="advanced-search filter-category-box {{category.id}}"
