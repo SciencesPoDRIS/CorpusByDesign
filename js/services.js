@@ -14,14 +14,25 @@
                         console.error('Unknown corpus ID: ' + corpusId)
                         return {}
                     }
-                    return $http.get('data/corpora.json', { cache: true }).then(function(data) {
-                        return data.data.corpora[corpusId];
+                    // Load the json file about the metadata of this corpus
+                    return $http.get('data/' + corpusId + '.json', { cache: true }).then(function(data) {
+                        return data.data;
                     });
                 },
 
                 getCorpora: function() {
-                    return $http.get('data/corpora.json', { cache: true }).then(function(data) {
-                        return data.data.corpora;
+                    return $http.get('data/corpora.txt', { cache: true }).then(function(data) {
+                        // Load list of corpora, replace "* " by "" and split lines
+                        var result = {};
+                        var corpora = data.data.replace(/\* /g, '').match(/[^\n]+/g);
+                        corpora.map(function(corpusId) {
+                            // For each corpus, load the json file about the metadata of this corpus
+                            return $http.get('data/' + corpusId + '.json', { cache: true }).then(function(data) {
+                                // Append if into an array
+                                result[corpusId] = data.data;
+                            });
+                        });
+                        return result;
                     });
                 }
             }
