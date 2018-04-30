@@ -3,6 +3,7 @@
 
     /* Load modules */
     var app = angular.module('webcorpus', [
+        'webcorpus.admin',
         'webcorpus.conf',
         'webcorpus.corpus',
         'webcorpus.methodology',

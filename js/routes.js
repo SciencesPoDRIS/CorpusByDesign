@@ -13,6 +13,11 @@
                 templateUrl: 'views/welcome/welcome.html',
                 controller: 'WelcomeController'
             }).
+            // Administration panel
+            when('/:lang/admin', {
+                templateUrl: 'views/admin/admin.html',
+                controller: 'AdminController'
+            }).
             // Corpus page
             when('/:lang/:corpusId', {
                 templateUrl: 'views/corpus/corpus.html',

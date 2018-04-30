@@ -1,0 +1,106 @@
+<!-- Header -->
+<div ng-include="'partials/header.html'"></div>
+<div flex layout="column">
+    Administration panel
+    <form class="corpus-form">
+        <div layout="row" class="row">
+            <div flex="30" class="label">Titre</div>
+            <div flex="70" class="value">
+                <input type="text" ng-model="corpus.title">
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">Is displayed</div>
+            <div flex="70" class="value">
+                <input type="checkbox" ng-model="corpus.isDiplayed" />
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">subtitle</div>
+            <div flex="70" class="value">
+                <textarea name="comment" row=4 ng-model="corpus.subtitle"></textarea>
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">prefix</div>
+            <div flex="70" class="value">
+                <input type="text" ng-model="corpus.prefix" />
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">creation</div>
+            <div flex="70" class="value">
+                <input type="date" ng-model="corpus.creation" />
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">Mise à jour</div>
+            <div flex="70" class="value">
+                <input type="date" ng-model="corpus.update" />
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">authors</div>
+            <div flex="70" class="value">
+                <textarea name="comment" ng-model="corpus.authors" rows="5"></textarea>
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">size</div>
+            <div flex="70" class="value">
+                <input type="text" name="" ng-model="corpus.size">
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">purpose</div>
+            <div flex="70" class="value">
+                <textarea ng-model="corpus.purpose" rows="10"></textarea>
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">selection</div>
+            <div flex="70" class="value">
+                <textarea ng-model="corpus.selection" rows="10"></textarea>
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">indexing</div>
+            <div flex="70" class="value">
+                <textarea ng-model="corpus.indexing" rows="10"></textarea>
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">footnote</div>
+            <div flex="70" class="value">
+                <textarea ng-model="corpus.footnote"></textarea>
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">download</div>
+            <div flex="70" class="value">
+                <textarea ng-model="corpus.download"></textarea>
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">tools</div>
+            <div flex="70" class="value">
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">defaultView</div>
+            <div flex="70" class="value">
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">availableViews</div>
+            <div flex="70" class="value">
+            </div>
+        </div>
+        <div layout="row" class="row">
+            <div flex="30" class="label">fullTextSearchFields</div>
+            <div flex="70" class="value">
+            </div>
+        </div>
+        <button type=”submit”>Submit</button>
+    </form>
+</div>
