@@ -28,7 +28,7 @@
             <span ng-bind-html="corpus.download | renderHtml"></span>
             <br/>
             <br/>
-            <div ng-bind-html="corpus.footnote | renderHtml" class="foot-note" ng-if=""></div>
+            <div ng-bind-html="corpus.footnote | renderHtml" class="footnote" ng-if="corpus.footnote != ''"></div>
         </div>
     </div>
 </div>
