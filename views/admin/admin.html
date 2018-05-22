@@ -1,106 +1,197 @@
 <!-- Header -->
 <div ng-include="'partials/header.html'"></div>
-<div flex layout="column">
-    Administration panel
-    <form class="corpus-form">
-        <div layout="row" class="row">
-            <div flex="30" class="label">Titre</div>
-            <div flex="70" class="value">
-                <input type="text" ng-model="corpus.title">
-            </div>
+<div class="admin-page" layout="column">
+    <div flex layout="column">
+        Administration panel
+        <div class="value">
+            <select ng-model="corpusid" ng-options="corpusid as corpus.title for (corpusid, corpus) in corpora track by corpusid" ng-change="load()">
+            </select>
         </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">Is displayed</div>
-            <div flex="70" class="value">
-                <input type="checkbox" ng-model="corpus.isDiplayed" />
+        <form class="corpus-form">
+            <div class="row id">
+                <div class="label">id</div>
+                <div class="value">
+                    <input type="text" ng-model="corpus.id">
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">subtitle</div>
-            <div flex="70" class="value">
-                <textarea name="comment" row=4 ng-model="corpus.subtitle"></textarea>
+            <div class="row title">
+                <div class="label">title</div>
+                <div class="value">
+                    <input type="text" ng-model="corpus.title">
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">prefix</div>
-            <div flex="70" class="value">
-                <input type="text" ng-model="corpus.prefix" />
+            <div class="row is-displayed">
+                <div class="value">
+                    <input type="checkbox" ng-model="corpus.isDiplayed" />
+                </div>
+                <div class="label">isDiplayed</div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">creation</div>
-            <div flex="70" class="value">
-                <input type="date" ng-model="corpus.creation" />
+            <div class="row">
+                <div class="label">subtitle</div>
+                <div class="value">
+                    <textarea name="comment" row=4 ng-model="corpus.subtitle"></textarea>
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">Mise à jour</div>
-            <div flex="70" class="value">
-                <input type="date" ng-model="corpus.update" />
+            <div class="row">
+                <div class="label">prefix</div>
+                <div class="value">
+                    <input type="text" ng-model="corpus.prefix" />
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">authors</div>
-            <div flex="70" class="value">
-                <textarea name="comment" ng-model="corpus.authors" rows="5"></textarea>
+            <div class="row">
+                <div class="label">creation</div>
+                <div class="value">
+                    <input type="date" ng-model="corpus.creation" />
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">size</div>
-            <div flex="70" class="value">
-                <input type="text" name="" ng-model="corpus.size">
+            <div class="row">
+                <div class="label">update</div>
+                <div class="value">
+                    <input type="date" ng-model="corpus.update" />
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">purpose</div>
-            <div flex="70" class="value">
-                <textarea ng-model="corpus.purpose" rows="10"></textarea>
+            <div class="row">
+                <div class="label">authors</div>
+                <div class="value">
+                    <textarea name="comment" ng-model="corpus.authors" rows="5"></textarea>
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">selection</div>
-            <div flex="70" class="value">
-                <textarea ng-model="corpus.selection" rows="10"></textarea>
+            <div class="row">
+                <div class="label">size</div>
+                <div class="value">
+                    <input type="text" name="" ng-model="corpus.size">
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">indexing</div>
-            <div flex="70" class="value">
-                <textarea ng-model="corpus.indexing" rows="10"></textarea>
+            <div class="row">
+                <div class="label">purpose</div>
+                <div class="value">
+                    <textarea ng-model="corpus.purpose" rows="10"></textarea>
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">footnote</div>
-            <div flex="70" class="value">
-                <textarea ng-model="corpus.footnote"></textarea>
+            <div class="row">
+                <div class="label">selection</div>
+                <div class="value">
+                    <textarea ng-model="corpus.selection" rows="10"></textarea>
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">download</div>
-            <div flex="70" class="value">
-                <textarea ng-model="corpus.download"></textarea>
+            <div class="row">
+                <div class="label">indexing</div>
+                <div class="value">
+                    <textarea ng-model="corpus.indexing" rows="10"></textarea>
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">tools</div>
-            <div flex="70" class="value">
+            <div class="row">
+                <div class="label">footnote</div>
+                <div class="value">
+                    <textarea ng-model="corpus.footnote" rows="3"></textarea>
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">defaultView</div>
-            <div flex="70" class="value">
+            <div class="row">
+                <div class="label">download</div>
+                <div class="value">
+                    <textarea ng-model="corpus.download" rows="3"></textarea>
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">availableViews</div>
-            <div flex="70" class="value">
+            <div class="row">
+                <div class="label">tools</div>
+                <div class="value">
+                    <label ng-repeat="(key, tool) in corpus.tools" class="tools group">
+                        <div class="title">{{key + 1}}</div>
+                        <div>
+                            tool.name<br />
+                            <input type="text" ng-model="tool.name" />
+                        </div>
+                        <div>
+                            tool.url<br />
+                            <input type="text" ng-model="tool.url" />
+                        </div>
+                    </label>
+                    <md-button class="md-fab md-primary md-mini" aria-label="Add tool" target="_blank" ng-click="addTool()">
+                        <md-icon>add</md-icon>
+                        <md-tooltip md-direction="right">Add tool</md-tooltip>
+                    </md-button>
+                </div>
             </div>
-        </div>
-        <div layout="row" class="row">
-            <div flex="30" class="label">fullTextSearchFields</div>
-            <div flex="70" class="value">
+            <div class="row">
+                <div class="label">defaultView</div>
+                <div class="value">
+                    <select ng-model="corpus.defaultView" ng-options="view.name as view.name for view in views">
+                    </select>
+                </div>
             </div>
-        </div>
-        <button type=”submit”>Submit</button>
-    </form>
+            <div class="row available-views">
+                <div class="label">availableViews</div>
+                <div class="value">
+                    <label ng-repeat="view in views">
+                        <input type="checkbox" ng-model="view.isChecked" checklist-value="view.name"> {{view.name}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="label">fullTextSearchFields</div>
+                <div class="value">
+                </div>
+            </div>
+            <div class="row">
+                <div class="label">categories</div>
+                <div class="value">
+                    <label ng-repeat="(categoryId, category) in corpus.categories" class="category group">
+                        <div class="title">{{categoryId}}</div>
+                        <div>
+                            category.id<br />
+                            <input type="text" name="" ng-model="category.id" />
+                        </div>
+                        <div>
+                            category.label<br />
+                            <input type="text" name="" ng-model="category.label" />
+                        </div>
+                        <div>
+                            category.tooltip<br />
+                            <input type="text" name="" ng-model="category.tooltip" />
+                        </div>
+                        <div>
+                            category.isDiplayed<br />
+                            <input type="text" name="" ng-model="category.isDiplayed" />
+                        </div>
+                        <div>
+                            category.mappedField<br />
+                            <input type="text" name="" ng-model="category.mappedField" />
+                        </div>
+                        <div>
+                            category.mappedFieldId<br />
+                            <input type="text" name="" ng-model="category.mappedFieldId" />
+                        </div>
+                        <div class="title">values</div>
+                        <label ng-repeat="value in category.values" class="group">
+                            <div>
+                                category.value.id<br />
+                                <input type="text" name="" ng-model="value.id" />
+                            </div>
+                            <div>
+                                category.value.label<br />
+                                <input type="text" name="" ng-model="value.label" />
+                            </div>
+                            <div>
+                                <input type="checkbox" name="value-is-selected" ng-model="value.isSelected" />
+                                category.value.isSelected
+                            </div>
+                            <div style="display: none;">
+                                category.value.count<br />
+                                <input type="text" name="" ng-model="value.count" />
+                            </div>
+                        </label>
+                        <md-button class="md-fab md-primary md-mini" aria-label="Add value" target="_blank" ng-click="addCategoryValue(categoryId, category)">
+                            <md-icon>add</md-icon>
+                            <md-tooltip md-direction="right">Add value</md-tooltip>
+                        </md-button>
+                    </label>
+                    <md-button class="md-fab md-primary md-mini" aria-label="Add category" target="_blank" ng-click="addCategory()">
+                        <md-icon>add</md-icon>
+                        <md-tooltip md-direction="right">Add category</md-tooltip>
+                    </md-button>
+                </div>
+            </div>
+            <button type="submit" ng-click="save()">Sauvegarder</button>
+        </form>
+    </div>
 </div>
