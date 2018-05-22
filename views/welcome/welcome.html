@@ -22,12 +22,12 @@
                             <div class="value title">{{corpus.title}}</div>
                         </div>
                         <div layout="row">
-                            <div flex="10">Date du corpus</div>
-                            <div flex="90" class="value">{{corpus.creation}}</div>
+                            <div flex="20">Date de mise en ligne</div>
+                            <div flex="80" class="value">{{corpus.creation | formatDate}}</div>
                         </div>
                         <div layout="row">
-                            <div flex="10">Auteurs</div>
-                            <div flex="90" class="value" ng-bind-html="corpus.authors | renderHtml"></div>
+                            <div flex="20">Auteurs</div>
+                            <div flex="80" class="value" ng-bind-html="corpus.authors | renderHtml"></div>
                         </div>
                         <div>
                             <div class="value" ng-bind-html="corpus.purpose | renderHtml"></div>
