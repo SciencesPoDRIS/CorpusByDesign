@@ -15,8 +15,12 @@
 
             $scope.load = function() {
                 if($scope.corpusid != '') {
-                    if($scope.corpusid != 'new') {
-                        // Load an existing corpus and set it into the scope
+                    // Create a new and empty corpus
+                    if($scope.corpusid == 'new') {
+                        $scope.corpus = {};
+                        $scope.corpus.categories = {};
+                    // Load an existing corpus and set it into the scope
+                    } else {
                         loadCorpus.getCorpus($scope.corpusid).then(function(corpus) {
                             $scope.corpus = corpus;
                             $scope.corpus.id = $scope.corpusid;
