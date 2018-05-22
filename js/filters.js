@@ -93,4 +93,13 @@
         }
     ]);
 
+    app.filter('formatDate', [ 
+        function() {
+            return function (input) {
+                var tmp = input.split('-')
+                return [tmp[2], tmp[1], tmp[0]].join('/');
+            }
+        }
+    ]);
+
 })();

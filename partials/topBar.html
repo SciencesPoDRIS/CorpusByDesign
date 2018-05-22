@@ -5,8 +5,8 @@
                 <a href="#/{{lang}}/{{corpusId}}/view/{{corpus.defaultView}}">{{corpus.title}}</a>
             </h3>
             <div>
-                <span class="creation-date">Créé le {{corpus.creation}}</span>
-                <span class="last-update">Mis à jour le {{corpus.update}}</span>
+                <span class="creation-date">Date de mise en ligne {{corpus.creation | formatDate}}</span>
+                <span class="last-update">Mis à jour le {{corpus.update | formatDate}}</span>
             </div>
         </div>
         <div flex="60">
