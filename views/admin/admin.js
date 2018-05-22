@@ -54,6 +54,16 @@
                 m = (m > 9) ? '' + m : '0' + m;
                 y = $scope.savedCorpus.update.getFullYear();
                 $scope.savedCorpus.update = y + '-' + m + '-' + d;
+                // On added category, for each value, set count to zero
+                // Iterate over categories
+                Object.keys($scope.savedCorpus.categories).forEach(
+                    function(key) {
+                        // Iterate over category values
+                        $.each($scope.savedCorpus.categories[key].values, function(index, value) {
+                            value['count'] = 0;
+                        });
+                    }
+                );
                 // Add into the DOM an a tag and simulate a click on it
                 // To download the JSON file
                 var downloadLink = document.createElement('a');
@@ -75,7 +85,7 @@
                 $scope.corpus.categories['new_category'] = { id: '', label: '', tooltip: '', isDiplayed: 0, mappedField: '', mappedFieldId: '', values: [] };
             }
 
-            $scope.addCategoryValue = function(categoryId, category) {
+            $scope.addCategoryValue = function(category) {
                 category.values.push({ id: '', label: '', isSelected: 0 });
             }
 
