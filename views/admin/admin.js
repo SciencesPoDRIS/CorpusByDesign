@@ -18,6 +18,7 @@
                     // Create a new and empty corpus
                     if($scope.corpusid == 'new') {
                         $scope.corpus = {};
+                        $scope.corpus.tools = [];
                         $scope.corpus.categories = {};
                     // Load an existing corpus and set it into the scope
                     } else {
