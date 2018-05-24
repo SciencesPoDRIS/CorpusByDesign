@@ -1071,28 +1071,28 @@ a.md-button.md-primary.md-fab.tile-link {
     width: 80%;
 }
 
-.corpus-form {
+.corpusForm {
     display: none;
     margin: 20px 0;
     overflow-y: auto;
 }
 
-.corpus-form .row {
+.corpusForm .row {
     margin-bottom: 10px;
 }
 
-.corpus-form .row .label {
+.corpusForm .row .label {
     margin-bottom: 5px;
 }
 
-.corpus-form .row .value,
-.corpus-form .row input[type="text"],
-.corpus-form .row input[type="date"],
-.corpus-form .row .value > textarea {
+.corpusForm .row .value,
+.corpusForm .row input[type="text"],
+.corpusForm .row input[type="date"],
+.corpusForm .row .value > textarea {
     width: 98%;
 }
 
-.corpus-form .row .value .group {
+.corpusForm .row .value .group {
     border: 1px solid #343333;
     display: inline-block;
     margin: 10px 0;
@@ -1100,23 +1100,29 @@ a.md-button.md-primary.md-fab.tile-link {
     width: 98%;
 }
 
-.corpus-form .row .value .group .title {
+.corpusForm .row .value .group .title {
     font-weight: bold;
     margin: 5px 0 10px 0;
 }
 
-.corpus-form .is-displayed {
-    display: flex;
+.corpusForm .is-displayed {
+    display: inline-flex;
 }
 
-.corpus-form .row.is-displayed > .value {
+.corpusForm .row.is-displayed > .value {
     width: inherit;
 }
 
-.is-displayed .label {
+.corpusForm .is-displayed .label {
     margin-left: 10px;
 }
 
-.available-views .value > label {
+.corpusForm .available-views .value > label {
     display: block;
+}
+
+.corpusForm .help {
+    color: grey;
+    font-size: 13px;
+    font-style: italic;
 }

@@ -40,44 +40,52 @@
                         {name : 'map', isChecked : 0}
                     ];
                     // Display form
-                    $('.corpus-form').css('display', 'initial');
+                    $('.corpusForm').css('display', 'initial');
                 }
             }
 
             $scope.save = function() {
-                // Duplicate as a deep copy, the corpus Object
-                $scope.savedCorpus = jQuery.extend(true, {}, $scope.corpus);
-                // Adapt creation date format
-                var d = $scope.savedCorpus.creation.getDate();
-                var m = $scope.savedCorpus.creation.getMonth() + 1;
-                m = (m > 9) ? '' + m : '0' + m;
-                var y = $scope.savedCorpus.creation.getFullYear();
-                $scope.savedCorpus.creation = y + '-' + m + '-' + d;
-                // Adapt update date format
-                d = $scope.savedCorpus.update.getDate();
-                m = $scope.savedCorpus.update.getMonth() + 1;
-                m = (m > 9) ? '' + m : '0' + m;
-                y = $scope.savedCorpus.update.getFullYear();
-                $scope.savedCorpus.update = y + '-' + m + '-' + d;
-                // On added category, for each value, set count to zero
-                // Iterate over categories
-                Object.keys($scope.savedCorpus.categories).forEach(
-                    function(key) {
-                        // Iterate over category values
-                        $.each($scope.savedCorpus.categories[key].values, function(index, value) {
-                            value['count'] = 0;
-                        });
+                if(('id' in $scope.corpus) && $scope.corpus.id != '') {
+                    // Duplicate as a deep copy, the corpus Object
+                    $scope.savedCorpus = $.extend(true, {}, $scope.corpus);
+                    // Adapt creation date format
+                    if(('creation' in $scope.savedCorpus) && $scope.savedCorpus.creation) {
+                        var d = $scope.savedCorpus.creation.getDate();
+                        var m = $scope.savedCorpus.creation.getMonth() + 1;
+                        m = (m > 9) ? '' + m : '0' + m;
+                        var y = $scope.savedCorpus.creation.getFullYear();
+                        $scope.savedCorpus.creation = y + '-' + m + '-' + d;
                     }
-                );
-                // Add into the DOM an a tag and simulate a click on it
-                // To download the JSON file
-                var downloadLink = document.createElement('a');
-                downloadLink.setAttribute('download', $scope.corpus.id + '.json');
-                var blob = new Blob([angular.toJson($scope.savedCorpus, 4)], {
-                    type: 'application/json;charset=utf-8;'
-                });
-                downloadLink.setAttribute('href', window.URL.createObjectURL(blob));
-                downloadLink.click();
+                    // Adapt update date format
+                    if(('update' in $scope.savedCorpus) && $scope.savedCorpus.update) {
+                        d = $scope.savedCorpus.update.getDate();
+                        m = $scope.savedCorpus.update.getMonth() + 1;
+                        m = (m > 9) ? '' + m : '0' + m;
+                        y = $scope.savedCorpus.update.getFullYear();
+                        $scope.savedCorpus.update = y + '-' + m + '-' + d;
+                    }
+                    // On added category, for each value, set count to zero
+                    // Iterate over categories
+                    Object.keys($scope.savedCorpus.categories).forEach(
+                        function(key) {
+                            // Iterate over category values
+                            $.each($scope.savedCorpus.categories[key].values, function(index, value) {
+                                value['count'] = 0;
+                            });
+                        }
+                    );
+                    // Add into the DOM an a tag and simulate a click on it
+                    // To download the JSON file
+                    var downloadLink = document.createElement('a');
+                    downloadLink.setAttribute('download', $scope.corpus.id + '.json');
+                    var blob = new Blob([angular.toJson($scope.savedCorpus, 4)], {
+                        type: 'application/json;charset=utf-8;'
+                    });
+                    downloadLink.setAttribute('href', window.URL.createObjectURL(blob));
+                    downloadLink.click();
+                } else {
+                    alert('Merci de saisir un id !');
+                }
             }
 
             // Add a new then empty tool

@@ -7,11 +7,11 @@
             <select ng-model="corpusid" ng-options="corpusid as corpus.title for (corpusid, corpus) in corpora track by corpusid" ng-change="load()">
             </select>
         </div>
-        <form class="corpus-form">
+        <form class="corpusForm">
             <div class="row id">
-                <div class="label">id *</div>
+                <div class="label">id *<span class="help"> (identifiant du corpus qui sera repris dans l'URL. De fait, les seuls caractères acceptés sont a-z 0-9 - et _. À noter que l'ensemble des fichiers (csv, png et gexf) devra être nommé comme l'id)</span></div>
                 <div class="value">
-                    <input type="text" ng-model="corpus.id">
+                    <input type="text" name="myId" ng-model="corpus.id">
                 </div>
             </div>
             <div class="row title">
@@ -24,10 +24,10 @@
                 <div class="value">
                     <input type="checkbox" ng-model="corpus.isDiplayed" />
                 </div>
-                <div class="label">isDiplayed</div>
+                <div class="label">isDiplayed<span class="help"> (En cochant cette case, le corpus apparaitra en page d'accueil du site http://corpusweb.sciencespo.fr et sera visible pour tous)</span></div>
             </div>
             <div class="row">
-                <div class="label">subtitle</div>
+                <div class="label">subtitle<span class="help"> (Sous-titre du corpus, affiché sur la page de description du corpus, en haut de la colonne de droite)</span></div>
                 <div class="value">
                     <textarea name="comment" row=4 ng-model="corpus.subtitle"></textarea>
                 </div>
@@ -39,19 +39,19 @@
                 </div>
             </div>
             <div class="row">
-                <div class="label">creation *</div>
+                <div class="label">creation<span class="help"> (Date de création du corpus, affichée sur la page de description du corpus, sous le titre)</span></div>
                 <div class="value">
                     <input type="date" ng-model="corpus.creation" />
                 </div>
             </div>
             <div class="row">
-                <div class="label">update *</div>
+                <div class="label">update<span class="help"> (Date de mise à jour du corpus, affichée sur la page de description du corpus, sous le titre)</span></div>
                 <div class="value">
                     <input type="date" ng-model="corpus.update" />
                 </div>
             </div>
             <div class="row">
-                <div class="label">authors</div>
+                <div class="label">authors<span class="help"> (Au format HTML, texte de description des auteurs de ce corpus)</span></div>
                 <div class="value">
                     <textarea name="comment" ng-model="corpus.authors" rows="5"></textarea>
                 </div>
@@ -138,42 +138,44 @@
                     <label ng-repeat="(categoryId, category) in corpus.categories" class="category group">
                         <div class="title">{{categoryId}}</div>
                         <div>
-                            category.id<br />
+                            category.id<span class="help"> (Identifiant unique de cette colonne)</span><br />
                             <input type="text" name="" ng-model="category.id" />
                         </div>
                         <div>
-                            category.label<br />
+                            category.label<span class="help"> (Nom affiché dans l'interface pour cette colonne)</span><br />
                             <input type="text" name="" ng-model="category.label" />
                         </div>
                         <div>
-                            category.tooltip<br />
+                            category.tooltip<span class="help"> (Contenu à afficher dans le tooltip lors du survol dans les filtres)</span><br />
                             <input type="text" name="" ng-model="category.tooltip" />
                         </div>
-                        <div>
+                        <div class="is-displayed">
+                            <div class="value">
+                                <input type="checkbox" name="" ng-model="category.isDiplayed" />
+                            </div>
                             category.isDiplayed<br />
-                            <input type="text" name="" ng-model="category.isDiplayed" />
                         </div>
                         <div>
-                            category.mappedField<br />
+                            category.mappedField<span class="help"> (Nom de la colonne du CSV correspondante, doit être strictement identique !)</span><br />
                             <input type="text" name="" ng-model="category.mappedField" />
                         </div>
                         <div>
-                            category.mappedFieldId<br />
+                            category.mappedFieldId<span class="help"> (Index de la colonne du CSV correspondante, doit être strictement identique ! Attention, cet index commence à 0)</span><br />
                             <input type="text" name="" ng-model="category.mappedFieldId" />
                         </div>
                         <div class="title">values</div>
                         <label ng-repeat="value in category.values" class="group">
                             <div>
-                                category.value.id<br />
+                                category.value.id<span class="help"> (Identifiant unique de cette valeur)</span><br />
                                 <input type="text" name="" ng-model="value.id" />
                             </div>
                             <div>
-                                category.value.label<br />
+                                category.value.label<span class="help"> (Nom affiché dans l'interface pour cette valeur)</span><br />
                                 <input type="text" name="" ng-model="value.label" />
                             </div>
-                            <div>
+                            <div class="is-displayed">
                                 <input type="checkbox" name="value-is-selected" ng-model="value.isSelected" />
-                                category.value.isSelected
+                                <div class="label">category.value.isSelected</div>
                             </div>
                             <div style="display: none;">
                                 category.value.count<br />
